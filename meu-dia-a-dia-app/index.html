@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Meu Dia a Dia</title>
+<title>Meu Dia</title>
 <meta name="description" content="Presença, hábitos, finanças, estudos e vida, num app só.">
 <meta name="theme-color" content="#f4f6fb" id="corTema">
 <meta name="mobile-web-app-capable" content="yes">
@@ -180,6 +180,14 @@
   .hab .n small { color: var(--sub); font-weight: 600; font-size: 10.5px; margin-left: auto; padding-right: 2px; }
   .dot { width: 26px; height: 26px; border-radius: 8px; background: var(--soft); display: grid; place-items: center; font-size: 12px; color: #fff; font-weight: 800; margin: auto; }
   .dot.y { background: #16a34a; }
+  .dot.meio { background: #bbf7d0; color: #14532d; font-size: 9.5px; }
+  .qtd-hab { display: flex; align-items: center; justify-content: center; gap: 18px; margin: 18px 0 8px; }
+  .qtd-hab button { width: 56px; height: 56px; border-radius: 16px; background: var(--soft); font-size: 26px; font-weight: 800; color: var(--tx); }
+  .qtd-hab .v { font-size: 34px; font-weight: 800; min-width: 120px; text-align: center; font-variant-numeric: tabular-nums; }
+  .qtd-hab .v small { display: block; font-size: 13px; color: var(--sub); font-weight: 700; }
+  .mais { margin-left: auto; background: var(--acc2); color: var(--acct); font-weight: 800; font-size: 12px; padding: 5px 9px; border-radius: 9px; flex: none; }
+  .ferias-p { padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .ferias-p:last-child { border-bottom: 0; }
   .dot.hj { box-shadow: inset 0 0 0 2px var(--acct); }
   .dot.y.hj { box-shadow: none; }
   .dot.fut { background: transparent; border: 1.5px dashed var(--line); cursor: default; }
@@ -392,12 +400,39 @@
   .chips.mini .chip { padding: 6px 11px; font-size: 12px; }
   .evo-ajuda { font-size: 11.5px; color: var(--sub); margin-top: 6px; }
   .fixo-dur { font-size: 11px; font-weight: 700; color: var(--sub); }
+  .livre .grande { font-size: 30px; font-weight: 800; letter-spacing: -.8px; margin: 2px 0; font-variant-numeric: tabular-nums; }
+  .livre .grande.neg { color: var(--r); }
+  .livre .partes { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 8px; font-size: 12px; color: var(--sub); font-weight: 600; }
+  .filtros { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+  .filtros input, .filtros select { width: 100%; font: inherit; font-size: 13px; padding: 9px 10px; border-radius: 10px; border: 1px solid var(--inp); background: var(--card); color: var(--tx); }
+  .filtros .todo { grid-column: span 2; }
+  .imp-lista { max-height: 46vh; overflow-y: auto; margin: 10px 0; border-top: 1px solid var(--line); }
+  .imp-item { display: grid; grid-template-columns: 22px 1fr auto; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+  .imp-item small { color: var(--sub); display: block; }
+  .imp-item.dup { opacity: .5; }
   .conectar { max-width: 460px; margin: 6vh auto 0; }
   .conectar .logo-app { width: 72px; height: 72px; border-radius: 20px; margin-bottom: 14px; box-shadow: var(--sh); }
   .conectar h1 { font-size: 24px; letter-spacing: -.5px; margin-bottom: 6px; }
   .conectar ol { margin: 12px 0 4px 18px; font-size: 13px; color: var(--sub); line-height: 1.6; }
   .conectar .btnp { width: 100%; margin-top: 8px; padding: 13px; font-size: 15px; }
   body.sem-nav .bnav, body.sem-nav .side { display: none !important; }
+  .toast.acao { pointer-events: auto; display: flex; align-items: center; gap: 14px; padding: 8px 8px 8px 16px; }
+  .toast .tbtn { background: rgba(255,255,255,.14); color: #7dd3fc; font-weight: 800; padding: 7px 12px; border-radius: 8px; font-size: 13px; }
+  .ptr { position: fixed; left: 50%; top: calc(6px + env(safe-area-inset-top)); transform: translate(-50%, -60px); z-index: 65; width: 40px; height: 40px; border-radius: 50%;
+    background: var(--card); box-shadow: var(--sh); display: grid; place-items: center; font-size: 20px; color: var(--sub); transition: transform .15s; pointer-events: none; }
+  .ptr.pronto { color: var(--acct); }
+  .ptr.girando { animation: girar .8s linear infinite; transform: translate(-50%, 20px); }
+  @keyframes girar { to { rotate: 360deg; } }
+  .versao { position: fixed; left: 12px; right: 12px; bottom: calc(86px + env(safe-area-inset-bottom)); z-index: 62; background: var(--acc); color: #fff; border-radius: 14px;
+    padding: 10px 10px 10px 16px; display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 13px; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+  .versao button { margin-left: auto; background: #fff; color: var(--acc); font-weight: 800; padding: 8px 14px; border-radius: 10px; }
+  @media (min-width: 900px) { .versao { left: auto; right: 24px; bottom: 24px; width: 380px; } }
+  .trava { position: fixed; inset: 0; z-index: 200; background: var(--bg); display: none; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 24px; text-align: center; }
+  body.travado .trava { display: flex; }
+  body.travado .app, body.travado .bnav { visibility: hidden; }
+  .trava img { width: 76px; height: 76px; border-radius: 22px; box-shadow: var(--sh); }
+  .trava .btnp { padding: 13px 22px; font-size: 15px; }
+  .olho { font-size: 17px; }
   .manual details { background: var(--card); border-radius: 18px; box-shadow: var(--sh); margin-bottom: 10px; scroll-margin-top: 70px; }
   .manual summary { padding: 15px 16px; font-weight: 800; font-size: 15px; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; }
   .manual summary::-webkit-details-marker { display: none; }
@@ -449,6 +484,10 @@
 <div class="veu" id="veu"></div>
 <div class="toast" id="toast"></div>
 <div class="selo" id="selo"></div>
+<div class="ptr" id="ptr" aria-hidden="true">↻</div>
+<div class="trava" id="trava"><img src="icone-192.png" alt=""><h2>Meu Dia está bloqueado</h2>
+  <button class="btnp" data-a="destravar">🔓 Desbloquear com digital</button>
+  <button class="lk" style="color:var(--acct);font-weight:700" data-a="destravarChave">Usar a chave do app</button><div id="travaMsg" class="nota"></div></div>
 
 <script>
 // =====================================================================
@@ -478,8 +517,10 @@ const diasNoMes = (a, m) => new Date(a, m, 0).getDate();
 const fmt = s => s ? s.slice(0, 10).split('-').reverse().join('/') : '—';
 const fmtCurto = s => s ? fmt(s).slice(0, 5) : '—';
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const brl = v => 'R$ ' + (Number(v) || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-const brlCurto = v => 'R$ ' + Math.round(Number(v) || 0).toLocaleString('pt-BR');
+// Esconder valores (👁️): todos os R$ do app passam por aqui
+const brl = v => E.ocultar ? 'R$ ••••' : 'R$ ' + (Number(v) || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const brlCurto = v => E.ocultar ? 'R$ ••••' : 'R$ ' + Math.round(Number(v) || 0).toLocaleString('pt-BR');
+const botaoOlho = () => `<button class="ibtn olho" data-a="olho" aria-label="${E.ocultar ? 'Mostrar valores' : 'Esconder valores'}" title="${E.ocultar ? 'Mostrar valores' : 'Esconder valores'}">${E.ocultar ? '🙈' : '👁️'}</button>`;
 const num = v => Number(v) || 0;
 const uid = () => Math.random().toString(16).slice(2, 10);
 const T = n => E.t[n] || (E.t[n] = []);
@@ -556,14 +597,21 @@ async function chamarPonte(c, fn, args) {
   throw Object.assign(new Error(j.erro || 'Erro na planilha'), { codigo: j.codigo });
 }
 
-function toast(msg, erro) {
+function toast(msg, erro, acao) {
   if (!msg) return;
   const t = $('toast');
   t.textContent = msg;
-  t.className = 'toast on' + (erro ? ' erro' : '');
+  t.className = 'toast on' + (erro ? ' erro' : '') + (acao ? ' acao' : '');
+  if (acao) {
+    const b = document.createElement('button');
+    b.className = 'tbtn'; b.textContent = acao.txt;
+    b.onclick = () => { t.className = 'toast'; acao.fn(); };
+    t.appendChild(b);
+  }
   clearTimeout(toast.t);
-  toast.t = setTimeout(() => t.className = 'toast', erro ? 5000 : 1800);
+  toast.t = setTimeout(() => t.className = 'toast', acao ? 6000 : erro ? 5000 : 1800);
 }
+const vibrar = (ms = 12) => { try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e) { /* sem vibração */ } };
 
 const CHAVE = { Config: 'Chave', Orcamentos: 'Categoria', Diario: 'Data' };
 
@@ -672,9 +720,10 @@ async function excluirLista(tab, chaves, msg = 'Excluído') {
   const copia = T(tab).slice();
   E.t[tab] = copia.filter(x => !chaves.includes(x[k]));
   render();
+  const removidos = copia.filter(x => chaves.includes(x[k]));
   try {
     const r = await gravar('excluirVarios', tab, chaves);
-    toast(avisoOffline(r) ? 'Sem internet: guardado no aparelho ⏳' : msg);
+    toast(avisoOffline(r) ? 'Sem internet: guardado no aparelho ⏳' : msg, false, msg ? { txt: 'Desfazer', fn: () => salvarLista(tab, removidos, 'Restaurado ✓') } : null);
     salvarCache();
   } catch (e) {
     E.t[tab] = copia;
@@ -924,6 +973,41 @@ function alertaFolga(f, s) {
     <div class="dias">${Math.abs(s.n)}<small>${s.n < 0 ? 'dias atrás' : 'dias'}</small></div></div>`;
 }
 
+// Férias pela CLT: cada 12 meses trabalhados (período aquisitivo) dão os dias de férias, que precisam ser tirados nos 12 meses seguintes
+function somaAnos(k, n) { const [a, m, d] = k.split('-').map(Number), y = a + n; return iso(y, m, m === 2 && d === 29 && diasNoMes(y, 2) < 29 ? 28 : d); }
+function feriasInfo() {
+  const adm = String(cfg('Admissao', '')).slice(0, 10);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(adm)) return null;
+  const hoje = hojeIso(), direito = num(cfg('DiasFerias', 30)) || 30, ps = [];
+  for (let k = 0; somaAnos(adm, k) <= hoje && k < 60; k++) {
+    const fimAq = somaDias(somaAnos(adm, k + 1), -1);
+    ps.push({ ini: somaAnos(adm, k), fimAq, limite: somaDias(somaAnos(adm, k + 2), -1), usados: 0, direito });
+  }
+  Object.keys(E.dias).filter(k => k >= adm && (E.porCodigo[E.dias[k].codigo] || {}).categoria === 'Férias').sort().forEach(t => {
+    const p = ps.find(x => t > x.fimAq && x.usados < x.direito) || ps.find(x => x.usados < x.direito); // a mais antiga já completa; senão, antecipada
+    if (p) p.usados++;
+  });
+  ps.forEach(p => {
+    p.saldo = p.direito - p.usados;
+    p.st = hoje <= p.fimAq ? 'aquisicao' : !p.saldo ? 'tiradas' : hoje > p.limite ? 'vencidas' : 'disponivel';
+  });
+  return { ps, saldo: ps.filter(p => p.st === 'disponivel' || p.st === 'vencidas').reduce((a, p) => a + p.saldo, 0) };
+}
+function cardFerias() {
+  const fi = feriasInfo();
+  if (!fi) return `<div class="card" id="cal-ferias"><div class="sec">Férias</div><div class="vazio" style="padding:6px 0">Informe sua data de admissão na engrenagem ⚙️ do Calendário para acompanhar quantos dias você tem e o prazo para tirar.</div></div>`;
+  const hoje = hojeIso(), mostrar = fi.ps.filter(p => p.st !== 'tiradas').slice(-3);
+  const linha = p => {
+    const per = `${fmtCurto(p.ini)}/${p.ini.slice(2, 4)} a ${fmtCurto(p.fimAq)}/${p.fimAq.slice(2, 4)}`;
+    if (p.st === 'aquisicao') return `<div class="ferias-p"><div class="lin"><span>Período ${per}</span><span class="pill pn">Em aquisição</span></div><small class="nota">Completa em ${fmt(somaDias(p.fimAq, 1))} (+${p.direito} dias)${p.usados ? ` · ${p.usados} já tirados antes` : ''}</small></div>`;
+    const n = difDias(hoje, p.limite);
+    return `<div class="ferias-p"><div class="lin"><span>Período ${per}</span><span class="pill ${p.st === 'vencidas' ? 'pr' : n <= 90 ? 'po' : 'pg'}">${p.st === 'vencidas' ? 'Prazo vencido' : p.saldo + ' dias'}</span></div>
+      <small class="nota">Tirou ${p.usados} de ${p.direito} · ${p.st === 'vencidas' ? 'o prazo era ' + fmt(p.limite) : `tirar até <b>${fmt(p.limite)}</b> (${plural(n, 'dia', 'dias')})`}</small>${bar(p.usados / p.direito * 100, '#0d9488')}</div>`;
+  };
+  return `<div class="card" id="cal-ferias"><div class="sec">Férias ${fi.saldo ? `<span class="pill pg">${fi.saldo} dias para tirar</span>` : ''}</div>
+    ${mostrar.map(linha).join('') || '<div class="vazio">Todas as férias já foram tiradas 🏖️</div>'}
+    <p class="nota" style="margin-top:6px">Conta os dias marcados como Férias no calendário. Faltas que reduzem férias (CLT, art. 130) não entram na conta.</p></div>`;
+}
 function resumoAno(a) {
   const r = { presenca: 0, previstos: 0, folga: 0, extra: 0, falta: 0 };
   const ate = String(a) === hojeIso().slice(0, 4) ? +hojeIso().slice(5, 7) : 12;
@@ -939,7 +1023,7 @@ function anosCalendario() {
   const ini = Math.min(atual, ...anos), fim = Math.max(atual + 1, ...anos);
   return [...Array(fim - ini + 1)].map((_, i) => fim - i);
 }
-const SECOES_CAL = [['cardCal', 'Mês'], ['cal-resumo', 'Resumo'], ['cal-folgas', 'Folgas'], ['cal-habitos', 'Hábitos'], ['cal-todos', 'To-dos'], ['cal-ano', 'Ano']];
+const SECOES_CAL = [['cardCal', 'Mês'], ['cal-resumo', 'Resumo'], ['cal-folgas', 'Folgas'], ['cal-ferias', 'Férias'], ['cal-habitos', 'Hábitos'], ['cal-todos', 'To-dos'], ['cal-ano', 'Ano']];
 
 function telaPresenca() {
   const ym = E.mesPres, ano = +ym.slice(0, 4), r = resumoMes(ym), ra = resumoAno(ano), ferias = diasParaFerias();
@@ -965,12 +1049,16 @@ function telaPresenca() {
           <div class="kpi"><div class="v">${r.falta}</div><div class="l">Faltas</div></div><div class="kpi"><div class="v">${ferias == null ? '—' : ferias}</div><div class="l">Dias p/ férias</div></div></div>
         <div class="ano">Em ${ano}${String(ano) === hojeIso().slice(0, 4) ? ' até agora' : ''}: <b>${pct(ra.presenca, ra.previstos)}</b> de presença (${ra.presenca}/${ra.previstos}) · <b>${ra.folga}</b> folgas · <b>${ra.extra}</b> com extra · <b>${ra.falta}</b> faltas</div></div>
       <div class="card" id="cal-folgas"><div class="sec">Folgas <button class="lk" data-a="novaFolga">+ Nova</button></div>
+        ${(() => { const cont = {}; Object.keys(E.dias).filter(k => k.startsWith(ano + '-') && (E.porCodigo[E.dias[k].codigo] || {}).categoria === 'Folga').forEach(k => cont[E.dias[k].codigo] = (cont[E.dias[k].codigo] || 0) + 1);
+          const ks = Object.keys(cont).sort((a, b) => cont[b] - cont[a]);
+          return ks.length ? `<div class="nota" style="margin:-4px 0 8px;font-weight:600">Em ${ano}: ${ks.map(c => `<b>${cont[c]}</b> ${esc(c)}`).join(' · ')}</div>` : ''; })()}
         ${alertas.map(x => alertaFolga(x.f, x.s)).join('')}
         ${lista.slice(0, E.verTodasFolgas ? 999 : 4).map(({ f, s }) => { const [b, t] = corCodigo(tipoCurto(f.tipo));
           return `<div class="row" data-a="editarFolga" data-id="${esc(f.id)}"><span class="pill" style="background:${b};color:${t}">${tipoCurto(f.tipo)}</span>
           <div class="t"><b>${esc(maiuscula(f.tipo.toLowerCase()))}</b><small>${f.folga ? fmt(f.folga) : 'sem data'}${f.anotacoes ? ' · ' + esc(f.anotacoes) : ''}</small></div><span class="pill ${s.cls}">${s.txt}</span></div>`; }).join('') || (alertas.length ? '' : '<div class="vazio">Nenhuma folga cadastrada.</div>')}
         ${lista.length > 4 ? `<button class="add" data-a="todasFolgas">${E.verTodasFolgas ? 'Mostrar menos' : `Ver todas (${lista.length})`}</button>` : ''}
       </div>
+      ${cardFerias()}
     </div>
   </div>
   ${secaoHabitos()}
@@ -1145,7 +1233,11 @@ function abrirFolga(id, valoresTemp) {
         await gravar('excluirFolga', f.id);
         salvarCache();
         E.folgas = E.folgas.filter(x => x.id !== f.id);
-        render(); toast('Folga excluída (o dia no calendário não muda)');
+        render();
+        toast('Folga excluída', false, { txt: 'Desfazer', fn: async () => {
+          E.folgas.push(f); render();
+          try { await gravar('salvarFolga', Object.assign({}, f, { marcar: false })); salvarCache(); toast('Folga restaurada ✓'); } catch (e) { toast('Erro ao restaurar: ' + e.message, true); }
+        } });
       } catch (e) { toast('Erro ao excluir: ' + e.message, true); }
     }),
   });
@@ -1157,7 +1249,30 @@ function abrirFolga(id, valoresTemp) {
 const inicioSemana = s => { const d = paraDate(s); d.setDate(d.getDate() - (d.getDay() + 6) % 7); return deDate(d); };
 const habitosAtivos = () => T('Habitos').filter(h => h.Ativo !== false).sort((a, b) => num(a.Ordem) - num(b.Ordem));
 const metaSemana = h => { const m = num(h.MetaSemana); return m > 0 && m < 7 ? m : 0; };
-const feito = (data, hid) => T('HabitosLog').some(l => l.ID === data + '_' + hid);
+// Hábito com quantidade (ex.: 2 L de água): o registro do dia guarda Qtd; conta como feito quando chega na meta
+const habPorId = id => T('Habitos').find(h => h.ID === id);
+const metaDia = h => num(h && h.MetaDia);
+const logDe = (data, hid) => T('HabitosLog').find(l => l.ID === data + '_' + hid);
+const feitoLog = l => !!l && (l.Qtd === undefined || l.Qtd === null || l.Qtd === '' || !metaDia(habPorId(l.HabitoID)) || num(l.Qtd) >= metaDia(habPorId(l.HabitoID)));
+const feito = (data, hid) => feitoLog(logDe(data, hid));
+const qtdDe = (data, hid) => { const l = logDe(data, hid); return !l ? 0 : l.Qtd === undefined || l.Qtd === null || l.Qtd === '' ? metaDia(habPorId(hid)) : num(l.Qtd); };
+const fmtQtd = v => String(Math.round(v * 100) / 100).replace('.', ',');
+const passoDe = h => num(h.Passo) || (metaDia(h) >= 4 ? Math.round(metaDia(h) / 4) : metaDia(h) >= 1 ? 0.5 : 0.1) || 1;
+function abrirQtd(d, hid) {
+  const h = habPorId(hid);
+  E.qtd = { d, hid, v: qtdDe(d, hid) };
+  const pintar = () => { $('qtdV').innerHTML = `${fmtQtd(E.qtd.v)}<small>de ${fmtQtd(metaDia(h))} ${esc(h.Unidade || '')}</small>`; };
+  abrirVeu(`<h2>${esc(h.Icone || '')} ${esc(h.Nome)}</h2><div class="sub">${d === hojeIso() ? 'Hoje' : fmt(d)} · meta de ${fmtQtd(metaDia(h))} ${esc(h.Unidade || '')} por dia</div>
+    <div class="qtd-hab"><button data-a="qtdPasso" data-n="-1" aria-label="Menos">−</button><div class="v" id="qtdV"></div><button data-a="qtdPasso" data-n="1" aria-label="Mais">+</button></div>
+    <div class="extras" style="justify-content:center"><button class="btns" data-a="qtdMeta">✓ Completar a meta</button><button class="btns" data-a="qtdZerar">Zerar</button></div>
+    <div class="acoes"><button class="btn sec2" data-a="fechar">Cancelar</button><button class="btn pri" data-a="qtdSalvar">Salvar</button></div>`);
+  E.qtd.pintar = pintar; pintar();
+}
+function gravarQtd(d, hid, v) {
+  const id = d + '_' + hid;
+  if (v <= 0) { if (logDe(d, hid)) excluirItem('HabitosLog', id, ''); return; }
+  salvarItem('HabitosLog', { ID: id, Data: d, HabitoID: hid, Qtd: Math.round(v * 100) / 100 }, '');
+}
 const feitosNaSemana = (ini, hid) => [...Array(7)].filter((_, i) => feito(somaDias(ini, i), hid)).length;
 function sequencia(h) {
   const meta = metaSemana(h);
@@ -1167,7 +1282,7 @@ function sequencia(h) {
     while (feitosNaSemana(ini, h.ID) >= meta) { n++; ini = somaDias(ini, -7); }
     return n + ' sem';
   }
-  const datas = new Set(T('HabitosLog').filter(l => l.HabitoID === h.ID).map(l => l.Data));
+  const datas = new Set(T('HabitosLog').filter(l => l.HabitoID === h.ID && feitoLog(l)).map(l => l.Data));
   let d = hojeIso(), n = 0;
   if (!datas.has(d)) d = somaDias(d, -1);
   while (datas.has(d)) { n++; d = somaDias(d, -1); }
@@ -1205,14 +1320,16 @@ function secaoHabitos() {
       ${hab.length ? `<div class="hab"><div></div>${dias.map(d => `<div class="h ${d === hoje ? 'hj' : ''}">${'DSTQQSS'[paraDate(d).getDay()]}<br>${+d.slice(8)}</div>`).join('')}
       ${hab.map(h => { const meta = metaSemana(h);
         return `<div class="n" data-a="editarHabito" data-id="${esc(h.ID)}">${esc(h.Icone || '')}<span>${esc(h.Nome)}</span><small>${meta ? feitosNaSemana(ini, h.ID) + '/' + meta : '🔥' + sequencia(h)}</small></div>` +
-        dias.map(d => d > hoje ? '<div class="dot fut"></div>' : `<div class="dot ${feito(d, h.ID) ? 'y' : ''} ${d === hoje ? 'hj' : ''}" data-a="hab" data-d="${d}" data-h="${esc(h.ID)}">${feito(d, h.ID) ? '✓' : ''}</div>`).join(''); }).join('')}</div>
+        dias.map(d => { if (d > hoje) return '<div class="dot fut"></div>';
+          const ok = feito(d, h.ID), q = metaDia(h) && !ok ? qtdDe(d, h.ID) : 0;
+          return `<div class="dot ${ok ? 'y' : q ? 'meio' : ''} ${d === hoje ? 'hj' : ''}" data-a="hab" data-d="${d}" data-h="${esc(h.ID)}">${ok ? '✓' : q ? fmtQtd(q) : ''}</div>`; }).join(''); }).join('')}</div>
       ${p == null ? '' : `${bar(p * 100, '#16a34a')}<small class="nota" style="font-weight:600">${Math.round(p * 100)}% da semana cumprida${pAnt == null ? '' : ` · semana anterior: ${Math.round(pAnt * 100)}%`}</small>`}`
       : '<div class="vazio">Nenhum hábito. Toque em “+ Hábito”.</div>'}`;
   } else {
     const ym = E.semHab.slice(0, 7), [a, m] = ym.split('-').map(Number);
     const ate = ym === hoje.slice(0, 7) ? +hoje.slice(8) : ym > hoje.slice(0, 7) ? 0 : diasNoMes(a, m);
     corpo = `<div class="mhead"><b style="font-size:14px">${nomeMes(ym)}</b><div class="arrows"><button data-a="mesHab" data-n="-1" aria-label="Mês anterior">‹</button><button data-a="mesHab" data-n="1" aria-label="Próximo mês">›</button></div></div>
-      ${hab.map(h => { const n = T('HabitosLog').filter(l => l.HabitoID === h.ID && String(l.Data).slice(0, 7) === ym).length;
+      ${hab.map(h => { const n = T('HabitosLog').filter(l => l.HabitoID === h.ID && String(l.Data).slice(0, 7) === ym && feitoLog(l)).length;
         const alvo = metaSemana(h) ? Math.round(metaSemana(h) * ate / 7) : ate;
         return `<div style="margin-bottom:12px"><div class="lin"><span>${esc(h.Icone || '')} ${esc(h.Nome)}</span><span>${n}/${alvo} ${metaSemana(h) ? '(meta ' + metaSemana(h) + 'x/sem)' : 'dias'}</span></div>${bar(alvo ? n / alvo * 100 : 0, '#16a34a')}</div>`; }).join('') || '<div class="vazio">Nenhum hábito.</div>'}`;
   }
@@ -1231,6 +1348,9 @@ function abrirHabito(id) {
     titulo: h ? 'Editar hábito' : 'Novo hábito',
     campos: [{ k: 'Nome', l: 'Nome', obr: 1 }, { k: 'Icone', l: 'Ícone (emoji)', ph: '📖' },
       { k: 'MetaSemana', l: 'Meta por semana', t: 'num', ph: 'Vazio = todo dia', ajuda: 'Ex.: 3 para “3 vezes por semana”. A sequência 🔥 passa a contar semanas.' },
+      { k: 'MetaDia', l: 'Quantidade por dia (opcional)', t: 'num', ph: 'Vazio = só marcar feito', ajuda: 'Ex.: 2 para “2 L de água”, 10 para “10 páginas”. Conta como feito quando chega nesse número.' },
+      { k: 'Unidade', l: 'Unidade', ph: 'L, páginas, min, copos…' },
+      { k: 'Passo', l: 'Quanto soma cada toque no +', t: 'num', ph: 'Ex.: 0,5' },
       { k: 'Ordem', l: 'Ordem', t: 'num' }, { k: 'Ativo', l: 'Ativo', t: 'bool' }],
     valores: h || { Ativo: true, Ordem: T('Habitos').length + 1 },
     salvar: o => { fecharVeu(); salvarItem('Habitos', o); },
@@ -1281,7 +1401,7 @@ function telaFinanceiro() {
   const sai = ls.filter(l => l.Tipo !== 'Entrada');
   const totSai = sai.reduce((a, l) => a + num(l.Valor), 0);
   const guardMes = T('Movimentos').filter(m => String(m.Data).slice(0, 7) === ym).reduce((a, m) => a + sinal(m) * num(m.Valor), 0);
-  return `${cab(nomeMes(ym), 'Financeiro', botao('+ Lançar', 'novoLanc'))}
+  return `${cab(nomeMes(ym), 'Financeiro', `<div class="topo-acoes">${botaoOlho()}${botao('+ Lançar', 'novoLanc')}</div>`)}
   <div class="chips fixo">${SECOES_FIN.map(([id, l]) => `<button class="chip" data-a="irSecao" data-v="${id}">${l}</button>`).join('')}</div>
   <div class="grid g2">
     <div class="grid">
@@ -1321,15 +1441,112 @@ function secMetas() {
 }
 
 function secLancamentos(ls) {
-  const ord = ls.slice().sort((a, b) => String(b.Data).localeCompare(String(a.Data)));
-  const mostrar = E.verTodosLanc ? ord : ord.slice(0, 8);
-  return `<div class="card" id="fin-lanc"><div class="sec">Lançamentos do mês <button class="lk" data-a="novoLanc">+ Lançar</button></div>
+  const f = E.fLanc || {}, t = semAcento(f.q || '').trim(), filtrando = t || f.cat || f.pag;
+  let base = filtrando && f.todos ? T('Lancamentos') : ls;
+  if (t) base = base.filter(l => semAcento(l.Descricao + ' ' + l.Categoria).includes(t));
+  if (f.cat) base = base.filter(l => (f.cat === 'Entradas' ? l.Tipo === 'Entrada' : l.Categoria === f.cat && l.Tipo !== 'Entrada'));
+  if (f.pag) base = base.filter(l => l.Pagamento === f.pag);
+  const ord = base.slice().sort((a, b) => String(b.Data).localeCompare(String(a.Data)));
+  const mostrar = E.verTodosLanc || filtrando ? ord.slice(0, 300) : ord.slice(0, 8);
+  const tot = base.reduce((a, l) => a + (l.Tipo === 'Entrada' ? 1 : -1) * num(l.Valor), 0);
+  const cats = ['Entradas'].concat(CATEGORIAS.filter(c => c !== 'Salário'));
+  return `<div class="card" id="fin-lanc"><div class="sec">Lançamentos ${f.todos && filtrando ? '(todos os meses)' : 'do mês'} <span><button class="lk" data-a="importar">⬆ Importar</button> <button class="lk" data-a="novoLanc">+ Lançar</button></span></div>
     <div class="rapido" style="margin:0 0 10px"><input id="rapidoFin" placeholder="Digite: mercado 52,30 pix" autocomplete="off" enterkeyhint="go"><button class="btns" data-a="rapidoLanc" data-campo="rapidoFin">Lançar</button></div>
+    <div class="filtros"><input id="fLancQ" class="todo" placeholder="🔎 Filtrar (ex.: mercado, uber)" value="${esc(f.q || '')}" autocomplete="off">
+      <select id="fLancCat" aria-label="Categoria"><option value="">Todas as categorias</option>${cats.map(c => `<option ${f.cat === c ? 'selected' : ''}>${c}</option>`).join('')}</select>
+      <select id="fLancPag" aria-label="Pagamento"><option value="">Todos os pagamentos</option>${PAGAMENTOS.map(p => `<option ${f.pag === p ? 'selected' : ''}>${p}</option>`).join('')}</select>
+      ${filtrando ? `<label class="check todo" style="margin:0"><input type="checkbox" id="fLancTodos" ${f.todos ? 'checked' : ''}> Procurar em todos os meses</label>` : ''}</div>
+    ${filtrando ? `<div class="lin" style="margin-bottom:6px"><span>${plural(base.length, 'lançamento', 'lançamentos')}</span><span class="${tot < 0 ? 'neg' : 'pos'}">${tot < 0 ? '−' : '+'} ${brl(Math.abs(tot))}</span></div>` : ''}
     ${mostrar.map(l => `<div class="row" data-a="editarLanc" data-id="${esc(l.ID)}"><div class="ic">${l.Tipo === 'Entrada' ? '💰' : ICONE_CAT[l.Categoria] || '📦'}</div>
-      <div class="t"><b>${esc(l.Descricao || l.Categoria)}</b><small>${String(l.Origem).startsWith('fixo:') ? '🔁 Fixo · ' : String(l.Origem).startsWith('parc:') ? '💳 Parcela · ' : ''}${esc(l.Tipo === 'Entrada' ? 'Entrada' : l.Categoria)}${l.Pagamento ? ' · ' + esc(l.Pagamento) : ''}${l.Cartao ? ' ' + esc(l.Cartao) : ''} · ${fmtCurto(l.Data)}</small></div>
-      <span class="val ${l.Tipo === 'Entrada' ? 'pos' : 'neg'}">${l.Tipo === 'Entrada' ? '+' : '−'} ${brl(l.Valor)}</span></div>`).join('') || '<div class="vazio">Nenhum lançamento neste mês.</div>'}
-    ${ord.length > 8 ? `<button class="add" data-a="todosLanc">${E.verTodosLanc ? 'Mostrar menos' : `Ver todos (${ord.length})`}</button>` : ''}</div>`;
+      <div class="t"><b>${esc(l.Descricao || l.Categoria)}</b><small>${String(l.Origem).startsWith('fixo:') ? '🔁 Fixo · ' : String(l.Origem).startsWith('parc:') ? '💳 Parcela · ' : String(l.Origem).startsWith('imp:') ? '⬆ Extrato · ' : ''}${esc(l.Tipo === 'Entrada' ? 'Entrada' : l.Categoria)}${l.Pagamento ? ' · ' + esc(l.Pagamento) : ''}${l.Cartao ? ' ' + esc(l.Cartao) : ''} · ${fmtCurto(l.Data)}${f.todos && filtrando ? '/' + String(l.Data).slice(2, 4) : ''}</small></div>
+      <span class="val ${l.Tipo === 'Entrada' ? 'pos' : 'neg'}">${l.Tipo === 'Entrada' ? '+' : '−'} ${brl(l.Valor)}</span></div>`).join('') || `<div class="vazio">${filtrando ? 'Nada com esse filtro.' : 'Nenhum lançamento neste mês.'}</div>`}
+    ${!filtrando && ord.length > 8 ? `<button class="add" data-a="todosLanc">${E.verTodosLanc ? 'Mostrar menos' : `Ver todos (${ord.length})`}</button>` : ''}
+    ${filtrando ? '<button class="add" data-a="limparFiltro">Limpar filtro</button>' : ''}</div>`;
 }
+
+/** Categoria pelo nome: primeiro o que você já lançou com esse nome, depois palavras conhecidas. */
+function categoriaDe(desc, tipo) {
+  const d = String(desc || '').toLowerCase().trim();
+  const ant = T('Lancamentos').filter(l => String(l.Descricao).toLowerCase().split(' (')[0] === d && l.Tipo === tipo).slice(-1)[0];
+  if (ant && ant.Categoria) return ant.Categoria;
+  return (Object.entries(PALAVRAS_CAT).find(([, re]) => re.test(d)) || [tipo === 'Entrada' ? 'Outros' : 'Outros'])[0];
+}
+/** Extrato do banco: OFX ou CSV (Nubank conta e cartão, Inter, Itaú, Bradesco, C6… pelo nome das colunas). */
+function lerExtrato(texto, nomeArq) {
+  const num_ = v => { v = String(v).replace(/[R$\s]/g, ''); if (/,\d{1,2}$/.test(v)) v = v.replace(/\./g, '').replace(',', '.'); else v = v.replace(/,/g, ''); return Number(v); };
+  const data_ = v => { v = String(v).trim(); let m = v.match(/^(\d{4})-?(\d{2})-?(\d{2})/); if (m) return `${m[1]}-${m[2]}-${m[3]}`; m = v.match(/^(\d{2})\/(\d{2})\/(\d{2,4})/); if (m) return `${m[3].length === 2 ? '20' + m[3] : m[3]}-${m[2]}-${m[1]}`; return ''; };
+  const itens = [];
+  if (/<OFX>|<STMTTRN>/i.test(texto)) {
+    const tag = (b, t) => (b.match(new RegExp('<' + t + '>([^<\\r\\n]*)', 'i')) || [])[1] || '';
+    texto.split(/<STMTTRN>/i).slice(1).forEach(b => {
+      const v = num_(tag(b, 'TRNAMT')), d = data_(tag(b, 'DTPOSTED'));
+      if (d && v) itens.push({ data: d, valor: v, desc: (tag(b, 'MEMO') || tag(b, 'NAME')).trim(), id: tag(b, 'FITID').trim() });
+    });
+    return { itens, cartao: false };
+  }
+  const linhas = texto.replace(/^﻿/, '').split(/\r?\n/).filter(l => l.trim());
+  let h = 0;
+  while (h < Math.min(10, linhas.length - 1) && !/data|date/i.test(linhas[h])) h++; // pula cabeçalhos do banco
+  const sep = (linhas[h].match(/;/g) || []).length > (linhas[h].match(/,/g) || []).length ? ';' : ',';
+  const partir = l => { const out = []; let cur = '', q = false; for (const ch of l) { if (ch === '"') q = !q; else if (ch === sep && !q) { out.push(cur); cur = ''; } else cur += ch; } out.push(cur); return out.map(x => x.trim()); };
+  const cab = partir(linhas[h] || '').map(c => semAcento(c));
+  const col = (re, menos = []) => cab.findIndex((c, i) => re.test(c) && !menos.includes(i));
+  const cD = col(/^data|date/), cV = col(/valor|amount|value|quantia/, [cD]), cId = col(/identificador|id$/);
+  const cT = [col(/descri|title|historico|estabelec|memo|nome/, [cD, cV]), col(/lancamento/, [cD, cV])].find(i => i >= 0) ?? -1;
+  const cartao = cab.includes('title') && cab.includes('amount') || /fatura|cartao|card/i.test(nomeArq || ''); // fatura: valores positivos são compras
+  if (cD < 0 || cV < 0) return { itens: [], cartao, erro: 'Não reconheci as colunas (preciso de Data e Valor).' };
+  linhas.slice(h + 1).forEach(l => {
+    const c = partir(l), d = data_(c[cD]), v = num_(c[cV]);
+    if (d && v) itens.push({ data: d, valor: cartao ? -v : v, desc: (c[cT] || '').replace(/\s+/g, ' ').trim(), id: cId >= 0 ? c[cId] : '' });
+  });
+  return { itens, cartao };
+}
+function abrirImportar() {
+  abrirVeu(`<h2>Importar extrato</h2><div class="sub">Baixe o extrato no app ou site do banco (CSV ou OFX) e escolha o arquivo. Você confere tudo antes de importar.</div>
+    <label class="campo">Arquivo do extrato<input type="file" id="arqExtrato" accept=".csv,.ofx,.txt,text/csv"></label>
+    <div id="impConf"></div><div class="acoes"><button class="btn sec2" data-a="fechar">Cancelar</button></div>`);
+  $('arqExtrato').addEventListener('change', async e => {
+    const arq = e.target.files[0]; if (!arq) return;
+    let texto = await arq.text();
+    if (/�/.test(texto)) texto = new TextDecoder('windows-1252').decode(await arq.arrayBuffer()); // bancos que exportam em ANSI
+    const r = lerExtrato(texto, arq.name);
+    if (!r.itens.length) return $('impConf').innerHTML = `<p class="nota" style="color:var(--r);font-weight:700">${esc(r.erro || 'Nenhum lançamento encontrado nesse arquivo.')}</p>`;
+    const ja = new Set(T('Lancamentos').map(l => String(l.Origem)));
+    const parecido = it => T('Lancamentos').some(l => l.Data === it.data && Math.abs(num(l.Valor) - Math.abs(it.valor)) < 0.005 && (l.Tipo === 'Entrada') === (it.valor > 0));
+    E.importar = r.itens.map((it, i) => {
+      const tipo = it.valor > 0 ? 'Entrada' : 'Saída', origem = 'imp:' + (it.id || it.data + '|' + it.valor + '|' + it.desc).slice(0, 80);
+      const dup = ja.has(origem) || parecido(it);
+      const bruto = it.desc.toLowerCase();
+      const desc = maiuscula(bruto.replace(/^(compra (no|com|de) (d[eé]bito|cr[eé]dito|cart[aã]o)|compra cart[aã]o|transfer[eê]ncia (enviada|recebida)( pelo pix)?|pix (enviado|recebido)|pagamento (de boleto|efetuado)|d[eé]bito autom[aá]tico)\s*[-:]?\s*/i, '').trim() || bruto).slice(0, 80);
+      const pag = /\bpix\b/.test(bruto) ? 'Pix' : /d[eé]bito/.test(bruto) ? 'Débito' : /boleto/.test(bruto) ? 'Boleto' : '';
+      const pagFatura = r.cartao && tipo === 'Entrada'; // na fatura, crédito é o pagamento da própria fatura
+      return { i, sel: !dup && !pagFatura, dup, pag, l: { Data: it.data, Descricao: desc, Tipo: tipo, Valor: Math.abs(it.valor), Categoria: categoriaDe(desc, tipo), Origem: origem } };
+    });
+    E.importarCartao = r.cartao;
+    desenharImportar();
+  });
+}
+function desenharImportar() {
+  const its = E.importar, sel = its.filter(x => x.sel), cart = E.importarCartao;
+  const pags = cart ? ['Crédito'] : ['Débito', 'Pix', 'Crédito', 'Dinheiro', 'Boleto'];
+  $('impConf').innerHTML = `<div class="lin" style="margin-top:6px"><span>${plural(its.length, 'lançamento encontrado', 'lançamentos encontrados')}${its.some(x => x.dup) ? ` · ${its.filter(x => x.dup).length} já no app` : ''}</span></div>
+    <div class="filtros" style="margin-top:8px"><label class="campo" style="margin:0">Pagamento<select id="impPag">${pags.map(p => `<option>${p}</option>`).join('')}</select></label>
+      <label class="campo" style="margin:0">Cartão<select id="impCartao"><option value="">—</option>${T('Cartoes').map(c => `<option>${esc(c.Nome)}</option>`).join('')}</select></label></div>
+    <div class="imp-lista">${its.map(x => `<label class="imp-item ${x.dup ? 'dup' : ''}"><input type="checkbox" data-imp="${x.i}" ${x.sel ? 'checked' : ''}>
+      <div><b>${esc(x.l.Descricao || '(sem descrição)')}</b><small>${fmtCurto(x.l.Data)} · ${esc(x.l.Tipo === 'Entrada' ? 'Entrada' : x.l.Categoria)}${x.dup ? ' · já lançado?' : ''}</small></div>
+      <span class="val ${x.l.Tipo === 'Entrada' ? 'pos' : 'neg'}">${x.l.Tipo === 'Entrada' ? '+' : '−'} ${brl(x.l.Valor)}</span></label>`).join('')}</div>
+    <p class="nota">A categoria vem dos seus lançamentos anteriores com o mesmo nome. Dá para ajustar depois, tocando no lançamento.</p>
+    <button class="btnp" style="width:100%;margin-top:10px" data-a="confirmarImportar">Importar ${plural(sel.length, 'lançamento', 'lançamentos')}</button>`;
+}
+function confirmarImportar() {
+  const pag = $('impPag').value, cartao = $('impCartao').value;
+  const lista = E.importar.filter(x => x.sel).map(x => { const p = pag === 'Crédito' ? (x.l.Tipo === 'Entrada' ? 'Pix' : 'Crédito') : x.pag || pag;
+    return Object.assign({ ID: uid(), Pagamento: p, Cartao: p === 'Crédito' ? cartao : '' }, x.l); });
+  if (!lista.length) return toast('Nenhum lançamento marcado.', true);
+  fecharVeu(); E.importar = null;
+  salvarLista('Lancamentos', lista, plural(lista.length, 'lançamento importado', 'lançamentos importados') + ' ✓');
+}
+
 
 // Dia em que o fixo cai no mês: dia do mês, Nº dia útil, ou dia do mês recuando para o útil anterior
 const REGRAS_FIXO = ['Dia do mês', 'Dia útil', 'Dia do mês ou útil anterior'];
@@ -1344,6 +1561,30 @@ function dataDoFixo(r, ym) {
   let k = iso(a, m, d);
   if (r.Regra === REGRAS_FIXO[2]) while (!diaUtil(k, sab) && +k.slice(8) > 1) k = somaDias(k, -1);
   return k;
+}
+/** Pagamentos = fixos de entrada da categoria Salário (salário, adiantamento). Período = do último pagamento até o próximo. */
+function livreAteSalario() {
+  const pags = T('Recorrentes').filter(r => r.Tipo === 'Entrada' && r.Categoria === 'Salário' && r.Ativo !== false);
+  if (!pags.length) return null;
+  const hoje = hojeIso(), ym = hoje.slice(0, 7), datas = [];
+  [-1, 0, 1, 2].forEach(n => { const m = somaMes(ym, n); pags.forEach(r => { if (fixoValeEm(r, m)) datas.push({ d: dataDoFixo(r, m), r }); }); });
+  datas.sort((a, b) => a.d.localeCompare(b.d));
+  const prox = datas.find(x => x.d > hoje), ult = datas.filter(x => x.d <= hoje).pop();
+  if (!prox) return null;
+  const ini = ult ? ult.d : ym + '-01', vr = l => l.Pagamento === 'Voucher'; // vale refeição/alimentação fica de fora
+  const no = (l, a, b) => String(l.Data) >= a && String(l.Data) <= b;
+  const ls = T('Lancamentos');
+  const ent = ls.filter(l => l.Tipo === 'Entrada' && !vr(l) && no(l, ini, hoje)).reduce((a, l) => a + num(l.Valor), 0);
+  const sai = ls.filter(l => l.Tipo !== 'Entrada' && !vr(l) && no(l, ini, hoje)).reduce((a, l) => a + num(l.Valor), 0);
+  const antesDoPag = somaDias(prox.d, -1);
+  let pend = ls.filter(l => l.Tipo !== 'Entrada' && !vr(l) && no(l, somaDias(hoje, 1), antesDoPag)).reduce((a, l) => a + num(l.Valor), 0); // parcelas já lançadas à frente
+  const feitos = new Set(ls.map(l => String(l.Origem)));
+  T('Recorrentes').filter(r => r.Tipo !== 'Entrada' && r.Pagamento !== 'Voucher').forEach(r => [ym, somaMes(ym, 1)].forEach(m => {
+    const d = dataDoFixo(r, m);
+    if (fixoValeEm(r, m) && d > hoje && d <= antesDoPag && !feitos.has('fixo:' + r.ID + ':' + m)) pend += num(r.Valor);
+  }));
+  const dias = Math.max(1, difDias(hoje, prox.d));
+  return { nome: prox.r.Descricao || 'Salário', prox: prox.d, ini, ent, sai, pend, livre: ent - sai - pend, dias };
 }
 const textoDiaFixo = r => r.Regra === REGRAS_FIXO[1] ? `${num(r.Dia) || 1}º dia útil` : r.Regra === REGRAS_FIXO[2] ? `Dia ${num(r.Dia) || 1} (ou útil anterior)` : `Todo dia ${num(r.Dia) || 1}`;
 const fimFixo = r => /^\d{4}-\d{2}/.test(String(r.Ate || '')) ? String(r.Ate).slice(0, 7) : '';
@@ -1833,6 +2074,10 @@ function alertas() {
   const venc = rem.filter(x => x.s.ord === 0), breve = rem.filter(x => x.s.ord === 1);
   if (venc.length) out.push({ ic: '💊', bg: 'var(--r2)', t: plural(venc.length, 'remédio vencido', 'remédios vencidos'), s: venc.map(x => x.r.Nome).join(', '), p: 'pr', pt: 'Descartar', a: 'ir', v: 'farmacia', ord: 50 });
   if (breve.length) out.push({ ic: '💊', bg: 'var(--o2)', t: plural(breve.length, 'remédio vencendo', 'remédios vencendo'), s: breve.map(x => x.r.Nome).join(', '), p: 'po', pt: 'Ver', a: 'ir', v: 'farmacia', ord: 60 });
+  const fi = feriasInfo();
+  if (fi) fi.ps.filter(p => p.st === 'vencidas' || (p.st === 'disponivel' && difDias(hoje, p.limite) <= 90)).forEach(p => out.push({ ic: '🏖️', bg: p.st === 'vencidas' ? 'var(--r2)' : 'var(--o2)',
+    t: p.st === 'vencidas' ? `Férias vencidas: ${p.saldo} dias` : `Tirar ${p.saldo} dias de férias`, s: p.st === 'vencidas' ? 'O prazo era ' + fmt(p.limite) : 'Prazo: ' + fmt(p.limite),
+    p: p.st === 'vencidas' ? 'pr' : 'po', pt: p.st === 'vencidas' ? 'Vencidas' : emDias(difDias(hoje, p.limite)), a: 'irSecaoCal', v: 'cal-ferias', ord: 40 }));
   T('Datas').forEach(x => {
     const prox = proximaOcorrencia(x.Data), n = prox ? difDias(hoje, prox) : 999, avisar = x.Avisar === '' || x.Avisar == null ? 7 : num(x.Avisar);
     if (n <= avisar) out.push({ ic: x.Tipo === 'Aniversário' ? '🎂' : '📌', bg: 'var(--p2)', t: x.Nome, s: fmt(prox) + (idadeEm(x, prox) ? ' · faz ' + idadeEm(x, prox) + ' anos' : ''), p: 'pp', pt: emDias(n), a: 'editarData', id: x.ID, ord: n + 0.1 });
@@ -1869,7 +2114,7 @@ function sugestaoHoje(k) {
 }
 
 const CARTOES_INICIO = [
-  ['hero', 'Hoje (presença e atalhos)'], ['kpis', 'Números do mês'], ['atencao', 'Atenção hoje'], ['diario', 'Como foi seu dia'],
+  ['hero', 'Hoje (presença e atalhos)'], ['kpis', 'Números do mês'], ['livre', 'Até o próximo salário'], ['atencao', 'Atenção hoje'], ['diario', 'Como foi seu dia'],
   ['agenda', 'Próximos 7 dias'], ['habitos', 'Hábitos de hoje'], ['remedios', 'Remédios de hoje'], ['metas', 'Metas'],
   ['orcamento', 'Orçamento'], ['leitura', 'Lendo agora'], ['evolucao', 'Últimos 12 meses (gráficos)'], ['conquista', 'Conquistas'], ['frase', 'Frase do dia'],
 ];
@@ -1905,6 +2150,14 @@ const CARTAO = {
       <div class="kpi" data-a="irFin" data-v="fin-guardado"><div class="v">${brlCurto(totalGuardado())}</div><div class="l">Guardado</div></div>
       <div class="kpi" data-a="ir" data-v="presenca"><div class="v">${ferias == null ? '—' : ferias}</div><div class="l">Dias p/ férias</div></div></div>`;
   },
+  livre() {
+    const x = livreAteSalario();
+    if (!x) return `<div class="card livre" data-a="irFin" data-v="fin-fixos"><div class="sec">Até o próximo salário</div><div class="vazio" style="padding:6px 0">Cadastre o salário nos Fixos (categoria Salário) para ver quanto dá para gastar por dia até ele cair.</div></div>`;
+    return `<div class="card livre" data-a="irFin" data-v="fin-resumo"><div class="sec">Próximo: ${esc(x.nome)} · ${fmtCurto(x.prox)} <span class="lk">${plural(x.dias, 'dia', 'dias')}</span></div>
+      <div class="grande ${x.livre < 0 ? 'neg' : ''}">${brl(x.livre)}</div>
+      <div class="nota" style="font-weight:700">${x.livre < 0 ? 'Passou do que entrou desde ' + fmtCurto(x.ini) : `livres · dá uns <b>${brlCurto(x.livre / x.dias)} por dia</b>`}</div>
+      <div class="partes"><span>↑ Entrou ${brlCurto(x.ent)}</span><span>↓ Gasto ${brlCurto(x.sai)}</span>${x.pend ? `<span>🔁 Fixos a pagar ${brlCurto(x.pend)}</span>` : ''}</div></div>`;
+  },
   atencao() {
     const al = alertas();
     return `<div class="card"><div class="sec">Atenção hoje ${al.length ? `<span class="pill po">${al.length}</span>` : ''}</div>
@@ -1926,8 +2179,8 @@ const CARTAO = {
   habitos() {
     const hoje = hojeIso(), hab = habitosAtivos();
     return `<div class="card"><div class="sec">Hábitos de hoje <button class="lk" data-a="ir" data-v="habitos">Semana ›</button></div>
-      ${hab.length ? `<div class="two" style="grid-template-columns:repeat(2,minmax(0,1fr));gap:0 10px">${hab.map(h => { const ok = feito(hoje, h.ID);
-        return `<div class="todo ${ok ? 'done' : ''}" style="border:0;padding:7px 0" data-a="hab" data-d="${hoje}" data-h="${esc(h.ID)}"><div class="cb ${ok ? 'y' : ''}">${ok ? '✓' : ''}</div><span class="tx">${esc(h.Icone || '')} ${esc(h.Nome)}</span></div>`; }).join('')}</div>` : '<div class="vazio">Nenhum hábito cadastrado.</div>'}</div>`;
+      ${hab.length ? `<div class="two" style="grid-template-columns:repeat(2,minmax(0,1fr));gap:0 10px">${hab.map(h => { const ok = feito(hoje, h.ID), m = metaDia(h);
+        return `<div class="todo ${ok ? 'done' : ''}" style="border:0;padding:7px 0" data-a="hab" data-d="${hoje}" data-h="${esc(h.ID)}"><div class="cb ${ok ? 'y' : ''}">${ok ? '✓' : ''}</div><span class="tx">${esc(h.Icone || '')} ${esc(h.Nome)}${m ? `<small style="display:block;color:var(--sub);font-weight:700;text-decoration:none">${fmtQtd(qtdDe(hoje, h.ID))}/${fmtQtd(m)} ${esc(h.Unidade || '')}</small>` : ''}</span>${m && !ok ? `<button class="mais" data-a="habMais" data-d="${hoje}" data-h="${esc(h.ID)}">+${fmtQtd(passoDe(h))}</button>` : ''}</div>`; }).join('')}</div>` : '<div class="vazio">Nenhum hábito cadastrado.</div>'}</div>`;
   },
   remedios() {
     const doses = dosesDeHoje();
@@ -1979,7 +2232,7 @@ function telaInicio() {
   const ocultos = ocultosInicio();
   const cartoes = ordemInicio().filter(k => !ocultos.includes(k)).map(k => CARTAO[k]()).filter(Boolean);
   return `${cab(`${maiuscula(SEMANA[d.getDay()].split('-')[0])}, ${d.getDate()} de ${MESES[d.getMonth()]}${fer ? ' · 🎉 ' + esc(fer) : ''}`, `Olá, ${esc(nome)} 👋`,
-    `<div class="topo-acoes"><button class="ibtn" data-a="busca" aria-label="Buscar">🔎</button><button class="avatar" data-a="ir" data-v="ajustes" aria-label="Ajustes">${esc(nome[0])}</button></div>`)}
+    `<div class="topo-acoes">${botaoOlho()}<button class="ibtn" data-a="busca" aria-label="Buscar">🔎</button><button class="avatar" data-a="ir" data-v="ajustes" aria-label="Ajustes">${esc(nome[0])}</button></div>`)}
   <div class="inicio">${cartoes.join('')}</div>`;
 }
 
@@ -2061,7 +2314,8 @@ function telaAjustes() {
           <button class="btns" data-a="auto" data-v="teste">✉️ Mandar um teste</button></div></div>
       ${NO_GOOGLE ? '' : `<div class="card"><div class="sec">Este aparelho</div>
         <p class="nota mb">Conectado à planilha${ultimaSync ? ' · sincronizado ' + new Date(ultimaSync).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : ''}. O app abre mesmo sem internet e envia o que você salvar quando a conexão voltar.</p>
-        <div class="botoes" style="margin-top:0"><button class="btns" data-a="sincronizarAgora">🔄 Sincronizar agora</button><button class="btns" data-a="desconectar">Desconectar</button></div></div>`}
+        <div class="botoes" style="margin-top:0"><button class="btns" data-a="sincronizarAgora">🔄 Sincronizar agora</button><button class="btns" data-a="desconectar">Desconectar</button></div>
+        ${E.travaOk ? `<div class="cfg" data-a="travaLiga" style="margin-top:10px"><div class="t"><b>🔒 Bloquear com digital</b><small>Pede a digital ou o rosto ao abrir o app (e depois de 1 minuto fora dele).</small></div><span class="pill ${ls.get(TRAVA) ? 'pg' : 'pn'}">${ls.get(TRAVA) ? 'Sim' : 'Não'}</span></div>` : ''}</div>`}
       <div class="card"><div class="sec">Ajuda</div>
         ${linha('📖 Manual do app', 'Como usar cada tela, com busca', 'ir', 'data-v="manual"')}</div>
       <div class="card"><div class="sec">Dados</div>
@@ -2104,10 +2358,11 @@ function abrirConfig(grupo) {
     sub: '<b>Preparar os meses sozinho:</b> ao abrir o app, o mês atual e o próximo são preenchidos uma vez, só nos dias vazios. O que você já lançou nunca é alterado.',
     campos: [{ k: 'PrepararAuto', l: 'Preparar os meses automaticamente', t: 'bool' },
       { k: 'PrepararDom', l: 'Domingos como DOM', t: 'bool' }, { k: 'PrepararSab', l: 'Sábados como SÁB', t: 'bool' }, { k: 'PrepararFer', l: 'Feriados como FERI (com o nome na observação)', t: 'bool' },
+      { k: 'Admissao', l: 'Data de admissão (para as férias)', t: 'date' }, { k: 'DiasFerias', l: 'Dias de férias por período', t: 'num', ph: '30' },
       { k: 'PrazoFolga', l: 'Prazo da folga compensatória (dias)', t: 'num' },
       { k: 'FeriadosExtras', l: 'Feriados locais (um por linha: dd/mm Nome)', t: 'area', ph: '22/05 Santa Rita', ajuda: 'Os nacionais já estão incluídos (Páscoa e Corpus Christi calculados).' },
       { k: 'ModeloEmailFolga', l: 'Modelo do e-mail de folga compensatória', t: 'area', ajuda: 'Use {folga}, {trabalhada} e {tipoDia} (domingo/feriado/sábado).' }],
-    valores: Object.assign({ PrepararAuto: liga('PrepararAuto'), PrazoFolga: E.prazoFolga, FeriadosExtras: cfg('FeriadosExtras', ''), ModeloEmailFolga: cfg('ModeloEmailFolga', MODELO_EMAIL) },
+    valores: Object.assign({ PrepararAuto: liga('PrepararAuto'), PrazoFolga: E.prazoFolga, Admissao: cfg('Admissao', ''), DiasFerias: cfg('DiasFerias', 30), FeriadosExtras: cfg('FeriadosExtras', ''), ModeloEmailFolga: cfg('ModeloEmailFolga', MODELO_EMAIL) },
       (o => ({ PrepararDom: o.dom, PrepararSab: o.sab, PrepararFer: o.fer }))(opcoesPreparar())),
     extras: [{ txt: '🪄 Preencher ' + nomeMes(E.mesPres || hojeIso().slice(0, 7)) + ' agora', fn: abrirPrepararMes }],
     salvar: o => {
@@ -2188,10 +2443,10 @@ function dosesDeHoje() {
 
 // ---------- Lançamento por texto: "mercado 52,30 pix" ----------
 const PALAVRAS_CAT = {
-  'Alimentação': /mercado|supermerc|ifood|lanche|padaria|restaurante|almo[cç]o|jantar|caf[eé]|pizza|a[cç]ougue|hortifruti|feira|comida|delivery|burger|sorvete/,
-  'Transporte': /uber|\b99\b|[oô]nibus|metr[oô]|gasolina|combust|estacionamento|ped[aá]gio|passagem|bilhete/,
+  'Alimentação': /mercado|supermerc|ifood|lanche|padaria|restaurante|almo[cç]o|jantar|caf[eé]|pizza|a[cç]ougue|hortifruti|feira|comida|delivery|burger|sorvete|atacad|assa[ií]|carrefour|p[aã]o de a[cç][uú]car|mcdonald|bk |subway|rappi/,
+  'Transporte': /uber|\b99\b|[oô]nibus|metr[oô]|gasolina|combust|estacionamento|ped[aá]gio|passagem|bilhete|posto|shell|ipiranga|petrobras|\bbr mania|sem parar|veloe|cabify|indrive/,
   'Moradia': /aluguel|\bluz\b|energia|[aá]gua|internet|condom[ií]nio|\bg[aá]s\b|iptu/,
-  'Saúde': /farm[aá]cia|rem[eé]dio|m[eé]dico|consulta|exame|dentista|academia|psic/,
+  'Saúde': /farm[aá]cia|rem[eé]dio|m[eé]dico|consulta|exame|dentista|academia|psic|drogaria|droga ?sil|droga raia|\braia\b|pague menos|smart ?fit|unimed|hapvida|laborat/,
   'Assinaturas': /netflix|spotify|prime|disney|youtube|assinatura|hbo|max\b|globoplay|icloud|google one/,
   'Lazer': /cinema|show|\bbar\b|jogo|ingresso|passeio|parque|festa/,
   'Estudos': /curso|faculdade|mensalidade|livro|apostila|material/,
@@ -2226,6 +2481,24 @@ function interpretarLancamento(texto) {
   if (anterior) { o.Categoria = anterior.Categoria; if (!o.Pagamento) { o.Pagamento = anterior.Pagamento; if (anterior.Pagamento === 'Crédito') o.Cartao = anterior.Cartao; } }
   if (!o.Categoria) o.Categoria = (Object.entries(PALAVRAS_CAT).find(([, re]) => re.test(o.Descricao.toLowerCase())) || [o.Tipo === 'Entrada' ? 'Salário' : 'Outros'])[0];
   if (!o.Pagamento) o.Pagamento = 'Pix';
+  return o;
+}
+
+/** Texto compartilhado de um comprovante (Pix, transferência, compra): tira valor, data, destino e tipo. */
+function lerComprovante(texto) {
+  const t = String(texto).replace(/\s+/g, ' ').trim(), low = t.toLowerCase();
+  const o = interpretarLancamento('');
+  const v = t.match(/R\$\s*(\d{1,3}(?:\.\d{3})*(?:,\d{1,2})?|\d+(?:,\d{1,2})?)/i);
+  if (v) o.Valor = Number(v[1].replace(/\./g, '').replace(',', '.'));
+  const d = t.match(/(\d{2})\/(\d{2})\/(\d{4})/);
+  if (d) o.Data = iso(+d[3], +d[2], +d[1]);
+  if (/recebid|voc[eê] recebeu|transfer[eê]ncia recebida|pix recebido/.test(low)) o.Tipo = 'Entrada';
+  if (/pix/.test(low)) o.Pagamento = 'Pix'; else if (/d[eé]bito/.test(low)) o.Pagamento = 'Débito'; else if (/cr[eé]dito|cart[aã]o/.test(low)) o.Pagamento = 'Crédito';
+  const quem = t.match(/(?:para|destino|favorecido|recebedor|nome)\s*:?\s*([A-ZÀ-Ú][\wÀ-ú&.' -]{2,40}?)(?=\s+(?:em|no dia|cpf|cnpj|institui|chave|ag[eê]ncia|valor|R\$|\d{2}\/)|$|[.,;])/i)
+    || (o.Tipo === 'Entrada' && t.match(/\bde\s+([A-ZÀ-Ú][\wÀ-ú&.' -]{2,40}?)(?=\s+(?:em|no dia|cpf|R\$)|$|[.,;])/i));
+  o.Descricao = quem ? maiuscula(quem[1].trim().toLowerCase()) : o.Tipo === 'Entrada' ? 'Pix recebido' : 'Pix enviado';
+  const cat = interpretarLancamento(o.Descricao + ' 1');
+  o.Categoria = o.Tipo === 'Entrada' ? (cat.Categoria === 'Outros' ? 'Outros' : cat.Categoria) : cat.Categoria;
   return o;
 }
 
@@ -2273,7 +2546,7 @@ function dadosEvolucao() {
   const habP = meses.map(m => {
     if (!hab.length || m < primeiroLog.slice(0, 7)) return null;
     const [a, mm] = m.split('-').map(Number), dias = m === atual ? +hoje.slice(8) : diasNoMes(a, mm);
-    return Math.round(T('HabitosLog').filter(l => String(l.Data).startsWith(m)).length / (hab.length * dias) * 100);
+    return Math.round(T('HabitosLog').filter(l => String(l.Data).startsWith(m) && feitoLog(l)).length / (hab.length * dias) * 100);
   });
   const humor = meses.map(m => { const xs = T('Diario').filter(d => String(d.Data).startsWith(m) && num(d.Humor)); return xs.length ? Math.round(xs.reduce((a, d) => a + num(d.Humor), 0) / xs.length * 10) / 10 : null; });
   const treinos = meses.map(m => new Set(T('Treinos').filter(t => String(t.Data).startsWith(m)).map(t => t.Data)).size);
@@ -2589,7 +2862,7 @@ function telaManual() {
 }
 
 // MANUAL:INICIO (gerado a partir de MANUAL.md)
-const MANUAL = [["Como o app se organiza","No celular, a barra de baixo leva às 3 telas mais usadas e ao botão **+**. No computador, tudo fica no menu da lateral.\n\n| Onde | O que faz |\n| --- | --- |\n| **Início** | Resumo do dia: presença, atenções, humor, hábitos, metas e gráficos |\n| **Calendário** | Presença, folgas, hábitos e to-dos, numa página só |\n| **+** (botão do meio) | Adicionar qualquer coisa rápido |\n| **Finanças** | Tudo do dinheiro, numa página só com seções |\n| **Mais** | Todas as outras áreas, cada uma com um resumo embaixo do nome |\n\n**O botão +** abre uma caixa para escrever um gasto do seu jeito (veja Financeiro) e atalhos para: presença de hoje, gasto ou entrada, guardar numa meta, folga, atividade da faculdade, tarefa da semana, diário de hoje, treino, data importante, remédio, livro, lugar e nova meta.\n\n**Regras que valem em todo o app**\n\n- Tudo que aparece numa lista é tocável: abre o formulário para editar ou excluir.\n- Valores em dinheiro aceitam vírgula: `186,40` ou `1.234,56`.\n- As telas compridas (Calendário e Financeiro) têm uma fileira de botões no topo que pula direto para cada seção.\n- A **engrenagem** no topo de uma tela abre os ajustes daquela tela (Calendário, Faculdade, Leitura).\n- A **lupa** no topo do Início abre a busca geral. No computador, a tecla `/` faz o mesmo.\n- Ao salvar, o app mostra a mudança na hora e grava na planilha em seguida. Se der erro, ele desfaz e avisa."],["Início","O Início junta, em cartões, o que importa hoje. Você escolhe quais cartões aparecem e em que ordem em **Ajustes → Aparência → Cartões do Início**.\n\n| Cartão | O que mostra e o que dá para fazer |\n| --- | --- |\n| **Hoje** | Código do dia e quantos hábitos você fez. Se o dia ainda está vazio, mostra botões para lançar com 1 toque (P ou PH em dia de semana, SÁB, DOM, FERI) e \"Outro…\". Atalhos para presença, gasto, treino e guardar dinheiro |\n| **Números do mês** | Presença do mês, saldo, total guardado e dias até as férias. Cada número leva à tela dele |\n| **Atenção hoje** | Lista automática do que pede ação (detalhes abaixo) |\n| **Como foi seu dia?** | 5 carinhas de humor: um toque grava o humor de hoje no Diário. \"Escrever sobre o dia\" abre o texto |\n| **Próximos 7 dias** | Feriados, entregas, folgas agendadas, passeios, fixos (gastos e entradas como o salário), faturas e aniversários |\n| **Hábitos de hoje** | Marque cada hábito com um toque |\n| **Remédios de hoje** | Doses do dia dos remédios em uso, com a próxima destacada. Só aparece se houver |\n| **Metas** | As 3 metas mais perto de completar |\n| **Orçamento** | As 3 categorias mais perto do limite. Só aparece se houver limite |\n| **Lendo agora** | O livro atual e a página. Só aparece se houver |\n| **Últimos 12 meses** | Um gráfico por vez: Presença, Dinheiro, Hábitos, Treinos ou Humor. Cada barra é um mês; toque nos botões para trocar |\n| **Conquistas** | A próxima conquista e quanto falta |\n| **Frase do dia** | Muda sozinha todo dia. Toque para trocar o modo ou escrever as suas |\n\n**O que entra em \"Atenção hoje\"**\n\n- Presença de hoje ainda não lançada.\n- Folga compensatória perto do prazo (15 dias ou menos) ou com prazo vencido.\n- Entregas da faculdade atrasadas, de hoje ou dos próximos 7 dias.\n- Categoria do orçamento com 90% do limite ou mais.\n- Remédios vencidos ou vencendo.\n- Aniversários e datas importantes dentro do aviso que você escolheu (7 dias, se não escolher).\n\nToque num item para ir direto a ele."],["Calendário","O Calendário é o seu quadro de presença: um código por dia, com folgas, hábitos e to-dos na mesma página. Os botões do topo pulam para Mês, Resumo, Folgas, Hábitos, To-dos e Ano.\n\n**Lançar um dia**\n\n1. Toque no dia.\n2. Escolha o código (ou \"Sem código\" para limpar).\n3. Se quiser, marque **Cobrindo férias** e escreva uma observação.\n4. **Salvar**, ou **Salvar e próximo** para ir lançando a semana em sequência.\n\nAs setas no topo do painel trocam de dia sem fechar. O dia de hoje também pode ser lançado com 1 toque no cartão Hoje do Início.\n\n**Os códigos** (a cor do dia vem do código; a lista fica na aba Calendário da planilha)\n\n| Grupo | Códigos |\n| --- | --- |\n| Presença | P Presente · PA Parcialmente ausente · PP Parcialmente presente · SNG Sinergia Centauro |\n| Presença com extra | PH · HE · SÁB+ · DOM+ · FERI+ |\n| Folga | FC Compensatória · FBH Banco de horas · DAYOFF Aniversário · TRF Troca de folga |\n| Não trabalha | SÁB · DOM · SEG · FERI Feriado |\n| Outros | F Falta · AT Atestado · AF Afastado · S Suspenso · FE Férias |\n\n**Navegar**\n\n- Setas: mês anterior e próximo.\n- **Ano:** a caixinha ao lado do nome do mês troca o ano e mantém o mês.\n- **Hoje:** volta para o dia de hoje e faz ele piscar.\n- **Lupa:** vai para qualquer data e já abre o dia.\n- Feriados ainda não lançados aparecem com um confete no dia.\n\n**Anotações do mês:** embaixo do calendário, uma lista com cada dia que tem observação ou feriado, por exemplo \"12 – Nossa Senhora Aparecida / Dia das crianças\". Toque para abrir o dia.\n\n**Resumo:** presença do mês (dias presentes de dias previstos; fim de semana, folga e férias não contam como previstos), folgas, dias com extra, faltas e dias até as próximas férias. Embaixo, o mesmo para o ano escolhido. Meses sem nada lançado ficam fora da conta do ano.\n\n**Preparar os meses sozinho:** ao abrir o app, o mês atual e o próximo são preenchidos uma vez, só nos dias vazios: domingos como DOM, feriados como FERI (com o nome na observação) e, se você ligar, sábados como SÁB. O que você já lançou nunca muda, e um dia que você apagar depois não volta. Tudo isso se ajusta na engrenagem do Calendário, que também tem o botão \"Preencher este mês agora\".\n\n**Folgas**\n\n- **+ Nova** cadastra a folga: tipo (Folga compensatória, Banco de horas ou Day off), data trabalhada, data da folga, nº do chamado e anotações.\n- Com a data da folga preenchida, dá para marcar o dia no calendário na mesma hora.\n- **Folga compensatória tem prazo:** 60 dias a partir do dia trabalhado (mude na engrenagem). Faltando 15 dias ou menos, ela aparece em destaque e no Início.\n- **E-mail para o RH:** dentro da folga, monta o texto pronto para copiar. O modelo se edita na engrenagem, com `{folga}`, `{trabalhada}` e `{tipoDia}`.\n\n**Ano de relance:** no fim da página, o ano inteiro em quadradinhos coloridos, um por dia.\n\n**Feriados:** os nacionais já vêm calculados, inclusive Páscoa e Corpus Christi. Os da sua cidade entram na engrenagem, um por linha, como `22/05 Santa Rita`."],["Hábitos e to-dos","Os hábitos ficam no fim do Calendário, na seção \"Hábitos e to-dos\", mais discretos. Para marcar só o de hoje, o jeito mais rápido é o cartão Hábitos de hoje no Início.\n\n**Hábitos**\n\n- **Semana:** uma grade com cada hábito × os 7 dias. Toque na bolinha para marcar ou desmarcar. As setas trocam de semana; dias futuros ficam bloqueados.\n- **Mês:** uma barra por hábito, com quantos dias você fez no mês.\n- **Sequência:** ao lado do nome aparece a sequência de dias seguidos.\n- **+ Hábito** (ou toque no nome de um hábito): nome, ícone, meta por semana, ordem e ativo.\n- **Meta por semana:** para hábitos que não são diários (ex.: academia 3x). Aí a sequência conta semanas seguidas cumprindo a meta, e a grade mostra \"2/3\".\n- **Ativo desmarcado** esconde o hábito sem apagar o histórico.\n\nEmbaixo da grade, a porcentagem da semana cumprida e a da semana anterior.\n\n**To-dos**\n\nUm cartão com 3 listas: **Da semana**, **Do mês** e **Metas do ano**. Toque no quadradinho para marcar como feito; toque no texto para editar ou excluir. Cada lista é do período atual: na semana que vem, a lista da semana começa vazia."],["Financeiro","O Financeiro é uma página só, com seções: Resumo, Metas, Lançamentos, Fixos, Orçamento, Categorias, Guardado e Cartões. As setas do cartão de saldo trocam o mês.\n\n**Resumo do mês:** saldo (entradas menos saídas), total de entradas, de saídas e quanto você guardou no mês. Embaixo, quanto você gastou a mais ou a menos que no mês anterior.\n\n**Lançar um gasto ou entrada**\n\n- **+ Lançar:** tipo (Saída ou Entrada), descrição, valor, data, categoria, forma de pagamento, cartão (se crédito) e parcelas.\n- **Parcelas:** numa compra parcelada, o app cria uma parcela por mês, cada uma no mês certo.\n- **Do seu jeito, por texto:** no + ou na seção Lançamentos, escreva e aperte Lançar. O app preenche o formulário e você só confere.\n\n| Você escreve | O app entende |\n| --- | --- |\n| `mercado 52,30 pix` | Saída de R$ 52,30, Alimentação, Pix, hoje |\n| `uber 18 ontem` | Saída de R$ 18, Transporte, data de ontem |\n| `fone 300 3x crédito` | R$ 300 no crédito em 3 parcelas |\n| `farmácia 25,90 12/10` | Saída de R$ 25,90, Saúde, em 12/10 |\n| `recebi salário 3.500,00` | Entrada de R$ 3.500, Salário |\n| `+ 100 reembolso` | Entrada de R$ 100, \"Reembolso\" |\n\nA categoria vem primeiro do que você já lançou com o mesmo nome; se for a primeira vez, de palavras conhecidas (mercado, uber, netflix, farmácia…). Formas de pagamento reconhecidas: pix, débito, crédito ou cartão, dinheiro, boleto e vale/VR/VA. O nome de um cartão seu também funciona.\n\n**Metas e desejos**\n\n- **+ Meta:** o que é, ícone, tipo (Desejo ou Necessidade), preço, prioridade, link da loja e quanto já tinha guardado antes do app.\n- Toque numa meta para **+ Guardar** ou **− Retirar**, com data, valor e onde o dinheiro está guardado. O histórico fica dentro da meta.\n- A meta mostra a previsão de quando você chega lá, pelo ritmo dos últimos 3 meses.\n- Filtros: Todos, Necessidade, Desejo e Comprados. Marque Status \"Comprado\" quando comprar.\n\n**Fixos do mês** (gastos e entradas que se repetem)\n\n- Entram sozinhos nos lançamentos, no dia certo, quando você abre o app ou às 7h (se os e-mails automáticos estiverem ligados).\n- **Quando cai:** *Dia do mês* (ex.: aluguel dia 5); *Dia útil* (o número vira o Nº dia útil: 5 = 5º dia útil, como o salário); *Dia do mês ou útil anterior* (ex.: adiantamento dia 20; em fim de semana ou feriado, vale o dia útil antes).\n- **Sábado conta como dia útil:** marque se a sua empresa conta o sábado (a CLT conta; muitas empresas não).\n- **Status:** *Fixo* entra todo mês, sem data para acabar; *Prazo* para no último mês escolhido (ex.: curso até 06/2027) e mostra quantos meses faltam. Depois disso aparece como Encerrado.\n- **Modelos prontos** no fim do formulário novo: Salário (5º dia útil), Adiantamento (dia 20) e Vale refeição (dia 1). Você só preenche o valor.\n- Cada fixo mostra a data deste mês e se já foi Lançado (ou Recebido). No rodapé: total de gastos fixos e de entradas fixas por mês.\n- Desmarcar **Ativo** pausa o fixo. Excluir um fixo não apaga os lançamentos antigos.\n\n**Orçamento:** um limite por mês para cada categoria. A barra fica laranja perto do limite e vermelha quando estoura; a partir de 90% o aviso vai para o Início.\n\n**Categorias:** gráfico de rosca dos gastos do mês, a comparação de cada categoria com o mês anterior (▲ subiu, ▼ caiu, \"novo\" se não existia) e o total por forma de pagamento.\n\n**Onde está guardado:** os seus locais (ex.: Cofre, Caixinha, Tesouro), com o valor que já havia e uma meta opcional. O que você guarda nas metas usando o mesmo nome de local soma aqui.\n\n**Cartões:** nome e dia do vencimento. Mostra as compras do mês em cada cartão, e o vencimento aparece nos Próximos 7 dias do Início."],["Estudos","Três telas, no menu Mais (ou na lateral): Faculdade, Cursos e Leitura.\n\n**Faculdade**\n\n- No topo: entregas concluídas, quanto falta para a próxima, média das notas e número de disciplinas.\n- **+ Atividade:** nome, disciplina, data de entrega, status (Pendente ou Entregue) e nota.\n- Cada atividade mostra o estado: Atrasada, Hoje, \"em X dias\" ou Entregue. As atrasadas e as dos próximos 7 dias vão para o Início e para o e-mail da manhã.\n- Com o Google Agenda ligado, as entregas viram eventos na sua agenda.\n- A engrenagem muda o nome do curso que aparece no topo.\n\n**Cursos**\n\n- Agrupados por plataforma (ex.: Hashtag, ADA), com o botão \"Abrir portal\" quando o curso tem link.\n- Filtros: Todos, Cursando, A fazer e Concluído.\n- **+ Curso:** nome, plataforma, carga horária, status (A fazer, Cursando, Pausado, Concluído), progresso em % e link do portal.\n\n**Leitura**\n\n- No topo: a meta de livros do ano e quantos você já leu. A meta se muda na engrenagem.\n- **Lendo agora:** página atual, barra de progresso e quantos dias faltam para terminar no seu ritmo. Toque para atualizar a página.\n- Estantes: Quero ler, Lendo e Lido.\n- **+ Livro:** nome, autor, ano, gênero, páginas, status, página atual, início, fim, avaliação (1 a 5) e síntese.\n- **Buscar dados pelo nome:** dentro do livro, preenche autor, páginas, sinopse e capa pelo Google Livros."],["Vida","Cinco telas no menu Mais: Diário, Treinos, Lugares, Farmácia e Datas.\n\n**Diário**\n\n- Um registro por dia: humor de 1 a 5 (😞 a 😄) e um texto, se quiser.\n- O jeito mais rápido é tocar numa carinha no cartão \"Como foi seu dia?\" do Início.\n- A tela mostra o mês como um calendário colorido pelo humor; toque num dia para ler ou escrever.\n- Números do mês: humor médio, dias escritos e dias bons.\n- **Descobertas:** com 6 dias ou mais de humor, o app compara os dias com e sem cada hábito, treino e folga, e mostra o que mais combina com seus dias bons (ex.: \"Humor 4,2 nos dias com Caminhar · 3,1 nos dias sem\").\n\n**Treinos**\n\n- **Registrar:** exercício, séries, repetições (ou segundos, na prancha), carga extra, data e observação.\n- Ao repetir um exercício, o formulário já vem com as séries e repetições da última vez.\n- **Marcar o hábito junto:** se você tem um hábito como Calistenia, o formulário oferece marcá-lo como feito no mesmo toque.\n- A tela mostra dias de treino no mês, semanas seguidas treinando, a evolução de cada exercício (último treino, recorde e um mini gráfico) e o histórico.\n\n**Lugares**\n\n- Lista de lugares para conhecer: nome, ícone, categoria, status (Quero ir, Planejado, Visitado), data, avaliação e observações.\n- O próximo passeio planejado aparece em destaque, e os planejados vão para os Próximos 7 dias e para a agenda.\n\n**Farmácia**\n\n- Inventário dos remédios de casa: nome, para que serve, quantidade, validade (mês/ano) e observações.\n- Estados: Vencido, Vence este mês, Vence em breve (45 dias), OK. Vencidos e vencendo vão para o Início.\n- **Em uso agora:** marque \"Estou tomando agora\" e preencha a dose e os horários, como `08:00, 20:00`, `8h e 20h` ou `de 8 em 8h`. As doses aparecem no Início e, com o e-mail \"Hora do remédio\" ligado, chega um aviso na hora (pode atrasar até 1 hora).\n\n**Datas importantes**\n\n- **+ Data:** nome, tipo (Aniversário, Comemorativa, Outro), data, quantos dias antes avisar e observação.\n- A tela lista as próximas por mês, com o dia da semana. Em aniversário com o ano de nascimento, mostra a idade (\"faz 56 anos\").\n- O aviso aparece no Início e no e-mail da manhã, a partir do número de dias que você escolheu (7, se ficar vazio)."],["Conquistas e busca","**Conquistas:** 20 medalhas que se desbloqueiam sozinhas conforme você usa o app. Quando uma desbloqueia, cai confete e aparece um aviso. A tela Conquistas mostra todas, com a barra do quanto falta.\n\n| Área | Conquistas |\n| --- | --- |\n| Presença | Mês perfeito (100% num mês) · Calendário em dia (30 dias seguidos lançados) |\n| Hábitos | Pegando o ritmo (7 dias seguidos) · Hábito de ferro (30) · Imparável (100) · Semana perfeita (todos os hábitos numa semana) |\n| Dinheiro | Primeiros mil (R$ 1.000 guardados) · Reserva de respeito (R$ 5.000) · Objetivo alcançado (completar uma meta) · Dentro do orçamento (um mês sem estourar limite) |\n| Diário | Querido diário (7 dias) · Escritor (30 dias) |\n| Treinos | Em forma (10 dias) · Atleta (50 dias) |\n| Estudos | Primeiro livro · Meta de leitura (a meta do ano) · Aluno exemplar (5 entregas, nenhuma atrasada) · Certificado (concluir um curso) |\n| Vida | Explorador (visitar 5 lugares) · Farmácia em ordem (5 ou mais remédios, nenhum vencido) |\n\n**Busca geral:** a lupa no topo do Início (ou Buscar no menu). Digite 2 letras ou mais: procura sem ligar para acentos em observações do calendário, diário, lançamentos, metas, folgas, faculdade, cursos, livros, lugares, remédios, datas, treinos e tarefas. Toque num resultado para abrir; num treino, ele já abre para repetir o exercício."],["Ajustes e e-mails automáticos","Ajustes fica no menu Mais (ou tocando na sua inicial no topo do Início) e tem 4 blocos. As opções de cada tela ficam na engrenagem dela, e Ajustes também lista esses atalhos.\n\n| Bloco | O que dá para mudar |\n| --- | --- |\n| **Você** | Nome (aparece no \"Olá\") e e-mail para os avisos (vazio = o da sua conta Google) |\n| **Aparência** | Tema (Automático segue o celular, Claro ou Escuro), cor do app (Azul petróleo, Verde, Roxo, Laranja, Rosa, Grafite), tela em que o app abre, cartões do Início e frase do dia |\n| **E-mails automáticos** | Ligar ou desligar cada e-mail, mandar um teste |\n| **Dados** | Atualizar a agenda agora e fazer uma cópia de segurança agora |\n| **Este aparelho** | Sincronizar agora e desconectar o aparelho da planilha |\n\n**Cartões do Início:** marque os que quer ver e use as setas para mudar a ordem. \"Voltar ao padrão\" desfaz tudo.\n\n**Frase do dia:** no modo Automático, muda todo dia (60 frases do app + as suas). No modo Fixa, mostra sempre a sua frase favorita.\n\n**Os e-mails automáticos**\n\n| E-mail | Quando chega |\n| --- | --- |\n| Resumo da manhã | 7h, só quando há algo: entrega, folga, fatura, orçamento, remédio, aniversário |\n| Lembrete da presença | 18h, se o dia de hoje ainda estiver vazio |\n| Hora do remédio | Na hora de cada dose dos remédios em uso (até 1 hora de atraso) |\n| Resumo do mês | Dia 1, com presença, gastos, hábitos e leituras do mês anterior |\n| Copiar para o Google Agenda | Todo dia: entregas, folgas agendadas e passeios viram eventos (sem duplicar) |\n| Cópia de segurança | Domingo: uma cópia da planilha na pasta \"Meu Dia a Dia - Backups\" do Drive, guardando as 8 últimas |\n\nPara funcionar, os e-mails precisam estar **ligados** (botão \"Ligar e-mails automáticos\"). Se aparecer \"Sem permissão\", rode a função **autorizar** no editor do Apps Script. Depois de uma atualização que traz um e-mail novo, pause e ligue de novo para ele começar a valer."],["A planilha por dentro","Tudo fica em 6 abas, uma por área. O app cria e organiza as abas sozinho; o ideal é mexer pelo app, não direto na planilha.\n\n| Aba | Tipos de linha que ela guarda |\n| --- | --- |\n| **Calendário** | Dia, Folga, Código |\n| **Hábitos** | Hábito, Feitos no dia, Tarefa, Treino |\n| **Financeiro** | Lançamento, Gasto fixo, Limite do mês, Onde guardo, Cartão, Meta, Meta: movimento |\n| **Estudos** | Faculdade, Curso, Livro |\n| **Vida** | Lugar, Remédio, Diário, Data importante |\n| **Ajustes** | Ajuste, Evento na agenda |\n\n**As 7 colunas, iguais em todas as abas:** Tipo · ID · Data · Título · Valor · Status · Detalhes. A coluna Detalhes guarda o resto em formato técnico (JSON) e não deve ser editada à mão.\n\n- As linhas ficam em ordem de tipo e data.\n- Cada aba cresce sozinha quando precisa e guarda só as 7 colunas, para a planilha não pesar.\n- Os códigos de presença (nome, cor e se conta como extra) ficam nas linhas \"Código\" da aba Calendário.\n- Na primeira vez, o app converteu a planilha antiga (uma aba por assunto) e salvou uma cópia completa em \"Meu Dia a Dia - Backups\" no Drive antes de mexer.\n- **Localidade e fuso:** em Arquivo → Configurações, deixe Brasil e (GMT-03:00) São Paulo, para as datas não andarem um dia."],["Sem internet e problemas comuns","**Sem internet:** o app fica guardado no aparelho e abre normalmente, até no modo avião, com os dados da última sincronização. O que você salvar sem conexão aparece na hora e fica guardado; uma faixa laranja no topo mostra quantas alterações esperam a internet. Quando a conexão volta, o app envia tudo sozinho e traz o que mudou em outro aparelho. Ao voltar para o app depois de um tempo, ele também sincroniza; para forçar, use **Ajustes → Este aparelho → Sincronizar agora**.\n\nNa primeira vez em cada aparelho é preciso internet, para conectar e baixar os dados. Se o mesmo item for mudado no celular sem internet e no computador ao mesmo tempo, vale a última alteração enviada.\n\n| Problema | O que fazer |\n| --- | --- |\n| Pede para conectar de novo | A chave mudou (ou o app foi desconectado). Rode **configurarApp** no Apps Script e cole a chave |\n| \"Sem resposta da ponte\" ao conectar | Confira a internet e se a implantação está com acesso **Qualquer pessoa**. O endereço precisa terminar em /exec |\n| Atualizei o código e nada mudou | No Apps Script, faltou a Nova versão. No app, feche e abra de novo: a versão nova das telas entra na abertura seguinte |\n| Datas um dia antes ou depois | Arquivo → Configurações da planilha: Brasil e (GMT-03:00) São Paulo |\n| E-mails não chegam | Ajustes → E-mails automáticos: veja se estão \"Ligados\" e use \"Mandar um teste\". Se diz \"Sem permissão\", rode autorizar |\n| Lembrete do remédio não chega | O remédio precisa estar \"Em uso\", com horário, e o e-mail \"Hora do remédio\" ligado |\n| Gasto fixo não entrou | Ele entra no dia calculado (veja a data na etiqueta). Confira se está Ativo e, se for Prazo, se o último mês já passou |\n| Salário caiu num dia diferente do holerite | Teste a opção \"Sábado conta como dia útil\" no fixo e cadastre os feriados da sua cidade na engrenagem do Calendário |\n| Um domingo apagado não voltou | É de propósito: cada mês é preparado uma vez só. Use \"Preencher este mês agora\" na engrenagem do Calendário |\n| Apaguei algo sem querer | Abra a cópia de segurança mais recente na pasta \"Meu Dia a Dia - Backups\" do Drive e copie a linha de volta para a aba certa |\n| Perdi o celular | Rode **trocarChaveDoApp** no Apps Script: o celular antigo perde o acesso. Conecte os outros aparelhos com a chave nova |"],["Instalar e atualizar","O Meu Dia a Dia tem duas partes:\n\n- **O app:** as telas, num site seu e gratuito no GitHub Pages. No S25 ele é instalado como app; no computador, você abre o mesmo endereço no navegador.\n- **A ponte:** o arquivo **Codigo.gs** no Apps Script da planilha. É ele que lê e grava os dados, manda os e-mails e faz o backup.\n\n**Instalar no S25**\n\n1. Abra o endereço do app no **Chrome**.\n2. Toque em **⋮ → Instalar app** (ou no aviso \"Instalar\" que aparece embaixo).\n3. O ícone vai para a tela inicial. Abra por ele: o app ocupa a tela toda, sem barra do navegador.\n4. Na primeira abertura, cole o endereço da ponte e a chave.\n\nSegure o ícone do app para ver os atalhos: Lançar gasto, Presença de hoje e Diário de hoje. O botão voltar do celular fecha o painel aberto ou volta para a tela anterior.\n\n**No computador:** abra o mesmo endereço no navegador, conecte uma vez com o endereço da ponte e a chave, e salve nos favoritos.\n\n**A chave:** funciona como uma senha. Quem tiver o endereço da ponte e a chave consegue ler e mudar seus dados, então não mande para ninguém. Se vazar, rode **trocarChaveDoApp** no Apps Script e conecte de novo os seus aparelhos.\n\n**Atualizar**\n\n- **As telas:** suba os arquivos novos no repositório do GitHub (Add file → Upload files). O app pega a versão nova sozinho: ela aparece na abertura seguinte.\n- **A ponte:** cole o Codigo.gs novo no Apps Script e vá em **Implantar → Gerenciar implantações → ✏️ → Nova versão → Implantar**. O endereço não muda."]];
+const MANUAL = [["Como o app se organiza","No celular, a barra de baixo leva às 3 telas mais usadas e ao botão **+**. No computador, tudo fica no menu da lateral.\n\n| Onde | O que faz |\n| --- | --- |\n| **Início** | Resumo do dia: presença, atenções, humor, hábitos, metas e gráficos |\n| **Calendário** | Presença, folgas, hábitos e to-dos, numa página só |\n| **+** (botão do meio) | Adicionar qualquer coisa rápido |\n| **Finanças** | Tudo do dinheiro, numa página só com seções |\n| **Mais** | Todas as outras áreas, cada uma com um resumo embaixo do nome |\n\n**O botão +** abre uma caixa para escrever um gasto do seu jeito (veja Financeiro) e atalhos para: presença de hoje, gasto ou entrada, guardar numa meta, folga, atividade da faculdade, tarefa da semana, diário de hoje, treino, data importante, remédio, livro, lugar e nova meta.\n\n**Regras que valem em todo o app**\n\n- Tudo que aparece numa lista é tocável: abre o formulário para editar ou excluir.\n- Valores em dinheiro aceitam vírgula: `186,40` ou `1.234,56`.\n- As telas compridas (Calendário e Financeiro) têm uma fileira de botões no topo que pula direto para cada seção.\n- A **engrenagem** no topo de uma tela abre os ajustes daquela tela (Calendário, Faculdade, Leitura).\n- A **lupa** no topo do Início abre a busca geral. No computador, a tecla `/` faz o mesmo.\n- O **olho** (👁️) no topo do Início e do Financeiro esconde todos os valores em R$ (vira \"R$ ••••\"). Toque de novo para mostrar.\n- **Excluiu sem querer?** Logo depois de excluir, aparece \"Desfazer\" por alguns segundos.\n- **Puxe a tela para baixo** no topo de qualquer tela para sincronizar.\n- **Compartilhar para o app:** no celular, compartilhe o texto de um comprovante (Pix, transferência) e escolha **Meu Dia**. O lançamento abre já preenchido, para você conferir.\n- **Versão nova:** quando o app for atualizado, aparece \"Nova versão disponível · Atualizar\".\n- Ao salvar, o app mostra a mudança na hora e grava na planilha em seguida. Se der erro, ele desfaz e avisa."],["Início","O Início junta, em cartões, o que importa hoje. Você escolhe quais cartões aparecem e em que ordem em **Ajustes → Aparência → Cartões do Início**.\n\n| Cartão | O que mostra e o que dá para fazer |\n| --- | --- |\n| **Hoje** | Código do dia e quantos hábitos você fez. Se o dia ainda está vazio, mostra botões para lançar com 1 toque (P ou PH em dia de semana, SÁB, DOM, FERI) e \"Outro…\". Atalhos para presença, gasto, treino e guardar dinheiro |\n| **Números do mês** | Presença do mês, saldo, total guardado e dias até as férias. Cada número leva à tela dele |\n| **Até o próximo salário** | Quanto ainda dá para gastar até o próximo pagamento e quanto isso dá por dia (veja Financeiro) |\n| **Atenção hoje** | Lista automática do que pede ação (detalhes abaixo) |\n| **Como foi seu dia?** | 5 carinhas de humor: um toque grava o humor de hoje no Diário. \"Escrever sobre o dia\" abre o texto |\n| **Próximos 7 dias** | Feriados, entregas, folgas agendadas, passeios, fixos (gastos e entradas como o salário), faturas e aniversários |\n| **Hábitos de hoje** | Marque cada hábito com um toque |\n| **Remédios de hoje** | Doses do dia dos remédios em uso, com a próxima destacada. Só aparece se houver |\n| **Metas** | As 3 metas mais perto de completar |\n| **Orçamento** | As 3 categorias mais perto do limite. Só aparece se houver limite |\n| **Lendo agora** | O livro atual e a página. Só aparece se houver |\n| **Últimos 12 meses** | Um gráfico por vez: Presença, Dinheiro, Hábitos, Treinos ou Humor. Cada barra é um mês; toque nos botões para trocar |\n| **Conquistas** | A próxima conquista e quanto falta |\n| **Frase do dia** | Muda sozinha todo dia. Toque para trocar o modo ou escrever as suas |\n\n**O que entra em \"Atenção hoje\"**\n\n- Presença de hoje ainda não lançada.\n- Folga compensatória perto do prazo (15 dias ou menos) ou com prazo vencido.\n- Entregas da faculdade atrasadas, de hoje ou dos próximos 7 dias.\n- Categoria do orçamento com 90% do limite ou mais.\n- Remédios vencidos ou vencendo.\n- Férias com prazo vencendo em 90 dias ou já vencido.\n- Aniversários e datas importantes dentro do aviso que você escolheu (7 dias, se não escolher).\n\nToque num item para ir direto a ele."],["Calendário","O Calendário é o seu quadro de presença: um código por dia, com folgas, hábitos e to-dos na mesma página. Os botões do topo pulam para Mês, Resumo, Folgas, Hábitos, To-dos e Ano.\n\n**Lançar um dia**\n\n1. Toque no dia.\n2. Escolha o código (ou \"Sem código\" para limpar).\n3. Se quiser, marque **Cobrindo férias** e escreva uma observação.\n4. **Salvar**, ou **Salvar e próximo** para ir lançando a semana em sequência.\n\nAs setas no topo do painel trocam de dia sem fechar. O dia de hoje também pode ser lançado com 1 toque no cartão Hoje do Início.\n\n**Os códigos** (a cor do dia vem do código; a lista fica na aba Calendário da planilha)\n\n| Grupo | Códigos |\n| --- | --- |\n| Presença | P Presente · PA Parcialmente ausente · PP Parcialmente presente · SNG Sinergia Centauro |\n| Presença com extra | PH · HE · SÁB+ · DOM+ · FERI+ |\n| Folga | FC Compensatória · FBH Banco de horas · DAYOFF Aniversário · TRF Troca de folga |\n| Não trabalha | SÁB · DOM · SEG · FERI Feriado |\n| Outros | F Falta · AT Atestado · AF Afastado · S Suspenso · FE Férias |\n\n**Navegar**\n\n- Setas: mês anterior e próximo.\n- **Ano:** a caixinha ao lado do nome do mês troca o ano e mantém o mês.\n- **Hoje:** volta para o dia de hoje e faz ele piscar.\n- **Lupa:** vai para qualquer data e já abre o dia.\n- Feriados ainda não lançados aparecem com um confete no dia.\n\n**Anotações do mês:** embaixo do calendário, uma lista com cada dia que tem observação ou feriado, por exemplo \"12 – Nossa Senhora Aparecida / Dia das crianças\". Toque para abrir o dia.\n\n**Resumo:** presença do mês (dias presentes de dias previstos; fim de semana, folga e férias não contam como previstos), folgas, dias com extra, faltas e dias até as próximas férias. Embaixo, o mesmo para o ano escolhido. Meses sem nada lançado ficam fora da conta do ano.\n\n**Preparar os meses sozinho:** ao abrir o app, o mês atual e o próximo são preenchidos uma vez, só nos dias vazios: domingos como DOM, feriados como FERI (com o nome na observação) e, se você ligar, sábados como SÁB. O que você já lançou nunca muda, e um dia que você apagar depois não volta. Tudo isso se ajusta na engrenagem do Calendário, que também tem o botão \"Preencher este mês agora\".\n\n**Folgas**\n\n- **+ Nova** cadastra a folga: tipo (Folga compensatória, Banco de horas ou Day off), data trabalhada, data da folga, nº do chamado e anotações.\n- Com a data da folga preenchida, dá para marcar o dia no calendário na mesma hora.\n- **Folga compensatória tem prazo:** 60 dias a partir do dia trabalhado (mude na engrenagem). Faltando 15 dias ou menos, ela aparece em destaque e no Início.\n- **E-mail para o RH:** dentro da folga, monta o texto pronto para copiar. O modelo se edita na engrenagem, com `{folga}`, `{trabalhada}` e `{tipoDia}`.\n\n**Férias:** informe a data de admissão na engrenagem do Calendário. O cartão Férias mostra cada período aquisitivo (12 meses trabalhados), quantos dias você já tirou (os dias marcados como Férias no calendário), quantos faltam e até quando precisa tirar (os 12 meses seguintes, pela CLT). Faltando 90 dias para o prazo, o aviso vai para o Início. Faltas que reduzem férias não entram na conta.\n\n**Folgas no ano:** no topo do cartão Folgas, quantas de cada tipo você tirou no ano escolhido (ex.: \"Em 2026: 5 FC · 6 FBH · 1 DAYOFF\").\n\n**Ano de relance:** no fim da página, o ano inteiro em quadradinhos coloridos, um por dia.\n\n**Feriados:** os nacionais já vêm calculados, inclusive Páscoa e Corpus Christi. Os da sua cidade entram na engrenagem, um por linha, como `22/05 Santa Rita`."],["Hábitos e to-dos","Os hábitos ficam no fim do Calendário, na seção \"Hábitos e to-dos\", mais discretos. Para marcar só o de hoje, o jeito mais rápido é o cartão Hábitos de hoje no Início.\n\n**Hábitos**\n\n- **Semana:** uma grade com cada hábito × os 7 dias. Toque na bolinha para marcar ou desmarcar. As setas trocam de semana; dias futuros ficam bloqueados.\n- **Mês:** uma barra por hábito, com quantos dias você fez no mês.\n- **Sequência:** ao lado do nome aparece a sequência de dias seguidos.\n- **+ Hábito** (ou toque no nome de um hábito): nome, ícone, meta por semana, ordem e ativo.\n- **Meta por semana:** para hábitos que não são diários (ex.: academia 3x). Aí a sequência conta semanas seguidas cumprindo a meta, e a grade mostra \"2/3\".\n- **Ativo desmarcado** esconde o hábito sem apagar o histórico.\n- **Hábito com quantidade** (ex.: 2 L de água, 10 páginas): preencha \"Quantidade por dia\", a unidade e quanto soma cada toque. No Início, o botão **+0,5** soma direto; tocar no hábito abre os botões − e +. Conta como feito quando chega na meta, e na grade aparece o valor parcial em verde claro.\n\nEmbaixo da grade, a porcentagem da semana cumprida e a da semana anterior.\n\n**To-dos**\n\nUm cartão com 3 listas: **Da semana**, **Do mês** e **Metas do ano**. Toque no quadradinho para marcar como feito; toque no texto para editar ou excluir. Cada lista é do período atual: na semana que vem, a lista da semana começa vazia."],["Financeiro","O Financeiro é uma página só, com seções: Resumo, Metas, Lançamentos, Fixos, Orçamento, Categorias, Guardado e Cartões. As setas do cartão de saldo trocam o mês.\n\n**Resumo do mês:** saldo (entradas menos saídas), total de entradas, de saídas e quanto você guardou no mês. Embaixo, quanto você gastou a mais ou a menos que no mês anterior.\n\n**Lançar um gasto ou entrada**\n\n- **+ Lançar:** tipo (Saída ou Entrada), descrição, valor, data, categoria, forma de pagamento, cartão (se crédito) e parcelas.\n- **Parcelas:** numa compra parcelada, o app cria uma parcela por mês, cada uma no mês certo.\n- **Do seu jeito, por texto:** no + ou na seção Lançamentos, escreva e aperte Lançar. O app preenche o formulário e você só confere.\n\n| Você escreve | O app entende |\n| --- | --- |\n| `mercado 52,30 pix` | Saída de R$ 52,30, Alimentação, Pix, hoje |\n| `uber 18 ontem` | Saída de R$ 18, Transporte, data de ontem |\n| `fone 300 3x crédito` | R$ 300 no crédito em 3 parcelas |\n| `farmácia 25,90 12/10` | Saída de R$ 25,90, Saúde, em 12/10 |\n| `recebi salário 3.500,00` | Entrada de R$ 3.500, Salário |\n| `+ 100 reembolso` | Entrada de R$ 100, \"Reembolso\" |\n\nA categoria vem primeiro do que você já lançou com o mesmo nome; se for a primeira vez, de palavras conhecidas (mercado, uber, netflix, farmácia…). Formas de pagamento reconhecidas: pix, débito, crédito ou cartão, dinheiro, boleto e vale/VR/VA. O nome de um cartão seu também funciona.\n\n**Até o próximo salário** (cartão do Início): conta o que entrou desde o último pagamento (salário ou adiantamento cadastrados nos Fixos, categoria Salário), tira o que você gastou desde então e os fixos e parcelas que ainda vão cair antes do próximo pagamento. O resultado é quanto está livre e quanto dá por dia. Vale refeição (pagamento Voucher) fica de fora.\n\n**Filtrar lançamentos:** na seção Lançamentos, filtre por texto, categoria ou forma de pagamento. Marque \"Procurar em todos os meses\" para buscar além do mês aberto. O total do filtro aparece em cima da lista.\n\n**Importar extrato:** em Lançamentos, toque em **⬆ Importar** e escolha o extrato baixado do banco (CSV ou OFX; funciona com Nubank, Inter, Itaú, Bradesco, C6 e outros). Você confere a lista antes: a categoria vem dos seus lançamentos anteriores com o mesmo nome, e o que parece já lançado (mesma data e valor) vem desmarcado. Para fatura de cartão, escolha Crédito e o cartão.\n\n**Metas e desejos**\n\n- **+ Meta:** o que é, ícone, tipo (Desejo ou Necessidade), preço, prioridade, link da loja e quanto já tinha guardado antes do app.\n- Toque numa meta para **+ Guardar** ou **− Retirar**, com data, valor e onde o dinheiro está guardado. O histórico fica dentro da meta.\n- A meta mostra a previsão de quando você chega lá, pelo ritmo dos últimos 3 meses.\n- Filtros: Todos, Necessidade, Desejo e Comprados. Marque Status \"Comprado\" quando comprar.\n\n**Fixos do mês** (gastos e entradas que se repetem)\n\n- Entram sozinhos nos lançamentos, no dia certo, quando você abre o app ou às 7h (se os e-mails automáticos estiverem ligados).\n- **Quando cai:** *Dia do mês* (ex.: aluguel dia 5); *Dia útil* (o número vira o Nº dia útil: 5 = 5º dia útil, como o salário); *Dia do mês ou útil anterior* (ex.: adiantamento dia 20; em fim de semana ou feriado, vale o dia útil antes).\n- **Sábado conta como dia útil:** marque se a sua empresa conta o sábado (a CLT conta; muitas empresas não).\n- **Status:** *Fixo* entra todo mês, sem data para acabar; *Prazo* para no último mês escolhido (ex.: curso até 06/2027) e mostra quantos meses faltam. Depois disso aparece como Encerrado.\n- **Modelos prontos** no fim do formulário novo: Salário (5º dia útil), Adiantamento (dia 20) e Vale refeição (dia 1). Você só preenche o valor.\n- Cada fixo mostra a data deste mês e se já foi Lançado (ou Recebido). No rodapé: total de gastos fixos e de entradas fixas por mês.\n- Desmarcar **Ativo** pausa o fixo. Excluir um fixo não apaga os lançamentos antigos.\n\n**Orçamento:** um limite por mês para cada categoria. A barra fica laranja perto do limite e vermelha quando estoura; a partir de 90% o aviso vai para o Início.\n\n**Categorias:** gráfico de rosca dos gastos do mês, a comparação de cada categoria com o mês anterior (▲ subiu, ▼ caiu, \"novo\" se não existia) e o total por forma de pagamento.\n\n**Onde está guardado:** os seus locais (ex.: Cofre, Caixinha, Tesouro), com o valor que já havia e uma meta opcional. O que você guarda nas metas usando o mesmo nome de local soma aqui.\n\n**Cartões:** nome e dia do vencimento. Mostra as compras do mês em cada cartão, e o vencimento aparece nos Próximos 7 dias do Início."],["Estudos","Três telas, no menu Mais (ou na lateral): Faculdade, Cursos e Leitura.\n\n**Faculdade**\n\n- No topo: entregas concluídas, quanto falta para a próxima, média das notas e número de disciplinas.\n- **+ Atividade:** nome, disciplina, data de entrega, status (Pendente ou Entregue) e nota.\n- Cada atividade mostra o estado: Atrasada, Hoje, \"em X dias\" ou Entregue. As atrasadas e as dos próximos 7 dias vão para o Início e para o e-mail da manhã.\n- Com o Google Agenda ligado, as entregas viram eventos na sua agenda.\n- A engrenagem muda o nome do curso que aparece no topo.\n\n**Cursos**\n\n- Agrupados por plataforma (ex.: Hashtag, ADA), com o botão \"Abrir portal\" quando o curso tem link.\n- Filtros: Todos, Cursando, A fazer e Concluído.\n- **+ Curso:** nome, plataforma, carga horária, status (A fazer, Cursando, Pausado, Concluído), progresso em % e link do portal.\n\n**Leitura**\n\n- No topo: a meta de livros do ano e quantos você já leu. A meta se muda na engrenagem.\n- **Lendo agora:** página atual, barra de progresso e quantos dias faltam para terminar no seu ritmo. Toque para atualizar a página.\n- Estantes: Quero ler, Lendo e Lido.\n- **+ Livro:** nome, autor, ano, gênero, páginas, status, página atual, início, fim, avaliação (1 a 5) e síntese.\n- **Buscar dados pelo nome:** dentro do livro, preenche autor, páginas, sinopse e capa pelo Google Livros."],["Vida","Cinco telas no menu Mais: Diário, Treinos, Lugares, Farmácia e Datas.\n\n**Diário**\n\n- Um registro por dia: humor de 1 a 5 (😞 a 😄) e um texto, se quiser.\n- O jeito mais rápido é tocar numa carinha no cartão \"Como foi seu dia?\" do Início.\n- A tela mostra o mês como um calendário colorido pelo humor; toque num dia para ler ou escrever.\n- Números do mês: humor médio, dias escritos e dias bons.\n- **Descobertas:** com 6 dias ou mais de humor, o app compara os dias com e sem cada hábito, treino e folga, e mostra o que mais combina com seus dias bons (ex.: \"Humor 4,2 nos dias com Caminhar · 3,1 nos dias sem\").\n\n**Treinos**\n\n- **Registrar:** exercício, séries, repetições (ou segundos, na prancha), carga extra, data e observação.\n- Ao repetir um exercício, o formulário já vem com as séries e repetições da última vez.\n- **Marcar o hábito junto:** se você tem um hábito como Calistenia, o formulário oferece marcá-lo como feito no mesmo toque.\n- A tela mostra dias de treino no mês, semanas seguidas treinando, a evolução de cada exercício (último treino, recorde e um mini gráfico) e o histórico.\n\n**Lugares**\n\n- Lista de lugares para conhecer: nome, ícone, categoria, status (Quero ir, Planejado, Visitado), data, avaliação e observações.\n- O próximo passeio planejado aparece em destaque, e os planejados vão para os Próximos 7 dias e para a agenda.\n\n**Farmácia**\n\n- Inventário dos remédios de casa: nome, para que serve, quantidade, validade (mês/ano) e observações.\n- Estados: Vencido, Vence este mês, Vence em breve (45 dias), OK. Vencidos e vencendo vão para o Início.\n- **Em uso agora:** marque \"Estou tomando agora\" e preencha a dose e os horários, como `08:00, 20:00`, `8h e 20h` ou `de 8 em 8h`. As doses aparecem no Início e, com o e-mail \"Hora do remédio\" ligado, chega um aviso na hora (pode atrasar até 1 hora).\n\n**Datas importantes**\n\n- **+ Data:** nome, tipo (Aniversário, Comemorativa, Outro), data, quantos dias antes avisar e observação.\n- A tela lista as próximas por mês, com o dia da semana. Em aniversário com o ano de nascimento, mostra a idade (\"faz 56 anos\").\n- O aviso aparece no Início e no e-mail da manhã, a partir do número de dias que você escolheu (7, se ficar vazio)."],["Conquistas e busca","**Conquistas:** 20 medalhas que se desbloqueiam sozinhas conforme você usa o app. Quando uma desbloqueia, cai confete e aparece um aviso. A tela Conquistas mostra todas, com a barra do quanto falta.\n\n| Área | Conquistas |\n| --- | --- |\n| Presença | Mês perfeito (100% num mês) · Calendário em dia (30 dias seguidos lançados) |\n| Hábitos | Pegando o ritmo (7 dias seguidos) · Hábito de ferro (30) · Imparável (100) · Semana perfeita (todos os hábitos numa semana) |\n| Dinheiro | Primeiros mil (R$ 1.000 guardados) · Reserva de respeito (R$ 5.000) · Objetivo alcançado (completar uma meta) · Dentro do orçamento (um mês sem estourar limite) |\n| Diário | Querido diário (7 dias) · Escritor (30 dias) |\n| Treinos | Em forma (10 dias) · Atleta (50 dias) |\n| Estudos | Primeiro livro · Meta de leitura (a meta do ano) · Aluno exemplar (5 entregas, nenhuma atrasada) · Certificado (concluir um curso) |\n| Vida | Explorador (visitar 5 lugares) · Farmácia em ordem (5 ou mais remédios, nenhum vencido) |\n\n**Busca geral:** a lupa no topo do Início (ou Buscar no menu). Digite 2 letras ou mais: procura sem ligar para acentos em observações do calendário, diário, lançamentos, metas, folgas, faculdade, cursos, livros, lugares, remédios, datas, treinos e tarefas. Toque num resultado para abrir; num treino, ele já abre para repetir o exercício."],["Ajustes e e-mails automáticos","Ajustes fica no menu Mais (ou tocando na sua inicial no topo do Início) e tem 4 blocos. As opções de cada tela ficam na engrenagem dela, e Ajustes também lista esses atalhos.\n\n| Bloco | O que dá para mudar |\n| --- | --- |\n| **Você** | Nome (aparece no \"Olá\") e e-mail para os avisos (vazio = o da sua conta Google) |\n| **Aparência** | Tema (Automático segue o celular, Claro ou Escuro), cor do app (Azul petróleo, Verde, Roxo, Laranja, Rosa, Grafite), tela em que o app abre, cartões do Início e frase do dia |\n| **E-mails automáticos** | Ligar ou desligar cada e-mail, mandar um teste |\n| **Dados** | Atualizar a agenda agora e fazer uma cópia de segurança agora |\n| **Este aparelho** | Sincronizar agora, desconectar da planilha e ligar o bloqueio com digital |\n\n**Bloqueio com digital:** em Ajustes → Este aparelho, ligue \"Bloquear com digital\". O app pede a digital ou o rosto ao abrir e depois de 1 minuto fora dele. Se a biometria falhar, dá para destravar com a chave do app. É uma trava da tela neste aparelho; cada aparelho liga a sua.\n\n**Cartões do Início:** marque os que quer ver e use as setas para mudar a ordem. \"Voltar ao padrão\" desfaz tudo.\n\n**Frase do dia:** no modo Automático, muda todo dia (60 frases do app + as suas). No modo Fixa, mostra sempre a sua frase favorita.\n\n**Os e-mails automáticos**\n\n| E-mail | Quando chega |\n| --- | --- |\n| Resumo da manhã | 7h, só quando há algo: entrega, folga, fatura, orçamento, remédio, aniversário |\n| Lembrete da presença | 18h, se o dia de hoje ainda estiver vazio |\n| Hora do remédio | Na hora de cada dose dos remédios em uso (até 1 hora de atraso) |\n| Resumo do mês | Dia 1, com presença, gastos, hábitos e leituras do mês anterior |\n| Copiar para o Google Agenda | Todo dia: entregas, folgas agendadas e passeios viram eventos (sem duplicar) |\n| Cópia de segurança | Domingo: uma cópia da planilha na pasta \"Meu Dia a Dia - Backups\" do Drive, guardando as 8 últimas |\n\nPara funcionar, os e-mails precisam estar **ligados** (botão \"Ligar e-mails automáticos\"). Se aparecer \"Sem permissão\", rode a função **autorizar** no editor do Apps Script. Depois de uma atualização que traz um e-mail novo, pause e ligue de novo para ele começar a valer."],["A planilha por dentro","Tudo fica em 6 abas, uma por área. O app cria e organiza as abas sozinho; o ideal é mexer pelo app, não direto na planilha.\n\n| Aba | Tipos de linha que ela guarda |\n| --- | --- |\n| **Calendário** | Dia, Folga, Código |\n| **Hábitos** | Hábito, Feitos no dia, Tarefa, Treino |\n| **Financeiro** | Lançamento, Gasto fixo, Limite do mês, Onde guardo, Cartão, Meta, Meta: movimento |\n| **Estudos** | Faculdade, Curso, Livro |\n| **Vida** | Lugar, Remédio, Diário, Data importante |\n| **Ajustes** | Ajuste, Evento na agenda |\n\n**As 7 colunas, iguais em todas as abas:** Tipo · ID · Data · Título · Valor · Status · Detalhes. A coluna Detalhes guarda o resto em formato técnico (JSON) e não deve ser editada à mão.\n\n- As linhas ficam em ordem de tipo e data.\n- Cada aba cresce sozinha quando precisa e guarda só as 7 colunas, para a planilha não pesar.\n- Os códigos de presença (nome, cor e se conta como extra) ficam nas linhas \"Código\" da aba Calendário.\n- Na primeira vez, o app converteu a planilha antiga (uma aba por assunto) e salvou uma cópia completa em \"Meu Dia a Dia - Backups\" no Drive antes de mexer.\n- **Localidade e fuso:** em Arquivo → Configurações, deixe Brasil e (GMT-03:00) São Paulo, para as datas não andarem um dia."],["Sem internet e problemas comuns","**Sem internet:** o app fica guardado no aparelho e abre normalmente, até no modo avião, com os dados da última sincronização. O que você salvar sem conexão aparece na hora e fica guardado; uma faixa laranja no topo mostra quantas alterações esperam a internet. Quando a conexão volta, o app envia tudo sozinho e traz o que mudou em outro aparelho. Ao voltar para o app depois de um tempo, ele também sincroniza; para forçar, use **Ajustes → Este aparelho → Sincronizar agora**.\n\nNa primeira vez em cada aparelho é preciso internet, para conectar e baixar os dados. Se o mesmo item for mudado no celular sem internet e no computador ao mesmo tempo, vale a última alteração enviada.\n\n| Problema | O que fazer |\n| --- | --- |\n| Pede para conectar de novo | A chave mudou (ou o app foi desconectado). Rode **configurarApp** no Apps Script e cole a chave |\n| \"Sem resposta da ponte\" ao conectar | Confira a internet e se a implantação está com acesso **Qualquer pessoa**. O endereço precisa terminar em /exec |\n| Atualizei o código e nada mudou | No Apps Script, faltou a Nova versão. No app, feche e abra de novo: a versão nova das telas entra na abertura seguinte |\n| Datas um dia antes ou depois | Arquivo → Configurações da planilha: Brasil e (GMT-03:00) São Paulo |\n| E-mails não chegam | Ajustes → E-mails automáticos: veja se estão \"Ligados\" e use \"Mandar um teste\". Se diz \"Sem permissão\", rode autorizar |\n| Lembrete do remédio não chega | O remédio precisa estar \"Em uso\", com horário, e o e-mail \"Hora do remédio\" ligado |\n| Gasto fixo não entrou | Ele entra no dia calculado (veja a data na etiqueta). Confira se está Ativo e, se for Prazo, se o último mês já passou |\n| Salário caiu num dia diferente do holerite | Teste a opção \"Sábado conta como dia útil\" no fixo e cadastre os feriados da sua cidade na engrenagem do Calendário |\n| Um domingo apagado não voltou | É de propósito: cada mês é preparado uma vez só. Use \"Preencher este mês agora\" na engrenagem do Calendário |\n| Apaguei algo sem querer | Abra a cópia de segurança mais recente na pasta \"Meu Dia a Dia - Backups\" do Drive e copie a linha de volta para a aba certa |\n| Perdi o celular | Rode **trocarChaveDoApp** no Apps Script: o celular antigo perde o acesso. Conecte os outros aparelhos com a chave nova |"],["Instalar e atualizar","O Meu Dia tem duas partes:\n\n- **O app:** as telas, num site seu e gratuito no GitHub Pages. No S25 ele é instalado como app; no computador, você abre o mesmo endereço no navegador.\n- **A ponte:** o arquivo **Codigo.gs** no Apps Script da planilha. É ele que lê e grava os dados, manda os e-mails e faz o backup.\n\n**Instalar no S25**\n\n1. Abra o endereço do app no **Chrome**.\n2. Toque em **⋮ → Instalar app** (ou no aviso \"Instalar\" que aparece embaixo).\n3. O ícone vai para a tela inicial. Abra por ele: o app ocupa a tela toda, sem barra do navegador.\n4. Na primeira abertura, cole o endereço da ponte e a chave.\n\nSegure o ícone do app para ver os atalhos: Lançar gasto, Presença de hoje e Diário de hoje. O botão voltar do celular fecha o painel aberto ou volta para a tela anterior.\n\n**No computador:** abra o mesmo endereço no navegador, conecte uma vez com o endereço da ponte e a chave, e salve nos favoritos.\n\n**A chave:** funciona como uma senha. Quem tiver o endereço da ponte e a chave consegue ler e mudar seus dados, então não mande para ninguém. Se vazar, rode **trocarChaveDoApp** no Apps Script e conecte de novo os seus aparelhos.\n\n**Atualizar**\n\n- **As telas:** suba os arquivos novos no repositório do GitHub (Add file → Upload files). O app pega a versão nova sozinho: ela aparece na abertura seguinte.\n- **A ponte:** cole o Codigo.gs novo no Apps Script e vá em **Implantar → Gerenciar implantações → ✏️ → Nova versão → Implantar**. O endereço não muda."]];
 // MANUAL:FIM
 
 // =====================================================================
@@ -2607,7 +2880,7 @@ const NAV = [['inicio', '🏠', 'Início'], ['presenca', '📅', 'Calendário'],
 
 function render() {
   $('main').innerHTML = TELAS[E.tela]();
-  $('side').innerHTML = `<div class="logo"><i>✓</i>Meu Dia a Dia</div>` +
+  $('side').innerHTML = `<div class="logo"><i>✓</i>Meu Dia</div>` +
     NAV.map(([k, i, l]) => k === 'sep' ? `<div class="navsep">${l}</div>` : `<button class="navi ${k === E.tela ? 'on' : ''}" data-a="${k === 'busca' ? 'busca' : 'ir'}" data-v="${k}">${i} ${l}</button>`).join('');
   const sel = ['inicio', 'presenca', 'financeiro'].includes(E.tela) ? E.tela : 'mais';
   const item = ([k, i, l]) => `<button class="${sel === k ? 'on' : ''}" data-a="ir" data-v="${k}"><span class="ico">${i}</span>${l}</button>`;
@@ -2631,8 +2904,11 @@ const ACOES = {
     if (!v || alvo === 'fin-resumo') window.scrollTo(0, 0);
     else requestAnimationFrame(() => { const el = $(alvo); if (el) el.scrollIntoView({ block: 'start' }); });
   },
+  irSecaoCal: ({ v }) => { ACOES.ir({ v: 'presenca' }); requestAnimationFrame(() => { const el = $(v); if (el) el.scrollIntoView({ block: 'start' }); }); },
   irSecao: ({ v }) => { const el = $(v); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); },
   todosLanc: () => { E.verTodosLanc = !E.verTodosLanc; render(); },
+  limparFiltro: () => { E.fLanc = {}; render(); },
+  importar: () => abrirImportar(), confirmarImportar: () => confirmarImportar(),
   rapidas: abrirRapidas,
   fechar: fecharVeu,
   formSalvar: () => { const o = lerForm(); if (o) E.form.salvar(o); },
@@ -2664,10 +2940,17 @@ const ACOES = {
   voltarEmail: () => E.emailFolga.voltar(),
   // hábitos
   hab: ({ d, h }) => {
+    vibrar();
+    if (metaDia(habPorId(h))) return abrirQtd(d, h);
     const id = d + '_' + h;
     if (T('HabitosLog').some(l => l.ID === id)) excluirItem('HabitosLog', id, '');
     else salvarItem('HabitosLog', { ID: id, Data: d, HabitoID: h }, '');
   },
+  habMais: ({ d, h }) => { vibrar(); const x = habPorId(h), v = qtdDe(d, h) + passoDe(x); gravarQtd(d, h, v); if (v >= metaDia(x) && v - passoDe(x) < metaDia(x)) toast(`${x.Icone || '✓'} ${x.Nome}: meta do dia batida!`); },
+  qtdPasso: ({ n }) => { vibrar(); E.qtd.v = Math.max(0, Math.round((E.qtd.v + +n * passoDe(habPorId(E.qtd.hid))) * 100) / 100); E.qtd.pintar(); },
+  qtdMeta: () => { E.qtd.v = metaDia(habPorId(E.qtd.hid)); E.qtd.pintar(); },
+  qtdZerar: () => { E.qtd.v = 0; E.qtd.pintar(); },
+  qtdSalvar: () => { const q = E.qtd; fecharVeu(); gravarQtd(q.d, q.hid, q.v); },
   semHab: ({ n }) => { E.semHab = inicioSemana(somaDias(E.semHab, +n)); render(); },
   mesHab: ({ n }) => { E.semHab = inicioSemana(somaMes(E.semHab.slice(0, 7), +n) + '-15'); render(); },
   abaHab: ({ v }) => { E.abaHab = v; render(); },
@@ -2708,6 +2991,7 @@ const ACOES = {
   fFarm: ({ v }) => { E.fFarm = v; render(); }, novoRemedio: () => abrirRemedio(null), editarRemedio: ({ id }) => abrirRemedio(id),
   // novidades
   lancarHoje: ({ c }) => {
+    vibrar(18);
     const hoje = hojeIso(), fer = feriadoDe(hoje);
     E.diaAberto = hoje; E.codigoSel = c;
     abrirVeu(`<input type="checkbox" id="diaCob"><textarea id="diaObs">${esc(fer && /^FERI/.test(c) ? fer : '')}</textarea>`); // painel invisível: reaproveita o salvamento do dia
@@ -2735,6 +3019,9 @@ const ACOES = {
   persMover: ({ i, n }) => { const a = E.pers.ordem, j = +i + +n; [a[+i], a[j]] = [a[j], a[+i]]; abrirPersonalizar(); },
   persPadrao: () => { E.pers = { ordem: CARTOES_INICIO.map(c => c[0]), ocultos: [] }; abrirPersonalizar(); },
   persSalvar: () => { const p = E.pers; fecharVeu(); E.pers = null; salvarConfig({ InicioCartoes: p.ordem.join(','), InicioOcultos: p.ocultos.join(',') }, 'Início personalizado ✓'); },
+  olho: () => { E.ocultar = !E.ocultar; ls.set('mdd_ocultar', E.ocultar); vibrar(); render(); },
+  atualizarVersao: () => location.reload(),
+  destravar: () => destravar(), destravarChave: () => destravarComChave(), travaLiga: () => alternarTrava(),
   conectar: () => conectar(), desconectar: () => desconectar(), sincronizarAgora: () => { ultimaSync = 0; toast('Sincronizando…'); sincronizar().then(() => toast(ultimaSync ? 'Tudo em dia ✓' : 'Sem conexão agora', !ultimaSync)); },
   // ajustes
   toggleCfg: ({ k }) => salvarConfig({ [k]: liga(k) ? 'não' : 'sim' }, ''),
@@ -2756,10 +3043,20 @@ document.addEventListener('keydown', e => {
   if (e.key === '/' && !/INPUT|TEXTAREA|SELECT/.test(e.target.tagName) && E.codigos.length) { e.preventDefault(); abrirBusca(); }
 });
 document.addEventListener('change', e => {
+  if (e.target.dataset && e.target.dataset.imp !== undefined) { E.importar[+e.target.dataset.imp].sel = e.target.checked; return desenharImportar(); }
+  if (['fLancCat', 'fLancPag', 'fLancTodos'].includes(e.target.id)) {
+    E.fLanc = Object.assign({}, E.fLanc, { cat: $('fLancCat').value, pag: $('fLancPag').value, todos: $('fLancTodos') ? $('fLancTodos').checked : false });
+    render(); const el = $('fin-lanc'); if (el) el.scrollIntoView({ block: 'start' });
+  }
   if (e.target.id === 'anoPres') { E.mesPres = e.target.value + E.mesPres.slice(4); render(); }
 });
 document.addEventListener('toggle', e => { if (e.target.closest && e.target.closest('.manual') && e.target.open) E.manualAberto = +e.target.id.slice(4); }, true);
 document.addEventListener('input', e => {
+  if (e.target.id === 'fLancQ') {
+    E.fLanc = Object.assign({}, E.fLanc, { q: e.target.value });
+    const pos = e.target.selectionStart; render();
+    const el = $('fLancQ'); el.focus(); el.setSelectionRange(pos, pos);
+  }
   if (e.target.id === 'manualBusca') {
     E.buscaManual = e.target.value; const pos = e.target.selectionStart; render();
     const el = $('manualBusca'); el.focus(); el.setSelectionRange(pos, pos);
@@ -2786,7 +3083,7 @@ function carregar(d) {
 }
 function telaConectar(erro) {
   document.body.classList.add('sem-nav');
-  const c = ls.get(CONEXAO) || {};
+  const c = E.rascunhoConexao || ls.get(CONEXAO) || {};
   $('main').innerHTML = `<div class="conectar">
     <img class="logo-app" src="icone-192.png" alt="">
     <h1>Conectar à sua planilha</h1>
@@ -2802,6 +3099,7 @@ function telaConectar(erro) {
 }
 async function conectar() {
   const url = $('cxUrl').value.trim(), chave = $('cxChave').value.trim();
+  E.rascunhoConexao = { url, chave };
   if (!/^https:\/\/script\.google(usercontent)?\.com\/.+\/exec$/.test(url)) return telaConectar('O endereço precisa ser o do App da Web, terminando em /exec.');
   if (chave.length < 20) return telaConectar('Cole a chave inteira que o configurarApp mostrou.');
   const b = document.querySelector('[data-a="conectar"]');
@@ -2809,7 +3107,6 @@ async function conectar() {
   try {
     await chamarPonte({ url, chave }, 'ping', [location.origin + location.pathname]);
   } catch (e) {
-    ls.set(CONEXAO, { url, chave: '' });
     return telaConectar(e.codigo === 'chave' ? 'A chave não confere. Copie de novo do configurarApp.' : /network|tempo/.test(e.message) ? 'Sem resposta da ponte. Confira a internet e se a implantação está como “Qualquer pessoa”.' : e.message);
   }
   ls.set(CONEXAO, { url, chave });
@@ -2824,6 +3121,46 @@ function desconectar() {
   [CONEXAO, CACHE, FILA].forEach(k => { try { localStorage.removeItem(k); } catch (e) { /* sem armazenamento */ } });
   location.reload();
 }
+
+// Bloqueio com digital: usa a biometria do celular (WebAuthn). É uma trava da tela neste aparelho; os dados continuam na planilha.
+const TRAVA = 'mdd_trava';
+const b64 = buf => btoa(String.fromCharCode(...new Uint8Array(buf)));
+const deB64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+async function travaDisponivel() {
+  try { return !!(window.PublicKeyCredential && await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()); } catch (e) { return false; }
+}
+async function alternarTrava() {
+  if (ls.get(TRAVA)) { ls.set(TRAVA, null); toast('Bloqueio desligado'); return render(); }
+  try {
+    const cred = await navigator.credentials.create({ publicKey: {
+      challenge: crypto.getRandomValues(new Uint8Array(32)), rp: { name: 'Meu Dia' },
+      user: { id: crypto.getRandomValues(new Uint8Array(16)), name: 'meu-dia', displayName: 'Meu Dia' },
+      pubKeyCredParams: [{ type: 'public-key', alg: -7 }, { type: 'public-key', alg: -257 }],
+      authenticatorSelection: { authenticatorAttachment: 'platform', userVerification: 'required', residentKey: 'discouraged' }, timeout: 60000 } });
+    ls.set(TRAVA, { id: b64(cred.rawId) });
+    toast('Bloqueio com digital ligado 🔒'); render();
+  } catch (e) { toast('Não deu para ligar: ' + (e.name === 'NotAllowedError' ? 'cancelado' : e.message), true); }
+}
+let travadoDesde = 0;
+function travar() { if (ls.get(TRAVA)) { document.body.classList.add('travado'); $('travaMsg').textContent = ''; } }
+async function destravar() {
+  const t = ls.get(TRAVA);
+  if (!t) return document.body.classList.remove('travado');
+  try {
+    await navigator.credentials.get({ publicKey: { challenge: crypto.getRandomValues(new Uint8Array(32)), allowCredentials: [{ type: 'public-key', id: deB64(t.id) }], userVerification: 'required', timeout: 60000 } });
+    document.body.classList.remove('travado'); vibrar();
+  } catch (e) { $('travaMsg').textContent = 'Não reconheceu. Tente de novo ou use a chave do app.'; }
+}
+function destravarComChave() {
+  const c = ls.get(CONEXAO);
+  const v = prompt('Cole a chave do app:');
+  if (v && c && v.trim() === c.chave) { document.body.classList.remove('travado'); return; }
+  $('travaMsg').textContent = 'Chave não confere.';
+}
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') travadoDesde = Date.now();
+  else if (travadoDesde && Date.now() - travadoDesde > 60000) travar();
+});
 
 /** Ao voltar para o app ou quando a internet volta: envia o que ficou guardado e traz o que mudou (ex.: no computador). */
 let ultimaSync = 0, sincronizando = false;
@@ -2841,12 +3178,38 @@ async function sincronizar() {
   } catch (e) { /* sem conexão: tenta na próxima */ } finally { sincronizando = false; }
 }
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && Date.now() - ultimaSync > 60000) sincronizar(); });
+// Puxar para atualizar: no topo da tela, arraste para baixo e solte
+let puxar = null;
+addEventListener('touchstart', e => {
+  puxar = scrollY <= 0 && e.touches.length === 1 && !$('veu').classList.contains('aberto') && E.codigos.length && !document.body.classList.contains('travado') ? { y: e.touches[0].clientY, d: 0 } : null;
+}, { passive: true });
+addEventListener('touchmove', e => {
+  if (!puxar) return;
+  puxar.d = e.touches[0].clientY - puxar.y;
+  const el = $('ptr');
+  el.style.transform = `translate(-50%, ${Math.min(Math.max(puxar.d, 0), 100) * 0.8 - 60}px) rotate(${puxar.d * 3}deg)`;
+  el.classList.toggle('pronto', puxar.d > 80);
+}, { passive: true });
+addEventListener('touchend', async () => {
+  if (!puxar) return;
+  const ok = puxar.d > 80, el = $('ptr');
+  puxar = null; el.style.transform = ''; el.classList.remove('pronto');
+  if (!ok) return;
+  vibrar(); el.classList.add('girando');
+  ultimaSync = 0;
+  await sincronizar();
+  el.classList.remove('girando');
+  toast(ultimaSync ? 'Tudo em dia ✓' : 'Sem conexão agora', !ultimaSync);
+});
 
 const TELA_INICIAL = { 'Início': 'inicio', 'Calendário': 'presenca', 'Financeiro': 'financeiro', 'Diário': 'diario', 'Treinos': 'treinos' };
 const telaInicial = () => TELA_INICIAL[cfg('TelaInicial', 'Início')] || { 'Presença': 'presenca', 'Hábitos': 'presenca' }[cfg('TelaInicial', '')] || 'inicio';
 
 async function iniciar() {
+  E.ocultar = !!ls.get('mdd_ocultar');
+  travaDisponivel().then(ok => { E.travaOk = ok; });
   if (!NO_GOOGLE && !(ls.get(CONEXAO) || {}).chave) return telaConectar();
+  if (ls.get(TRAVA)) { travar(); destravar(); }
   const hoje = hojeIso();
   E.mesPres = E.mesFin = E.mesDiario = hoje.slice(0, 7);
   E.semHab = inicioSemana(hoje);
@@ -2881,16 +3244,26 @@ async function iniciar() {
 }
 /** Atalhos do ícone (segure o ícone do app): ?abrir=gasto | presenca | diario */
 function abrirAtalho() {
-  const a = new URLSearchParams(location.search).get('abrir');
-  if (!a || !E.codigos.length) return;
+  const q = new URLSearchParams(location.search), a = q.get('abrir'), texto = [q.get('titulo'), q.get('texto'), q.get('link')].filter(Boolean).join('\n');
+  if ((!a && !texto) || !E.codigos.length) return;
   history.replaceState({ tela: E.tela }, '', location.pathname);
+  if (texto) { const o = lerComprovante(texto); return o.Valor ? abrirLanc(null, o) : (ACOES.rapidas(), $('rapidoTxt').value = texto.slice(0, 120)); }
   if (a === 'gasto') ACOES.rapidas();
   else if (a === 'presenca') abrirDia(hojeIso());
   else if (a === 'diario') abrirDiario(hojeIso());
 }
 history.replaceState({ tela: E.tela }, '');
 iniciar();
-if ('serviceWorker' in navigator && /^https:|^http:\/\/localhost/.test(location.href)) navigator.serviceWorker.register('sw.js').catch(() => {});
+if ('serviceWorker' in navigator && /^https:|^http:\/\/localhost/.test(location.href)) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+  navigator.serviceWorker.addEventListener('message', e => { if (e.data && e.data.tipo === 'nova-versao') avisarVersaoNova(); });
+}
+function avisarVersaoNova() {
+  if (document.querySelector('.versao')) return;
+  const d = document.createElement('div');
+  d.className = 'versao'; d.innerHTML = '✨ Nova versão do app disponível <button data-a="atualizarVersao">Atualizar</button>';
+  document.body.appendChild(d);
+}
 </script>
 </body>
 </html>

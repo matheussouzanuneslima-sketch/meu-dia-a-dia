@@ -1,6 +1,6 @@
-// Meu Dia a Dia: guarda o app no aparelho para abrir sem internet.
+// Meu Dia: guarda o app no aparelho para abrir sem internet.
 // Os dados não passam por aqui (ficam no aparelho e na planilha); só as telas, o ícone e a fonte.
-const VERSAO = 'mdd-v1';
+const VERSAO = 'mdd-v2';
 const ARQUIVOS = ['./', 'index.html', 'manifest.webmanifest', 'icone-192.png', 'icone-512.png', 'icone-maskable.png', 'icone-180.png'];
 
 self.addEventListener('install', e => {
@@ -22,8 +22,17 @@ self.addEventListener('fetch', e => {
   const chave = req.mode === 'navigate' ? 'index.html' : req;
   e.respondWith(caches.open(VERSAO).then(async cache => {
     const guardado = await cache.match(chave, { ignoreSearch: req.mode === 'navigate' });
-    const daRede = fetch(req).then(r => {
-      if (r && (r.ok || r.type === 'opaque')) cache.put(chave, r.clone());
+    const paraComparar = guardado && req.mode === 'navigate' ? guardado.clone() : null; // a original vai para a página
+    // no-cache: confere com o servidor (resposta curta "não mudou" quando está igual), sem usar a cópia do navegador
+    const daRede = fetch(fonte ? req : new Request(req.url, { cache: 'no-cache', credentials: 'same-origin' })).then(async r => {
+      if (r && (r.ok || r.type === 'opaque')) {
+        // Tela do app mudou desde a última vez? Avisa a página para oferecer "Atualizar"
+        if (paraComparar && r.ok) {
+          const [antes, agora] = await Promise.all([paraComparar.text(), r.clone().text()]);
+          if (antes !== agora) self.clients.matchAll({ type: 'window' }).then(cs => cs.forEach(c => c.postMessage({ tipo: 'nova-versao' })));
+        }
+        await cache.put(chave, r.clone());
+      }
       return r;
     }).catch(() => guardado);
     if (guardado) { e.waitUntil(daRede); return guardado; }
