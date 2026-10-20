@@ -5,18 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Meu Dia</title>
 <meta name="description" content="Presença, hábitos, finanças, estudos e vida, num app só.">
-<meta name="theme-color" content="#f4f6fb" id="corTema">
+<meta name="theme-color" content="#faf6f2" id="corTema">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icone-192.png" type="image/png">
 <link rel="apple-touch-icon" href="icone-180.png">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #f4f6fb; --card: #ffffff; --tx: #0f172a; --sub: #64748b; --line: #e8ecf3; --soft: #f1f5f9; --soft2: #f8fafc;
-    --inp: #dbe1ea; --tab: #eaeef4; --acc: #0b4f6c; --acct: #0b4f6c; --acc2: #e0f2fe;
-    --sh: 0 1px 2px rgba(15,23,42,.04), 0 4px 16px rgba(15,23,42,.06);
+    --bg: #faf6f2; --card: #ffffff; --tx: #1f1a17; --sub: #8a7f77; --line: #f0e6dd; --soft: #f6f0ea; --soft2: #fbf8f5;
+    --inp: #e7dcd2; --tab: #f3ece6; --acc: #1f1a17; --acct: #c2410c; --acc2: #ffe4cf;
+    --sh: 0 1px 2px rgba(31,26,23,.03), 0 3px 12px rgba(31,26,23,.04);
+    --escuro: #1f1a17; --escuro2: #2a2420; --escuro-tx: #fff; --escuro-sub: #c9bfb8; --pessego: #ffd9bf; --pessego2: #fff8f2; --pessego-tx: #5b2a0e; --laranja: #fdba74; --marrom: #7c2d12;
     --g: #16a34a; --g2: #dcfce7; --b: #2563eb; --b2: #dbeafe; --o: #d97706; --o2: #fef3c7;
     --r: #dc2626; --r2: #fee2e2; --p: #7e22ce; --p2: #f3e8ff; --t: #0f766e; --t2: #ccfbf1; --rosa: #ec4899;
     --warnbg: #fff7e6; --warnbd: #fde3a7; --expbg: #fff1f1; --expbd: #fecaca;
@@ -24,25 +25,27 @@
     color-scheme: light;
   }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-    --bg: #0b1220; --card: #131c2e; --tx: #e6ecf5; --sub: #8b9ab3; --line: #22304a; --soft: #1b263b; --soft2: #172238;
-    --inp: #2c3b57; --tab: #1b263b; --acc: #1f7ea6; --acct: #7dd3fc; --acc2: rgba(56,189,248,.14);
-    --sh: 0 0 0 1px #1d2a42;
+    --bg: #14110f; --card: #1e1a17; --tx: #f3ede8; --sub: #a99d94; --line: #2e2723; --soft: #26201c; --soft2: #1a1613;
+    --inp: #3a322d; --tab: #26201c; --acc: #c2410c; --acct: #fdba74; --acc2: rgba(251,146,60,.16);
+    --sh: 0 0 0 1px #2a231f;
+    --escuro: #2a2420; --escuro2: #352d28; --escuro-tx: #fff; --escuro-sub: #c9bfb8; --pessego: #3b2416; --pessego2: #2a1d14; --pessego-tx: #fdba74; --laranja: #fdba74; --marrom: #c2410c;
     --g: #4ade80; --g2: rgba(34,197,94,.16); --b: #93c5fd; --b2: rgba(59,130,246,.18); --o: #fbbf24; --o2: rgba(245,158,11,.16);
     --r: #f87171; --r2: rgba(239,68,68,.16); --p: #d8b4fe; --p2: rgba(168,85,247,.18); --t: #5eead4; --t2: rgba(20,184,166,.16);
     --warnbg: rgba(245,158,11,.10); --warnbd: rgba(245,158,11,.35); --expbg: rgba(239,68,68,.10); --expbd: rgba(239,68,68,.35);
     --c1: #2f96c2; --c2: #c86f2e;
     color-scheme: dark; } }
   :root[data-theme="dark"] {
-    --bg: #0b1220; --card: #131c2e; --tx: #e6ecf5; --sub: #8b9ab3; --line: #22304a; --soft: #1b263b; --soft2: #172238;
-    --inp: #2c3b57; --tab: #1b263b; --acc: #1f7ea6; --acct: #7dd3fc; --acc2: rgba(56,189,248,.14);
-    --sh: 0 0 0 1px #1d2a42;
+    --bg: #14110f; --card: #1e1a17; --tx: #f3ede8; --sub: #a99d94; --line: #2e2723; --soft: #26201c; --soft2: #1a1613;
+    --inp: #3a322d; --tab: #26201c; --acc: #c2410c; --acct: #fdba74; --acc2: rgba(251,146,60,.16);
+    --sh: 0 0 0 1px #2a231f;
+    --escuro: #2a2420; --escuro2: #352d28; --escuro-tx: #fff; --escuro-sub: #c9bfb8; --pessego: #3b2416; --pessego2: #2a1d14; --pessego-tx: #fdba74; --laranja: #fdba74; --marrom: #c2410c;
     --g: #4ade80; --g2: rgba(34,197,94,.16); --b: #93c5fd; --b2: rgba(59,130,246,.18); --o: #fbbf24; --o2: rgba(245,158,11,.16);
     --r: #f87171; --r2: rgba(239,68,68,.16); --p: #d8b4fe; --p2: rgba(168,85,247,.18); --t: #5eead4; --t2: rgba(20,184,166,.16);
     --warnbg: rgba(245,158,11,.10); --warnbd: rgba(245,158,11,.35); --expbg: rgba(239,68,68,.10); --expbd: rgba(239,68,68,.35);
     --c1: #2f96c2; --c2: #c86f2e;
     color-scheme: dark;
   }
-  html, body { background: var(--bg); color: var(--tx); font: 14px/1.4 Inter, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  html, body { background: var(--bg); color: var(--tx); font: 14px/1.4 Urbanist, system-ui, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
   html { -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%; }
   body { overscroll-behavior-y: none; padding-top: env(safe-area-inset-top); }
   button, .day, .row, .appi, .chip { -webkit-user-select: none; user-select: none; touch-action: manipulation; }
@@ -385,6 +388,28 @@
   .pcard .t { flex: 1; font-weight: 600; }
   .pcard button { width: 34px; height: 34px; border-radius: 10px; background: var(--soft); font-weight: 800; }
   @media (prefers-reduced-motion: reduce) { .confete { display: none; } }
+  /* Celular (inclusive com letra grande no Android): nada de texto cortado com "…" */
+  @media (max-width: 699px) {
+    .row { align-items: flex-start; }
+    .row .ic { margin-top: 2px; }
+    .row .t b, .row .t small { white-space: normal; overflow: visible; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; }
+    .row .t small { -webkit-line-clamp: 3; }
+    .row > .val, .row > .pill, .row > div:last-child:not(.t):not(.ic) { flex: none; max-width: 46%; text-align: right; }
+    .hab { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+    .hab > div:first-child { display: none; }
+    .hab .n { grid-column: 1 / -1; margin-top: 6px; white-space: normal; }
+    .hab .n span { overflow: visible; }
+    .hab .dot, .discreto .hab .dot { width: 100%; max-width: 34px; height: 30px; }
+    .mhead { flex-wrap: wrap; }
+    .top { align-items: flex-start; }
+    .kpi .v { font-size: clamp(15px, 4.6vw, 19px); }
+    .filtros { grid-template-columns: 1fr 1fr; }
+    .filtros select { padding: 9px 6px; }
+    .inicio .kpis .kpi { padding: 10px; }
+    .hello b { font-size: 19px; }
+    .topo-acoes { gap: 6px; }
+    .topo-acoes .ibtn, .topo-acoes .avatar { width: 36px; height: 36px; font-size: 15px; }
+  }
   .calwrap { display: grid; gap: 14px; }
   .resumo-cal .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px; }
   .resumo-cal .kpi { box-shadow: none; background: var(--soft); }
@@ -410,6 +435,26 @@
   .imp-item { display: grid; grid-template-columns: 22px 1fr auto; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
   .imp-item small { color: var(--sub); display: block; }
   .imp-item.dup { opacity: .5; }
+  svg.i { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; vertical-align: middle; }
+  .card { border: 1px solid var(--line); }
+  .bnav { left: 0; right: 0; bottom: 0; border-radius: 0; padding: 8px 0 calc(10px + env(safe-area-inset-bottom)); box-shadow: none; border-top: 1px solid var(--line); background: var(--card); }
+  .bnav button { width: 66px; font-size: 11px; color: var(--sub); }
+  .bnav .ico { display: grid; place-items: center; width: 46px; height: 32px; border-radius: 12px; margin-bottom: 1px; }
+  .bnav .ico svg.i { width: 20px; height: 20px; }
+  .bnav button.on { color: var(--tx); }
+  .bnav button.on .ico { background: var(--escuro); color: var(--escuro-tx); }
+  .fab { position: fixed; right: 18px; bottom: calc(84px + env(safe-area-inset-bottom)); z-index: 31; width: 56px; height: 56px; border-radius: 50%; background: var(--marrom); color: #fff; display: grid; place-items: center; box-shadow: 0 8px 20px rgba(124,45,18,.35); }
+  .fab svg.i { width: 26px; height: 26px; }
+  body.modal .fab, body.sem-nav .fab { display: none; }
+  .toast { bottom: calc(150px + env(safe-area-inset-bottom)); }
+  .versao { bottom: calc(150px + env(safe-area-inset-bottom)); }
+  .navi svg.i { width: 18px; height: 18px; }
+  .logo i { background: var(--escuro); }
+  .side .novo { margin: 0 6px 16px; background: var(--marrom); color: #fff; border-radius: 12px; padding: 10px 12px; font-weight: 800; display: flex; gap: 8px; align-items: center; }
+  .tamanhos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 6px 0 14px; }
+  .tamanhos button { border: 1.5px solid var(--line); border-radius: 16px; padding: 14px 8px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 4px; background: var(--card); }
+  .tamanhos button span { font-weight: 800; }
+  .tamanhos button.on { border-color: var(--acct); background: var(--acc2); color: var(--acct); }
   .conectar { max-width: 460px; margin: 6vh auto 0; }
   .conectar .logo-app { width: 72px; height: 72px; border-radius: 20px; margin-bottom: 14px; box-shadow: var(--sh); }
   .conectar h1 { font-size: 24px; letter-spacing: -.5px; margin-bottom: 6px; }
@@ -457,7 +502,7 @@
   }
   @media (min-width: 900px) {
     .side { display: flex; }
-    .bnav { display: none; }
+    .bnav, .fab { display: none !important; }
     .main { padding: 28px 32px 40px; }
     .kpis { grid-template-columns: 1.6fr 1fr 1fr 1fr; }
     .kpis.k3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -473,6 +518,214 @@
     .day .n { font-size: 12px; }
     .toast { bottom: 30px; }
   }
+  /* ---------- v10: Início, Agenda, Hábitos e Novo compromisso ---------- */
+  :root { --tx2: #5a4f48; --sel: #1f1a17; --sel-tx: #fff; --pessego-sub: #6b4a35; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --tx2: #d6ccc4; --sel: #f3ede8; --sel-tx: #1f1a17; --pessego-sub: #d6b49c; } }
+  :root[data-theme="dark"] { --tx2: #d6ccc4; --sel: #f3ede8; --sel-tx: #1f1a17; --pessego-sub: #d6b49c; }
+  [style*="--cor"] { --corT: var(--cor); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) [style*="--cor"] { --corT: color-mix(in srgb, var(--cor) 55%, #fff); } }
+  :root[data-theme="dark"] [style*="--cor"] { --corT: color-mix(in srgb, var(--cor) 55%, #fff); }
+  .bnav button.on .ico { background: var(--sel); color: var(--sel-tx); }
+  .tile { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; flex: none; color: var(--corT); background: color-mix(in srgb, var(--cor) 15%, transparent); }
+  .tile svg.i { width: 19px; height: 19px; }
+  .ibtn svg.i { width: 19px; height: 19px; }
+  .ibtn.escuro { background: var(--sel); color: var(--sel-tx); box-shadow: none; }
+  .cabeca { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 2px 0 14px; }
+  .cabeca h1 { font-size: 25px; font-weight: 800; letter-spacing: -.6px; line-height: 1.15; overflow-wrap: anywhere; }
+  .mesano { font-size: 15px; font-weight: 800; color: var(--tx2); margin-top: 3px; }
+  .mesano small { font-size: 11.5px; font-weight: 700; color: var(--sub); margin-left: 5px; }
+  .cabeca .topo-acoes { display: flex; gap: 8px; align-items: center; flex: none; }
+  .cabeca .avatar { width: 44px; height: 44px; background: linear-gradient(135deg, #fdba74, #fb923c); color: #3b1d06; font-weight: 800; font-size: 17px; }
+  .cabeca .ibtn { width: 42px; height: 42px; border: 1px solid var(--line); box-shadow: none; }
+  .ci { margin-bottom: 14px; }
+  .ci-semana { margin-bottom: 12px; }
+  .semana { display: flex; justify-content: space-between; gap: 2px; margin-bottom: 14px; }
+  .ci .semana { margin: 0; }
+  .semana button { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 11.5px; color: var(--sub); font-weight: 600; }
+  .semana span { position: relative; display: grid; place-items: center; width: 40px; height: 40px; max-width: 100%; border-radius: 50%; background: var(--card); color: var(--tx); font-size: 14px; font-weight: 700; border: 1px solid var(--line); }
+  .semana i { position: absolute; bottom: 4px; left: 50%; margin-left: -2.5px; width: 5px; height: 5px; border-radius: 50%; }
+  .semana .on { color: var(--tx); font-weight: 800; }
+  .semana .on span { background: var(--sel); color: var(--sel-tx); border-color: var(--sel); }
+  .semana .hj:not(.on) span { border: 2px solid var(--sel); }
+  .seudia { background: var(--escuro); color: var(--escuro-tx); border-radius: 24px; padding: 16px; }
+  .seudia .l1 { display: flex; gap: 14px; align-items: center; }
+  .anel { width: 84px; height: 84px; border-radius: 50%; background: conic-gradient(var(--laranja) 0 var(--p), rgba(255,255,255,.13) 0); display: grid; place-items: center; flex: none; color: inherit; }
+  .anel span { width: 64px; height: 64px; border-radius: 50%; background: var(--escuro); display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; line-height: 1.1; }
+  .anel small { font-size: 9.5px; color: var(--escuro-sub); font-weight: 700; }
+  .humd { flex: 1; min-width: 0; }
+  .humd .t { font-size: 12.5px; color: var(--escuro-sub); font-weight: 700; margin-bottom: 8px; }
+  .faces { display: flex; justify-content: space-between; gap: 4px; }
+  .faces button { width: 40px; height: 40px; max-width: 19%; aspect-ratio: 1; border-radius: 12px; background: rgba(255,255,255,.08); display: grid; place-items: center; color: var(--escuro-sub); }
+  .faces button.on { background: var(--laranja); color: #3b1d06; }
+  .faces svg.i { width: 22px; height: 22px; }
+  .humd .res { font-size: 11.5px; color: var(--escuro-sub); font-weight: 700; margin-top: 8px; display: flex; align-items: center; gap: 2px; }
+  .humd .res svg.i { width: 13px; height: 13px; }
+  .frase { margin-top: 12px; border-top: 1px solid rgba(255,255,255,.12); padding-top: 12px; display: flex; gap: 10px; }
+  .frase svg.i { color: var(--laranja); width: 18px; height: 18px; margin-top: 2px; fill: var(--laranja); stroke: none; }
+  .frase p { font-size: 13.5px; line-height: 1.45; color: #f5ede6; font-weight: 600; }
+  .frase small { display: block; color: var(--escuro-sub); font-size: 10.5px; margin-top: 4px; font-weight: 800; letter-spacing: .4px; opacity: .8; }
+  .suaagenda { background: var(--pessego); border-radius: 22px; padding: 15px; }
+  .suaagenda .l1 { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+  .suaagenda .l1 b { font-size: 17px; font-weight: 800; display: block; }
+  .suaagenda .l1 p { color: var(--pessego-sub); font-size: 12px; margin: 2px 0 10px; font-weight: 600; }
+  .suaagenda .ilu { width: 46px; height: 46px; border-radius: 15px; background: var(--pessego-tx); color: var(--pessego); display: grid; place-items: center; flex: none; }
+  .ag { display: flex; gap: 10px; align-items: center; background: var(--pessego2); border-radius: 14px; padding: 9px 11px; margin-bottom: 6px; }
+  .ag .d { width: 32px; text-align: center; font-weight: 800; font-size: 17px; line-height: 1; flex: none; }
+  .ag .d small { display: block; font-size: 9.5px; color: var(--pessego-sub); font-weight: 800; margin-top: 3px; }
+  .ag .tile { width: 32px; height: 32px; border-radius: 10px; }
+  .ag .tile svg.i { width: 16px; height: 16px; }
+  .ag .t { flex: 1; min-width: 0; font-size: 13.5px; font-weight: 700; }
+  .ag .t span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ag .t small { display: flex; gap: 4px; align-items: center; color: var(--pessego-sub); font-weight: 600; font-size: 11.5px; white-space: nowrap; overflow: hidden; }
+  .ag .t small svg.i { width: 12px; height: 12px; }
+  .ops-ag { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+  .ops-ag button { background: var(--pessego-tx); color: var(--pessego); border-radius: 999px; padding: 9px 14px; font-size: 12.5px; font-weight: 800; display: flex; gap: 5px; align-items: center; }
+  .ops-ag button.cl { background: var(--pessego2); color: var(--pessego-tx); }
+  .ops-ag svg.i { width: 15px; height: 15px; }
+  .tg { font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 999px; white-space: nowrap; flex: none; }
+  .tg.r { background: var(--r2); color: var(--r); } .tg.o { background: var(--o2); color: var(--o); } .tg.g { background: var(--g2); color: var(--g); }
+  .tg.v { background: var(--p2); color: var(--p); } .tg.b { background: var(--b2); color: var(--b); } .tg.n { background: var(--soft); color: var(--sub); }
+  .tsec { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin: 4px 2px 10px; }
+  .tsec b { font-size: 17px; font-weight: 800; }
+  .tsec button { font-size: 12.5px; font-weight: 700; color: var(--tx2); display: flex; align-items: center; gap: 2px; }
+  .tsec button svg.i { width: 14px; height: 14px; }
+  .abas { display: flex; gap: 6px; margin-bottom: 10px; overflow-x: auto; scrollbar-width: none; }
+  .abas button { border-radius: 999px; padding: 6px 12px 6px 6px; font-size: 12.5px; font-weight: 700; background: var(--card); border: 1px solid var(--line); display: flex; gap: 6px; align-items: center; white-space: nowrap; flex: none; }
+  .abas em { font-style: normal; background: var(--tab); border-radius: 50%; min-width: 22px; height: 22px; display: grid; place-items: center; font-size: 11px; }
+  .abas .on { background: var(--acc2); border-color: transparent; color: var(--acct); }
+  .abas .on em { background: var(--card); }
+  .tk { display: block; background: var(--card); border-radius: 20px; padding: 12px 14px; border: 1px solid var(--line); margin-bottom: 8px; }
+  .tk .p { font-size: 11px; font-weight: 700; color: var(--sub); display: flex; gap: 6px; align-items: center; }
+  .tk .p i { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+  .tk .l { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .tk b { font-size: 15px; font-weight: 800; display: block; margin: 3px 0; overflow-wrap: anywhere; }
+  .tk .ch { color: var(--sub); opacity: .6; display: grid; }
+  .tk .rod { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 2px; }
+  .tk small { font-size: 11.5px; color: var(--sub); font-weight: 600; min-width: 0; overflow-wrap: anywhere; }
+  .tk.feito b { text-decoration: line-through; color: var(--sub); }
+  .tk.feito svg.i { color: var(--g); }
+  .sw { position: relative; border-radius: 20px; overflow: hidden; margin-bottom: 8px; touch-action: pan-y; }
+  .sw .tk { margin: 0; position: relative; transition: transform .2s; }
+  .sw.arrastando .tk { transition: none; }
+  .sw .fd { position: absolute; inset: 0; display: none; align-items: center; gap: 6px; padding: 0 18px; color: #fff; font-weight: 800; font-size: 13.5px; }
+  .sw .fd svg.i { width: 18px; height: 18px; }
+  .sw.dir { background: #16a34a; } .sw.dir .fd.ok { display: flex; }
+  .sw.esq { background: #fb923c; } .sw.esq .fd.adi { display: flex; justify-content: flex-end; color: #1f1a17; }
+  .dica { font-size: 11.5px; color: var(--sub); text-align: center; margin: 4px 0 6px; font-weight: 600; }
+  .rot { position: relative; padding-left: 30px; }
+  .rot::before { content: ''; position: absolute; left: 10px; top: 24px; bottom: 24px; border-left: 2px dashed var(--inp); }
+  .rot .it { display: flex; align-items: center; gap: 10px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 11px 12px; margin-bottom: 9px; position: relative; }
+  .rot .ck { position: absolute; left: -31px; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--inp); background: var(--bg); display: grid; place-items: center; color: #fff; }
+  .rot .ck svg.i { width: 12px; height: 12px; stroke-width: 3; }
+  .rot .ok .ck { background: #f97316; border-color: #f97316; }
+  .rot .t { flex: 1; min-width: 0; }
+  .rot .t b { font-size: 14.5px; font-weight: 700; display: block; overflow-wrap: anywhere; }
+  .rot .t small { font-size: 11.5px; color: var(--sub); font-weight: 600; }
+  .rot .m { border-left: 1px solid var(--line); padding-left: 12px; text-align: center; font-size: 11px; color: var(--sub); font-weight: 700; min-width: 58px; display: flex; flex-direction: column; align-items: center; flex: none; }
+  .rot .m b { font-size: 13.5px; color: var(--tx); }
+  .rot .maisq { margin-top: 4px; background: var(--acc2); color: var(--acct); border-radius: 999px; padding: 3px 10px; font-size: 11.5px; font-weight: 800; }
+  .vazio-ag { text-align: center; padding: 22px 10px; color: var(--sub); display: flex; flex-direction: column; align-items: center; gap: 8px; background: var(--card); border: 1px dashed var(--inp); border-radius: 20px; margin-bottom: 8px; }
+  .vazio-ag > svg.i { width: 28px; height: 28px; opacity: .6; }
+  .vazio-ag b { color: var(--tx); font-size: 14.5px; }
+  .vis { display: flex; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 3px; margin-bottom: 12px; }
+  .vis button { flex: 1; padding: 8px 0; border-radius: 11px; font-weight: 800; font-size: 13px; color: var(--sub); }
+  .vis .on { background: var(--sel); color: var(--sel-tx); }
+  .semnav { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+  .semnav span { flex: 1; font-weight: 800; font-size: 14px; min-width: 0; }
+  .semnav button { width: 34px; height: 34px; border-radius: 11px; border: 1px solid var(--line); background: var(--card); display: grid; place-items: center; flex: none; }
+  .semnav button svg.i { width: 16px; height: 16px; }
+  .semnav .hojeb2 { width: auto; padding: 0 12px; font-weight: 800; font-size: 12.5px; }
+  .filtros-ag { display: flex; gap: 6px; margin: 0 -16px 12px; padding: 0 16px 2px; overflow-x: auto; scrollbar-width: none; }
+  .filtros-ag button { border-radius: 999px; padding: 7px 12px; font-size: 12.5px; font-weight: 700; background: var(--card); border: 1px solid var(--line); display: flex; gap: 5px; align-items: center; white-space: nowrap; flex: none; }
+  .filtros-ag svg.i { width: 14px; height: 14px; }
+  .filtros-ag .on { background: var(--sel); color: var(--sel-tx); border-color: var(--sel); }
+  .pres { display: flex; align-items: center; gap: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 12px 14px; margin-bottom: 6px; }
+  .pres .cod { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; font-weight: 800; font-size: 13.5px; flex: none; }
+  .pres .t { flex: 1; min-width: 0; }
+  .pres b { font-size: 14.5px; font-weight: 800; display: block; }
+  .pres small { font-size: 12px; color: var(--sub); font-weight: 600; overflow-wrap: anywhere; }
+  .pres .bt { border: 1px solid var(--line); border-radius: 12px; padding: 7px 12px; font-size: 12.5px; font-weight: 700; flex: none; }
+  .bt2 { background: var(--sel); color: var(--sel-tx); border-radius: 12px; padding: 8px 12px; font-size: 12.5px; font-weight: 800; display: flex; gap: 5px; align-items: center; flex: none; }
+  .bt2 svg.i { width: 14px; height: 14px; }
+  .per { display: flex; gap: 6px; align-items: center; font-size: 12.5px; font-weight: 800; color: var(--tx2); margin: 14px 2px 8px; }
+  .per svg.i { width: 15px; height: 15px; color: var(--acct); }
+  .todo-dia { background: var(--card); border: 1px dashed var(--inp); border-radius: 16px; padding: 10px 12px; display: flex; gap: 10px; align-items: center; margin-bottom: 6px; }
+  .todo-dia .tile { width: 34px; height: 34px; border-radius: 10px; }
+  .todo-dia .tile svg.i { width: 17px; height: 17px; }
+  .todo-dia .t { flex: 1; min-width: 0; }
+  .todo-dia b { font-size: 13.5px; display: block; }
+  .todo-dia small { font-size: 11.5px; color: var(--sub); font-weight: 600; }
+  .evg { display: flex; gap: 10px; margin-bottom: 8px; }
+  .evg .h { width: 46px; flex: none; text-align: center; font-weight: 800; font-size: 14.5px; padding-top: 12px; display: flex; flex-direction: column; align-items: center; }
+  .evg .h i { flex: 1; width: 1.5px; min-height: 16px; background: var(--line); margin-top: 8px; }
+  .evg .c { flex: 1; min-width: 0; background: var(--card); border-radius: 18px; padding: 12px 14px; border: 1px solid var(--line); border-left: 4px solid var(--cor); }
+  .evg .k { display: flex; gap: 6px; align-items: center; font-size: 11px; font-weight: 800; color: var(--corT); text-transform: uppercase; letter-spacing: .4px; }
+  .evg .k svg.i { width: 13px; height: 13px; }
+  .evg b { font-size: 15px; font-weight: 800; display: block; margin: 2px 0; overflow-wrap: anywhere; }
+  .evg p { font-size: 12px; color: var(--sub); font-weight: 600; display: flex; gap: 4px 10px; align-items: center; flex-wrap: wrap; }
+  .evg .lem { display: inline-flex; gap: 3px; align-items: center; }
+  .evg p svg.i { width: 12px; height: 12px; }
+  .sdia { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .sdia:last-child { border-bottom: 0; }
+  .sdia .sd { width: 46px; flex: none; align-self: flex-start; text-align: center; border-radius: 14px; padding: 6px 0; background: var(--card); border: 1px solid var(--line); }
+  .sdia .sd b { font-size: 18px; font-weight: 800; display: block; line-height: 1.1; }
+  .sdia .sd small { font-size: 10px; font-weight: 800; color: var(--sub); }
+  .sdia.hj .sd { background: var(--sel); color: var(--sel-tx); border-color: var(--sel); }
+  .sdia.hj .sd small { color: inherit; opacity: .7; }
+  .sitens { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px; justify-content: center; min-height: 46px; }
+  .bloco { background: color-mix(in srgb, var(--cor) 12%, var(--card)); border-left: 3px solid var(--cor); border-radius: 10px; padding: 7px 10px; font-size: 13px; font-weight: 700; overflow-wrap: anywhere; }
+  .bloco b { color: var(--corT); margin-right: 6px; }
+  .sitens .livre { font-size: 12.5px; color: var(--sub); font-weight: 600; }
+  .codp { align-self: flex-start; font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 8px; }
+  .faixa { display: flex; background: var(--escuro); color: var(--escuro-tx); border-radius: 20px; padding: 13px 6px; margin-bottom: 12px; }
+  .faixa > div { flex: 1; text-align: center; min-width: 0; }
+  .faixa b { display: block; font-size: 18px; font-weight: 800; }
+  .faixa small { font-size: 10.5px; color: var(--escuro-sub); font-weight: 700; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 4px; }
+  .faixa .pos { color: #86efac; }
+  .nums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; text-align: center; }
+  .nums div { background: var(--soft); border-radius: 12px; padding: 8px 2px; }
+  .nums b { display: block; font-size: 16px; font-weight: 800; }
+  .nums small { font-size: 10.5px; color: var(--sub); font-weight: 700; }
+  .ano-res { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--sub); font-weight: 600; line-height: 1.6; }
+  .ano-res b { color: var(--tx); }
+  .day .cdot { position: absolute; top: 4px; right: 4px; width: 6px; height: 6px; border-radius: 50%; }
+  .day .c svg.i { width: 12px; height: 12px; }
+  .leg .ponto { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+  .arrows svg.i { width: 16px; height: 16px; }
+  .hab-rot { max-width: 680px; }
+  .cp-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .cp-top b { font-size: 16px; font-weight: 800; }
+  .cp-top .ibtn { box-shadow: none; border: 1px solid var(--line); }
+  .cp-top .ibtn.escuro { border-color: var(--sel); }
+  .cp-l { display: block; font-size: 13px; font-weight: 800; margin: 14px 0 6px; }
+  .cp-in { width: 100%; background: var(--card); border: 1.5px solid var(--line); border-radius: 14px; padding: 12px 14px; font-size: 15px; font-weight: 600; color: var(--tx); outline: none; min-height: 48px; }
+  .cp-in:focus { border-color: var(--acct); }
+  .cp-in.big { font-size: 20px; font-weight: 800; }
+  .cp-in.rapido-cp { border-color: #fb923c; background: var(--soft2); }
+  textarea.cp-in { min-height: 64px; resize: vertical; }
+  .cp-dup { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 8px; }
+  .cp-tipos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+  .cp-tipos button { border: 1.5px solid var(--line); border-radius: 14px; padding: 10px 0; font-size: 12px; font-weight: 700; background: var(--card); display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .cp-tipos .on { border-color: var(--acct); background: var(--acc2); color: var(--acct); }
+  .cp-ops { display: flex; gap: 6px; }
+  .cp-ops button { flex: 1; min-width: 0; border-radius: 999px; padding: 10px 2px; font-weight: 700; font-size: 12.5px; border: 1.5px solid var(--line); background: var(--card); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cp-ops .on { background: var(--sel); color: var(--sel-tx); border-color: var(--sel); }
+  .cp-sw { width: 100%; margin-top: 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px; background: var(--card); border: 1.5px solid var(--line); border-radius: 14px; padding: 12px 14px; font-weight: 700; text-align: left; }
+  .cp-sw small { display: block; font-size: 11.5px; color: var(--sub); font-weight: 600; }
+  .tgl { width: 46px; height: 28px; border-radius: 999px; background: var(--inp); position: relative; flex: none; transition: background .2s; }
+  .tgl::after { content: ''; position: absolute; left: 3px; top: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; transition: left .2s; }
+  .tgl.on { background: #16a34a; }
+  .tgl.on::after { left: 21px; }
+  .cp-salvar { width: 100%; margin-top: 18px; background: var(--sel); color: var(--sel-tx); border-radius: 18px; padding: 16px; font-weight: 800; font-size: 15px; }
+  .cp-excluir { width: 100%; margin-top: 6px; padding: 12px; color: var(--r); font-weight: 700; }
+  .rapidas .tile { width: 34px; height: 34px; border-radius: 11px; }
+  .rapidas .tile svg.i { width: 17px; height: 17px; }
+  .appi .tile { margin: 0 auto 8px; width: 50px; height: 50px; border-radius: 15px; }
+  .appi .tile svg.i { width: 24px; height: 24px; }
+  @media (min-width: 900px) {
+    .inicio { columns: 2; column-gap: 16px; }
+    .ci-semana, .ci-dia { column-span: none; }
+  }
 </style>
 </head>
 <body>
@@ -481,6 +734,7 @@
   <main class="main" id="main"><div class="carregando">Carregando…</div></main>
 </div>
 <nav class="bnav" id="bnav"></nav>
+<button class="fab" id="fab" data-a="rapidas" aria-label="Adicionar"></button>
 <div class="veu" id="veu"></div>
 <div class="toast" id="toast"></div>
 <div class="selo" id="selo"></div>
@@ -520,6 +774,20 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&am
 // Esconder valores (👁️): todos os R$ do app passam por aqui
 const brl = v => E.ocultar ? 'R$ ••••' : 'R$ ' + (Number(v) || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const brlCurto = v => E.ocultar ? 'R$ ••••' : 'R$ ' + Math.round(Number(v) || 0).toLocaleString('pt-BR');
+// Valor curto para os quadradinhos do Início (o "R$" fica no rótulo): 950 · -2,2 mil · 15 mil
+const brlCompacto = v => { const n = Number(v) || 0, a = Math.abs(n);
+  if (E.ocultar) return '••••';
+  if (a < 1000) return Math.round(n).toLocaleString('pt-BR');
+  return (n < 0 ? '-' : '') + (a >= 10000 ? Math.round(a / 1000) : String(Math.round(a / 100) / 10).replace('.', ',')) + ' mil'; };
+// Tamanho do texto: vale só para este aparelho (no S25 um, no computador outro)
+const TAMANHOS = { 'Pequeno': 0.88, 'Normal': 1, 'Grande': 1.12, 'Muito grande': 1.25 };
+const tamanhoAtual = () => { const t = ls.get('mdd_tamanho'); return TAMANHOS[t] ? t : 'Normal'; };
+function aplicarTamanho() { document.documentElement.style.zoom = TAMANHOS[tamanhoAtual()]; }
+function abrirTamanho() {
+  abrirVeu(`<h2>Tamanho do texto</h2><div class="sub">Vale só para este aparelho. Use se as letras estiverem grandes ou pequenas demais.</div>
+    <div class="tamanhos">${Object.keys(TAMANHOS).map(t => `<button class="${t === tamanhoAtual() ? 'on' : ''}" data-a="tamanho" data-v="${t}"><span style="font-size:${Math.round(15 * TAMANHOS[t])}px">Aa</span>${t}</button>`).join('')}</div>
+    <div class="acoes"><button class="btn pri" data-a="fechar">Pronto</button></div>`);
+}
 const botaoOlho = () => `<button class="ibtn olho" data-a="olho" aria-label="${E.ocultar ? 'Mostrar valores' : 'Esconder valores'}" title="${E.ocultar ? 'Mostrar valores' : 'Esconder valores'}">${E.ocultar ? '🙈' : '👁️'}</button>`;
 const num = v => Number(v) || 0;
 const uid = () => Math.random().toString(16).slice(2, 10);
@@ -543,6 +811,7 @@ function fraseDoDia() {
 const escuro = () => { const t = cfg('Tema', 'Automático'); return t === 'Escuro' || (t !== 'Claro' && matchMedia('(prefers-color-scheme: dark)').matches); };
 
 const CORES_APP = {
+  'Caramelo': { acc: '#1f1a17', accE: '#c2410c', g1: '#1f1a17', g2: '#3a2f29', tint: '#ffe4cf', txt: '#c2410c', tintE: 'rgba(251,146,60,.16)', txtE: '#fdba74' },
   'Azul petróleo': { acc: '#0b4f6c', accE: '#1f7ea6', g1: '#0b4f6c', g2: '#1b86a8', tint: '#e0f2fe', txt: '#0b4f6c', tintE: 'rgba(56,189,248,.14)', txtE: '#7dd3fc' },
   'Verde': { acc: '#15803d', accE: '#16a34a', g1: '#14532d', g2: '#22a35a', tint: '#dcfce7', txt: '#166534', tintE: 'rgba(34,197,94,.16)', txtE: '#86efac' },
   'Roxo': { acc: '#6d28d9', accE: '#7c3aed', g1: '#4c1d95', g2: '#8b5cf6', tint: '#ede9fe', txt: '#5b21b6', tintE: 'rgba(139,92,246,.18)', txtE: '#c4b5fd' },
@@ -551,7 +820,7 @@ const CORES_APP = {
   'Grafite': { acc: '#334155', accE: '#475569', g1: '#1e293b', g2: '#475569', tint: '#e2e8f0', txt: '#1e293b', tintE: 'rgba(148,163,184,.16)', txtE: '#cbd5e1' },
 };
 function aplicarCor() {
-  const c = CORES_APP[cfg('Cor', 'Azul petróleo')] || CORES_APP['Azul petróleo'], e = escuro(), st = document.documentElement.style;
+  const c = CORES_APP[cfg('Cor', 'Caramelo')] || CORES_APP['Caramelo'], e = escuro(), st = document.documentElement.style;
   st.setProperty('--acc', e ? c.accE : c.acc);
   st.setProperty('--grad1', c.g1);
   st.setProperty('--grad2', c.g2);
@@ -565,6 +834,9 @@ function ring(p, cor = '#22c55e', trilho = 'var(--line)', texto = 'var(--tx)') {
     `<circle cx="30" cy="30" r="${r}" fill="none" stroke="${cor}" stroke-width="7" stroke-linecap="round" stroke-dasharray="${c * v} ${c}" transform="rotate(-90 30 30)"/>` +
     `<text x="30" y="34" text-anchor="middle" font-size="12" font-weight="800" style="fill:${texto}">${Math.round(v * 100)}%</text></svg>`;
 }
+// Ícones de traço (desenhados no próprio app, sem depender da internet)
+const IC = {"home": "<path d=\"m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/><path d=\"M9 22V12h6v10\"/>","calendar": "<rect width=\"18\" height=\"18\" x=\"3\" y=\"4\" rx=\"2\"/><path d=\"M16 2v4M8 2v4M3 10h18\"/>","wallet": "<path d=\"M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1\"/><path d=\"M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4\"/>","habits": "<path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"/><path d=\"m9 11 3 3L22 4\"/>","grid": "<rect width=\"7\" height=\"7\" x=\"3\" y=\"3\" rx=\"1.5\"/><rect width=\"7\" height=\"7\" x=\"14\" y=\"3\" rx=\"1.5\"/><rect width=\"7\" height=\"7\" x=\"14\" y=\"14\" rx=\"1.5\"/><rect width=\"7\" height=\"7\" x=\"3\" y=\"14\" rx=\"1.5\"/>","search": "<circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/>","plus": "<path d=\"M5 12h14M12 5v14\"/>","check": "<path d=\"M20 6 9 17l-5-5\"/>","x": "<path d=\"M18 6 6 18M6 6l12 12\"/>","chev": "<path d=\"m9 18 6-6-6-6\"/>","chevl": "<path d=\"m15 18-6-6 6-6\"/>","clock": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 6v6l4 2\"/>","pill": "<path d=\"m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z\"/><path d=\"m8.5 8.5 7 7\"/>","drop": "<path d=\"M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z\"/>","book": "<path d=\"M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z\"/><path d=\"M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z\"/>","dumb": "<path d=\"m6.5 6.5 11 11M21 21l-1-1M3 3l1 1M18 22l4-4M2 6l4-4M3 10l7-7M14 21l7-7\"/>","walk": "<path d=\"M22 12h-4l-3 9L9 3l-3 9H2\"/>","lang": "<path d=\"m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6\"/>","shield": "<path d=\"M12 22c5.5-2 8-6 8-11V5l-8-3-8 3v6c0 5 2.5 9 8 11z\"/><path d=\"m9 12 2 2 4-4\"/>","steth": "<path d=\"M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 12 0V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3\"/><path d=\"M8 15v1a6 6 0 0 0 12 0v-4\"/><circle cx=\"20\" cy=\"10\" r=\"2\"/>","sun": "<circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41\"/>","sunset": "<path d=\"M12 10V2M5.2 11.2l1.4 1.4M2 18h2M20 18h2M17.4 12.6l1.4-1.4M22 22H2M16 6l-4 4-4-4M16 18a4 4 0 0 0-8 0\"/>","moon": "<path d=\"M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z\"/>","gift": "<rect x=\"3\" y=\"8\" width=\"18\" height=\"4\" rx=\"1\"/><path d=\"M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7\"/><path d=\"M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5\"/>","pin": "<path d=\"M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/>","users": "<path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75\"/>","bell": "<path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\"/><path d=\"M10.3 21a1.94 1.94 0 0 0 3.4 0\"/>","flag": "<path d=\"M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z\"/><path d=\"M4 22v-7\"/>","brief": "<rect width=\"20\" height=\"14\" x=\"2\" y=\"7\" rx=\"2\"/><path d=\"M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\"/>","cap": "<path d=\"M22 10v6M2 10l10-5 10 5-10 5z\"/><path d=\"M6 12v5c3 3 9 3 12 0v-5\"/>","laptop": "<path d=\"M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16\"/>","pen": "<path d=\"M12 20h9\"/><path d=\"M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z\"/>","trophy": "<path d=\"M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z\"/>","gear": "<path d=\"M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>","eye": "<path d=\"M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>","eyeoff": "<path d=\"M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49M14.084 14.158a3 3 0 0 1-4.242-4.242M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143M2 2l20 20\"/>","money": "<rect width=\"20\" height=\"12\" x=\"2\" y=\"6\" rx=\"2\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/><path d=\"M6 12h.01M18 12h.01\"/>","piggy": "<path d=\"M11 17h3v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3a3.16 3.16 0 0 0 2-2h1a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-1a5 5 0 0 0-2-4V3a4 4 0 0 0-3.2 1.6l-.3.4H11a6 6 0 0 0-6 6v1a5 5 0 0 0 2 4v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1z\"/><path d=\"M16 10h.01M2 8v1a2 2 0 0 0 2 2h1\"/>","smile": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01\"/>","target": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><circle cx=\"12\" cy=\"12\" r=\"6\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/>","list": "<path d=\"M11 6h10M11 12h10M11 18h10M3 6l1 1 2-2M3 12l1 1 2-2M3 18l1 1 2-2\"/>","text": "<path d=\"M4 7V4h16v3M9 20h6M12 4v16\"/>","quote": "<path d=\"M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z\"/><path d=\"M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z\"/>","f1": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M16 17s-1.5-3-4-3-4 3-4 3M8 8.5l2 1M16 8.5l-2 1\"/>","f2": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M16 16s-1.5-2-4-2-4 2-4 2M9 9h.01M15 9h.01\"/>","f3": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M8 15h8M9 9h.01M15 9h.01\"/>","f4": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01\"/>","f5": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M18 13a6 6 0 0 1-6 5 6 6 0 0 1-6-5h12ZM9 9h.01M15 9h.01\"/>"};
+const ic = (n, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${IC[n] || ''}</svg>`;
 const cab = (sub, titulo, direita = '') => `<div class="top"><div class="hello"><small>${sub}</small><b>${titulo}</b></div>${direita}</div>`;
 const botao = (txt, acao, extra = '') => `<button class="btnp" data-a="${acao}" ${extra}>${txt}</button>`;
 const bar = (p, cor) => `<div class="bar"><i style="width:${Math.max(0, Math.min(100, p))}%;${cor ? 'background:' + cor : ''}"></i></div>`;
@@ -919,8 +1191,8 @@ function calendarioMes(ym) {
     if (g && g.obs) cls.push('obs');
     if (k === hoje) cls.push('today');
     if (k === E.pulsar) cls.push('pulse');
-    const titulo = [fer, g && g.obs].filter(Boolean).join(' · ');
-    h += `<div class="${cls.join(' ')}" style="${st}" data-a="abrirDia" data-d="${k}"${titulo ? ` title="${esc(titulo)}"` : ''}><span class="n">${d}</span><span class="c">${g ? esc(g.codigo) : fer ? '🎉' : ''}</span></div>`;
+    const titulo = [fer, g && g.obs].filter(Boolean).join(' · '), cor = corDoDia(k, true);
+    h += `<div class="${cls.join(' ')}" style="${st}" data-a="abrirDia" data-d="${k}"${titulo ? ` title="${esc(titulo)}"` : ''}><span class="n">${d}</span><span class="c">${g ? esc(g.codigo) : fer ? ic('flag') : ''}</span>${cor ? `<em class="cdot" style="background:${cor}"></em>` : ''}</div>`;
   }
   return h + '</div>';
 }
@@ -943,7 +1215,7 @@ function anotacoesMes(ym) {
 function legendaPresenca() {
   const it = [['Presente', 'P'], ['Com extra', 'PH'], ['Folga', 'FC'], ['Férias', 'FE'], ['Feriado', 'FERI'], ['Fim de semana', 'DOM']];
   return '<div class="leg">' + it.map(([l, c]) => { const [b, t] = corCodigo(c); return `<span><i style="background:${b};box-shadow:inset 0 0 0 1px ${t}55"></i>${l}</span>`; }).join('') +
-    '<span><i style="box-shadow:inset 0 0 0 2px var(--rosa)"></i>Cobrindo férias</span><span>🎉 Feriado ainda não lançado</span></div>';
+    '<span><i style="box-shadow:inset 0 0 0 2px var(--rosa)"></i>Cobrindo férias</span><span><em class="ponto" style="background:#c2410c"></em>Compromisso</span><span>' + ic('flag') + ' Feriado não lançado</span></div>';
 }
 
 function anoDeRelance(a) {
@@ -995,7 +1267,7 @@ function feriasInfo() {
 }
 function cardFerias() {
   const fi = feriasInfo();
-  if (!fi) return `<div class="card" id="cal-ferias"><div class="sec">Férias</div><div class="vazio" style="padding:6px 0">Informe sua data de admissão na engrenagem ⚙️ do Calendário para acompanhar quantos dias você tem e o prazo para tirar.</div></div>`;
+  if (!fi) return `<div class="card" id="cal-ferias"><div class="sec">Férias</div><div class="vazio" style="padding:6px 0">Informe sua data de admissão na engrenagem da Agenda (visão Mês) para acompanhar quantos dias você tem e o prazo para tirar.</div></div>`;
   const hoje = hojeIso(), mostrar = fi.ps.filter(p => p.st !== 'tiradas').slice(-3);
   const linha = p => {
     const per = `${fmtCurto(p.ini)}/${p.ini.slice(2, 4)} a ${fmtCurto(p.fimAq)}/${p.fimAq.slice(2, 4)}`;
@@ -1023,46 +1295,173 @@ function anosCalendario() {
   const ini = Math.min(atual, ...anos), fim = Math.max(atual + 1, ...anos);
   return [...Array(fim - ini + 1)].map((_, i) => fim - i);
 }
-const SECOES_CAL = [['cardCal', 'Mês'], ['cal-resumo', 'Resumo'], ['cal-folgas', 'Folgas'], ['cal-ferias', 'Férias'], ['cal-habitos', 'Hábitos'], ['cal-todos', 'To-dos'], ['cal-ano', 'Ano']];
+// =====================================================================
+// Agenda (Dia · Semana · Mês)
+// =====================================================================
+const FILTROS_AG = [['tudo', 'Tudo', ''], ['trabalho', 'Trabalho', 'brief'], ['comp', 'Compromissos', 'calendar'], ['estudos', 'Estudos', 'cap'], ['saude', 'Saúde', 'steth']];
+const filtrar = itens => { const f = E.filtroAg || 'tudo'; return f === 'tudo' ? itens : itens.filter(i => i.f.split(' ').includes(f)); };
+const filtrosAg = () => `<div class="filtros-ag">${FILTROS_AG.map(([v, l, n]) => `<button class="${(E.filtroAg || 'tudo') === v ? 'on' : ''}" data-a="filtroAg" data-v="${v}">${n ? ic(n) : ''}${l}</button>`).join('')}</div>`;
+function rotuloSemana(k) {
+  const ini = inicioSemana(k), fim = somaDias(ini, 6), mi = +ini.slice(5, 7), mf = +fim.slice(5, 7);
+  return `${+ini.slice(8)}${mi !== mf ? ' de ' + MESES[mi - 1] : ''} a ${+fim.slice(8)} de ${MESES[mf - 1]}`;
+}
+const navSemana = k => `<div class="semnav"><button data-a="semAg" data-n="-7" aria-label="Semana anterior">${ic('chevl')}</button><span>${rotuloSemana(k)}</span>
+  ${inicioSemana(k) !== inicioSemana(hojeIso()) ? `<button class="hojeb2" data-a="diaAg" data-d="${hojeIso()}">Hoje</button>` : ''}<button data-a="semAg" data-n="7" aria-label="Próxima semana">${ic('chev')}</button></div>`;
 
 function telaPresenca() {
-  const ym = E.mesPres, ano = +ym.slice(0, 4), r = resumoMes(ym), ra = resumoAno(ano), ferias = diasParaFerias();
+  const vista = E.vistaAgenda || 'dia', k = E.diaAgenda || hojeIso();
+  const ref = vista === 'mes' ? E.mesPres + '-01' : k;
+  return `${cabeca('Agenda', mesAno(ref), `<button class="ibtn" data-a="buscarDia" aria-label="Ir para uma data">${ic('search')}</button><button class="ibtn" data-a="editarCfg" data-g="presenca" aria-label="Ajustes da agenda">${ic('gear')}</button><button class="ibtn escuro" data-a="novoComp" data-d="${k}" aria-label="Novo compromisso">${ic('plus')}</button>`)}
+  <div class="vis">${[['dia', 'Dia'], ['semana', 'Semana'], ['mes', 'Mês']].map(([v, l]) => `<button class="${vista === v ? 'on' : ''}" data-a="vistaAg" data-v="${v}">${l}</button>`).join('')}</div>
+  ${vista === 'mes' ? agendaMes() : vista === 'semana' ? agendaSemana(k) : agendaDia(k)}`;
+}
+
+const eventoAg = (i, k) => `<div class="evg" style="--cor:${i.cor}"><div class="h">${i.h}<i></i></div>
+  <div class="c" ${attrsItem(i, k)}><div class="k">${ic(i.ic)}${esc(i.k || '')}</div><b>${esc(i.t)}</b>
+  ${i.s || i.lembrar ? `<p>${esc(i.s || '')}${i.lembrar ? `<span class="lem">${ic('bell')}${esc(i.lembrar)}</span>` : ''}</p>` : ''}</div></div>`;
+function agendaDia(k) {
+  const hoje = hojeIso(), itens = filtrar(itensDoDia(k)), todoDia = itens.filter(i => !i.h), comHora = itens.filter(i => i.h);
+  const reg = E.dias[k], cod = reg && reg.codigo ? E.porCodigo[reg.codigo] || { descricao: reg.codigo } : null;
+  const [b, t] = cod ? corCodigo(reg.codigo) : ['var(--soft)', 'var(--sub)'];
+  const s1 = sugestaoHoje(k)[0];
+  const periodos = [['Manhã', 'sun', x => x.h < '12'], ['Tarde', 'sunset', x => x.h >= '12' && x.h < '18'], ['Noite', 'moon', x => x.h >= '18']];
+  return `${navSemana(k)}${faixaSemana(k, 'diaAg')}${filtrosAg()}
+  <div class="pres" data-a="abrirDia" data-d="${k}"><div class="cod" style="background:${b};color:${t}">${cod ? esc(reg.codigo) : '—'}</div>
+    <div class="t"><b>${cod ? esc(cod.descricao) : 'Presença não lançada'}</b><small>${maiuscula(SEMANA[paraDate(k).getDay()])}${k === hoje ? ' · hoje' : ''}${reg && reg.obs ? ' · ' + esc(reg.obs) : ''}</small></div>
+    ${!cod && k === hoje ? `<button class="bt2" data-a="lancarHoje" data-c="${esc(s1)}">${ic('check')}${esc(s1)}</button>` : `<span class="bt">${cod ? 'Trocar' : 'Lançar'}</span>`}</div>
+  ${todoDia.length ? `<div class="per">${ic('sun')}O dia todo</div>${todoDia.map(i => `<div class="todo-dia" ${attrsItem(i, k)}>${tile(i.ic, i.cor)}<div class="t"><b>${esc(i.t)}</b><small>${esc(i.s || '')}</small></div></div>`).join('')}` : ''}
+  ${periodos.map(([l, n, fn]) => { const xs = comHora.filter(fn); return xs.length ? `<div class="per">${ic(n)}${l}</div>${xs.map(i => eventoAg(i, k)).join('')}` : ''; }).join('')}
+  ${itens.length ? '' : `<div class="vazio-ag">${ic('calendar')}<b>Nada marcado ${k === hoje ? 'para hoje' : 'neste dia'}</b><button class="bt2" data-a="novoComp" data-d="${k}">${ic('plus')}Compromisso</button></div>`}`;
+}
+function agendaSemana(k) {
+  const ini = inicioSemana(k), hoje = hojeIso();
+  return `${navSemana(k)}${filtrosAg()}<div class="semlista">${[...Array(7)].map((_, n) => {
+    const d = somaDias(ini, n), xs = filtrar(itensDoDia(d)).filter(i => !i.rem), reg = E.dias[d];
+    const cod = reg && reg.codigo ? (([b, t]) => `<span class="codp" style="background:${b};color:${t}">${esc(reg.codigo)}</span>`)(corCodigo(reg.codigo)) : '';
+    return `<div class="sdia ${d === hoje ? 'hj' : ''}"><button class="sd" data-a="diaAg" data-d="${d}" data-ver="dia"><b>${+d.slice(8)}</b><small>${SEM3[paraDate(d).getDay()]}</small></button>
+      <div class="sitens">${cod}${xs.map(i => `<div class="bloco" style="--cor:${i.cor}" ${attrsItem(i, d)}>${i.h ? `<b>${i.h}</b>` : ''}${esc(i.t)}</div>`).join('') || (cod ? '' : '<span class="livre">Livre</span>')}</div></div>`; }).join('')}</div>
+  <p class="dica">Toque no dia para ver os detalhes. Remédios aparecem na visão Dia.</p>`;
+}
+function agendaMes() {
+  const ym = E.mesPres, ano = +ym.slice(0, 4), r = resumoMes(ym), ra = resumoAno(ano), fi = feriasInfo();
   const folgas = E.folgas.map(f => ({ f, s: statusFolga(f) }))
     .sort((x, y) => x.s.ord - y.s.ord || (x.s.n ?? 0) - (y.s.n ?? 0) || (y.f.folga || '').localeCompare(x.f.folga || ''));
-  const alertas = folgas.filter(x => x.s.alerta);
-  const lista = folgas.filter(x => !x.s.alerta);
+  const alertasF = folgas.filter(x => x.s.alerta), lista = folgas.filter(x => !x.s.alerta);
   const tipoCurto = t => /BANCO/i.test(t) ? 'FBH' : /DAY/i.test(t) ? 'DAYOFF' : 'FC';
   const pct = (a, b) => b ? Math.round(a / b * 100) + '%' : '—';
-  return `${cab('Presença, folgas e hábitos', 'Calendário', `<button class="ibtn" data-a="editarCfg" data-g="presenca" aria-label="Ajustes do calendário">⚙️</button>`)}
-  <div class="chips fixo">${SECOES_CAL.map(([id, l]) => `<button class="chip" data-a="irSecao" data-v="${id}">${l}</button>`).join('')}</div>
+  return `<div class="faixa"><div><b>${r.presenca}/${r.previstos}</b><small>Presença</small></div><div><b>${r.folga}</b><small>Folgas</small></div><div><b>${r.extra}</b><small>Com extra</small></div><div><b class="pos">${fi ? fi.saldo : '—'}</b><small>Férias p/ tirar</small></div></div>
   <div class="calwrap">
-    <div class="card" id="cardCal"><div class="mhead"><b>${MESES[+ym.slice(5) - 1][0].toUpperCase() + MESES[+ym.slice(5) - 1].slice(1)}
+    <div class="card" id="cardCal"><div class="mhead"><b>${maiuscula(MESES[+ym.slice(5) - 1])}
       <select class="anosel" id="anoPres" aria-label="Ano">${anosCalendario().map(a => `<option ${a === ano ? 'selected' : ''}>${a}</option>`).join('')}</select></b>
-      <div class="navcal"><button class="hojeb" data-a="hojePres">Hoje</button><button class="hojeb" data-a="buscarDia" aria-label="Ir para uma data">🔎</button>
-      <div class="arrows"><button data-a="mesPres" data-n="-1" aria-label="Mês anterior">‹</button><button data-a="mesPres" data-n="1" aria-label="Próximo mês">›</button></div></div></div>
+      <div class="navcal"><button class="hojeb" data-a="hojePres">Hoje</button>
+      <div class="arrows"><button data-a="mesPres" data-n="-1" aria-label="Mês anterior">${ic('chevl')}</button><button data-a="mesPres" data-n="1" aria-label="Próximo mês">${ic('chev')}</button></div></div></div>
       ${calendarioMes(ym)}${legendaPresenca()}
       ${anotacoesMes(ym)}</div>
     <div class="grid">
-      <div class="card resumo-cal" id="cal-resumo"><div class="sec">Resumo de ${MESES[+ym.slice(5) - 1]}</div>
-        <div class="kpis"><div class="kpi wide">${ring(r.previstos ? r.presenca / r.previstos : 0)}<div><div class="v">${r.presenca}<span style="color:var(--sub);font-size:16px">/${r.previstos}</span></div><div class="l">Dias de presença</div></div></div>
-          <div class="kpi"><div class="v">${r.folga}</div><div class="l">Folgas</div></div><div class="kpi"><div class="v">${r.extra}</div><div class="l">Com extra</div></div>
-          <div class="kpi"><div class="v">${r.falta}</div><div class="l">Faltas</div></div><div class="kpi"><div class="v">${ferias == null ? '—' : ferias}</div><div class="l">Dias p/ férias</div></div></div>
-        <div class="ano">Em ${ano}${String(ano) === hojeIso().slice(0, 4) ? ' até agora' : ''}: <b>${pct(ra.presenca, ra.previstos)}</b> de presença (${ra.presenca}/${ra.previstos}) · <b>${ra.folga}</b> folgas · <b>${ra.extra}</b> com extra · <b>${ra.falta}</b> faltas</div></div>
       <div class="card" id="cal-folgas"><div class="sec">Folgas <button class="lk" data-a="novaFolga">+ Nova</button></div>
         ${(() => { const cont = {}; Object.keys(E.dias).filter(k => k.startsWith(ano + '-') && (E.porCodigo[E.dias[k].codigo] || {}).categoria === 'Folga').forEach(k => cont[E.dias[k].codigo] = (cont[E.dias[k].codigo] || 0) + 1);
           const ks = Object.keys(cont).sort((a, b) => cont[b] - cont[a]);
           return ks.length ? `<div class="nota" style="margin:-4px 0 8px;font-weight:600">Em ${ano}: ${ks.map(c => `<b>${cont[c]}</b> ${esc(c)}`).join(' · ')}</div>` : ''; })()}
-        ${alertas.map(x => alertaFolga(x.f, x.s)).join('')}
+        ${alertasF.map(x => alertaFolga(x.f, x.s)).join('')}
         ${lista.slice(0, E.verTodasFolgas ? 999 : 4).map(({ f, s }) => { const [b, t] = corCodigo(tipoCurto(f.tipo));
           return `<div class="row" data-a="editarFolga" data-id="${esc(f.id)}"><span class="pill" style="background:${b};color:${t}">${tipoCurto(f.tipo)}</span>
-          <div class="t"><b>${esc(maiuscula(f.tipo.toLowerCase()))}</b><small>${f.folga ? fmt(f.folga) : 'sem data'}${f.anotacoes ? ' · ' + esc(f.anotacoes) : ''}</small></div><span class="pill ${s.cls}">${s.txt}</span></div>`; }).join('') || (alertas.length ? '' : '<div class="vazio">Nenhuma folga cadastrada.</div>')}
+          <div class="t"><b>${esc(maiuscula(f.tipo.toLowerCase()))}</b><small>${f.folga ? fmt(f.folga) : 'sem data'}${f.anotacoes ? ' · ' + esc(f.anotacoes) : ''}</small></div><span class="pill ${s.cls}">${s.txt}</span></div>`; }).join('') || (alertasF.length ? '' : '<div class="vazio">Nenhuma folga cadastrada.</div>')}
         ${lista.length > 4 ? `<button class="add" data-a="todasFolgas">${E.verTodasFolgas ? 'Mostrar menos' : `Ver todas (${lista.length})`}</button>` : ''}
       </div>
       ${cardFerias()}
+      <div class="card" id="cal-resumo"><div class="sec">Resumo de ${MESES[+ym.slice(5) - 1]}</div>
+        <div class="nums"><div><b>${r.presenca}/${r.previstos}</b><small>Presença</small></div><div><b>${r.folga}</b><small>Folgas</small></div><div><b>${r.extra}</b><small>Com extra</small></div><div><b>${r.falta}</b><small>Faltas</small></div></div>
+        <div class="ano-res">Em ${ano}${String(ano) === hojeIso().slice(0, 4) ? ' até agora' : ''}: <b>${pct(ra.presenca, ra.previstos)}</b> de presença (${ra.presenca}/${ra.previstos}) · <b>${ra.folga}</b> folgas · <b>${ra.extra}</b> com extra · <b>${ra.falta}</b> faltas</div></div>
     </div>
   </div>
-  ${secaoHabitos()}
   <div id="cal-ano" style="scroll-margin-top:60px">${anoDeRelance(ano)}</div>`;
+}
+
+// ---------- Novo compromisso ----------
+const OPS_COMP = { Lembrar: ['Na hora', '1 h antes', '1 dia antes'], Repetir: ['Não', 'Semanal', 'Mensal', 'Anual'] };
+const tiposCompHtml = () => Object.keys(TIPOS_COMP).map(t => `<button class="${E.comp.Tipo === t ? 'on' : ''}" data-a="cpTipo" data-v="${t}">${ic(TIPOS_COMP[t].ic)}${t}</button>`).join('');
+const opsCompHtml = k => OPS_COMP[k].map(v => `<button class="${E.comp[k] === v ? 'on' : ''}" data-a="cpOp" data-k="${k}" data-v="${v}">${v}</button>`).join('');
+function abrirComp(id, pre) {
+  const c = T('Compromissos').find(x => x.ID === id);
+  E.comp = Object.assign({ Tipo: 'Pessoal', Data: hojeIso(), Hora: '', Local: '', Titulo: '', Lembrar: '1 h antes', Repetir: 'Não', NaAgenda: true, Obs: '' }, c || {}, pre || {});
+  const o = E.comp;
+  if (!OPS_COMP.Lembrar.includes(o.Lembrar)) o.Lembrar = '1 h antes';
+  if (!OPS_COMP.Repetir.includes(o.Repetir)) o.Repetir = 'Não';
+  abrirVeu(`<div class="cp-top"><button class="ibtn" data-a="fechar" aria-label="Fechar">${ic('x')}</button><b>${c ? 'Editar compromisso' : 'Novo compromisso'}</b><button class="ibtn escuro" data-a="cpSalvar" aria-label="Salvar">${ic('check')}</button></div>
+    ${c ? '' : `<label class="cp-l" for="cpTxt">Escreva do seu jeito</label><input class="cp-in rapido-cp" id="cpTxt" placeholder="Ex.: dentista sexta 14h" autocomplete="off" enterkeyhint="done">`}
+    <label class="cp-l" for="cpTit">O que é</label><input class="cp-in big" id="cpTit" value="${esc(o.Titulo)}" placeholder="Dentista, reunião, aula…" autocomplete="off">
+    <label class="cp-l">Tipo</label><div class="cp-tipos" id="cpTipos">${tiposCompHtml()}</div>
+    <div class="cp-dup"><div><label class="cp-l" for="cpData">Data</label><input class="cp-in" type="date" id="cpData" value="${esc(String(o.Data).slice(0, 10))}"></div>
+      <div><label class="cp-l" for="cpHora">Hora</label><input class="cp-in" type="time" id="cpHora" value="${esc(horaComp(o))}"></div></div>
+    <label class="cp-l" for="cpLocal">Local</label><input class="cp-in" id="cpLocal" value="${esc(o.Local || '')}" placeholder="Opcional">
+    <label class="cp-l">Lembrar</label><div class="cp-ops" id="cpLembrar">${opsCompHtml('Lembrar')}</div>
+    <label class="cp-l">Repetir</label><div class="cp-ops" id="cpRepetir">${opsCompHtml('Repetir')}</div>
+    <button class="cp-sw" data-a="cpAgenda"><div>Colocar no Google Agenda<small>Aparece também no calendário do celular</small></div><span class="tgl ${o.NaAgenda !== false ? 'on' : ''}" id="cpTgl"></span></button>
+    <label class="cp-l" for="cpObs">Observação</label><textarea class="cp-in" id="cpObs" placeholder="Opcional">${esc(o.Obs || '')}</textarea>
+    <button class="cp-salvar" data-a="cpSalvar">Salvar compromisso</button>
+    ${c ? '<button class="cp-excluir" data-a="cpExcluir">Excluir compromisso</button>' : ''}`);
+  setTimeout(() => { const el = $('cpTxt') || $('cpTit'); if (el && matchMedia('(min-width: 900px)').matches) el.focus(); }, 50);
+}
+function pintarComp() {
+  $('cpTipos').innerHTML = tiposCompHtml();
+  $('cpLembrar').innerHTML = opsCompHtml('Lembrar');
+  $('cpRepetir').innerHTML = opsCompHtml('Repetir');
+}
+function lerComp() {
+  return Object.assign({}, E.comp, { Titulo: $('cpTit').value.trim(), Data: $('cpData').value, Hora: $('cpHora').value, Local: $('cpLocal').value.trim(), Obs: $('cpObs').value.trim() });
+}
+
+// "dentista sexta 14h", "reunião amanhã 9:30", "aula toda terça 19h", "aniversário 12/11"
+const PALAVRAS_COMP = { 'Saúde': /dentist|medic|consult|exame|psic|fisio|terap|clinica|hospital|vacina|nutri|dermato|oftalm|cardio|ortop|gineco|laborat/,
+  'Trabalho': /reuni|trabalho|cliente|plantao|entrevista|escritorio|empresa|chefe|\brh\b|treinamento|call\b/,
+  'Estudos': /prova|aula|facul|curso|apresenta|seminario|palestra|estud|tcc|orientac|matricula/ };
+const DIAS_TXT = [['domingo', 0], ['segunda', 1], ['terca', 2], ['quarta', 3], ['quinta', 4], ['sexta', 5], ['sabado', 6], ['dom', 0], ['seg', 1], ['ter', 2], ['qua', 3], ['qui', 4], ['sex', 5], ['sab', 6]];
+function interpretarCompromisso(texto) {
+  let orig = ' ' + String(texto || '') + ' ', plano = semAcento(orig).toLowerCase();
+  const o = {}, hoje = hojeIso();
+  const tirar = m => { const a = m.index, b = a + m[0].length; orig = orig.slice(0, a) + ' ' + orig.slice(b); plano = plano.slice(0, a) + ' ' + plano.slice(b); };
+  let m = plano.match(/\s(?:as\s+|a\s+partir\s+das\s+)?(\d{1,2})\s*(?:h|:|horas?\b)\s*(\d{2})?(?:min)?(?=\s)/);
+  if (m && +m[1] < 24 && (!m[2] || +m[2] < 60)) { o.Hora = pad(+m[1]) + ':' + (m[2] || '00'); tirar(m); }
+  if ((m = plano.match(/\s(toda|todo)\s+(semana|mes|ano)\b/)) || (m = plano.match(/\s(semanal|mensal|anual)(mente)?\b/))) {
+    const w = m[2] && !/mente/.test(m[2]) ? m[2] : m[1]; o.Repetir = /seman/.test(w) ? 'Semanal' : /mes|mensal/.test(w) ? 'Mensal' : 'Anual'; tirar(m);
+  }
+  if ((m = plano.match(/\sdepois\s+de\s+amanha\b/))) { o.Data = somaDias(hoje, 2); tirar(m); }
+  else if ((m = plano.match(/\samanha\b/))) { o.Data = somaDias(hoje, 1); tirar(m); }
+  else if ((m = plano.match(/\shoje\b/))) { o.Data = hoje; tirar(m); }
+  else if ((m = plano.match(/\s(?:dia\s+)?(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?(?=\s)/))) {
+    const a = m[3] ? (m[3].length === 2 ? 2000 + +m[3] : +m[3]) : +hoje.slice(0, 4);
+    if (+m[2] >= 1 && +m[2] <= 12 && +m[1] >= 1 && +m[1] <= diasNoMes(a, +m[2])) {
+      let k = iso(a, +m[2], +m[1]); if (!m[3] && k < hoje) k = iso(a + 1, +m[2], Math.min(+m[1], diasNoMes(a + 1, +m[2])));
+      o.Data = k; tirar(m);
+    }
+  } else if ((m = plano.match(/\sdia\s+(\d{1,2})\b/))) {
+    let ym = hoje.slice(0, 7); if (+m[1] < +hoje.slice(8)) ym = somaMes(ym, 1);
+    const [a, mm] = ym.split('-').map(Number); if (+m[1] >= 1 && +m[1] <= diasNoMes(a, mm)) { o.Data = iso(a, mm, +m[1]); tirar(m); }
+  }
+  if (!o.Data) for (const [nome, w] of DIAS_TXT) {
+    const re = new RegExp('\\s(?:(toda|todo)s?\\s+(?:as\\s+|os\\s+)?)?(?:(proxim[ao])\\s+|n[ao]\\s+|na\\s+proxima\\s+)?' + nome + '(?:s|-feiras?|\\s+feira)?(?=\\s)');
+    if ((m = plano.match(re))) {
+      let n = (w - paraDate(hoje).getDay() + 7) % 7; if (m[2] && n === 0) n = 7;
+      o.Data = somaDias(hoje, n); if (m[1]) o.Repetir = 'Semanal'; tirar(m); break;
+    }
+  }
+  const tipo = Object.keys(PALAVRAS_COMP).find(t => PALAVRAS_COMP[t].test(plano));
+  if (tipo) o.Tipo = tipo;
+  const tit = orig.replace(/\s+(as|às|no|na|em|de|dia|para|pra)\s*$/i, ' ').replace(/^\s*(as|às|no|na|em|de|dia)\s+/i, '').replace(/\s+/g, ' ').trim();
+  if (tit) o.Titulo = maiuscula(tit);
+  return o;
+}
+
+// =====================================================================
+// Hábitos (aba própria)
+// =====================================================================
+function telaHabitos() {
+  const hoje = hojeIso(), hab = habitosAtivos(), feitos = hab.filter(h => feito(hoje, h.ID)).length, p = pctSemana(inicioSemana(hoje));
+  const melhor = hab.map(h => ({ h, n: parseInt(sequencia(h), 10) || 0, sem: !!metaSemana(h) })).sort((a, b) => b.n - a.n)[0];
+  return `${cabeca('Hábitos', 'Rotina, semana e to-dos', `<button class="ibtn escuro" data-a="novoHabito" aria-label="Novo hábito">${ic('plus')}</button>`)}
+  <div class="faixa"><div><b>${feitos}/${hab.length}</b><small>Feitos hoje</small></div><div><b>${p == null ? '—' : Math.round(p * 100) + '%'}</b><small>Da semana</small></div>
+    <div><b class="pos">${melhor && melhor.n ? melhor.n + (melhor.sem ? ' sem' : ' d') : '—'}</b><small>${melhor && melhor.n ? 'Seq. ' + esc(melhor.h.Nome) : 'Melhor sequência'}</small></div></div>
+  <div class="hab-rot">${rotinaDeHoje(false)}</div>${secaoHabitos()}`;
 }
 
 function abrirDia(k) {
@@ -1334,7 +1733,7 @@ function secaoHabitos() {
         return `<div style="margin-bottom:12px"><div class="lin"><span>${esc(h.Icone || '')} ${esc(h.Nome)}</span><span>${n}/${alvo} ${metaSemana(h) ? '(meta ' + metaSemana(h) + 'x/sem)' : 'dias'}</span></div>${bar(alvo ? n / alvo * 100 : 0, '#16a34a')}</div>`; }).join('') || '<div class="vazio">Nenhum hábito.</div>'}`;
   }
   const esc_ = E.abaTodo || 'semana', titulos = { semana: 'Da semana', mes: 'Do mês', ano: 'Metas do ano' };
-  return `<div class="secao" id="cal-habitos" style="scroll-margin-top:60px">✅ Hábitos e to-dos</div>
+  return `<div class="tsec" id="cal-habitos" style="scroll-margin-top:60px;margin-top:18px"><b>Semana e to-dos</b></div>
   <div class="grid g2 discreto">
     <div class="card"><div class="sec">Hábitos <button class="lk" data-a="novoHabito">+ Hábito</button></div>
       <div class="chips mini">${[['semana', 'Semana'], ['mes', 'Mês']].map(([k, l]) => `<button class="chip ${E.abaHab === k ? 'on' : ''}" data-a="abaHab" data-v="${k}">${l}</button>`).join('')}</div>${corpo}</div>
@@ -1395,6 +1794,15 @@ const guardadoDesejo = d => num(d.Guardado) + T('Movimentos').filter(m => m.Dese
 const SECOES_FIN = [['fin-resumo', 'Resumo'], ['fin-metas', 'Metas'], ['fin-lanc', 'Lançamentos'], ['fin-fixos', 'Fixos'], ['fin-orc', 'Orçamento'], ['fin-cat', 'Categorias'], ['fin-guardado', 'Guardado'], ['fin-cartoes', 'Cartões']];
 const ALIAS_FIN = { mes: 'fin-resumo', metas: 'fin-metas', plano: 'fin-fixos' };
 
+// "Até o próximo salário" (só na aba Finanças)
+function cartaoLivre() {
+  const x = livreAteSalario();
+  if (!x) return `<div class="card livre" data-a="irFin" data-v="fin-fixos"><div class="sec">Até o próximo salário</div><div class="vazio" style="padding:6px 0">Cadastre o salário nos Fixos (categoria Salário) para ver quanto dá para gastar por dia até ele cair.</div></div>`;
+  return `<div class="card livre" id="fin-livre"><div class="sec">Próximo: ${esc(x.nome)} · ${fmtCurto(x.prox)} <span class="lk">${plural(x.dias, 'dia', 'dias')}</span></div>
+    <div class="grande ${x.livre < 0 ? 'neg' : ''}">${brl(x.livre)}</div>
+    <div class="nota" style="font-weight:700">${x.livre < 0 ? 'Passou do que entrou desde ' + fmtCurto(x.ini) : `livres · dá uns <b>${brlCurto(x.livre / x.dias)} por dia</b>`}</div>
+    <div class="partes"><span>↑ Entrou ${brlCurto(x.ent)}</span><span>↓ Gasto ${brlCurto(x.sai)}</span>${x.pend ? `<span>Fixos a pagar ${brlCurto(x.pend)}</span>` : ''}</div></div>`;
+}
 function telaFinanceiro() {
   const ym = E.mesFin, ls = lancMes(ym);
   const ent = ls.filter(l => l.Tipo === 'Entrada').reduce((a, l) => a + num(l.Valor), 0);
@@ -1410,6 +1818,7 @@ function telaFinanceiro() {
         <div class="io"><div><b>${brl(ent)}</b><span>↑ Entradas</span></div><div><b>${brl(totSai)}</b><span>↓ Saídas</span></div><div><b>${brl(guardMes)}</b><span>🐷 Guardado no mês</span></div></div>
         ${(() => { const ant = saidasMes(somaMes(ym, -1)).reduce((a, l) => a + num(l.Valor), 0); if (!ant || !totSai) return ''; const p = Math.round((totSai - ant) / ant * 100);
           return `<div style="margin-top:12px;font-size:12.5px;font-weight:600;opacity:.92">${p === 0 ? 'Você gastou o mesmo que' : `Você gastou ${Math.abs(p)}% ${p > 0 ? 'a mais' : 'a menos'} que`} em ${MESES[+somaMes(ym, -1).slice(5) - 1]} (${brlCurto(ant)}).</div>`; })()}</div>
+      ${ym === hojeIso().slice(0, 7) ? cartaoLivre() : ''}
       ${secMetas()}
       ${secLancamentos(ls)}
       ${secFixos()}
@@ -1453,8 +1862,8 @@ function secLancamentos(ls) {
   return `<div class="card" id="fin-lanc"><div class="sec">Lançamentos ${f.todos && filtrando ? '(todos os meses)' : 'do mês'} <span><button class="lk" data-a="importar">⬆ Importar</button> <button class="lk" data-a="novoLanc">+ Lançar</button></span></div>
     <div class="rapido" style="margin:0 0 10px"><input id="rapidoFin" placeholder="Digite: mercado 52,30 pix" autocomplete="off" enterkeyhint="go"><button class="btns" data-a="rapidoLanc" data-campo="rapidoFin">Lançar</button></div>
     <div class="filtros"><input id="fLancQ" class="todo" placeholder="🔎 Filtrar (ex.: mercado, uber)" value="${esc(f.q || '')}" autocomplete="off">
-      <select id="fLancCat" aria-label="Categoria"><option value="">Todas as categorias</option>${cats.map(c => `<option ${f.cat === c ? 'selected' : ''}>${c}</option>`).join('')}</select>
-      <select id="fLancPag" aria-label="Pagamento"><option value="">Todos os pagamentos</option>${PAGAMENTOS.map(p => `<option ${f.pag === p ? 'selected' : ''}>${p}</option>`).join('')}</select>
+      <select id="fLancCat" aria-label="Categoria"><option value="">Categorias</option>${cats.map(c => `<option ${f.cat === c ? 'selected' : ''}>${c}</option>`).join('')}</select>
+      <select id="fLancPag" aria-label="Pagamento"><option value="">Pagamentos</option>${PAGAMENTOS.map(p => `<option ${f.pag === p ? 'selected' : ''}>${p}</option>`).join('')}</select>
       ${filtrando ? `<label class="check todo" style="margin:0"><input type="checkbox" id="fLancTodos" ${f.todos ? 'checked' : ''}> Procurar em todos os meses</label>` : ''}</div>
     ${filtrando ? `<div class="lin" style="margin-bottom:6px"><span>${plural(base.length, 'lançamento', 'lançamentos')}</span><span class="${tot < 0 ? 'neg' : 'pos'}">${tot < 0 ? '−' : '+'} ${brl(Math.abs(tot))}</span></div>` : ''}
     ${mostrar.map(l => `<div class="row" data-a="editarLanc" data-id="${esc(l.ID)}"><div class="ic">${l.Tipo === 'Entrada' ? '💰' : ICONE_CAT[l.Categoria] || '📦'}</div>
@@ -2113,100 +2522,177 @@ function sugestaoHoje(k) {
   return ['P', 'PH'];
 }
 
+// ---------- Agenda: compromissos e tudo o que cai em cada dia ----------
+const TIPOS_COMP = {
+  'Saúde': { ic: 'steth', cor: '#7c3aed', f: 'saude' }, 'Trabalho': { ic: 'brief', cor: '#c2410c', f: 'trabalho' },
+  'Estudos': { ic: 'cap', cor: '#0284c7', f: 'estudos' }, 'Pessoal': { ic: 'users', cor: '#16a34a', f: '' },
+};
+const tipoComp = t => TIPOS_COMP[t] || TIPOS_COMP['Pessoal'];
+const tile = (n, cor) => `<span class="tile" style="--cor:${cor}">${ic(n)}</span>`;
+const SEM3 = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
+const semCurta = k => maiuscula(SEMANA[paraDate(k).getDay()].slice(0, 3));
+/** Mesma regra do servidor: Semanal = mesmo dia da semana, Mensal = mesmo dia (ou o último do mês), Anual = mesmo dia e mês. */
+function compromissoEm(c, k) {
+  const base = String(c.Data || '').slice(0, 10);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(base) || k < base) return false;
+  if (c.Repetir === 'Semanal') return paraDate(k).getDay() === paraDate(base).getDay();
+  if (c.Repetir === 'Mensal') return +k.slice(8) === Math.min(+base.slice(8), diasNoMes(+k.slice(0, 4), +k.slice(5, 7)));
+  if (c.Repetir === 'Anual') return k.slice(5) === base.slice(5);
+  return k === base;
+}
+const horaComp = c => { const m = String((c && c.Hora) || '').trim().match(/^(\d{1,2}):(\d{2})/); return m ? pad(+m[1]) + ':' + m[2] : ''; };
+const remediosEmUso = () => T('Remedios').filter(r => r.EmUso === true || r.EmUso === 'true');
+
+/** Tudo o que cai num dia. h = hora (vazio = o dia todo); f = filtros da Agenda em que aparece. */
+function itensDoDia(k) {
+  const out = [], hoje = hojeIso(), fer = feriadoDe(k);
+  if (fer) out.push({ t: fer, s: 'Feriado', ic: 'flag', cor: '#7c3aed', f: 'trabalho', a: 'abrirDia' });
+  T('Compromissos').forEach(c => {
+    if (!compromissoEm(c, k)) return;
+    const tp = tipoComp(c.Tipo), rep = c.Repetir && c.Repetir !== 'Não' ? 'repete ' + c.Repetir.toLowerCase() : '';
+    out.push({ h: horaComp(c), t: c.Titulo || 'Compromisso', s: [c.Local, rep].filter(Boolean).join(' · '), k: c.Tipo || 'Pessoal', ic: tp.ic, cor: tp.cor, f: ('comp ' + tp.f).trim(), a: 'editarComp', id: c.ID, lembrar: c.Lembrar });
+  });
+  if (k >= hoje) remediosEmUso().forEach(r => horasDe(r.Horarios).forEach(h => out.push({ h: pad(h) + ':00', t: r.Nome, s: r.Dose || 'Remédio em uso', k: 'Remédio', ic: 'pill', cor: '#16a34a', f: 'saude', a: 'editarRemedio', id: r.ID, rem: 1 })));
+  T('Atividades').forEach(a => { if (a.Data === k) out.push({ t: a.Titulo, s: [a.Disciplina, a.Status === 'Entregue' ? 'entregue' : 'entrega'].filter(Boolean).join(' · '), k: 'Entrega', ic: 'cap', cor: '#0284c7', f: 'estudos', a: 'editarAtividade', id: a.ID }); });
+  E.folgas.forEach(f => { if (f.folga === k) out.push({ t: 'Folga', s: maiuscula(String(f.tipo || '').toLowerCase()), ic: 'sun', cor: '#ea580c', f: 'trabalho', a: 'editarFolga', id: f.id }); });
+  T('Datas').forEach(x => {
+    if (!/^\d{4}-\d{2}-\d{2}/.test(String(x.Data)) || String(x.Data).slice(5, 10) !== k.slice(5)) return;
+    const n = idadeEm(x, k);
+    out.push({ t: x.Nome, s: x.Tipo === 'Aniversário' ? (n ? 'faz ' + n + ' anos' : 'Aniversário') : x.Tipo || 'Data importante', ic: 'gift', cor: '#db2777', f: 'comp', a: 'editarData', id: x.ID });
+  });
+  T('Lugares').forEach(l => { if (l.Data === k && l.Status === 'Planejado') out.push({ t: l.Nome, s: 'Passeio planejado', ic: 'pin', cor: '#0d9488', f: 'comp', a: 'editarLugar', id: l.ID }); });
+  return out.sort((a, b) => (a.h || '').localeCompare(b.h || ''));
+}
+// Cor da bolinha do dia (remédios, que são todo dia, não contam)
+const corDoDia = (k, semFeriado) => { const x = itensDoDia(k).find(i => !i.rem && !(semFeriado && i.a === 'abrirDia')); return x ? x.cor : ''; };
+const attrsItem = (i, k) => `data-a="${i.a}"${i.id ? ` data-id="${esc(i.id)}"` : ''} data-d="${k}"`;
+
+function faixaSemana(sel, acao) {
+  const ini = inicioSemana(sel), hoje = hojeIso();
+  return `<div class="semana">${[...Array(7)].map((_, i) => { const k = somaDias(ini, i), cor = corDoDia(k);
+    return `<button class="${k === sel ? 'on' : ''} ${k === hoje ? 'hj' : ''}" data-a="${acao}" data-d="${k}">${semCurta(k)}<span>${+k.slice(8)}${cor ? `<i style="background:${cor}"></i>` : ''}</span></button>`; }).join('')}</div>`;
+}
+/** Próximos itens da agenda (sem remédios), a partir de hoje. */
+function proximosAgenda(dias, max) {
+  const hoje = hojeIso(), agora = pad(new Date().getHours()) + ':' + pad(new Date().getMinutes()), out = [];
+  for (let n = 0; n <= dias && out.length < max; n++) {
+    const k = somaDias(hoje, n);
+    itensDoDia(k).filter(i => !i.rem && !(n === 0 && i.h && i.h < agora) && !(i.a === 'editarAtividade' && /entregue/.test(i.s))).forEach(i => out.length < max && out.push({ k, i }));
+  }
+  return out;
+}
+
+// "Seu dia": presença lançada + hábitos de hoje
+function placarDoDia() {
+  const hoje = hojeIso(), hab = habitosAtivos();
+  const ok = hab.filter(h => feito(hoje, h.ID)).length + (E.dias[hoje] ? 1 : 0), tot = hab.length + 1;
+  return { p: ok / tot, ok, tot };
+}
+
+// "Para resolver": → conclui, ← fica para amanhã (guardado só neste aparelho)
+const chaveAlerta = x => [x.a, x.id || x.d || x.v || '', x.t].join('|');
+const escondidos = () => { const o = ls.get('mdd_adiados') || {}, h = hojeIso(); return Object.keys(o).filter(k => o[k] > h); };
+function esconderAte(k, ate) {
+  const o = ls.get('mdd_adiados') || {}, h = hojeIso();
+  Object.keys(o).forEach(x => { if (o[x] <= h) delete o[x]; });
+  if (ate) o[k] = ate; else delete o[k];
+  ls.set('mdd_adiados', o);
+}
+function feitosHoje() { const f = ls.get('mdd_feitos'); return f && f.d === hojeIso() ? f.itens : []; }
+function marcarFeito(x) { ls.set('mdd_feitos', { d: hojeIso(), itens: feitosHoje().concat({ t: x.t, s: x.s, cat: catAlerta(x)[0] }) }); }
+const CAT_ALERTA = { abrirDia: ['Trabalho', 'calendar'], editarFolga: ['Trabalho', 'sun'], irSecaoCal: ['Trabalho', 'sun'], editarAtividade: ['Faculdade', 'cap'], irFin: ['Finanças', 'wallet'], ir: ['Saúde', 'pill'], editarData: ['Pessoal', 'gift'] };
+const catAlerta = x => CAT_ALERTA[x.a] || ['Lembrete', 'bell'];
+const COR_P = { pr: ['#dc2626', 'urgente', 'r'], po: ['#f59e0b', 'atenção', 'o'], pb: ['#3b82f6', 'hoje', 'b'], pp: ['#7c3aed', 'lembrete', 'v'], pg: ['#16a34a', 'ok', 'g'] };
+function cartaoAlerta(x) {
+  const [cor, urg, tg] = COR_P[x.p] || ['#94a3b8', 'aviso', 'n'];
+  const ok = x.a === 'abrirDia' ? 'Lançar ' + sugestaoHoje(hojeIso())[0] : x.a === 'editarAtividade' ? 'Entreguei' : 'Resolvido';
+  return `<div class="sw" data-k="${esc(chaveAlerta(x))}"><div class="fd ok">${ic('check')}${esc(ok)}</div><div class="fd adi">Amanhã${ic('clock')}</div>
+    <div class="tk" data-a="${x.a}" ${x.id ? `data-id="${esc(x.id)}"` : ''} ${x.d ? `data-d="${x.d}"` : ''} ${x.v ? `data-v="${x.v}"` : ''}>
+      <div class="p"><i style="background:${cor}"></i>${catAlerta(x)[0]} · ${urg}</div>
+      <div class="l"><b>${esc(x.t)}</b><span class="ch">${ic('chev')}</span></div>
+      <div class="rod"><small>${esc(x.s)}</small><span class="tg ${tg}">${esc(x.pt)}</span></div></div></div>`;
+}
+function concluirAlerta(k) {
+  const x = alertas().find(a => chaveAlerta(a) === k);
+  if (!x) return render();
+  marcarFeito(x);
+  if (x.a === 'abrirDia') return ACOES.lancarHoje({ c: sugestaoHoje(hojeIso())[0] });
+  const at = x.a === 'editarAtividade' && T('Atividades').find(a => a.ID === x.id);
+  if (at) return salvarItem('Atividades', Object.assign({}, at, { Status: 'Entregue' }), 'Entregue ✓');
+  esconderAte(k, somaDias(hojeIso(), 1)); render();
+  toast('Resolvido por hoje ✓', false, { txt: 'Desfazer', fn: () => { esconderAte(k); const f = feitosHoje(); f.pop(); ls.set('mdd_feitos', { d: hojeIso(), itens: f }); render(); } });
+}
+function adiarAlerta(k) {
+  esconderAte(k, somaDias(hojeIso(), 1)); render();
+  toast('Fica para amanhã', false, { txt: 'Desfazer', fn: () => { esconderAte(k); render(); } });
+}
+
+// Ícone de traço para cada hábito, pelo nome
+const ICONE_HAB = [[/agua|beber/, 'drop', '#0284c7'], [/leit|\bler\b|livro|pagina/, 'book', '#3f7d1c'], [/devoc|orac|biblia|medita|reza/, 'shield', '#be185d'],
+  [/calist|treino|academ|muscul|flex|gym/, 'dumb', '#c2410c'], [/camin|corr|bike|pedal|passo/, 'walk', '#a16207'], [/idioma|ingl|espanh|duolingo|franc|alem/, 'lang', '#6d28d9'],
+  [/remed|vitamin|suplem/, 'pill', '#16a34a'], [/estud|curso|aula|revis/, 'cap', '#0d9488'], [/dorm|sono|acordar/, 'moon', '#4f46e5']];
+const iconeHab = (h, i) => { const n = semAcento(h.Nome).toLowerCase(), x = ICONE_HAB.find(([r]) => r.test(n));
+  return x ? [x[1], x[2]] : ['check', ['#c2410c', '#0284c7', '#16a34a', '#7c3aed', '#be185d', '#a16207'][i % 6]]; };
+function rotinaDeHoje(link = true) {
+  const hoje = hojeIso(), hab = habitosAtivos(), feitos = hab.filter(h => feito(hoje, h.ID)).length;
+  const topo = `<div class="tsec"><b>Rotina de hoje</b>${hab.length ? `<button ${link ? 'data-a="ir" data-v="habitos"' : ''}>${feitos} de ${hab.length}${link ? ic('chev') : ''}</button>` : ''}</div>`;
+  if (!hab.length) return topo + `<div class="vazio-ag">${ic('habits')}<b>Nenhum hábito ainda</b><button class="bt2" data-a="novoHabito">${ic('plus')}Hábito</button></div>`;
+  return topo + `<div class="rot">${hab.map((h, i) => {
+    const ok = feito(hoje, h.ID), m = metaDia(h), ms = metaSemana(h), [n, cor] = iconeHab(h, i);
+    const sub = ms ? `${ms}x/semana · ${feitosNaSemana(inicioSemana(hoje), h.ID)} de ${ms}` : `Sequência ${plural(+sequencia(h), 'dia', 'dias')}`;
+    return `<div class="it ${ok ? 'ok' : ''}" data-a="hab" data-d="${hoje}" data-h="${esc(h.ID)}"><span class="ck">${ok ? ic('check') : ''}</span>${tile(n, cor)}
+      <div class="t"><b>${esc(h.Nome)}</b><small>${sub}</small></div>${m ? `<div class="m"><b>${fmtQtd(qtdDe(hoje, h.ID))}/${fmtQtd(m)}</b>${esc(h.Unidade || 'meta')}${ok ? '' : `<button class="maisq" data-a="habMais" data-d="${hoje}" data-h="${esc(h.ID)}" aria-label="Somar ${fmtQtd(passoDe(h))}">+${fmtQtd(passoDe(h))}</button>`}</div>` : ''}</div>`; }).join('')}</div>`;
+}
+
 const CARTOES_INICIO = [
-  ['hero', 'Hoje (presença e atalhos)'], ['kpis', 'Números do mês'], ['livre', 'Até o próximo salário'], ['atencao', 'Atenção hoje'], ['diario', 'Como foi seu dia'],
-  ['agenda', 'Próximos 7 dias'], ['habitos', 'Hábitos de hoje'], ['remedios', 'Remédios de hoje'], ['metas', 'Metas'],
-  ['orcamento', 'Orçamento'], ['leitura', 'Lendo agora'], ['evolucao', 'Últimos 12 meses (gráficos)'], ['conquista', 'Conquistas'], ['frase', 'Frase do dia'],
+  ['semana', 'Semana (datas)'], ['dia', 'Seu dia (placar, humor e frase)'], ['agenda', 'Sua agenda'], ['resolver', 'Para resolver hoje'], ['rotina', 'Rotina de hoje'],
+  ['leitura', 'Lendo agora'], ['evolucao', 'Últimos 12 meses (gráficos)'], ['conquista', 'Conquistas'],
 ];
+const OCULTOS_PADRAO = 'leitura,evolucao,conquista';
 function ordemInicio() {
-  const salvo = String(cfg('InicioCartoes', '')).split(',').filter(k => CARTOES_INICIO.some(c => c[0] === k));
+  const salvo = String(cfg('InicioCartoes2', '')).split(',').filter(k => CARTOES_INICIO.some(c => c[0] === k));
   return salvo.concat(CARTOES_INICIO.map(c => c[0]).filter(k => !salvo.includes(k)));
 }
-const ocultosInicio = () => String(cfg('InicioOcultos', '')).split(',').filter(Boolean);
+const ocultosInicio = () => String(cfg('InicioOcultos2', OCULTOS_PADRAO)).split(',').filter(Boolean);
 
 const CARTAO = {
-  hero() {
-    const hoje = hojeIso(), reg = E.dias[hoje], cod = reg && E.porCodigo[reg.codigo], hab = habitosAtivos(), feitos = hab.filter(h => feito(hoje, h.ID)).length;
-    const [s1, s2] = sugestaoHoje(hoje), d1 = (E.porCodigo[s1] || {}).descricao || s1, d2 = (E.porCodigo[s2] || {}).descricao || s2;
-    const al = alertas().length;
-    return `<div class="hero">
-      <div class="l1"><div><h3>Hoje</h3><div class="st">${cod ? `${esc(reg.codigo)} · ${esc(cod.descricao)}` : 'Presença ainda não lançada'}
-        <small>${feitos}/${hab.length} hábitos feitos${al ? ' · ' + plural(al, 'coisa pede', 'coisas pedem') + ' atenção' : ' · tudo em dia'}</small></div></div>
-        <div class="mini">${ring(hab.length ? feitos / hab.length : 0, '#4ade80', 'rgba(255,255,255,.2)', '#fff')}<small>hábitos</small></div></div>
-      ${cod ? '' : `<div class="acaohoje"><button data-a="lancarHoje" data-c="${esc(s1)}">✓ ${esc(d1)}</button><button class="alt" data-a="lancarHoje" data-c="${esc(s2)}">${esc(d2)}</button><button class="alt" data-a="abrirDia" data-d="${hoje}">Outro…</button></div>`}
-      <div class="atalhos">
-        <button data-a="abrirDia" data-d="${hoje}"><span>📅</span>${cod ? 'Presença' : 'Detalhes'}</button>
-        <button data-a="rapidas"><span>💸</span>Gasto</button>
-        <button data-a="novoTreino"><span>🏋️</span>Treino</button>
-        <button data-a="irFin" data-v="metas"><span>🐷</span>Guardar</button>
-      </div></div>`;
-  },
-  kpis() {
-    const hoje = hojeIso(), d = paraDate(hoje), r = resumoMes(hoje.slice(0, 7)), ferias = diasParaFerias();
-    const saldo = lancMes(hoje.slice(0, 7)).reduce((a, l) => a + (l.Tipo === 'Entrada' ? 1 : -1) * num(l.Valor), 0);
-    return `<div class="kpis">
-      <div class="kpi wide" data-a="ir" data-v="presenca">${ring(r.previstos ? r.presenca / r.previstos : 0)}<div><div class="v">${r.presenca}<span style="color:var(--sub);font-size:16px">/${r.previstos}</span></div><div class="l">Presença em ${MESES[d.getMonth()]}</div></div></div>
-      <div class="kpi" data-a="irFin" data-v="mes"><div class="v ${saldo < 0 ? 'neg' : ''}">${brlCurto(saldo)}</div><div class="l">Saldo do mês</div></div>
-      <div class="kpi" data-a="irFin" data-v="fin-guardado"><div class="v">${brlCurto(totalGuardado())}</div><div class="l">Guardado</div></div>
-      <div class="kpi" data-a="ir" data-v="presenca"><div class="v">${ferias == null ? '—' : ferias}</div><div class="l">Dias p/ férias</div></div></div>`;
-  },
-  livre() {
-    const x = livreAteSalario();
-    if (!x) return `<div class="card livre" data-a="irFin" data-v="fin-fixos"><div class="sec">Até o próximo salário</div><div class="vazio" style="padding:6px 0">Cadastre o salário nos Fixos (categoria Salário) para ver quanto dá para gastar por dia até ele cair.</div></div>`;
-    return `<div class="card livre" data-a="irFin" data-v="fin-resumo"><div class="sec">Próximo: ${esc(x.nome)} · ${fmtCurto(x.prox)} <span class="lk">${plural(x.dias, 'dia', 'dias')}</span></div>
-      <div class="grande ${x.livre < 0 ? 'neg' : ''}">${brl(x.livre)}</div>
-      <div class="nota" style="font-weight:700">${x.livre < 0 ? 'Passou do que entrou desde ' + fmtCurto(x.ini) : `livres · dá uns <b>${brlCurto(x.livre / x.dias)} por dia</b>`}</div>
-      <div class="partes"><span>↑ Entrou ${brlCurto(x.ent)}</span><span>↓ Gasto ${brlCurto(x.sai)}</span>${x.pend ? `<span>🔁 Fixos a pagar ${brlCurto(x.pend)}</span>` : ''}</div></div>`;
-  },
-  atencao() {
-    const al = alertas();
-    return `<div class="card"><div class="sec">Atenção hoje ${al.length ? `<span class="pill po">${al.length}</span>` : ''}</div>
-      ${al.map(x => `<div class="row" data-a="${x.a}" ${x.id ? `data-id="${esc(x.id)}"` : ''} ${x.d ? `data-d="${x.d}"` : ''} ${x.v ? `data-v="${x.v}"` : ''}><div class="ic" style="background:${x.bg}">${x.ic}</div><div class="t"><b>${esc(x.t)}</b><small>${esc(x.s)}</small></div><span class="pill ${x.p}">${x.pt}</span></div>`).join('') || '<div class="vazio">Tudo em dia 🎉</div>'}</div>`;
-  },
-  diario() {
-    const hoje = hojeIso(), d = T('Diario').find(x => x.Data === hoje) || {};
-    return `<div class="card"><div class="sec">Como foi seu dia? <button class="lk" data-a="ir" data-v="diario">Diário ›</button></div>
-      <div class="humores">${[1, 2, 3, 4, 5].map(n => `<button class="${num(d.Humor) === n ? 'sel' : ''}" data-a="humor" data-v="${n}" aria-label="${HUMOR[n].n}">${HUMOR[n].e}</button>`).join('')}</div>
-      ${d.Texto ? `<p class="nota" style="margin-top:10px;font-size:13px;white-space:pre-wrap" data-a="escreverDiario" data-d="${hoje}">${esc(d.Texto)}</p>` : `<button class="add" data-a="escreverDiario" data-d="${hoje}">✏️ Escrever sobre o dia</button>`}</div>`;
+  semana: () => faixaSemana(hojeIso(), 'agendaDia'),
+  dia() {
+    const hoje = hojeIso(), d = T('Diario').find(x => x.Data === hoje) || {}, h = num(d.Humor), pl = placarDoDia(), p = Math.round(pl.p * 100);
+    return `<div class="seudia"><div class="l1">
+      <button class="anel" style="--p:${p}%" data-a="ir" data-v="habitos" aria-label="${pl.ok} de ${pl.tot}: presença e hábitos de hoje"><span>${p}%<small>do dia</small></span></button>
+      <div class="humd"><div class="t">Como está seu dia?</div>
+        <div class="faces">${[1, 2, 3, 4, 5].map(n => `<button class="${h === n ? 'on' : ''}" data-a="humor" data-v="${n}" aria-label="${HUMOR[n].n}">${ic('f' + n)}</button>`).join('')}</div>
+        <button class="res" data-a="escreverDiario" data-d="${hoje}">${h ? HUMOR[h].n + ' · ' : ''}${d.Texto ? 'ver o diário' : 'escrever no diário'}${ic('chev')}</button></div></div>
+      <div class="frase">${ic('quote')}<p>${esc(fraseDoDia())}<small>FRASE DO DIA</small></p></div></div>`;
   },
   agenda() {
-    const hoje = hojeIso(), prox = proximosDias(7), porDia = {};
-    prox.forEach(i => (porDia[i.d] = porDia[i.d] || []).push(i));
-    const nomeDia = k => difDias(hoje, k) === 1 ? 'Amanhã' : maiuscula(SEMANA[paraDate(k).getDay()].split('-')[0]) + ', ' + fmtCurto(k);
-    return `<div class="card agenda"><div class="sec">Próximos 7 dias</div>
-      ${Object.keys(porDia).map(k => `<div class="dia">${nomeDia(k)}</div>${porDia[k].map(i => `<div class="it"><span>${i.ic}</span>${esc(i.t)}${i.s ? `<small>${esc(i.s)}</small>` : ''}</div>`).join('')}`).join('') || '<div class="vazio">Nada marcado para a próxima semana.</div>'}</div>`;
+    const hoje = hojeIso(), prox = proximosAgenda(21, 3);
+    const tag = n => n === 0 ? ['Hoje', 'r'] : n === 1 ? ['Amanhã', 'o'] : ['em ' + n + ' dias', n <= 3 ? 'o' : 'g'];
+    return `<div class="suaagenda"><div class="l1"><div><b>Sua agenda</b><p>Próximos compromissos · toque para ver ou marcar</p></div><button class="ilu" data-a="ir" data-v="presenca" aria-label="Abrir a agenda">${ic('calendar')}</button></div>
+      ${prox.map(({ k, i }) => { const [tt, tc] = tag(difDias(hoje, k));
+        return `<div class="ag" data-a="agendaDia" data-d="${k}"><div class="d">${+k.slice(8)}<small>${SEM3[paraDate(k).getDay()]}</small></div>${tile(i.ic, i.cor)}
+        <div class="t"><span>${esc(i.t)}</span><small>${i.h ? ic('clock') + i.h + (i.s ? ' · ' : '') : ''}${esc(i.s || '')}</small></div><span class="tg ${tc}">${tt}</span></div>`; }).join('') ||
+        '<div class="ag"><div class="t"><span>Nada marcado nas próximas 3 semanas</span><small>Que tal planejar algo?</small></div></div>'}
+      <div class="ops-ag"><button data-a="novoComp">${ic('plus')}Compromisso</button><button class="cl" data-a="novaFolga">Folga</button><button class="cl" data-a="novaAtividade">Entrega</button></div></div>`;
   },
-  habitos() {
-    const hoje = hojeIso(), hab = habitosAtivos();
-    return `<div class="card"><div class="sec">Hábitos de hoje <button class="lk" data-a="ir" data-v="habitos">Semana ›</button></div>
-      ${hab.length ? `<div class="two" style="grid-template-columns:repeat(2,minmax(0,1fr));gap:0 10px">${hab.map(h => { const ok = feito(hoje, h.ID), m = metaDia(h);
-        return `<div class="todo ${ok ? 'done' : ''}" style="border:0;padding:7px 0" data-a="hab" data-d="${hoje}" data-h="${esc(h.ID)}"><div class="cb ${ok ? 'y' : ''}">${ok ? '✓' : ''}</div><span class="tx">${esc(h.Icone || '')} ${esc(h.Nome)}${m ? `<small style="display:block;color:var(--sub);font-weight:700;text-decoration:none">${fmtQtd(qtdDe(hoje, h.ID))}/${fmtQtd(m)} ${esc(h.Unidade || '')}</small>` : ''}</span>${m && !ok ? `<button class="mais" data-a="habMais" data-d="${hoje}" data-h="${esc(h.ID)}">+${fmtQtd(passoDe(h))}</button>` : ''}</div>`; }).join('')}</div>` : '<div class="vazio">Nenhum hábito cadastrado.</div>'}</div>`;
+  resolver() {
+    const aba = E.abaResolver || 'pend', hoje = hojeIso(), esc_ = escondidos();
+    const pend = alertas().filter(x => !esc_.includes(chaveAlerta(x))), dia = itensDoDia(hoje), feitos = feitosHoje();
+    const abas = [['pend', 'Pendentes', pend.length], ['hoje', 'Hoje', dia.length], ['feitos', 'Feitos', feitos.length]];
+    let corpo;
+    if (aba === 'pend') corpo = pend.length ? pend.map(cartaoAlerta).join('') + '<p class="dica">Arraste → para concluir · ← para deixar para amanhã</p>' : `<div class="vazio-ag">${ic('check')}<b>Tudo em dia por hoje</b></div>`;
+    else if (aba === 'hoje') corpo = dia.map(i => `<div class="tk" ${attrsItem(i, hoje)}><div class="p"><i style="background:${i.cor}"></i>${esc(i.k || i.s || '')}${i.h ? ' · ' + i.h : ' · o dia todo'}</div>
+      <div class="l"><b>${esc(i.t)}</b><span class="ch">${ic('chev')}</span></div>${i.s && i.k ? `<div class="rod"><small>${esc(i.s)}</small></div>` : ''}</div>`).join('') || `<div class="vazio-ag">${ic('calendar')}<b>Nada marcado para hoje</b></div>`;
+    else corpo = feitos.map(f => `<div class="tk feito"><div class="p"><i style="background:#16a34a"></i>${esc(f.cat)} · feito</div><div class="l"><b>${esc(f.t)}</b>${ic('check')}</div></div>`).join('') || `<div class="vazio-ag">${ic('target')}<b>Nada concluído ainda hoje</b></div>`;
+    return `<div class="tsec"><b>Para resolver hoje</b><button data-a="ir" data-v="presenca">Agenda${ic('chev')}</button></div>
+      <div class="abas">${abas.map(([k, l, n]) => `<button class="${aba === k ? 'on' : ''}" data-a="abaResolver" data-v="${k}"><em>${n}</em>${l}</button>`).join('')}</div>${corpo}`;
   },
-  remedios() {
-    const doses = dosesDeHoje();
-    if (!doses.length) return '';
-    const h = new Date().getHours(), prox = doses.find(x => x.h >= h);
-    return `<div class="card"><div class="sec">Remédios de hoje <button class="lk" data-a="ir" data-v="farmacia">Farmácia ›</button></div>
-      ${doses.map(x => `<div class="dose ${x.h < h ? 'passou' : x === prox ? 'prox' : ''}"><span class="h">${pad(x.h)}h</span>💊 ${esc(x.r.Nome)}${x.r.Dose ? ` <span class="nota">· ${esc(x.r.Dose)}</span>` : ''}</div>`).join('')}</div>`;
-  },
-  metas() {
-    const metas = T('Desejos').filter(x => x.Status !== 'Comprado').sort((a, b) => guardadoDesejo(b) / (num(b.Preco) || 1) - guardadoDesejo(a) / (num(a.Preco) || 1)).slice(0, 3);
-    if (!metas.length) return '';
-    return `<div class="card"><div class="sec">Metas <button class="lk" data-a="irFin" data-v="metas">Ver todas ›</button></div>
-      ${metas.map(m => { const g = guardadoDesejo(m), p = num(m.Preco) ? g / num(m.Preco) * 100 : 0;
-        return `<div class="row" data-a="verDesejo" data-id="${esc(m.ID)}"><div class="ic">${esc(m.Icone || '🎁')}</div><div class="t"><b>${esc(m.Nome)}</b><small>${brlCurto(g)} de ${brlCurto(m.Preco)}</small>${bar(p, p >= 100 ? '#16a34a' : '')}</div><span class="val">${Math.round(p)}%</span></div>`; }).join('')}</div>`;
-  },
-  orcamento() {
-    const ym = hojeIso().slice(0, 7);
-    const orc = T('Orcamentos').filter(o => num(o.Limite) > 0).map(o => ({ o, g: gastoCategoria(ym, o.Categoria) })).sort((a, b) => b.g / num(b.o.Limite) - a.g / num(a.o.Limite)).slice(0, 3);
-    if (!orc.length) return '';
-    return `<div class="card"><div class="sec">Orçamento de ${MESES[+ym.slice(5) - 1]}</div>
-      ${orc.map(({ o, g }) => { const p = g / num(o.Limite) * 100; return `<div style="margin-bottom:10px" data-a="irFin" data-v="fin-orc"><div class="lin"><span>${ICONE_CAT[o.Categoria] || '📦'} ${esc(o.Categoria)}</span><span>${brlCurto(g)} / ${brlCurto(o.Limite)}</span></div>${bar(p, corLimite(p))}</div>`; }).join('')}</div>`;
-  },
+  rotina: () => rotinaDeHoje(),
   leitura() {
     const livro = T('Livros').find(x => x.Status === 'Lendo');
     if (!livro) return '';
-    return `<div class="card" data-a="ir" data-v="leitura"><div class="sec">Lendo agora</div><div class="row"><div class="ic">📖</div><div class="t"><b>${esc(livro.Titulo)}</b><small>Página ${num(livro.PaginaAtual)}${num(livro.Paginas) ? ' de ' + num(livro.Paginas) : ''}</small>${bar(num(livro.Paginas) ? num(livro.PaginaAtual) / num(livro.Paginas) * 100 : 0)}</div></div></div>`;
+    return `<div class="card" data-a="ir" data-v="leitura"><div class="sec">Lendo agora</div><div class="row"><div class="ic">${ic('book')}</div><div class="t"><b>${esc(livro.Titulo)}</b><small>Página ${num(livro.PaginaAtual)}${num(livro.Paginas) ? ' de ' + num(livro.Paginas) : ''}</small>${bar(num(livro.Paginas) ? num(livro.PaginaAtual) / num(livro.Paginas) * 100 : 0)}</div></div></div>`;
   },
   evolucao() {
     const ds = dadosEvolucao(), sel = ds.find(d => d[0] === E.evoSel) || ds[0];
@@ -2219,36 +2705,39 @@ const CARTAO = {
     const cs = conquistas(), feitas = cs.filter(c => c.atual >= c.alvo);
     const prox = cs.filter(c => c.atual < c.alvo).sort((a, b) => b.atual / b.alvo - a.atual / a.alvo)[0];
     return `<div class="card" data-a="ir" data-v="conquistas"><div class="sec">Conquistas <span class="lk">${feitas.length}/${cs.length} ›</span></div>
-      ${prox ? `<div class="row"><div class="ic" style="background:var(--o2)">${prox.ic}</div><div class="t"><b>Próxima: ${esc(prox.nome)}</b><small>${esc(prox.desc)} · ${Math.min(prox.atual, prox.alvo)}/${prox.alvo}</small>${bar(prox.atual / prox.alvo * 100, '#f59e0b')}</div></div>` : '<div class="vazio">Você desbloqueou todas! 🏆</div>'}</div>`;
-  },
-  frase() {
-    return `<div class="quote" data-a="editarFrase"><b>FRASE DO DIA</b>${esc(fraseDoDia())}</div>`;
+      ${prox ? `<div class="row"><div class="ic" style="background:var(--o2)">${prox.ic}</div><div class="t"><b>Próxima: ${esc(prox.nome)}</b><small>${esc(prox.desc)} · ${Math.min(prox.atual, prox.alvo)}/${prox.alvo}</small>${bar(prox.atual / prox.alvo * 100, '#f59e0b')}</div></div>` : '<div class="vazio">Você desbloqueou todas!</div>'}</div>`;
   },
 };
 
+const cabeca = (titulo, sub, direita) => `<div class="cabeca"><div style="min-width:0"><h1>${titulo}</h1><div class="mesano">${sub}</div></div><div class="topo-acoes">${direita}</div></div>`;
+const mesAno = k => `${maiuscula(MESES[+k.slice(5, 7) - 1])}<small>${k.slice(0, 4)}</small>`;
 function telaInicio() {
-  const hoje = hojeIso(), d = paraDate(hoje), fer = feriadoDe(hoje);
-  const nome = String(cfg('Nome', 'Matheus'));
+  const hoje = hojeIso(), hora = new Date().getHours();
+  const nome = String(cfg('Nome', 'Matheus')).trim().split(/\s+/)[0] || 'você';
+  const ola = hora >= 5 && hora < 12 ? 'Bom dia' : hora >= 12 && hora < 18 ? 'Boa tarde' : 'Boa noite';
   const ocultos = ocultosInicio();
-  const cartoes = ordemInicio().filter(k => !ocultos.includes(k)).map(k => CARTAO[k]()).filter(Boolean);
-  return `${cab(`${maiuscula(SEMANA[d.getDay()].split('-')[0])}, ${d.getDate()} de ${MESES[d.getMonth()]}${fer ? ' · 🎉 ' + esc(fer) : ''}`, `Olá, ${esc(nome)} 👋`,
-    `<div class="topo-acoes">${botaoOlho()}<button class="ibtn" data-a="busca" aria-label="Buscar">🔎</button><button class="avatar" data-a="ir" data-v="ajustes" aria-label="Ajustes">${esc(nome[0])}</button></div>`)}
-  <div class="inicio">${cartoes.join('')}</div>`;
+  const cartoes = ordemInicio().filter(k => !ocultos.includes(k)).map(k => [k, CARTAO[k]()]).filter(c => c[1]);
+  return `${cabeca(`${ola}, ${esc(nome)}`, mesAno(hoje), `<button class="ibtn" data-a="busca" aria-label="Buscar">${ic('search')}</button><button class="avatar" data-a="ir" data-v="ajustes" aria-label="Ajustes">${esc(nome[0].toUpperCase())}</button>`)}
+  <div class="inicio">${cartoes.map(([k, h]) => `<section class="ci ci-${k}">${h}</section>`).join('')}</div>`;
 }
+
 
 // =====================================================================
 // Mais e Ajustes
 // =====================================================================
 const AREAS = [
-  ['presenca', '📅', 'Calendário', '#e0f2fe'], ['financeiro', '💰', 'Financeiro', '#e0f2fe'],
-  ['metas', '🎯', 'Metas', '#f3e8ff'], ['diario', '📝', 'Diário', '#fef3c7'],
-  ['treinos', '🏋️', 'Treinos', '#dcfce7'], ['faculdade', '🎓', 'Faculdade', '#fef3c7'], ['cursos', '💻', 'Cursos', '#eef2ff'],
-  ['leitura', '📚', 'Leitura', '#dcfce7'], ['lugares', '📍', 'Lugares', '#ccfbf1'], ['farmacia', '💊', 'Farmácia', '#fee2e2'],
-  ['datas', '🎂', 'Datas', '#f3e8ff'], ['conquistas', '🏆', 'Conquistas', '#fef3c7'], ['busca', '🔎', 'Buscar', '#e2e8f0'], ['manual', '📖', 'Manual', '#e0f2fe'], ['ajustes', '⚙️', 'Ajustes', '#e2e8f0'],
+  ['presenca', 'calendar', 'Agenda', '#c2410c'], ['habitos', 'habits', 'Hábitos', '#ea580c'], ['financeiro', 'wallet', 'Finanças', '#0284c7'],
+  ['metas', 'target', 'Metas', '#7c3aed'], ['diario', 'pen', 'Diário', '#a16207'], ['treinos', 'dumb', 'Treinos', '#16a34a'],
+  ['faculdade', 'cap', 'Faculdade', '#0d9488'], ['cursos', 'laptop', 'Cursos', '#4f46e5'], ['leitura', 'book', 'Leitura', '#3f7d1c'],
+  ['lugares', 'pin', 'Lugares', '#0d9488'], ['farmacia', 'pill', 'Farmácia', '#dc2626'], ['datas', 'gift', 'Datas', '#db2777'],
+  ['conquistas', 'trophy', 'Conquistas', '#d97706'], ['busca', 'search', 'Buscar', '#64748b'], ['texto', 'text', 'Tamanho do texto', '#64748b'],
+  ['manual', 'book', 'Manual', '#0284c7'], ['ajustes', 'gear', 'Ajustes', '#64748b'],
 ];
 function resumoArea(k) {
   const hoje = hojeIso();
-  if (k === 'presenca') { const r = resumoMes(hoje.slice(0, 7)); return `${r.presenca}/${r.previstos} no mês · ${habitosAtivos().filter(h => feito(hoje, h.ID)).length}/${habitosAtivos().length} hábitos`; }
+  if (k === 'presenca') { const n = itensDoDia(hoje).filter(i => !i.rem).length; return n ? plural(n, 'item hoje', 'itens hoje') : 'Nada marcado hoje'; }
+  if (k === 'habitos') return `${habitosAtivos().filter(h => feito(hoje, h.ID)).length}/${habitosAtivos().length} feitos hoje`;
+  if (k === 'texto') return tamanhoAtual();
   if (k === 'financeiro') return brlCurto(lancMes(hoje.slice(0, 7)).reduce((a, l) => a + (l.Tipo === 'Entrada' ? 1 : -1) * num(l.Valor), 0)) + ' no mês';
   if (k === 'metas') return plural(T('Desejos').filter(d => d.Status !== 'Comprado').length, 'meta', 'metas');
   if (k === 'faculdade') { const p = T('Atividades').filter(a => a.Status !== 'Entregue' && a.Data >= hoje).sort((a, b) => a.Data.localeCompare(b.Data))[0]; return p ? 'Entrega: ' + emDias(difDias(hoje, p.Data)).toLowerCase() : 'Sem entregas'; }
@@ -2257,7 +2746,7 @@ function resumoArea(k) {
   if (k === 'lugares') return T('Lugares').filter(l => l.Status !== 'Visitado').length + ' na lista';
   if (k === 'farmacia') { const v = T('Remedios').filter(r => estadoRemedio(r).ord === 0).length; return v ? plural(v, 'vencido', 'vencidos') : 'Tudo OK'; }
   if (k === 'ajustes') return 'Aparência, e-mails, dados';
-  if (k === 'diario') { const d = T('Diario').find(x => x.Data === hoje); return d && num(d.Humor) ? 'Hoje: ' + HUMOR[num(d.Humor)].e : 'Como foi seu dia?'; }
+  if (k === 'diario') { const d = T('Diario').find(x => x.Data === hoje); return d && num(d.Humor) ? 'Hoje: ' + HUMOR[num(d.Humor)].n : 'Como foi seu dia?'; }
   if (k === 'treinos') return plural(new Set(T('Treinos').filter(t => String(t.Data).startsWith(hoje.slice(0, 7))).map(t => t.Data)).size, 'dia', 'dias') + ' no mês';
   if (k === 'datas') { const p = T('Datas').map(x => proximaOcorrencia(x.Data)).filter(Boolean).sort()[0]; return p ? 'Próxima: ' + emDias(difDias(hoje, p)).toLowerCase() : 'Aniversários'; }
   if (k === 'conquistas') { const cs = conquistas(); return cs.filter(c => c.atual >= c.alvo).length + '/' + cs.length; }
@@ -2267,16 +2756,17 @@ function resumoArea(k) {
 }
 function telaMais() {
   return `${cab('Todas as áreas', 'Mais')}
-  <div class="apps">${AREAS.map(([k, i, n, c]) => `<button class="appi" data-a="${k === 'metas' ? 'irFin' : k === 'busca' ? 'busca' : 'ir'}" data-v="${k === 'metas' ? 'metas' : k}"><div class="ic" style="background:${c}">${i}</div>${n}<small>${esc(resumoArea(k))}</small></button>`).join('')}</div>`;
+  <div class="apps">${AREAS.map(([k, i, n, c]) => `<button class="appi" data-a="${k === 'metas' ? 'irFin' : k === 'busca' || k === 'texto' ? k : 'ir'}" data-v="${k === 'metas' ? 'metas' : k}">${tile(i, c)}${n}<small>${esc(resumoArea(k))}</small></button>`).join('')}</div>`;
 }
 
 const AUTOMACOES = [
-  ['AlertasManha', '☀️ Resumo da manhã (7h)', 'Só chega quando há algo: entrega, folga, fatura, orçamento, remédio, aniversário.'],
-  ['LembretePresenca', '📅 Lembrete da presença (18h)', 'Se o dia de hoje ainda estiver vazio no calendário.'],
-  ['LembreteRemedio', '💊 Hora do remédio', 'Na hora das doses dos remédios marcados como “em uso”.'],
-  ['ResumoMensal', '📊 Resumo do mês (dia 1)', 'Presença, gastos, hábitos e leituras do mês anterior.'],
-  ['Agenda', '🗓️ Copiar para o Google Agenda', 'Entregas, folgas agendadas e passeios viram eventos.'],
-  ['Backup', '💾 Cópia de segurança (domingo)', 'Cópia da planilha numa pasta do Drive; guarda as 8 últimas.'],
+  ['AlertasManha', 'Resumo da manhã (7h)', 'Só chega quando há algo: entrega, folga, fatura, orçamento, remédio, aniversário, compromisso.'],
+  ['LembreteCompromisso', 'Lembrete de compromisso', 'Na hora, 1 h antes ou 1 dia antes, como você escolher em cada compromisso.'],
+  ['LembretePresenca', 'Lembrete da presença (18h)', 'Se o dia de hoje ainda estiver vazio no calendário.'],
+  ['LembreteRemedio', 'Hora do remédio', 'Na hora das doses dos remédios marcados como “em uso”.'],
+  ['ResumoMensal', 'Resumo do mês (dia 1)', 'Presença, gastos, hábitos e leituras do mês anterior.'],
+  ['Agenda', 'Copiar para o Google Agenda', 'Compromissos, entregas, folgas agendadas e passeios viram eventos.'],
+  ['Backup', 'Cópia de segurança (domingo)', 'Cópia da planilha numa pasta do Drive; guarda as 8 últimas.'],
 ];
 function telaAjustes() {
   if (!E.auto && !E.carregandoAuto) {
@@ -2295,15 +2785,16 @@ function telaAjustes() {
         ${linha('Nome', esc(cfg('Nome', '—')), 'editarCfg', 'data-g="perfil"')}
         ${linha('E-mail para avisos', esc(cfg('Email', '') || 'O da conta Google'), 'editarCfg', 'data-g="perfil"')}</div>
       <div class="card"><div class="sec">Aparência</div>
-        ${linha('Tema e cor', esc(cfg('Tema', 'Automático')) + ' · ' + esc(cfg('Cor', 'Azul petróleo')), 'editarCfg', 'data-g="aparencia"')}
+        ${linha('Tema e cor', esc(cfg('Tema', 'Automático')) + ' · ' + esc(cfg('Cor', 'Caramelo')), 'editarCfg', 'data-g="aparencia"')}
         ${linha('Abrir o app em', esc(telaInicialNome()), 'editarCfg', 'data-g="aparencia"')}
+        ${linha('Tamanho do texto', tamanhoAtual() + ' · só neste aparelho', 'texto')}
         ${linha('Cartões do Início', ocultos ? plural(ocultos, 'cartão escondido', 'cartões escondidos') + ' · reordenar' : 'Escolher e reordenar', 'personalizar')}
         ${linha('Frase do dia', cfg('FraseModo', 'Automática') === 'Fixa' ? 'Fixa' : 'Automática (muda todo dia)', 'editarFrase')}</div>
       <div class="card"><div class="sec">Ajustes de cada tela</div>
-        <p class="nota mb">Também ficam no botão ⚙️ no topo de cada tela.</p>
-        ${linha('📅 Calendário', 'Preparar meses, prazo da folga, feriados locais, e-mail do RH', 'editarCfg', 'data-g="presenca"')}
-        ${linha('🎓 Faculdade', esc(cfg('Curso', 'Nome do curso')), 'editarCfg', 'data-g="faculdade"')}
-        ${linha('📚 Leitura', 'Meta: ' + plural(num(cfg('MetaLivros', 1)) || 1, 'livro', 'livros') + ' no ano', 'editarCfg', 'data-g="leitura"')}</div>
+        <p class="nota mb">Também ficam na engrenagem no topo de cada tela.</p>
+        ${linha('Agenda e presença', 'Preparar meses, prazo da folga, feriados locais, e-mail do RH', 'editarCfg', 'data-g="presenca"')}
+        ${linha('Faculdade', esc(cfg('Curso', 'Nome do curso')), 'editarCfg', 'data-g="faculdade"')}
+        ${linha('Leitura', 'Meta: ' + plural(num(cfg('MetaLivros', 1)) || 1, 'livro', 'livros') + ' no ano', 'editarCfg', 'data-g="leitura"')}</div>
     </div>
     <div class="grid">
       <div class="card"><div class="sec">E-mails automáticos ${est}</div>
@@ -2341,9 +2832,10 @@ function abrirConfig(grupo) {
   else if (grupo === 'aparencia') abrirForm({
     titulo: 'Aparência',
     campos: [{ k: 'Tema', l: 'Tema', t: 'sel', op: ['Automático', 'Claro', 'Escuro'], ajuda: 'Automático segue o celular.' },
-      { k: 'Cor', l: 'Cor do app', t: 'sel', op: Object.keys(CORES_APP) }, { k: 'TelaInicial', l: 'Abrir o app em', t: 'sel', op: Object.keys(TELA_INICIAL) }],
-    valores: { Tema: cfg('Tema', 'Automático'), Cor: cfg('Cor', 'Azul petróleo'), TelaInicial: telaInicialNome() },
-    salvar: o => { fecharVeu(); salvarConfig(o, 'Aparência salva ✓'); aplicarTema(o.Tema); render(); },
+      { k: 'Cor', l: 'Cor do app', t: 'sel', op: Object.keys(CORES_APP) }, { k: 'TelaInicial', l: 'Abrir o app em', t: 'sel', op: Object.keys(TELA_INICIAL) },
+      { k: 'Tamanho', l: 'Tamanho do texto (só neste aparelho)', t: 'sel', op: Object.keys(TAMANHOS) }],
+    valores: { Tema: cfg('Tema', 'Automático'), Cor: cfg('Cor', 'Caramelo'), TelaInicial: telaInicialNome(), Tamanho: tamanhoAtual() },
+    salvar: o => { fecharVeu(); ls.set('mdd_tamanho', o.Tamanho); aplicarTamanho(); delete o.Tamanho; salvarConfig(o, 'Aparência salva ✓'); aplicarTema(o.Tema); render(); },
   });
   else if (grupo === 'faculdade') abrirForm({
     titulo: 'Faculdade', campos: [{ k: 'Curso', l: 'Nome do curso' }], valores: { Curso: cfg('Curso', '') },
@@ -2395,14 +2887,15 @@ async function acaoAutomacao(v) {
 }
 
 function abrirRapidas() {
-  const ops = [['📅', 'Presença de hoje', 'abrirDia', `data-d="${hojeIso()}"`], ['💸', 'Gasto / entrada', 'novoLanc', ''], ['🐷', 'Guardar numa meta', 'irFin', 'data-v="metas"'],
-    ['🏖️', 'Folga', 'novaFolga', ''], ['🎓', 'Atividade', 'novaAtividade', ''], ['✅', 'Tarefa da semana', 'novaTarefa', 'data-escopo="semana"'],
-    ['📝', 'Diário de hoje', 'escreverDiario', `data-d="${hojeIso()}"`], ['🏋️', 'Treino', 'novoTreino', ''], ['🎂', 'Data importante', 'novaData', ''],
-    ['💊', 'Remédio', 'novoRemedio', ''], ['📚', 'Livro', 'novoLivro', ''], ['📍', 'Lugar', 'novoLugar', ''], ['🎯', 'Nova meta', 'novoDesejo', '']];
+  const ops = [['clock', '#c2410c', 'Compromisso', 'novoComp', ''], ['calendar', '#16a34a', 'Presença de hoje', 'abrirDia', `data-d="${hojeIso()}"`],
+    ['money', '#0284c7', 'Gasto / entrada', 'novoLanc', ''], ['piggy', '#7c3aed', 'Guardar numa meta', 'irFin', 'data-v="metas"'],
+    ['sun', '#ea580c', 'Folga', 'novaFolga', ''], ['cap', '#0d9488', 'Entrega / atividade', 'novaAtividade', ''], ['list', '#64748b', 'Tarefa da semana', 'novaTarefa', 'data-escopo="semana"'],
+    ['pen', '#a16207', 'Diário de hoje', 'escreverDiario', `data-d="${hojeIso()}"`], ['dumb', '#16a34a', 'Treino', 'novoTreino', ''], ['gift', '#db2777', 'Data importante', 'novaData', ''],
+    ['pill', '#dc2626', 'Remédio', 'novoRemedio', ''], ['book', '#3f7d1c', 'Livro', 'novoLivro', ''], ['pin', '#0d9488', 'Lugar', 'novoLugar', ''], ['target', '#7c3aed', 'Nova meta', 'novoDesejo', '']];
   abrirVeu(`<h2>Adicionar</h2>
     <div class="rapido"><input id="rapidoTxt" placeholder="Ex.: mercado 52,30 pix" autocomplete="off" enterkeyhint="go"><button class="btnp" data-a="rapidoLanc">Lançar</button></div>
     <p class="nota" style="margin-top:6px">Escreva o gasto do seu jeito: “uber 18 ontem”, “salário 3200”, “tênis 600 crédito 3x”.</p>
-    <div class="rapidas">${ops.map(([i, n, a, x]) => `<button data-a="${a}" ${x}><span class="ic">${i}</span>${n}</button>`).join('')}</div>
+    <div class="rapidas">${ops.map(([i, c, n, a, x]) => `<button data-a="${a}" ${x}>${tile(i, c)}${n}</button>`).join('')}</div>
     <div class="acoes"><button class="btn sec2" data-a="fechar">Fechar</button></div>`);
   setTimeout(() => { const el = $('rapidoTxt'); if (el && matchMedia('(min-width: 900px)').matches) el.focus(); }, 50);
 }
@@ -2801,6 +3294,7 @@ function buscar(q) {
   const grupos = [];
   const g = (nome, itens) => { if (itens.length) grupos.push(`<div class="grupo-res">${nome} · ${itens.length}</div>` + itens.slice(0, 8).join('')); };
   const item = (ic, tit, sub, attrs) => `<div class="row" ${attrs}><div class="ic">${ic}</div><div class="t"><b>${esc(tit)}</b><small>${esc(sub)}</small></div></div>`;
+  g('Compromissos', T('Compromissos').filter(c => tem(c.Titulo, c.Local, c.Obs)).sort((a, b) => String(b.Data).localeCompare(String(a.Data))).map(c => item(ic('calendar'), c.Titulo, fmt(c.Data) + (horaComp(c) ? ' · ' + horaComp(c) : '') + (c.Local ? ' · ' + c.Local : ''), `data-a="editarComp" data-id="${esc(c.ID)}"`)));
   g('Calendário', Object.keys(E.dias).filter(k => tem(E.dias[k].obs, E.dias[k].codigo === q.toUpperCase() ? q : '')).sort().reverse().map(k => item('📅', E.dias[k].obs || E.dias[k].codigo, fmt(k) + ' · ' + E.dias[k].codigo, `data-a="abrirDia" data-d="${k}"`)));
   g('Diário', T('Diario').filter(d => tem(d.Texto)).sort((a, b) => String(b.Data).localeCompare(String(a.Data))).map(d => item(num(d.Humor) ? HUMOR[num(d.Humor)].e : '📝', d.Texto, fmt(d.Data), `data-a="escreverDiario" data-d="${d.Data}"`)));
   g('Lançamentos', T('Lancamentos').filter(l => tem(l.Descricao, l.Categoria)).sort((a, b) => String(b.Data).localeCompare(String(a.Data))).map(l => item(ICONE_CAT[l.Categoria] || '💸', l.Descricao || l.Categoria, `${fmt(l.Data)} · ${brl(l.Valor)}`, `data-a="editarLanc" data-id="${esc(l.ID)}"`)));
@@ -2862,7 +3356,7 @@ function telaManual() {
 }
 
 // MANUAL:INICIO (gerado a partir de MANUAL.md)
-const MANUAL = [["Como o app se organiza","No celular, a barra de baixo leva às 3 telas mais usadas e ao botão **+**. No computador, tudo fica no menu da lateral.\n\n| Onde | O que faz |\n| --- | --- |\n| **Início** | Resumo do dia: presença, atenções, humor, hábitos, metas e gráficos |\n| **Calendário** | Presença, folgas, hábitos e to-dos, numa página só |\n| **+** (botão do meio) | Adicionar qualquer coisa rápido |\n| **Finanças** | Tudo do dinheiro, numa página só com seções |\n| **Mais** | Todas as outras áreas, cada uma com um resumo embaixo do nome |\n\n**O botão +** abre uma caixa para escrever um gasto do seu jeito (veja Financeiro) e atalhos para: presença de hoje, gasto ou entrada, guardar numa meta, folga, atividade da faculdade, tarefa da semana, diário de hoje, treino, data importante, remédio, livro, lugar e nova meta.\n\n**Regras que valem em todo o app**\n\n- Tudo que aparece numa lista é tocável: abre o formulário para editar ou excluir.\n- Valores em dinheiro aceitam vírgula: `186,40` ou `1.234,56`.\n- As telas compridas (Calendário e Financeiro) têm uma fileira de botões no topo que pula direto para cada seção.\n- A **engrenagem** no topo de uma tela abre os ajustes daquela tela (Calendário, Faculdade, Leitura).\n- A **lupa** no topo do Início abre a busca geral. No computador, a tecla `/` faz o mesmo.\n- O **olho** (👁️) no topo do Início e do Financeiro esconde todos os valores em R$ (vira \"R$ ••••\"). Toque de novo para mostrar.\n- **Excluiu sem querer?** Logo depois de excluir, aparece \"Desfazer\" por alguns segundos.\n- **Puxe a tela para baixo** no topo de qualquer tela para sincronizar.\n- **Compartilhar para o app:** no celular, compartilhe o texto de um comprovante (Pix, transferência) e escolha **Meu Dia**. O lançamento abre já preenchido, para você conferir.\n- **Versão nova:** quando o app for atualizado, aparece \"Nova versão disponível · Atualizar\".\n- Ao salvar, o app mostra a mudança na hora e grava na planilha em seguida. Se der erro, ele desfaz e avisa."],["Início","O Início junta, em cartões, o que importa hoje. Você escolhe quais cartões aparecem e em que ordem em **Ajustes → Aparência → Cartões do Início**.\n\n| Cartão | O que mostra e o que dá para fazer |\n| --- | --- |\n| **Hoje** | Código do dia e quantos hábitos você fez. Se o dia ainda está vazio, mostra botões para lançar com 1 toque (P ou PH em dia de semana, SÁB, DOM, FERI) e \"Outro…\". Atalhos para presença, gasto, treino e guardar dinheiro |\n| **Números do mês** | Presença do mês, saldo, total guardado e dias até as férias. Cada número leva à tela dele |\n| **Até o próximo salário** | Quanto ainda dá para gastar até o próximo pagamento e quanto isso dá por dia (veja Financeiro) |\n| **Atenção hoje** | Lista automática do que pede ação (detalhes abaixo) |\n| **Como foi seu dia?** | 5 carinhas de humor: um toque grava o humor de hoje no Diário. \"Escrever sobre o dia\" abre o texto |\n| **Próximos 7 dias** | Feriados, entregas, folgas agendadas, passeios, fixos (gastos e entradas como o salário), faturas e aniversários |\n| **Hábitos de hoje** | Marque cada hábito com um toque |\n| **Remédios de hoje** | Doses do dia dos remédios em uso, com a próxima destacada. Só aparece se houver |\n| **Metas** | As 3 metas mais perto de completar |\n| **Orçamento** | As 3 categorias mais perto do limite. Só aparece se houver limite |\n| **Lendo agora** | O livro atual e a página. Só aparece se houver |\n| **Últimos 12 meses** | Um gráfico por vez: Presença, Dinheiro, Hábitos, Treinos ou Humor. Cada barra é um mês; toque nos botões para trocar |\n| **Conquistas** | A próxima conquista e quanto falta |\n| **Frase do dia** | Muda sozinha todo dia. Toque para trocar o modo ou escrever as suas |\n\n**O que entra em \"Atenção hoje\"**\n\n- Presença de hoje ainda não lançada.\n- Folga compensatória perto do prazo (15 dias ou menos) ou com prazo vencido.\n- Entregas da faculdade atrasadas, de hoje ou dos próximos 7 dias.\n- Categoria do orçamento com 90% do limite ou mais.\n- Remédios vencidos ou vencendo.\n- Férias com prazo vencendo em 90 dias ou já vencido.\n- Aniversários e datas importantes dentro do aviso que você escolheu (7 dias, se não escolher).\n\nToque num item para ir direto a ele."],["Calendário","O Calendário é o seu quadro de presença: um código por dia, com folgas, hábitos e to-dos na mesma página. Os botões do topo pulam para Mês, Resumo, Folgas, Hábitos, To-dos e Ano.\n\n**Lançar um dia**\n\n1. Toque no dia.\n2. Escolha o código (ou \"Sem código\" para limpar).\n3. Se quiser, marque **Cobrindo férias** e escreva uma observação.\n4. **Salvar**, ou **Salvar e próximo** para ir lançando a semana em sequência.\n\nAs setas no topo do painel trocam de dia sem fechar. O dia de hoje também pode ser lançado com 1 toque no cartão Hoje do Início.\n\n**Os códigos** (a cor do dia vem do código; a lista fica na aba Calendário da planilha)\n\n| Grupo | Códigos |\n| --- | --- |\n| Presença | P Presente · PA Parcialmente ausente · PP Parcialmente presente · SNG Sinergia Centauro |\n| Presença com extra | PH · HE · SÁB+ · DOM+ · FERI+ |\n| Folga | FC Compensatória · FBH Banco de horas · DAYOFF Aniversário · TRF Troca de folga |\n| Não trabalha | SÁB · DOM · SEG · FERI Feriado |\n| Outros | F Falta · AT Atestado · AF Afastado · S Suspenso · FE Férias |\n\n**Navegar**\n\n- Setas: mês anterior e próximo.\n- **Ano:** a caixinha ao lado do nome do mês troca o ano e mantém o mês.\n- **Hoje:** volta para o dia de hoje e faz ele piscar.\n- **Lupa:** vai para qualquer data e já abre o dia.\n- Feriados ainda não lançados aparecem com um confete no dia.\n\n**Anotações do mês:** embaixo do calendário, uma lista com cada dia que tem observação ou feriado, por exemplo \"12 – Nossa Senhora Aparecida / Dia das crianças\". Toque para abrir o dia.\n\n**Resumo:** presença do mês (dias presentes de dias previstos; fim de semana, folga e férias não contam como previstos), folgas, dias com extra, faltas e dias até as próximas férias. Embaixo, o mesmo para o ano escolhido. Meses sem nada lançado ficam fora da conta do ano.\n\n**Preparar os meses sozinho:** ao abrir o app, o mês atual e o próximo são preenchidos uma vez, só nos dias vazios: domingos como DOM, feriados como FERI (com o nome na observação) e, se você ligar, sábados como SÁB. O que você já lançou nunca muda, e um dia que você apagar depois não volta. Tudo isso se ajusta na engrenagem do Calendário, que também tem o botão \"Preencher este mês agora\".\n\n**Folgas**\n\n- **+ Nova** cadastra a folga: tipo (Folga compensatória, Banco de horas ou Day off), data trabalhada, data da folga, nº do chamado e anotações.\n- Com a data da folga preenchida, dá para marcar o dia no calendário na mesma hora.\n- **Folga compensatória tem prazo:** 60 dias a partir do dia trabalhado (mude na engrenagem). Faltando 15 dias ou menos, ela aparece em destaque e no Início.\n- **E-mail para o RH:** dentro da folga, monta o texto pronto para copiar. O modelo se edita na engrenagem, com `{folga}`, `{trabalhada}` e `{tipoDia}`.\n\n**Férias:** informe a data de admissão na engrenagem do Calendário. O cartão Férias mostra cada período aquisitivo (12 meses trabalhados), quantos dias você já tirou (os dias marcados como Férias no calendário), quantos faltam e até quando precisa tirar (os 12 meses seguintes, pela CLT). Faltando 90 dias para o prazo, o aviso vai para o Início. Faltas que reduzem férias não entram na conta.\n\n**Folgas no ano:** no topo do cartão Folgas, quantas de cada tipo você tirou no ano escolhido (ex.: \"Em 2026: 5 FC · 6 FBH · 1 DAYOFF\").\n\n**Ano de relance:** no fim da página, o ano inteiro em quadradinhos coloridos, um por dia.\n\n**Feriados:** os nacionais já vêm calculados, inclusive Páscoa e Corpus Christi. Os da sua cidade entram na engrenagem, um por linha, como `22/05 Santa Rita`."],["Hábitos e to-dos","Os hábitos ficam no fim do Calendário, na seção \"Hábitos e to-dos\", mais discretos. Para marcar só o de hoje, o jeito mais rápido é o cartão Hábitos de hoje no Início.\n\n**Hábitos**\n\n- **Semana:** uma grade com cada hábito × os 7 dias. Toque na bolinha para marcar ou desmarcar. As setas trocam de semana; dias futuros ficam bloqueados.\n- **Mês:** uma barra por hábito, com quantos dias você fez no mês.\n- **Sequência:** ao lado do nome aparece a sequência de dias seguidos.\n- **+ Hábito** (ou toque no nome de um hábito): nome, ícone, meta por semana, ordem e ativo.\n- **Meta por semana:** para hábitos que não são diários (ex.: academia 3x). Aí a sequência conta semanas seguidas cumprindo a meta, e a grade mostra \"2/3\".\n- **Ativo desmarcado** esconde o hábito sem apagar o histórico.\n- **Hábito com quantidade** (ex.: 2 L de água, 10 páginas): preencha \"Quantidade por dia\", a unidade e quanto soma cada toque. No Início, o botão **+0,5** soma direto; tocar no hábito abre os botões − e +. Conta como feito quando chega na meta, e na grade aparece o valor parcial em verde claro.\n\nEmbaixo da grade, a porcentagem da semana cumprida e a da semana anterior.\n\n**To-dos**\n\nUm cartão com 3 listas: **Da semana**, **Do mês** e **Metas do ano**. Toque no quadradinho para marcar como feito; toque no texto para editar ou excluir. Cada lista é do período atual: na semana que vem, a lista da semana começa vazia."],["Financeiro","O Financeiro é uma página só, com seções: Resumo, Metas, Lançamentos, Fixos, Orçamento, Categorias, Guardado e Cartões. As setas do cartão de saldo trocam o mês.\n\n**Resumo do mês:** saldo (entradas menos saídas), total de entradas, de saídas e quanto você guardou no mês. Embaixo, quanto você gastou a mais ou a menos que no mês anterior.\n\n**Lançar um gasto ou entrada**\n\n- **+ Lançar:** tipo (Saída ou Entrada), descrição, valor, data, categoria, forma de pagamento, cartão (se crédito) e parcelas.\n- **Parcelas:** numa compra parcelada, o app cria uma parcela por mês, cada uma no mês certo.\n- **Do seu jeito, por texto:** no + ou na seção Lançamentos, escreva e aperte Lançar. O app preenche o formulário e você só confere.\n\n| Você escreve | O app entende |\n| --- | --- |\n| `mercado 52,30 pix` | Saída de R$ 52,30, Alimentação, Pix, hoje |\n| `uber 18 ontem` | Saída de R$ 18, Transporte, data de ontem |\n| `fone 300 3x crédito` | R$ 300 no crédito em 3 parcelas |\n| `farmácia 25,90 12/10` | Saída de R$ 25,90, Saúde, em 12/10 |\n| `recebi salário 3.500,00` | Entrada de R$ 3.500, Salário |\n| `+ 100 reembolso` | Entrada de R$ 100, \"Reembolso\" |\n\nA categoria vem primeiro do que você já lançou com o mesmo nome; se for a primeira vez, de palavras conhecidas (mercado, uber, netflix, farmácia…). Formas de pagamento reconhecidas: pix, débito, crédito ou cartão, dinheiro, boleto e vale/VR/VA. O nome de um cartão seu também funciona.\n\n**Até o próximo salário** (cartão do Início): conta o que entrou desde o último pagamento (salário ou adiantamento cadastrados nos Fixos, categoria Salário), tira o que você gastou desde então e os fixos e parcelas que ainda vão cair antes do próximo pagamento. O resultado é quanto está livre e quanto dá por dia. Vale refeição (pagamento Voucher) fica de fora.\n\n**Filtrar lançamentos:** na seção Lançamentos, filtre por texto, categoria ou forma de pagamento. Marque \"Procurar em todos os meses\" para buscar além do mês aberto. O total do filtro aparece em cima da lista.\n\n**Importar extrato:** em Lançamentos, toque em **⬆ Importar** e escolha o extrato baixado do banco (CSV ou OFX; funciona com Nubank, Inter, Itaú, Bradesco, C6 e outros). Você confere a lista antes: a categoria vem dos seus lançamentos anteriores com o mesmo nome, e o que parece já lançado (mesma data e valor) vem desmarcado. Para fatura de cartão, escolha Crédito e o cartão.\n\n**Metas e desejos**\n\n- **+ Meta:** o que é, ícone, tipo (Desejo ou Necessidade), preço, prioridade, link da loja e quanto já tinha guardado antes do app.\n- Toque numa meta para **+ Guardar** ou **− Retirar**, com data, valor e onde o dinheiro está guardado. O histórico fica dentro da meta.\n- A meta mostra a previsão de quando você chega lá, pelo ritmo dos últimos 3 meses.\n- Filtros: Todos, Necessidade, Desejo e Comprados. Marque Status \"Comprado\" quando comprar.\n\n**Fixos do mês** (gastos e entradas que se repetem)\n\n- Entram sozinhos nos lançamentos, no dia certo, quando você abre o app ou às 7h (se os e-mails automáticos estiverem ligados).\n- **Quando cai:** *Dia do mês* (ex.: aluguel dia 5); *Dia útil* (o número vira o Nº dia útil: 5 = 5º dia útil, como o salário); *Dia do mês ou útil anterior* (ex.: adiantamento dia 20; em fim de semana ou feriado, vale o dia útil antes).\n- **Sábado conta como dia útil:** marque se a sua empresa conta o sábado (a CLT conta; muitas empresas não).\n- **Status:** *Fixo* entra todo mês, sem data para acabar; *Prazo* para no último mês escolhido (ex.: curso até 06/2027) e mostra quantos meses faltam. Depois disso aparece como Encerrado.\n- **Modelos prontos** no fim do formulário novo: Salário (5º dia útil), Adiantamento (dia 20) e Vale refeição (dia 1). Você só preenche o valor.\n- Cada fixo mostra a data deste mês e se já foi Lançado (ou Recebido). No rodapé: total de gastos fixos e de entradas fixas por mês.\n- Desmarcar **Ativo** pausa o fixo. Excluir um fixo não apaga os lançamentos antigos.\n\n**Orçamento:** um limite por mês para cada categoria. A barra fica laranja perto do limite e vermelha quando estoura; a partir de 90% o aviso vai para o Início.\n\n**Categorias:** gráfico de rosca dos gastos do mês, a comparação de cada categoria com o mês anterior (▲ subiu, ▼ caiu, \"novo\" se não existia) e o total por forma de pagamento.\n\n**Onde está guardado:** os seus locais (ex.: Cofre, Caixinha, Tesouro), com o valor que já havia e uma meta opcional. O que você guarda nas metas usando o mesmo nome de local soma aqui.\n\n**Cartões:** nome e dia do vencimento. Mostra as compras do mês em cada cartão, e o vencimento aparece nos Próximos 7 dias do Início."],["Estudos","Três telas, no menu Mais (ou na lateral): Faculdade, Cursos e Leitura.\n\n**Faculdade**\n\n- No topo: entregas concluídas, quanto falta para a próxima, média das notas e número de disciplinas.\n- **+ Atividade:** nome, disciplina, data de entrega, status (Pendente ou Entregue) e nota.\n- Cada atividade mostra o estado: Atrasada, Hoje, \"em X dias\" ou Entregue. As atrasadas e as dos próximos 7 dias vão para o Início e para o e-mail da manhã.\n- Com o Google Agenda ligado, as entregas viram eventos na sua agenda.\n- A engrenagem muda o nome do curso que aparece no topo.\n\n**Cursos**\n\n- Agrupados por plataforma (ex.: Hashtag, ADA), com o botão \"Abrir portal\" quando o curso tem link.\n- Filtros: Todos, Cursando, A fazer e Concluído.\n- **+ Curso:** nome, plataforma, carga horária, status (A fazer, Cursando, Pausado, Concluído), progresso em % e link do portal.\n\n**Leitura**\n\n- No topo: a meta de livros do ano e quantos você já leu. A meta se muda na engrenagem.\n- **Lendo agora:** página atual, barra de progresso e quantos dias faltam para terminar no seu ritmo. Toque para atualizar a página.\n- Estantes: Quero ler, Lendo e Lido.\n- **+ Livro:** nome, autor, ano, gênero, páginas, status, página atual, início, fim, avaliação (1 a 5) e síntese.\n- **Buscar dados pelo nome:** dentro do livro, preenche autor, páginas, sinopse e capa pelo Google Livros."],["Vida","Cinco telas no menu Mais: Diário, Treinos, Lugares, Farmácia e Datas.\n\n**Diário**\n\n- Um registro por dia: humor de 1 a 5 (😞 a 😄) e um texto, se quiser.\n- O jeito mais rápido é tocar numa carinha no cartão \"Como foi seu dia?\" do Início.\n- A tela mostra o mês como um calendário colorido pelo humor; toque num dia para ler ou escrever.\n- Números do mês: humor médio, dias escritos e dias bons.\n- **Descobertas:** com 6 dias ou mais de humor, o app compara os dias com e sem cada hábito, treino e folga, e mostra o que mais combina com seus dias bons (ex.: \"Humor 4,2 nos dias com Caminhar · 3,1 nos dias sem\").\n\n**Treinos**\n\n- **Registrar:** exercício, séries, repetições (ou segundos, na prancha), carga extra, data e observação.\n- Ao repetir um exercício, o formulário já vem com as séries e repetições da última vez.\n- **Marcar o hábito junto:** se você tem um hábito como Calistenia, o formulário oferece marcá-lo como feito no mesmo toque.\n- A tela mostra dias de treino no mês, semanas seguidas treinando, a evolução de cada exercício (último treino, recorde e um mini gráfico) e o histórico.\n\n**Lugares**\n\n- Lista de lugares para conhecer: nome, ícone, categoria, status (Quero ir, Planejado, Visitado), data, avaliação e observações.\n- O próximo passeio planejado aparece em destaque, e os planejados vão para os Próximos 7 dias e para a agenda.\n\n**Farmácia**\n\n- Inventário dos remédios de casa: nome, para que serve, quantidade, validade (mês/ano) e observações.\n- Estados: Vencido, Vence este mês, Vence em breve (45 dias), OK. Vencidos e vencendo vão para o Início.\n- **Em uso agora:** marque \"Estou tomando agora\" e preencha a dose e os horários, como `08:00, 20:00`, `8h e 20h` ou `de 8 em 8h`. As doses aparecem no Início e, com o e-mail \"Hora do remédio\" ligado, chega um aviso na hora (pode atrasar até 1 hora).\n\n**Datas importantes**\n\n- **+ Data:** nome, tipo (Aniversário, Comemorativa, Outro), data, quantos dias antes avisar e observação.\n- A tela lista as próximas por mês, com o dia da semana. Em aniversário com o ano de nascimento, mostra a idade (\"faz 56 anos\").\n- O aviso aparece no Início e no e-mail da manhã, a partir do número de dias que você escolheu (7, se ficar vazio)."],["Conquistas e busca","**Conquistas:** 20 medalhas que se desbloqueiam sozinhas conforme você usa o app. Quando uma desbloqueia, cai confete e aparece um aviso. A tela Conquistas mostra todas, com a barra do quanto falta.\n\n| Área | Conquistas |\n| --- | --- |\n| Presença | Mês perfeito (100% num mês) · Calendário em dia (30 dias seguidos lançados) |\n| Hábitos | Pegando o ritmo (7 dias seguidos) · Hábito de ferro (30) · Imparável (100) · Semana perfeita (todos os hábitos numa semana) |\n| Dinheiro | Primeiros mil (R$ 1.000 guardados) · Reserva de respeito (R$ 5.000) · Objetivo alcançado (completar uma meta) · Dentro do orçamento (um mês sem estourar limite) |\n| Diário | Querido diário (7 dias) · Escritor (30 dias) |\n| Treinos | Em forma (10 dias) · Atleta (50 dias) |\n| Estudos | Primeiro livro · Meta de leitura (a meta do ano) · Aluno exemplar (5 entregas, nenhuma atrasada) · Certificado (concluir um curso) |\n| Vida | Explorador (visitar 5 lugares) · Farmácia em ordem (5 ou mais remédios, nenhum vencido) |\n\n**Busca geral:** a lupa no topo do Início (ou Buscar no menu). Digite 2 letras ou mais: procura sem ligar para acentos em observações do calendário, diário, lançamentos, metas, folgas, faculdade, cursos, livros, lugares, remédios, datas, treinos e tarefas. Toque num resultado para abrir; num treino, ele já abre para repetir o exercício."],["Ajustes e e-mails automáticos","Ajustes fica no menu Mais (ou tocando na sua inicial no topo do Início) e tem 4 blocos. As opções de cada tela ficam na engrenagem dela, e Ajustes também lista esses atalhos.\n\n| Bloco | O que dá para mudar |\n| --- | --- |\n| **Você** | Nome (aparece no \"Olá\") e e-mail para os avisos (vazio = o da sua conta Google) |\n| **Aparência** | Tema (Automático segue o celular, Claro ou Escuro), cor do app (Azul petróleo, Verde, Roxo, Laranja, Rosa, Grafite), tela em que o app abre, cartões do Início e frase do dia |\n| **E-mails automáticos** | Ligar ou desligar cada e-mail, mandar um teste |\n| **Dados** | Atualizar a agenda agora e fazer uma cópia de segurança agora |\n| **Este aparelho** | Sincronizar agora, desconectar da planilha e ligar o bloqueio com digital |\n\n**Bloqueio com digital:** em Ajustes → Este aparelho, ligue \"Bloquear com digital\". O app pede a digital ou o rosto ao abrir e depois de 1 minuto fora dele. Se a biometria falhar, dá para destravar com a chave do app. É uma trava da tela neste aparelho; cada aparelho liga a sua.\n\n**Cartões do Início:** marque os que quer ver e use as setas para mudar a ordem. \"Voltar ao padrão\" desfaz tudo.\n\n**Frase do dia:** no modo Automático, muda todo dia (60 frases do app + as suas). No modo Fixa, mostra sempre a sua frase favorita.\n\n**Os e-mails automáticos**\n\n| E-mail | Quando chega |\n| --- | --- |\n| Resumo da manhã | 7h, só quando há algo: entrega, folga, fatura, orçamento, remédio, aniversário |\n| Lembrete da presença | 18h, se o dia de hoje ainda estiver vazio |\n| Hora do remédio | Na hora de cada dose dos remédios em uso (até 1 hora de atraso) |\n| Resumo do mês | Dia 1, com presença, gastos, hábitos e leituras do mês anterior |\n| Copiar para o Google Agenda | Todo dia: entregas, folgas agendadas e passeios viram eventos (sem duplicar) |\n| Cópia de segurança | Domingo: uma cópia da planilha na pasta \"Meu Dia a Dia - Backups\" do Drive, guardando as 8 últimas |\n\nPara funcionar, os e-mails precisam estar **ligados** (botão \"Ligar e-mails automáticos\"). Se aparecer \"Sem permissão\", rode a função **autorizar** no editor do Apps Script. Depois de uma atualização que traz um e-mail novo, pause e ligue de novo para ele começar a valer."],["A planilha por dentro","Tudo fica em 6 abas, uma por área. O app cria e organiza as abas sozinho; o ideal é mexer pelo app, não direto na planilha.\n\n| Aba | Tipos de linha que ela guarda |\n| --- | --- |\n| **Calendário** | Dia, Folga, Código |\n| **Hábitos** | Hábito, Feitos no dia, Tarefa, Treino |\n| **Financeiro** | Lançamento, Gasto fixo, Limite do mês, Onde guardo, Cartão, Meta, Meta: movimento |\n| **Estudos** | Faculdade, Curso, Livro |\n| **Vida** | Lugar, Remédio, Diário, Data importante |\n| **Ajustes** | Ajuste, Evento na agenda |\n\n**As 7 colunas, iguais em todas as abas:** Tipo · ID · Data · Título · Valor · Status · Detalhes. A coluna Detalhes guarda o resto em formato técnico (JSON) e não deve ser editada à mão.\n\n- As linhas ficam em ordem de tipo e data.\n- Cada aba cresce sozinha quando precisa e guarda só as 7 colunas, para a planilha não pesar.\n- Os códigos de presença (nome, cor e se conta como extra) ficam nas linhas \"Código\" da aba Calendário.\n- Na primeira vez, o app converteu a planilha antiga (uma aba por assunto) e salvou uma cópia completa em \"Meu Dia a Dia - Backups\" no Drive antes de mexer.\n- **Localidade e fuso:** em Arquivo → Configurações, deixe Brasil e (GMT-03:00) São Paulo, para as datas não andarem um dia."],["Sem internet e problemas comuns","**Sem internet:** o app fica guardado no aparelho e abre normalmente, até no modo avião, com os dados da última sincronização. O que você salvar sem conexão aparece na hora e fica guardado; uma faixa laranja no topo mostra quantas alterações esperam a internet. Quando a conexão volta, o app envia tudo sozinho e traz o que mudou em outro aparelho. Ao voltar para o app depois de um tempo, ele também sincroniza; para forçar, use **Ajustes → Este aparelho → Sincronizar agora**.\n\nNa primeira vez em cada aparelho é preciso internet, para conectar e baixar os dados. Se o mesmo item for mudado no celular sem internet e no computador ao mesmo tempo, vale a última alteração enviada.\n\n| Problema | O que fazer |\n| --- | --- |\n| Pede para conectar de novo | A chave mudou (ou o app foi desconectado). Rode **configurarApp** no Apps Script e cole a chave |\n| \"Sem resposta da ponte\" ao conectar | Confira a internet e se a implantação está com acesso **Qualquer pessoa**. O endereço precisa terminar em /exec |\n| Atualizei o código e nada mudou | No Apps Script, faltou a Nova versão. No app, feche e abra de novo: a versão nova das telas entra na abertura seguinte |\n| Datas um dia antes ou depois | Arquivo → Configurações da planilha: Brasil e (GMT-03:00) São Paulo |\n| E-mails não chegam | Ajustes → E-mails automáticos: veja se estão \"Ligados\" e use \"Mandar um teste\". Se diz \"Sem permissão\", rode autorizar |\n| Lembrete do remédio não chega | O remédio precisa estar \"Em uso\", com horário, e o e-mail \"Hora do remédio\" ligado |\n| Gasto fixo não entrou | Ele entra no dia calculado (veja a data na etiqueta). Confira se está Ativo e, se for Prazo, se o último mês já passou |\n| Salário caiu num dia diferente do holerite | Teste a opção \"Sábado conta como dia útil\" no fixo e cadastre os feriados da sua cidade na engrenagem do Calendário |\n| Um domingo apagado não voltou | É de propósito: cada mês é preparado uma vez só. Use \"Preencher este mês agora\" na engrenagem do Calendário |\n| Apaguei algo sem querer | Abra a cópia de segurança mais recente na pasta \"Meu Dia a Dia - Backups\" do Drive e copie a linha de volta para a aba certa |\n| Perdi o celular | Rode **trocarChaveDoApp** no Apps Script: o celular antigo perde o acesso. Conecte os outros aparelhos com a chave nova |"],["Instalar e atualizar","O Meu Dia tem duas partes:\n\n- **O app:** as telas, num site seu e gratuito no GitHub Pages. No S25 ele é instalado como app; no computador, você abre o mesmo endereço no navegador.\n- **A ponte:** o arquivo **Codigo.gs** no Apps Script da planilha. É ele que lê e grava os dados, manda os e-mails e faz o backup.\n\n**Instalar no S25**\n\n1. Abra o endereço do app no **Chrome**.\n2. Toque em **⋮ → Instalar app** (ou no aviso \"Instalar\" que aparece embaixo).\n3. O ícone vai para a tela inicial. Abra por ele: o app ocupa a tela toda, sem barra do navegador.\n4. Na primeira abertura, cole o endereço da ponte e a chave.\n\nSegure o ícone do app para ver os atalhos: Lançar gasto, Presença de hoje e Diário de hoje. O botão voltar do celular fecha o painel aberto ou volta para a tela anterior.\n\n**No computador:** abra o mesmo endereço no navegador, conecte uma vez com o endereço da ponte e a chave, e salve nos favoritos.\n\n**A chave:** funciona como uma senha. Quem tiver o endereço da ponte e a chave consegue ler e mudar seus dados, então não mande para ninguém. Se vazar, rode **trocarChaveDoApp** no Apps Script e conecte de novo os seus aparelhos.\n\n**Atualizar**\n\n- **As telas:** suba os arquivos novos no repositório do GitHub (Add file → Upload files). O app pega a versão nova sozinho: ela aparece na abertura seguinte.\n- **A ponte:** cole o Codigo.gs novo no Apps Script e vá em **Implantar → Gerenciar implantações → ✏️ → Nova versão → Implantar**. O endereço não muda."]];
+const MANUAL = [["Como o app se organiza","No celular, a barra de baixo tem 5 abas: **Hoje**, **Agenda**, **Finanças**, **Hábitos** e **Mais**. O botão marrom redondo **+** fica flutuando no canto. No computador, tudo fica no menu da lateral, com o botão **Adicionar** no topo.\n\n| Onde | O que faz |\n| --- | --- |\n| **Hoje** | Semana, placar do dia, humor, frase do dia, sua agenda, o que resolver hoje e a rotina |\n| **Agenda** | Compromissos e presença, em Dia, Semana ou Mês (o calendário de presença fica no Mês) |\n| **Finanças** | Tudo do dinheiro, numa página só com seções. O salário aparece só aqui |\n| **Hábitos** | Rotina de hoje, grade da semana, mês e to-dos |\n| **Mais** | Todas as outras áreas, cada uma com um resumo embaixo do nome |\n| **+** (flutuando) | Adicionar qualquer coisa rápido |\n\n**O botão +** abre uma caixa para escrever um gasto do seu jeito (veja Financeiro) e atalhos para: compromisso, presença de hoje, gasto ou entrada, guardar numa meta, folga, entrega da faculdade, tarefa da semana, diário de hoje, treino, data importante, remédio, livro, lugar e nova meta.\n\n**Regras que valem em todo o app**\n\n- Tudo que aparece numa lista é tocável: abre o formulário para editar ou excluir.\n- Valores em dinheiro aceitam vírgula: `186,40` ou `1.234,56`.\n- A **engrenagem** no topo de uma tela abre os ajustes daquela tela (Agenda, Faculdade, Leitura).\n- A **lupa** no topo do Hoje abre a busca geral (inclui compromissos). No computador, a tecla `/` faz o mesmo.\n- O **olho** no topo de Finanças esconde todos os valores em R$ (vira \"R$ ••••\"). Toque de novo para mostrar.\n- **Tamanho do texto:** Ajustes → Aparência → Tamanho do texto (ou Mais → Tamanho do texto). Pequeno, Normal, Grande ou Muito grande. Vale só para o aparelho em que você escolheu, então o celular e o computador podem ficar diferentes.\n- **Excluiu sem querer?** Logo depois de excluir, aparece \"Desfazer\" por alguns segundos.\n- **Puxe a tela para baixo** no topo de qualquer tela para sincronizar.\n- **Compartilhar para o app:** no celular, compartilhe o texto de um comprovante (Pix, transferência) e escolha **Meu Dia**. O lançamento abre já preenchido, para você conferir.\n- **Versão nova:** quando o app for atualizado, aparece \"Nova versão disponível · Atualizar\".\n- Ao salvar, o app mostra a mudança na hora e grava na planilha em seguida. Se der erro, ele desfaz e avisa."],["Início","A aba **Hoje** abre com \"Bom dia\", \"Boa tarde\" ou \"Boa noite\" e o mês. A lupa abre a busca; a bolinha com sua inicial abre os Ajustes. Embaixo, em ordem:\n\n| Parte | O que mostra e o que dá para fazer |\n| --- | --- |\n| **Semana** | Os 7 dias, com hoje em preto e uma bolinha colorida nos dias que têm algo marcado. Toque num dia para abrir a Agenda nele |\n| **Seu dia** | O anel é o placar de hoje: presença lançada + hábitos feitos (ex.: 6 de 9 = 67%). Toque nele para ir aos Hábitos. As 5 carinhas gravam o humor de hoje no Diário; \"escrever no diário\" abre o texto. Embaixo, a frase do dia, que muda sozinha todo dia |\n| **Sua agenda** | Os 3 próximos itens das próximas 3 semanas: compromissos, folgas, entregas, aniversários, feriados e passeios, com \"em N dias\". Toque para abrir a Agenda naquele dia. Botões **+ Compromisso**, **Folga** e **Entrega** |\n| **Para resolver hoje** | 3 abas: **Pendentes** (o que pede ação), **Hoje** (tudo que cai hoje) e **Feitos** (o que você concluiu hoje). Arraste um pendente **para a direita** para concluir e **para a esquerda** para deixar para amanhã. Tocar abre o item |\n| **Rotina de hoje** | Seus hábitos numa linha do tempo. Toque para marcar; hábito com quantidade abre os botões − e + |\n\n**O que entra em \"Pendentes\"**\n\n- Presença de hoje ainda não lançada (arrastar → lança o código sugerido: P no dia de semana, SÁB, DOM ou FERI).\n- Folga compensatória perto do prazo (15 dias ou menos) ou com prazo vencido.\n- Entregas da faculdade atrasadas, de hoje ou dos próximos 7 dias (arrastar → marca como entregue).\n- Categoria do orçamento com 90% do limite ou mais.\n- Remédios vencidos ou vencendo.\n- Férias com prazo vencendo em 90 dias ou já vencido.\n- Aniversários e datas importantes dentro do aviso que você escolheu (7 dias, se não escolher).\n\nOs outros pendentes, ao arrastar para a direita, somem até amanhã e vão para \"Feitos\". Logo depois de arrastar aparece \"Desfazer\". O que você adiou ou concluiu assim fica guardado só no aparelho.\n\n**Personalizar:** Ajustes → Aparência → Cartões do Início escolhe o que aparece e a ordem. Dá para ligar também **Lendo agora**, **Últimos 12 meses** (gráficos de presença, dinheiro, hábitos, treinos e humor) e **Conquistas**. Nada de dinheiro aparece no Hoje."],["Agenda","A Agenda junta compromissos e presença. No topo: lupa (ir para uma data), engrenagem (ajustes da agenda e da presença) e o **+** preto (novo compromisso). Embaixo, escolha **Dia**, **Semana** ou **Mês**.\n\n**Dia**\n\n- As setas trocam de semana; **Hoje** volta para hoje. Toque num dia da fileira para vê-lo.\n- **Filtros:** Tudo, Trabalho, Compromissos, Estudos e Saúde.\n- **Presença do dia:** o código lançado e **Trocar**. Se hoje ainda está vazio, o botão preto lança o código sugerido com 1 toque; tocar no cartão abre o painel completo.\n- **O dia todo:** aniversários, feriados, folgas, entregas e passeios.\n- **Manhã, Tarde e Noite:** compromissos com hora e as doses dos remédios em uso, com uma barra colorida pelo tipo.\n\n**Semana:** os 7 dias em lista, com o código de presença e os itens de cada dia. Toque no número do dia para abrir a visão Dia.\n\n**Mês:** a faixa escura com presença do mês, folgas, dias com extra e dias de férias para tirar; o calendário de presença colorido (bolinha = tem compromisso ou outro item); as anotações do mês; folgas; férias; resumo do mês e do ano; e o ano de relance.\n\n**Novo compromisso**\n\n1. Em **Escreva do seu jeito**, digite algo como `dentista sexta 14h`, `reunião amanhã 9:30`, `aula de inglês toda terça 19h` ou `prova dia 28 às 8h`. O app preenche o nome, a data, a hora, o tipo e a repetição sozinho.\n2. Confira **O que é**, **Tipo** (Saúde, Trabalho, Estudos ou Pessoal), **Data**, **Hora** (vazia = o dia todo) e **Local**.\n3. **Lembrar:** na hora, 1 h antes ou 1 dia antes (por e-mail; ligue \"Lembrete de compromisso\" em Ajustes).\n4. **Repetir:** não, semanal (mesmo dia da semana), mensal (mesmo dia; em mês curto, o último dia) ou anual.\n5. **Colocar no Google Agenda:** o compromisso vira evento no seu Google Agenda (ligue \"Copiar para o Google Agenda\" em Ajustes). Os que repetem entram uma vez, na próxima data, e andam sozinhos.\n6. **Salvar compromisso.** Para editar ou excluir, toque nele na Agenda ou no Hoje.\n\nEntende: hoje, amanhã, depois de amanhã, dia da semana (segunda a domingo, também \"próxima sexta\"), `dd/mm`, `dd/mm/aaaa`, \"dia 28\", horas como `14h`, `14:30`, `14h30` ou `8 horas`, e \"toda terça\", \"todo mês\", \"todo ano\".\n\n**Lançar a presença de um dia**\n\n1. Na visão Dia, toque no cartão de presença (ou num dia do calendário, na visão Mês).\n2. Escolha o código (ou \"Sem código\" para limpar).\n3. Se quiser, marque **Cobrindo férias** e escreva uma observação.\n4. **Salvar**, ou **Salvar e próximo** para ir lançando a semana em sequência.\n\nAs setas no topo do painel trocam de dia sem fechar.\n\n**Os códigos** (a cor do dia vem do código; a lista fica na aba Calendário da planilha)\n\n| Grupo | Códigos |\n| --- | --- |\n| Presença | P Presente · PA Parcialmente ausente · PP Parcialmente presente · SNG Sinergia Centauro |\n| Presença com extra | PH · HE · SÁB+ · DOM+ · FERI+ |\n| Folga | FC Compensatória · FBH Banco de horas · DAYOFF Aniversário · TRF Troca de folga |\n| Não trabalha | SÁB · DOM · SEG · FERI Feriado |\n| Outros | F Falta · AT Atestado · AF Afastado · S Suspenso · FE Férias |\n\n**Navegar no Mês**\n\n- Setas: mês anterior e próximo. **Ano:** a caixinha ao lado do nome do mês troca o ano.\n- **Hoje:** volta para o dia de hoje e faz ele piscar.\n- **Lupa:** vai para qualquer data (no Mês, já abre o dia).\n- Feriados ainda não lançados aparecem com uma bandeirinha no dia.\n\n**Anotações do mês:** embaixo do calendário, cada dia que tem observação ou feriado. Toque para abrir o dia.\n\n**Resumo:** presença do mês (dias presentes de dias previstos; fim de semana, folga e férias não contam como previstos), folgas, dias com extra e faltas. Embaixo, o mesmo para o ano escolhido. Meses sem nada lançado ficam fora da conta do ano.\n\n**Preparar os meses sozinho:** ao abrir o app, o mês atual e o próximo são preenchidos uma vez, só nos dias vazios: domingos como DOM, feriados como FERI (com o nome na observação) e, se você ligar, sábados como SÁB. O que você já lançou nunca muda, e um dia que você apagar depois não volta. Tudo isso se ajusta na engrenagem da Agenda, que também tem o botão \"Preencher este mês agora\".\n\n**Folgas**\n\n- **+ Nova** cadastra a folga: tipo (Folga compensatória, Banco de horas ou Day off), data trabalhada, data da folga, nº do chamado e anotações.\n- Com a data da folga preenchida, dá para marcar o dia no calendário na mesma hora.\n- **Folga compensatória tem prazo:** 60 dias a partir do dia trabalhado (mude na engrenagem). Faltando 15 dias ou menos, ela aparece em destaque e nos Pendentes do Hoje.\n- **E-mail para o RH:** dentro da folga, monta o texto pronto para copiar. O modelo se edita na engrenagem, com `{folga}`, `{trabalhada}` e `{tipoDia}`.\n\n**Férias:** informe a data de admissão na engrenagem da Agenda. O cartão Férias mostra cada período aquisitivo (12 meses trabalhados), quantos dias você já tirou (os dias marcados como Férias no calendário), quantos faltam e até quando precisa tirar (os 12 meses seguintes, pela CLT). Faltando 90 dias para o prazo, o aviso vai para o Hoje. Faltas que reduzem férias não entram na conta.\n\n**Folgas no ano:** no topo do cartão Folgas, quantas de cada tipo você tirou no ano escolhido (ex.: \"Em 2026: 5 FC · 6 FBH · 1 DAYOFF\").\n\n**Ano de relance:** no fim da visão Mês, o ano inteiro em quadradinhos coloridos, um por dia.\n\n**Feriados:** os nacionais já vêm calculados, inclusive Páscoa e Corpus Christi. Os da sua cidade entram na engrenagem, um por linha, como `22/05 Santa Rita`."],["Hábitos e to-dos","Os hábitos têm aba própria no menu de baixo. No topo, a faixa escura mostra quantos você fez hoje, a porcentagem da semana e sua melhor sequência. O **+** preto cria um hábito.\n\n**Rotina de hoje:** cada hábito numa linha do tempo, com a sequência embaixo do nome. Toque para marcar ou desmarcar. Hábito com quantidade mostra \"1,5/2 L\" à direita e abre os botões − e +.\n\n**Hábitos**\n\n- **Semana:** uma grade com cada hábito × os 7 dias. Toque na bolinha para marcar ou desmarcar. As setas trocam de semana; dias futuros ficam bloqueados.\n- **Mês:** uma barra por hábito, com quantos dias você fez no mês.\n- **+ Hábito** (ou toque no nome de um hábito): nome, ícone, meta por semana, quantidade por dia, ordem e ativo.\n- **Meta por semana:** para hábitos que não são diários (ex.: academia 3x). Aí a sequência conta semanas seguidas cumprindo a meta, e a grade mostra \"2/3\".\n- **Ativo desmarcado** esconde o hábito sem apagar o histórico.\n- **Hábito com quantidade** (ex.: 2 L de água, 10 páginas): preencha \"Quantidade por dia\", a unidade e quanto soma cada toque. Conta como feito quando chega na meta, e na grade aparece o valor parcial em verde claro.\n- O ícone na rotina vem do nome: água, leitura, devocional, treino, caminhada, idioma, remédio, estudo e sono ganham um desenho próprio.\n\nEmbaixo da grade, a porcentagem da semana cumprida e a da semana anterior.\n\n**To-dos**\n\nUm cartão com 3 listas: **Da semana**, **Do mês** e **Metas do ano**. Toque no quadradinho para marcar como feito; toque no texto para editar ou excluir. Cada lista é do período atual: na semana que vem, a lista da semana começa vazia."],["Financeiro","O Financeiro é uma página só, com seções: Resumo, Metas, Lançamentos, Fixos, Orçamento, Categorias, Guardado e Cartões. As setas do cartão de saldo trocam o mês.\n\n**Resumo do mês:** saldo (entradas menos saídas), total de entradas, de saídas e quanto você guardou no mês. Embaixo, quanto você gastou a mais ou a menos que no mês anterior.\n\n**Lançar um gasto ou entrada**\n\n- **+ Lançar:** tipo (Saída ou Entrada), descrição, valor, data, categoria, forma de pagamento, cartão (se crédito) e parcelas.\n- **Parcelas:** numa compra parcelada, o app cria uma parcela por mês, cada uma no mês certo.\n- **Do seu jeito, por texto:** no + ou na seção Lançamentos, escreva e aperte Lançar. O app preenche o formulário e você só confere.\n\n| Você escreve | O app entende |\n| --- | --- |\n| `mercado 52,30 pix` | Saída de R$ 52,30, Alimentação, Pix, hoje |\n| `uber 18 ontem` | Saída de R$ 18, Transporte, data de ontem |\n| `fone 300 3x crédito` | R$ 300 no crédito em 3 parcelas |\n| `farmácia 25,90 12/10` | Saída de R$ 25,90, Saúde, em 12/10 |\n| `recebi salário 3.500,00` | Entrada de R$ 3.500, Salário |\n| `+ 100 reembolso` | Entrada de R$ 100, \"Reembolso\" |\n\nA categoria vem primeiro do que você já lançou com o mesmo nome; se for a primeira vez, de palavras conhecidas (mercado, uber, netflix, farmácia…). Formas de pagamento reconhecidas: pix, débito, crédito ou cartão, dinheiro, boleto e vale/VR/VA. O nome de um cartão seu também funciona.\n\n**Até o próximo salário** (em Finanças, logo abaixo do saldo do mês atual): conta o que entrou desde o último pagamento (salário ou adiantamento cadastrados nos Fixos, categoria Salário), tira o que você gastou desde então e os fixos e parcelas que ainda vão cair antes do próximo pagamento. O resultado é quanto está livre e quanto dá por dia. Vale refeição (pagamento Voucher) fica de fora.\n\n**Filtrar lançamentos:** na seção Lançamentos, filtre por texto, categoria ou forma de pagamento. Marque \"Procurar em todos os meses\" para buscar além do mês aberto. O total do filtro aparece em cima da lista.\n\n**Importar extrato:** em Lançamentos, toque em **⬆ Importar** e escolha o extrato baixado do banco (CSV ou OFX; funciona com Nubank, Inter, Itaú, Bradesco, C6 e outros). Você confere a lista antes: a categoria vem dos seus lançamentos anteriores com o mesmo nome, e o que parece já lançado (mesma data e valor) vem desmarcado. Para fatura de cartão, escolha Crédito e o cartão.\n\n**Metas e desejos**\n\n- **+ Meta:** o que é, ícone, tipo (Desejo ou Necessidade), preço, prioridade, link da loja e quanto já tinha guardado antes do app.\n- Toque numa meta para **+ Guardar** ou **− Retirar**, com data, valor e onde o dinheiro está guardado. O histórico fica dentro da meta.\n- A meta mostra a previsão de quando você chega lá, pelo ritmo dos últimos 3 meses.\n- Filtros: Todos, Necessidade, Desejo e Comprados. Marque Status \"Comprado\" quando comprar.\n\n**Fixos do mês** (gastos e entradas que se repetem)\n\n- Entram sozinhos nos lançamentos, no dia certo, quando você abre o app ou às 7h (se os e-mails automáticos estiverem ligados).\n- **Quando cai:** *Dia do mês* (ex.: aluguel dia 5); *Dia útil* (o número vira o Nº dia útil: 5 = 5º dia útil, como o salário); *Dia do mês ou útil anterior* (ex.: adiantamento dia 20; em fim de semana ou feriado, vale o dia útil antes).\n- **Sábado conta como dia útil:** marque se a sua empresa conta o sábado (a CLT conta; muitas empresas não).\n- **Status:** *Fixo* entra todo mês, sem data para acabar; *Prazo* para no último mês escolhido (ex.: curso até 06/2027) e mostra quantos meses faltam. Depois disso aparece como Encerrado.\n- **Modelos prontos** no fim do formulário novo: Salário (5º dia útil), Adiantamento (dia 20) e Vale refeição (dia 1). Você só preenche o valor.\n- Cada fixo mostra a data deste mês e se já foi Lançado (ou Recebido). No rodapé: total de gastos fixos e de entradas fixas por mês.\n- Desmarcar **Ativo** pausa o fixo. Excluir um fixo não apaga os lançamentos antigos.\n\n**Orçamento:** um limite por mês para cada categoria. A barra fica laranja perto do limite e vermelha quando estoura; a partir de 90% o aviso vai para os Pendentes do Hoje.\n\n**Categorias:** gráfico de rosca dos gastos do mês, a comparação de cada categoria com o mês anterior (▲ subiu, ▼ caiu, \"novo\" se não existia) e o total por forma de pagamento.\n\n**Onde está guardado:** os seus locais (ex.: Cofre, Caixinha, Tesouro), com o valor que já havia e uma meta opcional. O que você guarda nas metas usando o mesmo nome de local soma aqui.\n\n**Cartões:** nome e dia do vencimento. Mostra as compras do mês em cada cartão, e o vencimento entra no e-mail da manhã."],["Estudos","Três telas, no menu Mais (ou na lateral): Faculdade, Cursos e Leitura.\n\n**Faculdade**\n\n- No topo: entregas concluídas, quanto falta para a próxima, média das notas e número de disciplinas.\n- **+ Atividade:** nome, disciplina, data de entrega, status (Pendente ou Entregue) e nota.\n- Cada atividade mostra o estado: Atrasada, Hoje, \"em X dias\" ou Entregue. As atrasadas e as dos próximos 7 dias vão para os Pendentes do Hoje, para a Agenda e para o e-mail da manhã.\n- Com o Google Agenda ligado, as entregas viram eventos na sua agenda.\n- A engrenagem muda o nome do curso que aparece no topo.\n\n**Cursos**\n\n- Agrupados por plataforma (ex.: Hashtag, ADA), com o botão \"Abrir portal\" quando o curso tem link.\n- Filtros: Todos, Cursando, A fazer e Concluído.\n- **+ Curso:** nome, plataforma, carga horária, status (A fazer, Cursando, Pausado, Concluído), progresso em % e link do portal.\n\n**Leitura**\n\n- No topo: a meta de livros do ano e quantos você já leu. A meta se muda na engrenagem.\n- **Lendo agora:** página atual, barra de progresso e quantos dias faltam para terminar no seu ritmo. Toque para atualizar a página.\n- Estantes: Quero ler, Lendo e Lido.\n- **+ Livro:** nome, autor, ano, gênero, páginas, status, página atual, início, fim, avaliação (1 a 5) e síntese.\n- **Buscar dados pelo nome:** dentro do livro, preenche autor, páginas, sinopse e capa pelo Google Livros."],["Vida","Cinco telas no menu Mais: Diário, Treinos, Lugares, Farmácia e Datas.\n\n**Diário**\n\n- Um registro por dia: humor de 1 a 5 (😞 a 😄) e um texto, se quiser.\n- O jeito mais rápido é tocar numa carinha no cartão \"Seu dia\" do Hoje.\n- A tela mostra o mês como um calendário colorido pelo humor; toque num dia para ler ou escrever.\n- Números do mês: humor médio, dias escritos e dias bons.\n- **Descobertas:** com 6 dias ou mais de humor, o app compara os dias com e sem cada hábito, treino e folga, e mostra o que mais combina com seus dias bons (ex.: \"Humor 4,2 nos dias com Caminhar · 3,1 nos dias sem\").\n\n**Treinos**\n\n- **Registrar:** exercício, séries, repetições (ou segundos, na prancha), carga extra, data e observação.\n- Ao repetir um exercício, o formulário já vem com as séries e repetições da última vez.\n- **Marcar o hábito junto:** se você tem um hábito como Calistenia, o formulário oferece marcá-lo como feito no mesmo toque.\n- A tela mostra dias de treino no mês, semanas seguidas treinando, a evolução de cada exercício (último treino, recorde e um mini gráfico) e o histórico.\n\n**Lugares**\n\n- Lista de lugares para conhecer: nome, ícone, categoria, status (Quero ir, Planejado, Visitado), data, avaliação e observações.\n- O próximo passeio planejado aparece em destaque, e os planejados vão para os Próximos 7 dias e para a agenda.\n\n**Farmácia**\n\n- Inventário dos remédios de casa: nome, para que serve, quantidade, validade (mês/ano) e observações.\n- Estados: Vencido, Vence este mês, Vence em breve (45 dias), OK. Vencidos e vencendo vão para os Pendentes do Hoje.\n- **Em uso agora:** marque \"Estou tomando agora\" e preencha a dose e os horários, como `08:00, 20:00`, `8h e 20h` ou `de 8 em 8h`. As doses aparecem na Agenda (Manhã, Tarde, Noite) e, com o e-mail \"Hora do remédio\" ligado, chega um aviso na hora (pode atrasar até 1 hora).\n\n**Datas importantes**\n\n- **+ Data:** nome, tipo (Aniversário, Comemorativa, Outro), data, quantos dias antes avisar e observação.\n- A tela lista as próximas por mês, com o dia da semana. Em aniversário com o ano de nascimento, mostra a idade (\"faz 56 anos\").\n- O aviso aparece no Hoje, na Agenda e no e-mail da manhã, a partir do número de dias que você escolheu (7, se ficar vazio)."],["Conquistas e busca","**Conquistas:** 20 medalhas que se desbloqueiam sozinhas conforme você usa o app. Quando uma desbloqueia, cai confete e aparece um aviso. A tela Conquistas mostra todas, com a barra do quanto falta.\n\n| Área | Conquistas |\n| --- | --- |\n| Presença | Mês perfeito (100% num mês) · Calendário em dia (30 dias seguidos lançados) |\n| Hábitos | Pegando o ritmo (7 dias seguidos) · Hábito de ferro (30) · Imparável (100) · Semana perfeita (todos os hábitos numa semana) |\n| Dinheiro | Primeiros mil (R$ 1.000 guardados) · Reserva de respeito (R$ 5.000) · Objetivo alcançado (completar uma meta) · Dentro do orçamento (um mês sem estourar limite) |\n| Diário | Querido diário (7 dias) · Escritor (30 dias) |\n| Treinos | Em forma (10 dias) · Atleta (50 dias) |\n| Estudos | Primeiro livro · Meta de leitura (a meta do ano) · Aluno exemplar (5 entregas, nenhuma atrasada) · Certificado (concluir um curso) |\n| Vida | Explorador (visitar 5 lugares) · Farmácia em ordem (5 ou mais remédios, nenhum vencido) |\n\n**Busca geral:** a lupa no topo do Hoje (ou Buscar no menu). Digite 2 letras ou mais: procura sem ligar para acentos em compromissos, observações do calendário, diário, lançamentos, metas, folgas, faculdade, cursos, livros, lugares, remédios, datas, treinos e tarefas. Toque num resultado para abrir; num treino, ele já abre para repetir o exercício."],["Ajustes e e-mails automáticos","Ajustes fica no menu Mais (ou tocando na sua inicial no topo do Hoje) e tem 4 blocos. As opções de cada tela ficam na engrenagem dela, e Ajustes também lista esses atalhos.\n\n| Bloco | O que dá para mudar |\n| --- | --- |\n| **Você** | Nome (aparece no \"Olá\") e e-mail para os avisos (vazio = o da sua conta Google) |\n| **Aparência** | Tema (Automático segue o celular, Claro ou Escuro), tamanho do texto (só no aparelho), cor do app (Caramelo, Azul petróleo, Verde, Roxo, Laranja, Rosa, Grafite), tela em que o app abre, cartões do Início e frase do dia |\n| **E-mails automáticos** | Ligar ou desligar cada e-mail, mandar um teste |\n| **Dados** | Atualizar a agenda agora e fazer uma cópia de segurança agora |\n| **Este aparelho** | Sincronizar agora, desconectar da planilha e ligar o bloqueio com digital |\n\n**Bloqueio com digital:** em Ajustes → Este aparelho, ligue \"Bloquear com digital\". O app pede a digital ou o rosto ao abrir e depois de 1 minuto fora dele. Se a biometria falhar, dá para destravar com a chave do app. É uma trava da tela neste aparelho; cada aparelho liga a sua.\n\n**Cartões do Início:** marque os que quer ver e use as setas para mudar a ordem. \"Voltar ao padrão\" desfaz tudo.\n\n**Frase do dia:** no modo Automático, muda todo dia (60 frases do app + as suas). No modo Fixa, mostra sempre a sua frase favorita.\n\n**Os e-mails automáticos**\n\n| E-mail | Quando chega |\n| --- | --- |\n| Resumo da manhã | 7h, só quando há algo: entrega, folga, fatura, orçamento, remédio, aniversário, compromisso de hoje |\n| Lembrete de compromisso | Na hora, 1 h antes ou 1 dia antes, como escolhido em cada compromisso (até 1 hora de atraso). Compromisso sem hora: 9h da véspera (1 dia antes) ou 8h do dia |\n| Lembrete da presença | 18h, se o dia de hoje ainda estiver vazio |\n| Hora do remédio | Na hora de cada dose dos remédios em uso (até 1 hora de atraso) |\n| Resumo do mês | Dia 1, com presença, gastos, hábitos e leituras do mês anterior |\n| Copiar para o Google Agenda | Todo dia: compromissos (os marcados para o Google Agenda), entregas, folgas agendadas e passeios viram eventos (sem duplicar) |\n| Cópia de segurança | Domingo: uma cópia da planilha na pasta \"Meu Dia a Dia - Backups\" do Drive, guardando as 8 últimas |\n\nPara funcionar, os e-mails precisam estar **ligados** (botão \"Ligar e-mails automáticos\"). Se aparecer \"Sem permissão\", rode a função **autorizar** no editor do Apps Script. Depois de uma atualização que traz um e-mail novo, pause e ligue de novo para ele começar a valer."],["A planilha por dentro","Tudo fica em 6 abas, uma por área. O app cria e organiza as abas sozinho; o ideal é mexer pelo app, não direto na planilha.\n\n| Aba | Tipos de linha que ela guarda |\n| --- | --- |\n| **Calendário** | Dia, Folga, Código, Compromisso |\n| **Hábitos** | Hábito, Feitos no dia, Tarefa, Treino |\n| **Financeiro** | Lançamento, Gasto fixo, Limite do mês, Onde guardo, Cartão, Meta, Meta: movimento |\n| **Estudos** | Faculdade, Curso, Livro |\n| **Vida** | Lugar, Remédio, Diário, Data importante |\n| **Ajustes** | Ajuste, Evento na agenda |\n\n**As 7 colunas, iguais em todas as abas:** Tipo · ID · Data · Título · Valor · Status · Detalhes. A coluna Detalhes guarda o resto em formato técnico (JSON) e não deve ser editada à mão.\n\n- As linhas ficam em ordem de tipo e data.\n- Cada aba cresce sozinha quando precisa e guarda só as 7 colunas, para a planilha não pesar.\n- Os códigos de presença (nome, cor e se conta como extra) ficam nas linhas \"Código\" da aba Calendário.\n- Na primeira vez, o app converteu a planilha antiga (uma aba por assunto) e salvou uma cópia completa em \"Meu Dia a Dia - Backups\" no Drive antes de mexer.\n- **Localidade e fuso:** em Arquivo → Configurações, deixe Brasil e (GMT-03:00) São Paulo, para as datas não andarem um dia."],["Sem internet e problemas comuns","**Sem internet:** o app fica guardado no aparelho e abre normalmente, até no modo avião, com os dados da última sincronização. O que você salvar sem conexão aparece na hora e fica guardado; uma faixa laranja no topo mostra quantas alterações esperam a internet. Quando a conexão volta, o app envia tudo sozinho e traz o que mudou em outro aparelho. Ao voltar para o app depois de um tempo, ele também sincroniza; para forçar, use **Ajustes → Este aparelho → Sincronizar agora**.\n\nNa primeira vez em cada aparelho é preciso internet, para conectar e baixar os dados. Se o mesmo item for mudado no celular sem internet e no computador ao mesmo tempo, vale a última alteração enviada.\n\n| Problema | O que fazer |\n| --- | --- |\n| Pede para conectar de novo | A chave mudou (ou o app foi desconectado). Rode **configurarApp** no Apps Script e cole a chave |\n| \"Sem resposta da ponte\" ao conectar | Confira a internet e se a implantação está com acesso **Qualquer pessoa**. O endereço precisa terminar em /exec |\n| Atualizei o código e nada mudou | No Apps Script, faltou a Nova versão. No app, feche e abra de novo: a versão nova das telas entra na abertura seguinte |\n| Datas um dia antes ou depois | Arquivo → Configurações da planilha: Brasil e (GMT-03:00) São Paulo |\n| E-mails não chegam | Ajustes → E-mails automáticos: veja se estão \"Ligados\" e use \"Mandar um teste\". Se diz \"Sem permissão\", rode autorizar |\n| Lembrete do remédio não chega | O remédio precisa estar \"Em uso\", com horário, e o e-mail \"Hora do remédio\" ligado |\n| Gasto fixo não entrou | Ele entra no dia calculado (veja a data na etiqueta). Confira se está Ativo e, se for Prazo, se o último mês já passou |\n| Salário caiu num dia diferente do holerite | Teste a opção \"Sábado conta como dia útil\" no fixo e cadastre os feriados da sua cidade na engrenagem da Agenda |\n| Um domingo apagado não voltou | É de propósito: cada mês é preparado uma vez só. Use \"Preencher este mês agora\" na engrenagem da Agenda |\n| Apaguei algo sem querer | Abra a cópia de segurança mais recente na pasta \"Meu Dia a Dia - Backups\" do Drive e copie a linha de volta para a aba certa |\n| Perdi o celular | Rode **trocarChaveDoApp** no Apps Script: o celular antigo perde o acesso. Conecte os outros aparelhos com a chave nova |"],["Instalar e atualizar","O Meu Dia tem duas partes:\n\n- **O app:** as telas, num site seu e gratuito no GitHub Pages. No S25 ele é instalado como app; no computador, você abre o mesmo endereço no navegador.\n- **A ponte:** o arquivo **Codigo.gs** no Apps Script da planilha. É ele que lê e grava os dados, manda os e-mails e faz o backup.\n\n**Instalar no S25**\n\n1. Abra o endereço do app no **Chrome**.\n2. Toque em **⋮ → Instalar app** (ou no aviso \"Instalar\" que aparece embaixo).\n3. O ícone vai para a tela inicial. Abra por ele: o app ocupa a tela toda, sem barra do navegador.\n4. Na primeira abertura, cole o endereço da ponte e a chave.\n\nSegure o ícone do app para ver os atalhos: Lançar gasto, Presença de hoje e Diário de hoje. O botão voltar do celular fecha o painel aberto ou volta para a tela anterior.\n\n**No computador:** abra o mesmo endereço no navegador, conecte uma vez com o endereço da ponte e a chave, e salve nos favoritos.\n\n**A chave:** funciona como uma senha. Quem tiver o endereço da ponte e a chave consegue ler e mudar seus dados, então não mande para ninguém. Se vazar, rode **trocarChaveDoApp** no Apps Script e conecte de novo os seus aparelhos.\n\n**Atualizar**\n\n- **As telas:** suba os arquivos novos no repositório do GitHub (Add file → Upload files). O app pega a versão nova sozinho: ela aparece na abertura seguinte.\n- **A ponte:** cole o Codigo.gs novo no Apps Script e vá em **Implantar → Gerenciar implantações → ✏️ → Nova versão → Implantar**. O endereço não muda."]];
 // MANUAL:FIM
 
 // =====================================================================
@@ -2871,31 +3365,28 @@ const MANUAL = [["Como o app se organiza","No celular, a barra de baixo leva às
 const TELAS = {
   inicio: telaInicio, presenca: telaPresenca, financeiro: telaFinanceiro, faculdade: telaFaculdade,
   cursos: telaCursos, leitura: telaLeitura, diario: telaDiario, treinos: telaTreinos, lugares: telaLugares, farmacia: telaFarmacia, datas: telaDatas,
-  conquistas: telaConquistas, mais: telaMais, ajustes: telaAjustes, manual: telaManual,
+  conquistas: telaConquistas, mais: telaMais, ajustes: telaAjustes, manual: telaManual, habitos: telaHabitos,
 };
-const NAV = [['inicio', '🏠', 'Início'], ['presenca', '📅', 'Calendário'], ['financeiro', '💰', 'Financeiro'],
-  ['sep', '', 'ESTUDOS'], ['faculdade', '🎓', 'Faculdade'], ['cursos', '💻', 'Cursos'], ['leitura', '📚', 'Leitura'],
-  ['sep', '', 'VIDA'], ['diario', '📝', 'Diário'], ['treinos', '🏋️', 'Treinos'], ['lugares', '📍', 'Lugares'], ['farmacia', '💊', 'Farmácia'], ['datas', '🎂', 'Datas'],
-  ['sep', '', ''], ['conquistas', '🏆', 'Conquistas'], ['busca', '🔎', 'Buscar'], ['manual', '📖', 'Manual'], ['ajustes', '⚙️', 'Ajustes']];
+const NAV = [['inicio', 'home', 'Hoje'], ['presenca', 'calendar', 'Agenda'], ['financeiro', 'wallet', 'Finanças'], ['habitos', 'habits', 'Hábitos'],
+  ['sep', '', 'ESTUDOS'], ['faculdade', 'cap', 'Faculdade'], ['cursos', 'laptop', 'Cursos'], ['leitura', 'book', 'Leitura'],
+  ['sep', '', 'VIDA'], ['diario', 'pen', 'Diário'], ['treinos', 'dumb', 'Treinos'], ['lugares', 'pin', 'Lugares'], ['farmacia', 'pill', 'Farmácia'], ['datas', 'gift', 'Datas'],
+  ['sep', '', ''], ['conquistas', 'trophy', 'Conquistas'], ['busca', 'search', 'Buscar'], ['manual', 'book', 'Manual'], ['ajustes', 'gear', 'Ajustes']];
 
 function render() {
   $('main').innerHTML = TELAS[E.tela]();
-  $('side').innerHTML = `<div class="logo"><i>✓</i>Meu Dia</div>` +
-    NAV.map(([k, i, l]) => k === 'sep' ? `<div class="navsep">${l}</div>` : `<button class="navi ${k === E.tela ? 'on' : ''}" data-a="${k === 'busca' ? 'busca' : 'ir'}" data-v="${k}">${i} ${l}</button>`).join('');
-  const sel = ['inicio', 'presenca', 'financeiro'].includes(E.tela) ? E.tela : 'mais';
-  const item = ([k, i, l]) => `<button class="${sel === k ? 'on' : ''}" data-a="ir" data-v="${k}"><span class="ico">${i}</span>${l}</button>`;
-  $('bnav').innerHTML = [['inicio', '🏠', 'Início'], ['presenca', '📅', 'Calendário']].map(item).join('') +
-    `<button data-a="rapidas" aria-label="Adicionar"><span class="plus">+</span></button>` +
-    [['financeiro', '💰', 'Finanças'], ['mais', '☰', 'Mais']].map(item).join('');
+  $('side').innerHTML = `<div class="logo"><i>✓</i>Meu Dia</div><button class="novo" data-a="rapidas">${ic('plus')} Adicionar</button>` +
+    NAV.map(([k, i, l]) => k === 'sep' ? `<div class="navsep">${l}</div>` : `<button class="navi ${k === E.tela ? 'on' : ''}" data-a="${k === 'busca' ? 'busca' : 'ir'}" data-v="${k}">${IC[i] ? ic(i) : i} ${l}</button>`).join('');
+  const sel = ['inicio', 'presenca', 'financeiro', 'habitos'].includes(E.tela) ? E.tela : 'mais';
+  const item = ([k, i, l]) => `<button class="${sel === k ? 'on' : ''}" data-a="ir" data-v="${k}"><span class="ico">${ic(i)}</span>${l}</button>`;
+  $('bnav').innerHTML = [['inicio', 'home', 'Hoje'], ['presenca', 'calendar', 'Agenda'], ['financeiro', 'wallet', 'Finanças'], ['habitos', 'habits', 'Hábitos'], ['mais', 'grid', 'Mais']].map(item).join('');
+  if (!$('fab').innerHTML) $('fab').innerHTML = ic('plus');
 }
 
 const ACOES = {
   ir: ({ v }) => {
     if (v === 'desejos') return ACOES.irFin({ v: 'metas' });
-    if (v === 'habitos' || v === 'evolucao') { // telas antigas: hábitos agora é seção do Calendário; evolução é cartão do Início
-      irPara(v === 'habitos' ? 'presenca' : 'inicio'); render();
-      return requestAnimationFrame(() => { const el = v === 'habitos' && $('cal-habitos'); if (el) el.scrollIntoView({ block: 'start' }); else window.scrollTo(0, 0); });
-    }
+    if (v === 'evolucao') v = 'inicio'; // tela antiga: evolução virou cartão opcional do Início
+    if (!TELAS[v]) return;
     irPara(v); render(); window.scrollTo(0, 0);
   },
   irFin: ({ v }) => {
@@ -2904,7 +3395,7 @@ const ACOES = {
     if (!v || alvo === 'fin-resumo') window.scrollTo(0, 0);
     else requestAnimationFrame(() => { const el = $(alvo); if (el) el.scrollIntoView({ block: 'start' }); });
   },
-  irSecaoCal: ({ v }) => { ACOES.ir({ v: 'presenca' }); requestAnimationFrame(() => { const el = $(v); if (el) el.scrollIntoView({ block: 'start' }); }); },
+  irSecaoCal: ({ v }) => { E.vistaAgenda = 'mes'; ACOES.ir({ v: 'presenca' }); requestAnimationFrame(() => { const el = $(v); if (el) el.scrollIntoView({ block: 'start' }); }); },
   irSecao: ({ v }) => { const el = $(v); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); },
   todosLanc: () => { E.verTodosLanc = !E.verTodosLanc; render(); },
   limparFiltro: () => { E.fLanc = {}; render(); },
@@ -2930,7 +3421,11 @@ const ACOES = {
   },
   buscarDia: () => abrirForm({
     titulo: 'Ir para uma data', campos: [{ k: 'data', l: 'Data', t: 'date', obr: 1 }], valores: { data: hojeIso() },
-    salvar: o => { E.mesPres = o.data.slice(0, 7); E.pulsar = o.data; render(); setTimeout(() => { E.pulsar = null; }, 2500); abrirDia(o.data); },
+    salvar: o => {
+      E.mesPres = o.data.slice(0, 7); E.diaAgenda = o.data;
+      if (E.vistaAgenda !== 'mes') { fecharVeu(); return render(); }
+      E.pulsar = o.data; render(); setTimeout(() => { E.pulsar = null; }, 2500); abrirDia(o.data);
+    },
   }),
   novaFolga: () => abrirFolga(null),
   editarFolga: ({ id }) => abrirFolga(id),
@@ -3006,7 +3501,7 @@ const ACOES = {
   },
   humor: ({ v }) => {
     const hoje = hojeIso(), d = T('Diario').find(x => x.Data === hoje);
-    salvarItem('Diario', Object.assign({ Data: hoje, Texto: '' }, d, { Humor: +v }), HUMOR[+v].e + ' Anotado!');
+    salvarItem('Diario', Object.assign({ Data: hoje, Texto: '' }, d, { Humor: +v }), HUMOR[+v].n + ' · anotado no diário ✓');
   },
   humorForm: ({ v }) => { E.humorSel = E.humorSel === +v ? 0 : +v; document.querySelectorAll('#humSel button').forEach(b => b.classList.toggle('sel', +b.dataset.v === E.humorSel)); },
   escreverDiario: ({ d }) => abrirDiario(d || hojeIso()),
@@ -3017,8 +3512,32 @@ const ACOES = {
   personalizar: () => { E.pers = null; abrirPersonalizar(); },
   persVer: ({ k }) => { const o = E.pers.ocultos; const i = o.indexOf(k); if (i >= 0) o.splice(i, 1); else o.push(k); },
   persMover: ({ i, n }) => { const a = E.pers.ordem, j = +i + +n; [a[+i], a[j]] = [a[j], a[+i]]; abrirPersonalizar(); },
-  persPadrao: () => { E.pers = { ordem: CARTOES_INICIO.map(c => c[0]), ocultos: [] }; abrirPersonalizar(); },
-  persSalvar: () => { const p = E.pers; fecharVeu(); E.pers = null; salvarConfig({ InicioCartoes: p.ordem.join(','), InicioOcultos: p.ocultos.join(',') }, 'Início personalizado ✓'); },
+  persPadrao: () => { E.pers = { ordem: CARTOES_INICIO.map(c => c[0]), ocultos: OCULTOS_PADRAO.split(',') }; abrirPersonalizar(); },
+  persSalvar: () => { const p = E.pers; fecharVeu(); E.pers = null; salvarConfig({ InicioCartoes2: p.ordem.join(','), InicioOcultos2: p.ocultos.join(',') || '-' }, 'Início personalizado ✓'); },
+  // início e agenda (v10)
+  abaResolver: ({ v }) => { E.abaResolver = v; render(); },
+  agendaDia: ({ d }) => { E.diaAgenda = d; E.mesPres = d.slice(0, 7); E.vistaAgenda = 'dia'; ACOES.ir({ v: 'presenca' }); },
+  diaAg: ({ d, ver }) => { E.diaAgenda = d; E.mesPres = d.slice(0, 7); if (ver) { E.vistaAgenda = ver; window.scrollTo(0, 0); } render(); },
+  semAg: ({ n }) => { E.diaAgenda = somaDias(E.diaAgenda || hojeIso(), +n); E.mesPres = E.diaAgenda.slice(0, 7); render(); },
+  vistaAg: ({ v }) => { E.vistaAgenda = v; if (v !== 'mes' && (E.diaAgenda || hojeIso()).slice(0, 7) !== E.mesPres) E.diaAgenda = E.mesPres === hojeIso().slice(0, 7) ? hojeIso() : E.mesPres + '-01'; render(); },
+  filtroAg: ({ v }) => { E.filtroAg = v; render(); },
+  novoComp: ({ d }) => abrirComp(null, d && d > hojeIso() ? { Data: d } : null),
+  editarComp: ({ id }) => abrirComp(id),
+  cpTipo: ({ v }) => { E.comp.Tipo = v; E.comp.tipoManual = 1; pintarComp(); },
+  cpOp: ({ k, v }) => { E.comp[k] = v; pintarComp(); },
+  cpAgenda: () => { E.comp.NaAgenda = E.comp.NaAgenda === false; $('cpTgl').classList.toggle('on', E.comp.NaAgenda); },
+  cpSalvar: () => {
+    const o = lerComp();
+    if (!o.Titulo) { toast('Escreva o que é o compromisso.', true); return $('cpTit').focus(); }
+    if (!o.Data) { toast('Escolha a data.', true); return $('cpData').focus(); }
+    delete o.tipoManual;
+    fecharVeu();
+    E.diaAgenda = o.Data; E.mesPres = o.Data.slice(0, 7);
+    salvarItem('Compromissos', o, 'Compromisso salvo ✓');
+  },
+  cpExcluir: () => { const id = E.comp.ID; fecharVeu(); excluirItem('Compromissos', id, 'Compromisso excluído'); },
+  tamanho: ({ v }) => { ls.set('mdd_tamanho', v); aplicarTamanho(); abrirTamanho(); },
+  texto: () => abrirTamanho(),
   olho: () => { E.ocultar = !E.ocultar; ls.set('mdd_ocultar', E.ocultar); vibrar(); render(); },
   atualizarVersao: () => location.reload(),
   destravar: () => destravar(), destravarChave: () => destravarComChave(), travaLiga: () => alternarTrava(),
@@ -3031,6 +3550,7 @@ const ACOES = {
 
 document.addEventListener('click', e => {
   if (e.target.id === 'veu') return fecharVeu();
+  if (E.arrastou && Date.now() - E.arrastou < 450) return;
   const el = e.target.closest('[data-a]');
   if (!el) return;
   const fn = ACOES[el.dataset.a];
@@ -3063,6 +3583,16 @@ document.addEventListener('input', e => {
   }
 });
 document.addEventListener('input', e => { if (e.target.id === 'busca') $('resBusca').innerHTML = buscar(e.target.value) || ''; });
+document.addEventListener('input', e => {
+  if (e.target.id !== 'cpTxt' || !E.comp) return;
+  const o = interpretarCompromisso(e.target.value);
+  $('cpTit').value = o.Titulo || '';
+  if (o.Data) $('cpData').value = o.Data;
+  $('cpHora').value = o.Hora || '';
+  if (o.Tipo && !E.comp.tipoManual) E.comp.Tipo = o.Tipo;
+  E.comp.Repetir = o.Repetir || 'Não';
+  pintarComp();
+});
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { aplicarCor(); if (E.codigos.length) render(); });
 
 // =====================================================================
@@ -3202,11 +3732,43 @@ addEventListener('touchend', async () => {
   toast(ultimaSync ? 'Tudo em dia ✓' : 'Sem conexão agora', !ultimaSync);
 });
 
-const TELA_INICIAL = { 'Início': 'inicio', 'Calendário': 'presenca', 'Financeiro': 'financeiro', 'Diário': 'diario', 'Treinos': 'treinos' };
-const telaInicial = () => TELA_INICIAL[cfg('TelaInicial', 'Início')] || { 'Presença': 'presenca', 'Hábitos': 'presenca' }[cfg('TelaInicial', '')] || 'inicio';
+// Arrastar os cartões de "Para resolver": → conclui, ← fica para amanhã
+let arrasto = null;
+addEventListener('touchstart', e => {
+  const sw = e.target.closest && e.target.closest('.sw');
+  arrasto = sw && e.touches.length === 1 ? { sw, tk: sw.querySelector('.tk'), x: e.touches[0].clientX, y: e.touches[0].clientY, dx: 0, ativo: false } : null;
+}, { passive: true });
+addEventListener('touchmove', e => {
+  if (!arrasto) return;
+  const dx = e.touches[0].clientX - arrasto.x, dy = e.touches[0].clientY - arrasto.y;
+  if (!arrasto.ativo) {
+    if (Math.abs(dy) > 12 && Math.abs(dy) > Math.abs(dx)) { arrasto = null; return; }
+    if (Math.abs(dx) < 12) return;
+    arrasto.ativo = true; puxar = null; arrasto.sw.classList.add('arrastando');
+  }
+  arrasto.dx = dx;
+  arrasto.sw.classList.toggle('dir', dx > 0); arrasto.sw.classList.toggle('esq', dx < 0);
+  arrasto.tk.style.transform = `translateX(${dx}px)`;
+}, { passive: true });
+function soltarArrasto() {
+  if (!arrasto) return;
+  const { sw, tk, dx, ativo } = arrasto;
+  arrasto = null;
+  if (!ativo) return;
+  E.arrastou = Date.now(); sw.classList.remove('arrastando');
+  if (Math.abs(dx) < Math.min(110, sw.offsetWidth * 0.3)) { tk.style.transform = ''; setTimeout(() => sw.classList.remove('dir', 'esq'), 200); return; }
+  tk.style.transform = `translateX(${dx > 0 ? 110 : -110}%)`; vibrar(18);
+  setTimeout(() => (dx > 0 ? concluirAlerta : adiarAlerta)(sw.dataset.k), 200);
+}
+addEventListener('touchend', soltarArrasto);
+addEventListener('touchcancel', soltarArrasto);
+
+const TELA_INICIAL = { 'Início': 'inicio', 'Agenda': 'presenca', 'Hábitos': 'habitos', 'Financeiro': 'financeiro', 'Diário': 'diario', 'Treinos': 'treinos' };
+const telaInicial = () => TELA_INICIAL[cfg('TelaInicial', 'Início')] || { 'Presença': 'presenca', 'Calendário': 'presenca' }[cfg('TelaInicial', '')] || 'inicio';
 
 async function iniciar() {
   E.ocultar = !!ls.get('mdd_ocultar');
+  aplicarTamanho();
   travaDisponivel().then(ok => { E.travaOk = ok; });
   if (!NO_GOOGLE && !(ls.get(CONEXAO) || {}).chave) return telaConectar();
   if (ls.get(TRAVA)) { travar(); destravar(); }
