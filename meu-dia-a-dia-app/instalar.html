@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Criar o seu Meu Dia</title>
+<meta name="description" content="Passo a passo para ter o seu próprio Meu Dia, de graça, com os dados na sua planilha do Google.">
+<link rel="icon" href="icone-192.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg: #faf6f2; --card: #fff; --tx: #1f1a17; --sub: #8a7f77; --line: #f0e6dd; --soft: #f6f0ea; --acct: #c2410c; --acc2: #ffe4cf; --escuro: #1f1a17; --marrom: #7c2d12; --ok: #16a34a; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #171310; --card: #221c18; --tx: #f5efe9; --sub: #b3a79e; --line: #352c26; --soft: #2a231e; --acct: #fb923c; --acc2: #3b2416; --escuro: #f5efe9; --marrom: #c2410c; --ok: #4ade80; } }
+  body { background: var(--bg); color: var(--tx); font-family: Urbanist, system-ui, sans-serif; font-weight: 600; line-height: 1.5; }
+  main { max-width: 720px; margin: 0 auto; padding: 28px 16px 60px; }
+  .topo { display: flex; gap: 14px; align-items: center; margin-bottom: 8px; }
+  .topo img { width: 56px; height: 56px; border-radius: 16px; }
+  h1 { font-size: 26px; font-weight: 800; letter-spacing: -.5px; line-height: 1.15; }
+  h2 { font-size: 19px; font-weight: 800; margin: 30px 0 10px; }
+  p, li { font-size: 15px; }
+  .sub { color: var(--sub); margin: 6px 0 18px; }
+  .gratis { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+  .gratis span { background: var(--acc2); color: var(--acct); border-radius: 999px; padding: 5px 11px; font-size: 13px; font-weight: 800; }
+  .passo { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 16px; margin-bottom: 10px; display: flex; gap: 14px; }
+  .passo .n { width: 32px; height: 32px; border-radius: 50%; background: var(--escuro); color: var(--bg); display: grid; place-items: center; font-weight: 800; flex: none; }
+  .passo b { display: block; font-size: 16px; margin-bottom: 2px; }
+  .passo p { color: var(--sub); }
+  .passo p strong { color: var(--tx); }
+  .passo ul { margin: 6px 0 0 18px; color: var(--sub); }
+  a { color: var(--acct); font-weight: 800; }
+  .bt { display: inline-flex; align-items: center; gap: 8px; background: var(--marrom); color: #fff; text-decoration: none; border: 0; border-radius: 12px; padding: 11px 16px; font: inherit; font-weight: 800; cursor: pointer; margin-top: 10px; }
+  .bt.sec { background: var(--soft); color: var(--tx); border: 1px solid var(--line); }
+  .aviso { background: var(--soft); border-radius: 14px; padding: 12px 14px; font-size: 14px; color: var(--sub); margin-top: 10px; }
+  textarea { width: 100%; height: 160px; margin-top: 10px; border: 1px solid var(--line); border-radius: 12px; padding: 10px; font: 12px/1.4 ui-monospace, monospace; background: var(--card); color: var(--tx); resize: vertical; }
+  .ok { color: var(--ok); font-weight: 800; margin-left: 8px; }
+  code { background: var(--soft); border-radius: 6px; padding: 1px 6px; font-size: 13.5px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="topo"><img src="icone-192.png" alt=""><div><h1>Criar o seu Meu Dia</h1></div></div>
+  <p class="sub">Presença, hábitos, finanças, estudos e vida, num app só. É só entrar com a sua conta Google: seus dados ficam guardados só para você.</p>
+  <div class="gratis"><span>100% grátis</span><span>Entra com Google</span><span>Funciona sem internet</span><span>1 minuto</span></div>
+
+  <h2>Começar (o jeito fácil)</h2>
+  <div class="passo"><div class="n">1</div><div><b>Abra o app e entre com Google</b>
+    <p>Toque no botão abaixo e em <strong>Entrar com Google</strong>. Pronto: o app já está funcionando.</p>
+    <a class="bt" href="./">Abrir o Meu Dia</a></div></div>
+  <div class="passo"><div class="n">2</div><div><b>Instale no celular</b>
+    <p>No Chrome do celular, toque em <strong>⋮ → Instalar app</strong>. No computador, salve nos favoritos. Use a mesma conta Google nos dois para ver tudo nos dois.</p></div></div>
+
+  <h2>Avançado: com uma planilha do Google</h2>
+  <p class="sub" style="margin-top:0">Só se você quiser ver e mexer nos dados direto numa planilha. Depois de pronta, no app toque em <strong>Usar com uma planilha do Google (avançado)</strong>.</p>
+  <div class="passo"><div class="n">1</div><div><b>Crie uma planilha nova</b>
+    <p>Entre na sua conta Google e crie uma planilha em branco. Dê o nome que quiser (ex.: <strong>Meu Dia</strong>).</p>
+    <a class="bt sec" href="https://sheets.new" target="_blank" rel="noopener">Criar planilha</a></div></div>
+  <div class="passo"><div class="n">2</div><div><b>Cole o código da ponte</b>
+    <p>Na planilha: <strong>Extensões → Apps Script</strong>. Apague o que estiver escrito, cole o código e clique em <strong>Salvar</strong> (o disquete).</p>
+    <button class="bt" id="copiar" type="button">Copiar o código da ponte</button><span class="ok" id="copiado" hidden>Copiado ✓</span></div></div>
+  <div class="passo"><div class="n">3</div><div><b>Prepare a planilha</b>
+    <p>Volte para a planilha e <strong>recarregue a página</strong>. Aparece o menu <strong>Meu Dia</strong> no topo. Clique em <strong>Meu Dia → 1. Preparar a planilha</strong>.</p>
+    <div class="aviso">O Google vai pedir permissão e mostrar “O Google não verificou este app”. É normal: o código é seu, está na sua conta. Clique em <strong>Avançado → Acessar (não seguro)</strong> e em <strong>Permitir</strong>. Ele cria as abas sozinho.</div></div></div>
+  <div class="passo"><div class="n">4</div><div><b>Publique a ponte (uma vez)</b>
+    <p>No Apps Script: <strong>Implantar → Nova implantação</strong> → engrenagem → <strong>App da Web</strong>.</p>
+    <ul><li>Executar como: <strong>Eu</strong></li><li>Quem pode acessar: <strong>Qualquer pessoa</strong></li></ul>
+    <p>Clique em <strong>Implantar</strong>. “Qualquer pessoa” só deixa o app falar com a ponte: sem a sua chave secreta, ninguém lê nada.</p></div></div>
+  <div class="passo"><div class="n">5</div><div><b>Conecte o celular</b>
+    <p>Na planilha: <strong>Meu Dia → 2. Conectar um celular ou computador</strong>. Aponte a câmera do celular para o QR code: o app abre já conectado. No Chrome, toque em <strong>⋮ → Instalar app</strong>.</p>
+    <p>No computador, use o link que aparece na mesma janela.</p></div></div>
+
+  <h2 id="atualizar">Atualizar a ponte (só no modo planilha)</h2>
+  <p class="sub" style="margin-top:0">Quando o app avisar que a ponte está desatualizada:</p>
+  <div class="passo"><div class="n">1</div><div><b>Copie e cole o código novo</b>
+    <p>Copie o código abaixo e cole no lugar do antigo no Apps Script (apague tudo antes). <strong>Salvar</strong>.</p>
+    <button class="bt" id="copiar2" type="button">Copiar o código da ponte</button><span class="ok" id="copiado2" hidden>Copiado ✓</span></div></div>
+  <div class="passo"><div class="n">2</div><div><b>Publique a versão nova</b>
+    <p><strong>Implantar → Gerenciar implantações → ✏️ (editar) → Versão: Nova versão → Implantar</strong>. O endereço continua o mesmo; não precisa conectar de novo.</p></div></div>
+
+  <h2>O código</h2>
+  <p class="sub" style="margin-top:0">Versão <span id="versao">…</span>. Ele lê e grava só na planilha em que foi colado.</p>
+  <textarea id="codigo" readonly>Carregando…</textarea>
+</main>
+<script>
+  let codigo = '';
+  fetch('Codigo.gs', { cache: 'no-store' }).then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(t => { codigo = t; document.getElementById('codigo').value = t; const m = t.match(/PONTE_VERSAO = '(\d+)'/); document.getElementById('versao').textContent = m ? m[1] : '?'; })
+    .catch(() => { document.getElementById('codigo').value = 'Não deu para carregar o código agora. Confira a internet e recarregue a página.'; });
+  const copiar = async (aviso) => {
+    if (!codigo) return;
+    try { await navigator.clipboard.writeText(codigo); }
+    catch (e) { const t = document.getElementById('codigo'); t.focus(); t.select(); document.execCommand('copy'); }
+    const a = document.getElementById(aviso); a.hidden = false; setTimeout(() => { a.hidden = true; }, 2500);
+  };
+  document.getElementById('copiar').onclick = () => copiar('copiado');
+  document.getElementById('copiar2').onclick = () => copiar('copiado2');
+</script>
+</body>
+</html>
