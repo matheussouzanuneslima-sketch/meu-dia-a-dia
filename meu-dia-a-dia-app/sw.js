@@ -1,6 +1,6 @@
 // Meu Dia: guarda o app no aparelho para abrir sem internet.
 // Os dados não passam por aqui (ficam no aparelho e na planilha); só as telas, o ícone e a fonte.
-const VERSAO = 'mdd-v10';
+const VERSAO = 'mdd-v12';
 const ARQUIVOS = ['./', 'index.html', 'manifest.webmanifest', 'icone-192.png', 'icone-512.png', 'icone-maskable.png', 'icone-180.png'];
 
 self.addEventListener('install', e => {
