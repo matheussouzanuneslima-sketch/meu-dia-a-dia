@@ -2042,6 +2042,10 @@
   .calwrap.cols > .calcol { display: grid; gap: 14px; align-content: start; min-width: 0; }
   .calwrap.cols #cardCal { grid-row: auto; }
   @media (min-width: 900px) and (max-width: 1180px) { .calwrap.cols { grid-template-columns: minmax(0, 1fr) 300px; } }
+
+  /* v40 · Bolinha com lápis para criar novo status no painel do dia */
+  .codigos .cod-mais { width: 46px; height: 46px; border-radius: 50% !important; background: var(--sel) !important; color: var(--sel-tx) !important; display: grid; place-items: center; align-self: center; justify-self: center; padding: 0 !important; box-shadow: 0 8px 18px -8px rgba(0,0,0,.45); transition: transform .2s cubic-bezier(.2,1.5,.4,1); }
+  .codigos .cod-mais svg.i { width: 19px; height: 19px; } .codigos .cod-mais:active { transform: scale(.9) rotate(-12deg); }
 </style>
 </head>
 <body>
@@ -2164,7 +2168,7 @@ const corLimite = p => p >= 100 ? 'var(--r)' : p >= 80 ? 'var(--o)' : 'var(--g)'
 const NO_GOOGLE = typeof google !== 'undefined' && google.script && google.script.run;
 const CONEXAO = 'mdd_conexao';
 // Versão do app e da ponte que ele espera (o botão "Procurar atualização" compara com a do site)
-const APP_VERSAO = '39', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
+const APP_VERSAO = '40', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
 async function procurarAtualizacao() {
   toast('Procurando atualização…');
   try {
@@ -3114,7 +3118,7 @@ function codigosPainel() {
   if (c && !E.codAberto) { const [b, t] = corCodigo(c.codigo);
     return `<button class="cod-esc" data-a="trocarCodigo"><span class="chip-c" style="background:${b};color:${t}">${esc(c.codigo)}</span><b>${esc(c.descricao)}</b><span class="lk">Trocar</span></button>`; }
   return `<div class="codigos">${E.codigos.map(c => { const [b, t] = corCodigo(c.codigo);
-    return `<button data-a="codigo" data-c="${esc(c.codigo)}" class="${c.codigo === E.codigoSel ? 'sel' : ''}" style="background:${b};color:${t}" title="${esc(c.descricao)}">${esc(c.codigo)}</button>`; }).join('')}<button data-a="codigo" data-c="" class="nenhum ${E.codigoSel ? '' : 'sel'}" title="Sem status">—</button></div>`;
+    return `<button data-a="codigo" data-c="${esc(c.codigo)}" class="${c.codigo === E.codigoSel ? 'sel' : ''}" style="background:${b};color:${t}" title="${esc(c.descricao)}">${esc(c.codigo)}</button>`; }).join('')}<button data-a="codigo" data-c="" class="nenhum ${E.codigoSel ? '' : 'sel'}" title="Sem status">—</button><button type="button" class="cod-mais" data-a="editarCodigo" data-c="" title="Novo status de presença" aria-label="Novo status de presença">${ic('pen')}</button></div>`;
 }
 function aplicarDia(dia) {
   if (!dia) return;
