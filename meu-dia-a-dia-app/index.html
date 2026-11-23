@@ -1928,6 +1928,100 @@
   
   .chips.fixo, .filtros-ag { margin-left: -14px; margin-right: -14px; padding-left: 14px; padding-right: 14px; }
   .lk-row { margin-left: -14px; margin-right: -14px; padding-left: 14px; padding-right: 14px; scroll-padding: 0 14px; }
+
+  /* v37 · Agenda com sal */
+  @media (max-width: 899px) {
+    body.t-presenca { background: radial-gradient(120% 420px at 100% 0%, #ffe0c9 0%, rgba(255,224,201,0) 60%), radial-gradient(90% 380px at 0% 0%, #ece3fb 0%, rgba(236,227,251,0) 65%), var(--bg) no-repeat; }
+    #cardCal { background: rgba(255,252,248,.78) !important; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: 0 18px 34px -20px rgba(60,40,20,.35) !important; }
+    #cardCal .wk { gap: 2px 0; }
+    #cardCal .day, #cardCal .day.cod, #cardCal .day.blank, #cardCal .day.nt { background: transparent !important; border: 0 !important; outline: 0 !important; aspect-ratio: auto; height: 46px; color: var(--tx); justify-content: center; gap: 3px; }
+    #cardCal .day .c, #cardCal .day .cdot, #cardCal .day.obs::after { display: none; }
+    #cardCal .day .n { font-size: 15px; font-weight: 600; opacity: 1; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; position: relative; }
+    #cardCal .day.cod:not(.nt) .n::after { content: ''; position: absolute; left: 9px; right: 9px; bottom: 2px; height: 2.5px; border-radius: 3px; background: color-mix(in srgb, var(--ct) 55%, #fff); }
+    #cardCal .day.nt .n, #cardCal .day.blank .n { color: #b3aaa2; }
+    #cardCal .day.blank:not(.nt) .n { color: var(--tx); }
+    #cardCal .day .evs { display: flex; gap: 2px; height: 5px; } #cardCal .day .evs i { width: 5px; height: 5px; border-radius: 50%; }
+    #cardCal .day.sel .n { background: var(--sel); color: var(--sel-tx); font-weight: 800; }
+    #cardCal .day.today .n { background: linear-gradient(135deg, #f59e5b, #e0703c); color: #fff; font-weight: 800; box-shadow: 0 8px 18px -6px rgba(224,112,60,.7); }
+    #cardCal .day.today .n::after, #cardCal .day.sel .n::after { display: none; }
+    #cardCal .day.fplan .n { box-shadow: inset 0 0 0 1.5px #0d9488; }
+    #cardCal .leg { margin-top: 8px; }
+  }
+  .ag-res { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .ag-res div { background: var(--card); border-radius: 18px; padding: 10px 12px; box-shadow: var(--sh); min-width: 0; }
+  .ag-res small { display: block; font-size: 11px; font-weight: 700; color: var(--sub); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ag-res b { font-size: 19px; font-weight: 800; letter-spacing: -.4px; }
+  .ag-prog { display: flex; align-items: center; gap: 12px; background: var(--card); border-radius: 18px; padding: 11px 14px; margin: 8px 0 10px; box-shadow: var(--sh); font-size: 13px; }
+  .ag-prog .bar3 { flex: 1; height: 9px; border-radius: 9px; background: var(--soft); overflow: hidden; } .ag-prog .bar3 i { display: block; height: 100%; border-radius: 9px; background: linear-gradient(90deg, #9fd3a8, #3f9f62); }
+  .ag-ano { background: transparent !important; border: 0 !important; padding: 0 4px !important; margin: -2px 0 10px !important; }
+  .ag-ano p { margin: 0 !important; padding: 0 !important; border: 0 !important; color: var(--sub) !important; font-size: 12px !important; }
+  .ag-ano p b { color: var(--tx) !important; }
+  .ag-vista { display: inline-flex; background: var(--soft); border-radius: 999px; padding: 3px; margin-bottom: 10px; }
+  .ag-vista button { padding: 6px 14px; border-radius: 999px; font-weight: 800; font-size: 12.5px; color: var(--sub); transition: background .25s, color .25s; }
+  .ag-vista button.on { background: var(--sel); color: var(--sel-tx); }
+  .ag-sem { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+  .ag-sem button { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 6px 0; font-size: 11.5px; font-weight: 700; color: var(--sub); }
+  .ag-sem b { width: 40px; height: 40px; max-width: 100%; border-radius: 13px; display: grid; place-items: center; font-size: 16px; color: var(--tx); position: relative; }
+  .ag-sem b.cod::after { content: ''; position: absolute; left: 12px; right: 12px; bottom: 4px; height: 2.5px; border-radius: 3px; background: color-mix(in srgb, var(--ct) 55%, #fff); }
+  .ag-sem .sel b { background: var(--sel); color: var(--sel-tx); } .ag-sem .today b { background: linear-gradient(135deg, #f59e5b, #e0703c); color: #fff; box-shadow: 0 8px 18px -6px rgba(224,112,60,.7); }
+  .ag-sem .sel b::after, .ag-sem .today b::after { display: none; }
+  .ag-sem .evs { display: flex; gap: 2px; height: 5px; } .ag-sem .evs i { width: 5px; height: 5px; border-radius: 50%; }
+  .ag-hero { border-radius: 24px; padding: 15px 16px; color: #fff; background: linear-gradient(135deg, #2b2522, #4a3a33); position: relative; overflow: hidden; cursor: pointer; }
+  .ag-hero::after { content: ''; position: absolute; right: -30px; top: -40px; width: 170px; height: 170px; border-radius: 50%; background: radial-gradient(circle, rgba(245,158,91,.55), transparent 70%); pointer-events: none; }
+  .ag-hero > small { color: #f5c9a8; font-weight: 800; font-size: 11px; letter-spacing: 1.4px; } .ag-hero > b { display: block; font-size: 20px; margin: 4px 0 2px; overflow-wrap: anywhere; } .ag-hero > span { color: #d6ccc4; font-weight: 700; font-size: 12.5px; }
+  .ag-hero .cd { display: flex; gap: 6px; margin-top: 12px; position: relative; z-index: 1; } .ag-hero .cd div { background: rgba(255,255,255,.1); border-radius: 12px; padding: 6px 10px; text-align: center; min-width: 52px; }
+  .ag-hero .cd b { display: block; font-size: 20px; } .ag-hero .cd em { font-style: normal; font-size: 10px; font-weight: 800; color: #d6ccc4; }
+  .ag-hero .cd .go { margin-left: auto; background: #f59e5b; color: #2b2522; border-radius: 12px; display: flex; align-items: center; font-weight: 800; font-size: 13px; padding: 0 16px; }
+  .ev2 { display: flex; align-items: center; gap: 12px; background: var(--card); border-radius: 16px; padding: 10px 12px; margin-bottom: 8px; border: 1px solid var(--line); border-left: 4px solid var(--c); cursor: pointer; }
+  .ev2:last-child { margin-bottom: 0; }
+  .ev2 .ti { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; flex: none; background: color-mix(in srgb, var(--c) 15%, var(--card)); color: var(--c); } .ev2 .ti svg.i { width: 18px; height: 18px; }
+  .ev2 .t { flex: 1; min-width: 0; } .ev2 .t b { font-size: 14px; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ev2 .t small { color: var(--sub); font-weight: 700; font-size: 11.5px; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ev2 .hh { text-align: right; font-weight: 800; font-size: 13px; flex: none; } .ev2 .hh small { display: block; color: var(--sub); font-weight: 700; font-size: 11px; }
+  @media (prefers-reduced-motion: no-preference) { #main.chegou .ag-hero { animation: sobeEscala .6s .2s cubic-bezier(.16,1,.3,1) both; } #main.chegou .ag-res > div { animation: popIn .45s cubic-bezier(.2,1.4,.4,1) both; animation-delay: calc(var(--i, 0) * 60ms); } #main.chegou .ag-prog .bar3 i { animation: encher 1.1s .3s cubic-bezier(.16,1,.3,1) both; } #main.chegou .ev2 { animation: vemDireita .45s cubic-bezier(.16,1,.3,1) both; animation-delay: calc(var(--i, 0) * 60ms + .2s); } }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.t-presenca { background: var(--bg); } }
+  :root[data-theme="dark"] body.t-presenca { background: var(--bg); }
+
+  /* v37 · Farmácia: lista sem caixas encavaladas */
+  .med { border: 0 !important; border-top: 1px solid var(--line) !important; border-radius: 0 !important; padding: 12px 2px !important; background: transparent !important; box-shadow: none !important; }
+  .med:first-child { border-top: 0 !important; padding-top: 2px !important; }
+  .med .linha1 { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+  .med .linha1 b { min-width: 0; overflow-wrap: anywhere; }
+  .med .linha1 .pill { flex: none; }
+  .med .ic { width: 40px; height: 40px; border-radius: 13px; display: grid; place-items: center; flex: none; }
+
+  /* v37 · Responsividade geral */
+  img, svg, video { max-width: 100%; }
+  .main { overflow-x: clip; }
+  .card, .grid > *, .row .t, .ext .t { min-width: 0; }
+  .row .t b, .row .t small { overflow-wrap: anywhere; }
+  @media (max-width: 360px) {
+    .main { padding-left: 10px !important; padding-right: 10px !important; }
+    .cabeca h1, .top .hello b { font-size: 22px !important; }
+    .ag-res { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .kpis .kpi.wide { grid-column: span 2; }
+    .faixa b, .nums4 b { font-size: 15px !important; } .faixa small, .nums4 small { font-size: 9.5px !important; }
+    .rot-g { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .acoes-fin span { width: 38px !important; height: 38px !important; }
+    .saldo2 .v { font-size: 27px !important; }
+    #cardCal .day .n { width: 30px; height: 30px; font-size: 13.5px; }
+    .bnav button { width: 56px !important; font-size: 10px !important; }
+    .tec button { height: 46px; }
+    .tec-num { font-size: 36px; }
+  }
+  @media (min-width: 600px) and (max-width: 899px) {
+    .main { max-width: 720px; padding-left: 22px !important; padding-right: 22px !important; }
+    .grid.g2 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .apps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .rot-g { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .bnav { max-width: 560px; margin: 0 auto; left: 0 !important; right: 0 !important; border-radius: 24px !important; bottom: 12px !important; border: 1px solid var(--line) !important; }
+    .painel { max-width: 600px; border-radius: 24px 24px 0 0; }
+  }
+  @media (min-width: 900px) and (max-width: 1180px) {
+    .main { padding-left: 20px !important; padding-right: 20px !important; }
+    .k5, .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .calwrap { grid-template-columns: minmax(0, 1fr) 300px !important; }
+  }
+  @media (min-width: 1600px) { .main { max-width: 1400px; } }
 </style>
 </head>
 <body>
@@ -2050,7 +2144,7 @@ const corLimite = p => p >= 100 ? 'var(--r)' : p >= 80 ? 'var(--o)' : 'var(--g)'
 const NO_GOOGLE = typeof google !== 'undefined' && google.script && google.script.run;
 const CONEXAO = 'mdd_conexao';
 // Versão do app e da ponte que ele espera (o botão "Procurar atualização" compara com a do site)
-const APP_VERSAO = '36', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
+const APP_VERSAO = '37', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
 async function procurarAtualizacao() {
   toast('Procurando atualização…');
   try {
@@ -2821,16 +2915,20 @@ function telaPresenca() {
   const sel = diaSel(), ym = E.mesPres, ano = +ym.slice(0, 4), r = resumoMes(ym), ra = resumoAno(ano);
   const pct = (a, b) => b ? Math.round(a / b * 100) + '%' : '—';
   return `${cabeca('Agenda', '', `<button class="ibtn" data-a="buscarDia" aria-label="Ir para uma data">${ic('search')}</button><button class="ibtn" data-a="editarCfg" data-g="presenca" aria-label="Ajustes da agenda">${ic('gear')}</button>`)}
-  <div class="faixa2"><div class="nums4"><div><b>${r.presenca}/${r.previstos}</b><small>Presença</small></div><div><b>${r.folga}</b><small>Folgas</small></div><div><b>${r.extra}</b><small>Com extra</small></div><div><b>${r.falta}</b><small>Faltas</small></div></div>
-    <p>Em ${ano}${String(ano) === hojeIso().slice(0, 4) ? ' até agora' : ''}: <b>${pct(ra.presenca, ra.previstos)}</b> de presença (${ra.presenca}/${ra.previstos}) · <b>${ra.folga}</b> folgas · <b>${ra.extra}</b> com extra · <b>${ra.falta}</b> faltas</p></div>
+  <div class="ag-res"><div><small>Presença</small><b>${r.presenca}/${r.previstos}</b></div><div><small>Folgas</small><b>${r.folga}</b></div><div><small>Com extra</small><b>${r.extra}</b></div><div><small>Faltas</small><b>${r.falta}</b></div></div>
+  <div class="ag-prog"><b>${maiuscula(MESES[+ym.slice(5) - 1])}</b><div class="bar3"><i style="width:${r.previstos ? Math.min(100, Math.round(r.presenca / r.previstos * 100)) : 0}%"></i></div><b>${pct(r.presenca, r.previstos)}</b></div>
+  <div class="faixa2 ag-ano"><p>Em ${ano}${String(ano) === hojeIso().slice(0, 4) ? ' até agora' : ''}: <b>${pct(ra.presenca, ra.previstos)}</b> de presença (${ra.presenca}/${ra.previstos}) · <b>${ra.folga}</b> folgas · <b>${ra.extra}</b> com extra · <b>${ra.falta}</b> faltas</p></div>
   <div class="calwrap">
       <div class="card" id="cardCal">
         <div class="mhead"><b>${maiuscula(MESES[+ym.slice(5) - 1])}<select class="anosel" id="anoPres" aria-label="Ano">${anosCalendario().map(a => `<option ${a === ano ? 'selected' : ''}>${a}</option>`).join('')}</select></b>
           <div class="navcal">${sel !== hojeIso() || !hojeIso().startsWith(ym) ? '<button class="hojeb" data-a="hojePres">Hoje</button>' : ''}<div class="arrows so-pc"><button data-a="mesPres" data-n="-1" aria-label="Mês anterior">${ic('chevl')}</button><button data-a="mesPres" data-n="1" aria-label="Próximo mês">${ic('chev')}</button></div></div></div>
-        <div id="calArrasto" class="${E.animCal || ''}">${calendarioMes(ym, sel)}</div>${legendaPresenca(ym)}
+        <div class="ag-vista"><button class="${E.vistaAg !== 'semana' ? 'on' : ''}" data-a="vistaAg" data-v="mes">Mês</button><button class="${E.vistaAg === 'semana' ? 'on' : ''}" data-a="vistaAg" data-v="semana">Semana</button></div>
+        <div id="calArrasto" class="${E.animCal || ''} ${E.vistaAg === 'semana' ? 'so-semana' : ''}">${E.vistaAg === 'semana' ? semanaAgenda(sel) : calendarioMes(ym, sel)}</div>${E.vistaAg === 'semana' ? '' : legendaPresenca(ym)}
         <p class="dica">Toque num dia para ver · toque de novo para editar<span class="so-cel"> · arraste para os lados para trocar de mês</span></p>
         ${anotacoesMes(ym)}</div>
+    ${daquiAPouco()}
     <div class="card" id="diaSel">${detalheDia(sel)}</div>
+    ${cardProximos()}
     ${cardFerias()}
     ${cardFolgas(ano)}
   </div>
@@ -2897,6 +2995,33 @@ function calendarioMes(ym, sel = '') {
     h += `<div class="${cls.join(' ')}" style="${st}" data-a="tocarDia" data-d="${k}"${g && g.titulo ? ` title="${esc(g.titulo)}"` : ''}><span class="n">${+k.slice(8)}</span><span class="c">${g ? esc(g.codigo) : ''}</span>${cor ? `<em class="cdot" style="background:${cor}"></em>` : ''}${ev}</div>`;
   });
   return h + '</div>';
+}
+
+/** Semana do dia escolhido, em faixa. */
+function semanaAgenda(sel) {
+  const ini = inicioSemana(sel), hoje = hojeIso();
+  return `<div class="ag-sem">${[...Array(7)].map((_, i) => { const k = somaDias(ini, i), its = itensDoDia(k).filter(x => !x.rem), g = E.dias[k];
+    const cor = g && g.codigo ? corCodigo(g.codigo)[1] : '';
+    return `<button class="${k === sel ? 'sel' : ''} ${k === hoje ? 'today' : ''}" data-a="tocarDia" data-d="${k}"><small>${semCurta(k)}</small><b style="${cor ? '--ct:' + cor : ''}" class="${cor ? 'cod' : ''}">${+k.slice(8)}</b><span class="evs">${its.slice(0, 3).map(x => `<i style="background:${x.cor}"></i>`).join('')}</span></button>`; }).join('')}</div>`;
+}
+/** Próximo compromisso com contagem regressiva (até 2 dias). */
+function daquiAPouco() {
+  const x = proximosAgenda(2, 6).find(p => p.i.h && p.i.a === 'editarComp');
+  if (!x) return '';
+  const quando = new Date(paraDate(x.k).getTime()); const [hh, mm] = x.i.h.split(':').map(Number); quando.setHours(hh, mm || 0, 0, 0);
+  const min = Math.max(0, Math.round((quando - new Date()) / 60000)), H = Math.floor(min / 60), M = min % 60;
+  const dia = x.k === hojeIso() ? 'hoje' : x.k === somaDias(hojeIso(), 1) ? 'amanhã' : fmtCurto(x.k);
+  return `<div class="ag-hero" ${attrsItem(x.i, x.k)}><small>DAQUI A POUCO</small><b>${esc(x.i.t)}</b><span>${x.i.h} · ${dia}${x.i.s ? ' · ' + esc(x.i.s) : ''}</span>
+    <div class="cd">${H >= 24 ? `<div><b>${Math.floor(H / 24)}</b><em>DIA${H >= 48 ? 'S' : ''}</em></div>` : ''}<div><b>${H % 24}</b><em>HORAS</em></div><div><b>${M}</b><em>MIN</em></div><span class="go">Ver</span></div></div>`;
+}
+/** Próximos compromissos, em cartões com borda colorida. */
+function cardProximos() {
+  const its = proximosAgenda(30, 6).filter(p => p.k !== diaSel());
+  if (!its.length) return '';
+  const hoje = hojeIso();
+  return `<div class="card ag-prox"><div class="sec">Próximos</div>${its.map(({ k, i }) => { const n = difDias(hoje, k);
+    return `<div class="ev2" style="--c:${i.cor || '#c2410c'}" ${attrsItem(i, k)}><span class="ti">${ic(i.ic || 'calendar')}</span><div class="t"><b>${esc(i.t)}</b><small>${esc([i.k, i.s].filter(Boolean).join(' · '))}</small></div>
+      <div class="hh">${i.h || '—'}<small>${n === 0 ? 'hoje' : n === 1 ? 'amanhã' : semCurta(k) + ', ' + fmtCurto(k)}</small></div></div>`; }).join('')}</div>`;
 }
 /** Legenda só com o que aparece no mês. */
 function legendaPresenca(ym) {
@@ -5989,6 +6114,7 @@ document.addEventListener('pointerdown', e => {
 
 function render() {
   document.body.classList.toggle('sem-dicas', !liga('Dicas'));
+  document.body.className = document.body.className.replace(/\bt-\S+/g, '').trim(); document.body.classList.add('t-' + E.tela);
   $('main').innerHTML = TELAS[E.tela]();
   if (E.anima) { E.anima = false; animarEntrada(); trocaDeTela(); }
   const sideTopo = $('side').scrollTop; // o menu não volta para o topo a cada troca de tela
@@ -6059,6 +6185,7 @@ const ACOES = {
   codigo: ({ c }) => { E.sujo = true; E.codigoSel = c; E.codAberto = !c; vibrar(8); $('diaCodigos').innerHTML = codigosPainel(); },
   trocarCodigo: () => { E.codAberto = true; $('diaCodigos').innerHTML = codigosPainel(); },
   salvarDia: ({ prox }) => salvarDiaAtual(!!prox),
+  vistaAg: ({ v }) => { E.vistaAg = v; render(); },
   mesPres: ({ n }) => { E.animCal = +n > 0 ? 'vem-dir' : 'vem-esq'; mudarPeriodo(+n); render(); E.animCal = ''; },
   tocarDia: ({ d }) => {
     if (d === diaSel() && d.startsWith(E.mesPres)) return abrirDia(d);
