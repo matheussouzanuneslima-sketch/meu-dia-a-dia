@@ -1991,7 +1991,8 @@
 
   /* v37 · Responsividade geral */
   img, svg, video { max-width: 100%; }
-  .main { overflow-x: clip; }
+  .main { overflow-x: visible; }
+  .app { overflow-x: clip; }
   .card, .grid > *, .row .t, .ext .t { min-width: 0; }
   .row .t b, .row .t small { overflow-wrap: anywhere; }
   @media (max-width: 360px) {
@@ -2022,6 +2023,19 @@
     .calwrap { grid-template-columns: minmax(0, 1fr) 300px !important; }
   }
   @media (min-width: 1600px) { .main { max-width: 1400px; } }
+
+  /* v38 · Céu cobre a largura toda (sem bordas brancas): o degradê se estende para os lados */
+  .ceu { border-image: linear-gradient(180deg, var(--ceu1) 0%, var(--ceu2) 48%, var(--ceu3) 78%, var(--bg) 100%) fill 0 / 0 / 0 100vw; }
+  .side { position: sticky; z-index: 3; }
+  .ceu::after { display: none; }
+  @media (max-width: 899px) { .ceu.ilustrado .astro, .ceu.ilustrado.noturno .astro { left: 46% !important; top: 2px !important; width: 48px !important; height: 48px !important; } }
+  @media (min-width: 900px) {
+    .ceu { height: 440px; }
+    .ceu.ilustrado .astro { left: auto !important; right: 30%; top: 6px !important; }
+    .ceu.ilustrado.noturno .astro { width: 54px; height: 54px; }
+  }
+  body.com-ceu.ceu-escuro .no-ceu, body.com-ceu.ceu-escuro .no-ceu b { color: #fff !important; }
+  body.com-ceu.ceu-escuro .no-ceu button, body.com-ceu.ceu-escuro .no-ceu .lk, body.com-ceu.ceu-escuro .no-ceu span { color: rgba(255,255,255,.75) !important; }
 </style>
 </head>
 <body>
@@ -2144,7 +2158,7 @@ const corLimite = p => p >= 100 ? 'var(--r)' : p >= 80 ? 'var(--o)' : 'var(--g)'
 const NO_GOOGLE = typeof google !== 'undefined' && google.script && google.script.run;
 const CONEXAO = 'mdd_conexao';
 // Versão do app e da ponte que ele espera (o botão "Procurar atualização" compara com a do site)
-const APP_VERSAO = '37', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
+const APP_VERSAO = '38', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
 async function procurarAtualizacao() {
   toast('Procurando atualização…');
   try {
@@ -5975,6 +5989,8 @@ function aplicarCeu() {
   if (!c) { c = document.createElement('div'); c.innerHTML = `<div class="luz"></div><div class="raio"></div>${ESTRELAS}<div class="nuvem n1"></div><div class="nuvem n2"></div><div class="nuvem n3"></div><div class="astro"></div>`; m.prepend(c); }
   c.className = 'ceu ' + k + (f.escuro ? ' noturno' : ' diurno') + (f.quente ? ' quente' : '') + (ilu ? ' ilustrado' : '');
   E.faseCeu = k;
+  // títulos que caem em cima de um céu escuro ficam claros
+  requestAnimationFrame(() => { const fim = c.getBoundingClientRect().bottom - 90; m.querySelectorAll('.tsec, .sec').forEach(t => t.classList.toggle('no-ceu', !!f.escuro && t.getBoundingClientRect().top < fim)); });
 }
 // troca de fase com o app aberto (confere a cada minuto)
 setInterval(() => { if (E.tela === 'inicio' && E.faseCeu && E.faseCeu !== faseDoCeu() && !document.hidden) { const h = document.querySelector('.cabeca h1'); aplicarCeu(); if (h) h.textContent = h.textContent.replace(/^(Bom dia|Boa tarde|Boa noite|Boa madrugada)/, FASES_CEU[E.faseCeu].ola); } }, 60000);
