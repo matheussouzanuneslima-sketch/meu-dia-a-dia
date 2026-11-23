@@ -2036,6 +2036,12 @@
   }
   body.com-ceu.ceu-escuro .no-ceu, body.com-ceu.ceu-escuro .no-ceu b { color: #fff !important; }
   body.com-ceu.ceu-escuro .no-ceu button, body.com-ceu.ceu-escuro .no-ceu .lk, body.com-ceu.ceu-escuro .no-ceu span { color: rgba(255,255,255,.75) !important; }
+
+  /* v39 · Colunas equilibradas no computador */
+  .calwrap.cols { grid-template-columns: minmax(0, 1fr) 360px; align-items: start; }
+  .calwrap.cols > .calcol { display: grid; gap: 14px; align-content: start; min-width: 0; }
+  .calwrap.cols #cardCal { grid-row: auto; }
+  @media (min-width: 900px) and (max-width: 1180px) { .calwrap.cols { grid-template-columns: minmax(0, 1fr) 300px; } }
 </style>
 </head>
 <body>
@@ -2158,7 +2164,7 @@ const corLimite = p => p >= 100 ? 'var(--r)' : p >= 80 ? 'var(--o)' : 'var(--g)'
 const NO_GOOGLE = typeof google !== 'undefined' && google.script && google.script.run;
 const CONEXAO = 'mdd_conexao';
 // Versão do app e da ponte que ele espera (o botão "Procurar atualização" compara com a do site)
-const APP_VERSAO = '38', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
+const APP_VERSAO = '39', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
 async function procurarAtualizacao() {
   toast('Procurando atualização…');
   try {
@@ -6099,6 +6105,32 @@ function trocaDeTela() {
   clearTimeout(trocaDeTela.t); trocaDeTela.t = setTimeout(() => m.classList.remove('chegou'), 1800);
   const f = $('fab'); f.classList.remove('gira'); void f.offsetWidth; f.classList.add('gira');
 }
+
+/** No computador: divide os cartões entre as duas colunas para não sobrar buraco embaixo de uma delas. */
+function equilibrarColunas() {
+  if (innerWidth < 900) return;
+  const alt = col => { const f = col.firstElementChild, l = col.lastElementChild; return f ? l.getBoundingClientRect().bottom - f.getBoundingClientRect().top : 0; };
+  const dividir = (a, b, fixosA, fixosB) => {
+    for (let n = 0; n < 12; n++) {
+      const ha = alt(a), hb = alt(b), dif = ha - hb, maior = dif > 0 ? a : b, menor = dif > 0 ? b : a;
+      const moveis = [...maior.children].slice(maior === a ? fixosA : fixosB);
+      let melhor = null, nova = Math.abs(dif) - 30; // só move se melhorar de verdade
+      moveis.forEach(c => { const d = Math.abs(Math.abs(dif) - 2 * (c.getBoundingClientRect().height + 14)); if (d < nova) { nova = d; melhor = c; } });
+      if (!melhor) break;
+      menor.appendChild(melhor);
+    }
+  };
+  // Finanças e telas com duas colunas de cartões
+  document.querySelectorAll('#main .grid.g2').forEach(g => { const cs = [...g.children]; if (cs.length === 2 && cs.every(c => c.classList.contains('grid'))) dividir(cs[0], cs[1], 2, 1); });
+  // Agenda: calendário à esquerda, o resto se divide
+  const w = document.querySelector('#main .calwrap');
+  if (w && !w.classList.contains('cols')) {
+    const a = document.createElement('div'), b = document.createElement('div'); a.className = b.className = 'calcol';
+    const itens = [...w.children]; itens.forEach(c => (c.id === 'cardCal' ? a : b).appendChild(c));
+    w.classList.add('cols'); w.append(a, b); dividir(a, b, 1, 2);
+  }
+}
+let _resizeT; addEventListener('resize', () => { clearTimeout(_resizeT); _resizeT = setTimeout(() => { if (!document.body.classList.contains('modal')) render(); }, 250); });
 let revelador = null;
 const CASCATA = '.faixa > div, .nums4 > div, .kpi, .chips .chip, .abas button, .row, .cfg, .appi, .lugar, .med, .conq, .tr-grade i, .hum, .pill, .ext, .ext-dia, .cat-r, .lg > div, .partes span, .rot .it, .rg, .faces button, .ops-ag button, .tk, .anoGrid > *, .evg, .mfin, .io2 span, .wk .h, .tr-ex, .tr-serie, .conqs > *';
 function depoisDeDesenhar() {
@@ -6141,6 +6173,7 @@ function render() {
   $('bnav').innerHTML = [['inicio', 'home', 'Hoje'], ['presenca', 'calendar', 'Agenda'], ['financeiro', 'wallet', 'Finanças'], ['habitos', 'habits', 'Hábitos'], ['mais', 'grid', 'Mais']].map(item).join('');
   if (!$('fab').innerHTML) $('fab').innerHTML = ic('plus');
   aplicarCeu();
+  equilibrarColunas();
   depoisDeDesenhar();
   setTimeout(grandesDoHoje, 50);
 }
