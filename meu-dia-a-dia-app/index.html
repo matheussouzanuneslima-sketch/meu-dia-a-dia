@@ -2050,7 +2050,7 @@ const corLimite = p => p >= 100 ? 'var(--r)' : p >= 80 ? 'var(--o)' : 'var(--g)'
 const NO_GOOGLE = typeof google !== 'undefined' && google.script && google.script.run;
 const CONEXAO = 'mdd_conexao';
 // Versão do app e da ponte que ele espera (o botão "Procurar atualização" compara com a do site)
-const APP_VERSAO = '35', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
+const APP_VERSAO = '36', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
 async function procurarAtualizacao() {
   toast('Procurando atualização…');
   try {
@@ -4062,6 +4062,7 @@ function abrirLanc(id, pre, aviso = '') {
 /** Valor do lançamento com teclado grande de números e valores rápidos. */
 function montarTeclado(novo) {
   const inp = $('f_Valor'), tipo = $('f_Tipo'); if (!inp || !tipo) return;
+  if (matchMedia('(min-width: 900px)').matches) return; // no computador: campo normal, sem o teclado na tela
   const campoTipo = tipo.closest('.campo'), t = tipo.value;
   E.tec = inp.value ? String(inp.value).replace(/\./g, ',') : '';
   if (/,\d$/.test(E.tec)) E.tec += '0';
