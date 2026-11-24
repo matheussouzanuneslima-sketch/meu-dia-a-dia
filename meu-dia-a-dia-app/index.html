@@ -2195,6 +2195,39 @@
   .card.solto > .dica-t, .card.solto > p { margin: 2px 4px 10px; }
   .card.solto > .dt-ano { background: var(--card); border-radius: 18px; padding: 12px; box-shadow: var(--sh); }
   @media (prefers-reduced-motion: no-preference) { #main.chegou .card.solto > .row, #main.chegou .card.solto > .med, #main.chegou .card.solto > .meta-c, #main.chegou .card.solto > .entrada, #main.chegou .card.solto > .tr-dia { animation: vemDireita .45s cubic-bezier(.16,1,.3,1) both; animation-delay: calc(var(--i, 0) * 50ms); } }
+
+  /* v44 · Filmes com cara de cinema/streaming */
+  .fm-po { aspect-ratio: 2 / 3; width: 100%; border-radius: 14px; background-size: cover; background-position: center; box-shadow: 0 14px 24px -14px rgba(0,0,0,.55); }
+  .fm-po.vazio { background: linear-gradient(160deg, var(--cor), #141414); color: rgba(255,255,255,.9); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; padding: 10px; text-align: center; font-weight: 800; font-size: 12.5px; }
+  .fm-po.vazio svg.i { width: 30px; height: 30px; opacity: .7; }
+  .fm-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 10px; }
+  @media (min-width: 600px) { .fm-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); } }
+  .fm-it { position: relative; cursor: pointer; min-width: 0; } .fm-it b { display: block; font-size: 12.5px; margin-top: 7px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .fm-it small { font-size: 11px; color: var(--sub); font-weight: 700; }
+  .fm-it .fm-po { transition: transform .25s cubic-bezier(.2,1.3,.4,1); } .fm-it:hover .fm-po, .fm-it:active .fm-po { transform: scale(1.04); }
+  .nota-f { position: absolute; top: 7px; left: 7px; background: rgba(0,0,0,.6); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); color: #ffd36a; border-radius: 8px; padding: 2px 7px; font-size: 11px; font-weight: 800; }
+  .tag-f { position: absolute; top: 7px; right: 7px; background: #e50914; color: #fff; border-radius: 6px; padding: 2px 6px; font-size: 9.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .4px; }
+  .fm-row { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; margin: 0 -14px; padding: 2px 14px 8px; scroll-snap-type: x mandatory; } .fm-row::-webkit-scrollbar { display: none; }
+  .fm-cont { position: relative; flex: 0 0 min(300px, 82%); aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; color: #fff; cursor: pointer; scroll-snap-align: start; isolation: isolate; box-shadow: 0 14px 26px -16px rgba(0,0,0,.6); }
+  .fm-cont .bg, .fm-hero .bg { position: absolute; inset: -20px; background-size: cover; background-position: center 25%; z-index: -2; }
+  .fm-cont::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.05) 30%, rgba(0,0,0,.85)); z-index: -1; }
+  .fm-cont .tx { position: absolute; left: 14px; right: 64px; bottom: 12px; } .fm-cont small { font-size: 10.5px; font-weight: 800; letter-spacing: 1px; opacity: .85; } .fm-cont b { display: block; font-size: 17px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fm-cont .play { position: absolute; right: 12px; bottom: 12px; width: 44px; height: 44px; border-radius: 50%; background: #fff; color: #111; display: grid; place-items: center; font-weight: 800; font-size: 14px; } .fm-cont .play svg.i { width: 18px; height: 18px; }
+  .painel.ficha-filme { padding: 0 !important; overflow-x: hidden; background: #141414 !important; color: #f2f2f2; }
+  .ficha-filme .x-veu { background: rgba(0,0,0,.45) !important; color: #fff; border-color: transparent !important; }
+  .fm-hero { position: relative; display: flex; align-items: flex-end; gap: 14px; padding: 70px 18px 16px; overflow: hidden; isolation: isolate; }
+  .fm-hero .bg { filter: blur(22px) saturate(1.3); opacity: .75; }
+  .fm-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,20,20,.2), #141414 92%); z-index: -1; }
+  .fm-hero .fm-po.g { width: 110px; flex: none; border-radius: 12px; box-shadow: 0 20px 34px -12px rgba(0,0,0,.8); }
+  .fm-hero .tx { flex: 1; min-width: 0; } .fm-hero h2 { font-size: 24px; font-weight: 800; letter-spacing: -.6px; line-height: 1.1; color: #fff; overflow-wrap: anywhere; margin: 6px 0 2px; } .fm-hero small { color: #bdbdbd; font-weight: 700; font-size: 12.5px; }
+  .chips-f { display: flex; gap: 5px; flex-wrap: wrap; } .chips-f span { background: rgba(255,255,255,.14); border-radius: 6px; padding: 3px 8px; font-size: 11px; font-weight: 800; color: #e8e8e8; }
+  .fm-hero .fl-est { margin-top: 6px; } .fm-hero .fl-est button { width: 26px; height: 26px; color: #555; } .fm-hero .fl-est button.on svg.i { color: #ffd36a; fill: #ffd36a; }
+  .fm-body { padding: 4px 18px 22px; }
+  .fm-acoes { display: flex; gap: 8px; } .fm-acoes button { border-radius: 10px; padding: 12px 16px; font-weight: 800; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+  .fm-acoes .bt1 { flex: 1; background: #fff; color: #111; } .fm-acoes .bt2 { flex: 1; background: rgba(255,255,255,.14); color: #fff; } .fm-acoes .bt3 { background: rgba(255,255,255,.14); color: #fff; width: 48px; padding: 0; } .fm-acoes svg.i { width: 17px; height: 17px; }
+  .fm-st { color: #bdbdbd; font-size: 13px; font-weight: 700; margin: 12px 0 4px; } .fm-st b { color: #fff; }
+  .fm-h { display: block; color: #fff; font-size: 14.5px; margin: 14px 0 4px; } .ficha-filme .fl-txt { color: #cfcfcf; font-size: 13.5px; line-height: 1.55; font-weight: 600; } .ficha-filme .nota { color: #9a9a9a; } .ficha-filme .lk { color: #fff; }
+  @media (min-width: 900px) { .painel.ficha-filme { max-width: 760px !important; } .fm-hero { padding: 90px 30px 20px; } .fm-hero .fm-po.g { width: 170px; } .fm-hero h2 { font-size: 34px; } .fm-body { padding: 4px 30px 28px; } .fm-acoes { max-width: 460px; } }
+  @media (prefers-reduced-motion: no-preference) { .ficha-filme .fm-po.g { animation: capaEntra .6s cubic-bezier(.2,1.3,.4,1) both; } #main.chegou .fm-it { animation: popIn .4s cubic-bezier(.2,1.3,.4,1) both; animation-delay: calc(var(--i, 0) * 40ms); } }
 </style>
 </head>
 <body>
@@ -2317,7 +2350,7 @@ const corLimite = p => p >= 100 ? 'var(--r)' : p >= 80 ? 'var(--o)' : 'var(--g)'
 const NO_GOOGLE = typeof google !== 'undefined' && google.script && google.script.run;
 const CONEXAO = 'mdd_conexao';
 // Versão do app e da ponte que ele espera (o botão "Procurar atualização" compara com a do site)
-const APP_VERSAO = '43', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
+const APP_VERSAO = '44', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
 async function procurarAtualizacao() {
   toast('Procurando atualização…');
   try {
@@ -4810,6 +4843,9 @@ function telaLeitura() {
 const ONDE_FILME = ['Netflix', 'Prime Video', 'Disney+', 'Max', 'Globoplay', 'Apple TV+', 'Cinema', 'Outro'];
 const ST_FILME = ['Quero ver', 'Assistindo', 'Visto'];
 const tipoFilme = f => f.Tipo === 'Série' ? 'Série' : 'Filme';
+/** Pôster de filme (sem cara de livro). */
+const poster = (f, cls = '') => f.Capa ? `<div class="fm-po ${cls}" style="background-image:url('${esc(f.Capa)}')" role="img" aria-label="${esc(f.Titulo)}"></div>`
+  : `<div class="fm-po vazio ${cls}" style="--cor:${corLivro(f)}">${ic('film')}<span>${esc(f.Titulo)}</span></div>`;
 function telaFilmes() {
   const fs = T('Filmes'), ano = hojeIso().slice(0, 4);
   const vistos = fs.filter(f => f.Status === 'Visto'), vistosAno = vistos.filter(f => String(f.Data || '').slice(0, 4) === ano).length;
@@ -4818,45 +4854,38 @@ function telaFilmes() {
   const aba = E.abaFilmes || 'Todos', tipo = E.tipoFilmes || 'Todos';
   const lista = fs.filter(f => (aba === 'Todos' || f.Status === aba) && (tipo === 'Todos' || tipoFilme(f) === tipo))
     .sort((a, b) => (b.Status === 'Assistindo') - (a.Status === 'Assistindo') || String(b.Data || '').localeCompare(String(a.Data || '')) || String(a.Titulo).localeCompare(String(b.Titulo)));
-  const cardVendo = f => { const cor = corLivro(f), ep = f.Tipo === 'Série' ? `T${num(f.Temporada) || 1} · E${num(f.Episodio) || 0}` : (f.Onde || 'Assistindo');
-    return `<div class="lk-c" data-a="verFilme" data-id="${esc(f.ID)}" style="--cor:${cor}">${f.Capa ? `<div class="lk-bg" style="background-image:url('${esc(f.Capa)}')"></div>` : ''}
-      ${capa(f)}<div class="lk-t"><b>${esc(f.Titulo)}</b><small>${esc([tipoFilme(f), f.Onde].filter(Boolean).join(' · '))}</small>
-      <div class="lk-p"><span>${esc(ep)}</span></div></div>
-      ${f.Tipo === 'Série' ? `<button class="lk-pg fm-ep" data-a="filmeEp" data-id="${esc(f.ID)}" aria-label="Mais um episódio">+1</button>` : `<button class="lk-pg" data-a="filmeVisto" data-id="${esc(f.ID)}" aria-label="Marcar como visto">${ic('check')}</button>`}</div>`; };
+  const cont = f => `<div class="fm-cont" data-a="verFilme" data-id="${esc(f.ID)}">${f.Capa ? `<div class="bg" style="background-image:url('${esc(f.Capa)}')"></div>` : `<div class="bg" style="background:linear-gradient(135deg,${corLivro(f)},#111)"></div>`}
+      <div class="tx"><small>${f.Tipo === 'Série' ? `T${num(f.Temporada) || 1} · EPISÓDIO ${num(f.Episodio) || 0}` : 'FILME'}${f.Onde ? ' · ' + esc(f.Onde).toUpperCase() : ''}</small><b>${esc(f.Titulo)}</b></div>
+      <button class="play" data-a="${f.Tipo === 'Série' ? 'filmeEp' : 'filmeVisto'}" data-id="${esc(f.ID)}" aria-label="${f.Tipo === 'Série' ? 'Mais um episódio' : 'Terminei'}">${f.Tipo === 'Série' ? '+1' : ic('check')}</button></div>`;
   return `${cabeca('Filmes e séries', `${plural(vistosAno, 'visto', 'vistos')} em ${ano}`, `<button class="ibtn escuro" data-a="novoFilme" aria-label="Novo filme ou série">${ic('plus')}</button>`)}
   <div class="faixa"><div><b>${vistosAno}</b><small>Vistos em ${ano}</small></div><div><b>${vendo.length}</b><small>Assistindo</small></div><div><b>${fila}</b><small>Na lista</small></div><div><b class="pos">${media == null ? '—' : media.toFixed(1).replace('.', ',')}</b><small>Nota média</small></div></div>
-  ${vendo.length ? `<div class="tsec"><b>Assistindo agora</b></div><div class="lk-row">${vendo.map(cardVendo).join('')}</div>` : ''}
-  <div class="tsec" style="margin-top:16px"><b>Minha lista</b><button data-a="novoFilme">+ adicionar</button></div>
+  ${vendo.length ? `<div class="tsec"><b>Continuar assistindo</b></div><div class="fm-row">${vendo.map(cont).join('')}</div>` : ''}
+  <div class="tsec" style="margin-top:14px"><b>Minha lista</b><button data-a="novoFilme">+ adicionar</button></div>
   <div class="chips">${['Todos'].concat(ST_FILME).map(s => `<button class="chip ${aba === s ? 'on' : ''}" data-a="abaFilmes" data-v="${s}">${s === 'Visto' ? 'Vistos' : s} ${s === 'Todos' ? fs.length : fs.filter(f => f.Status === s).length}</button>`).join('')}</div>
   <div class="chips mini">${['Todos', 'Filme', 'Série'].map(s => `<button class="chip ${tipo === s ? 'on' : ''}" data-a="tipoFilmes" data-v="${s}">${s === 'Todos' ? 'Filmes e séries' : s === 'Filme' ? 'Só filmes' : 'Só séries'}</button>`).join('')}</div>
-  ${lista.length ? `<div class="shelf grande">${lista.map(f => `<div class="livro-e" data-a="verFilme" data-id="${esc(f.ID)}">${capa(f)}<b>${esc(f.Titulo)}</b><small>${f.Avaliacao ? estrelasTxt(f.Avaliacao) : esc([f.Ano, tipoFilme(f)].filter(Boolean).join(' · '))}</small>${f.Onde ? `<span class="lv-tag">${esc(f.Onde)}</span>` : ''}</div>`).join('')}</div>`
+  ${lista.length ? `<div class="fm-grid">${lista.map(f => `<div class="fm-it" data-a="verFilme" data-id="${esc(f.ID)}">${poster(f)}${num(f.Avaliacao) ? `<span class="nota-f">★ ${num(f.Avaliacao)}</span>` : ''}${f.Status === 'Assistindo' ? '<span class="tag-f">assistindo</span>' : ''}<b>${esc(f.Titulo)}</b><small>${esc([f.Ano, tipoFilme(f)].filter(Boolean).join(' · '))}</small></div>`).join('')}</div>`
     : `<div class="card vazio">${fs.length ? 'Nada com esse filtro.' : 'Nenhum filme ainda. Toque em "+ adicionar" e procure pelo nome: o app traz o pôster, o ano e a sinopse.'}</div>`}`;
 }
 function abrirFichaFilme(id) {
   const f = T('Filmes').find(x => x.ID === id); if (!f) return;
   const serie = f.Tipo === 'Série';
-  const status = f.Status === 'Visto' ? 'Visto' + (f.Data ? ' em ' + fmt(f.Data) : '') : f.Status === 'Assistindo' ? (serie ? `Assistindo · temporada ${num(f.Temporada) || 1}, episódio ${num(f.Episodio) || 0}` : 'Assistindo') : 'Na sua lista';
-  const texto = (t, cls = '') => `<p class="fl-txt ${cls} ${String(t).length > 380 ? 'corta' : ''}">${esc(t).replace(/\n/g, '<br>')}</p>${String(t).length > 380 ? '<button class="lk fl-mais" data-a="flMais">Ler tudo</button>' : ''}`;
-  const ficha = [['Tipo', tipoFilme(f)], ['Ano', f.Ano], ['Direção', f.Diretor], ['Gênero', f.Genero], ['Onde', f.Onde], ['Duração', f.Duracao]].filter(([, v]) => v);
-  const temSin = !!String(f.Sinopse || '').trim(), temRes = !!String(f.Resenha || '').trim();
-  const nome = String(cfg('Nome', '')).trim(), ini = nome ? esc(nome[0].toUpperCase()) : 'V';
-  const acao = f.Status === 'Visto' ? `<button class="fl2-bt" data-a="filmeRever" data-id="${esc(f.ID)}">Vi de novo</button>` : serie && f.Status === 'Assistindo' ? `<button class="fl2-bt" data-a="filmeEp" data-id="${esc(f.ID)}">+1 episódio</button><button class="fl2-bt sec" data-a="filmeVisto" data-id="${esc(f.ID)}">Terminei</button>` : f.Status === 'Assistindo' ? `<button class="fl2-bt" data-a="filmeVisto" data-id="${esc(f.ID)}">Terminei de ver</button>` : `<button class="fl2-bt" data-a="filmeComecar" data-id="${esc(f.ID)}">Começar a ver</button><button class="fl2-bt sec" data-a="filmeVisto" data-id="${esc(f.ID)}">Já vi</button>`;
-  abrirVeu(`<div class="fl2 fm2">
-    <div class="fl2-capa">${capa(f)}<div class="fl2-acoes"><button class="ibtn" data-a="editarFilme" data-id="${esc(f.ID)}" aria-label="Editar">${ic('pen')}</button></div></div>
-    <div class="fl2-info">
-      <div class="fl2-tit" lang="pt-BR">${esc(f.Titulo)}</div><div class="fl2-aut">${esc([f.Ano, f.Diretor].filter(Boolean).join(' · ') || tipoFilme(f))}</div>
-      <div class="fl-est">${[1, 2, 3, 4, 5].map(n => `<button data-a="estrelaFilme" data-id="${esc(f.ID)}" data-v="${n}" class="${n <= num(f.Avaliacao) ? 'on' : ''}" aria-label="${n} de 5">${ic('star')}</button>`).join('')}</div>
-      <p class="fl2-ritmo">${status}</p>
-      <div class="fl2-cont">${acao}</div>
-    </div>
-    <div class="fl2-corpo">
-      <div class="fl2-txt">
-        ${temSin || temRes ? `${temSin && temRes ? `<div class="fl-abas"><button class="on" data-a="flAba" data-v="flSin">Sinopse</button><button data-a="flAba" data-v="flRes">Minha opinião</button></div>` : `<b class="fl2-h">${temSin ? 'Sinopse' : 'Minha opinião'}</b>`}
-          ${temSin ? `<div id="flSin">${texto(f.Sinopse)}</div>` : ''}${temRes ? `<div id="flRes" ${temSin ? 'hidden' : ''}>${texto(f.Resenha)}</div>` : ''}` : `<b class="fl2-h">Sinopse</b><p class="nota">Sem sinopse ainda. Toque no lápis para escrever.</p>`}
-        <div class="fl2-anot"><span class="av">${ini}</span><div><b>Cenas e frases favoritas</b>${f.Favoritos ? texto(f.Favoritos, 'fl-fav') : '<p class="nota">Guarde aqui as falas e cenas que você amou.</p>'}</div></div>
-      </div>
-      <div class="fl2-ficha">${ficha.map(([k, v]) => `<div><small>${k}</small><b>${esc(v)}</b></div>`).join('')}</div>
-    </div></div>`, 'medio ficha2');
+  const status = f.Status === 'Visto' ? 'Visto' + (f.Data ? ' em ' + fmt(f.Data) : '') + (num(f.Vezes) > 1 ? ` · ${num(f.Vezes)} vezes` : '') : f.Status === 'Assistindo' ? (serie ? `Assistindo · T${num(f.Temporada) || 1} E${num(f.Episodio) || 0}` : 'Assistindo') : 'Na sua lista';
+  const texto = t => `<p class="fl-txt ${String(t).length > 380 ? 'corta' : ''}">${esc(t).replace(/\n/g, '<br>')}</p>${String(t).length > 380 ? '<button class="lk fl-mais" data-a="flMais">Ler tudo</button>' : ''}`;
+  const chips = [f.Ano, f.Genero, f.Duracao, tipoFilme(f)].filter(Boolean);
+  const acao = f.Status === 'Visto' ? `<button class="bt1" data-a="filmeRever" data-id="${esc(f.ID)}">${ic('repeat')} Vi de novo</button>`
+    : serie && f.Status === 'Assistindo' ? `<button class="bt1" data-a="filmeEp" data-id="${esc(f.ID)}">+1 episódio</button><button class="bt2" data-a="filmeVisto" data-id="${esc(f.ID)}">Terminei</button>`
+    : f.Status === 'Assistindo' ? `<button class="bt1" data-a="filmeVisto" data-id="${esc(f.ID)}">${ic('check')} Terminei de ver</button>`
+    : `<button class="bt1" data-a="filmeComecar" data-id="${esc(f.ID)}">▶ Começar a ver</button><button class="bt2" data-a="filmeVisto" data-id="${esc(f.ID)}">Já vi</button>`;
+  abrirVeu(`<div class="fm-f">
+    <div class="fm-hero">${f.Capa ? `<div class="bg" style="background-image:url('${esc(f.Capa)}')"></div>` : `<div class="bg" style="background:linear-gradient(135deg,${corLivro(f)},#111)"></div>`}
+      ${poster(f, 'g')}<div class="tx"><div class="chips-f">${chips.map(c => `<span>${esc(c)}</span>`).join('')}</div><h2>${esc(f.Titulo)}</h2>${f.Diretor ? `<small>Direção: ${esc(f.Diretor)}</small>` : ''}
+        <div class="fl-est">${[1, 2, 3, 4, 5].map(n => `<button data-a="estrelaFilme" data-id="${esc(f.ID)}" data-v="${n}" class="${n <= num(f.Avaliacao) ? 'on' : ''}" aria-label="${n} de 5">${ic('star')}</button>`).join('')}</div></div></div>
+    <div class="fm-body"><div class="fm-acoes">${acao}<button class="bt3" data-a="editarFilme" data-id="${esc(f.ID)}" aria-label="Editar">${ic('pen')}</button></div>
+      <p class="fm-st">${status}${f.Onde ? ` · em <b>${esc(f.Onde)}</b>` : ''}</p>
+      ${f.Sinopse ? `<b class="fm-h">Sinopse</b>${texto(f.Sinopse)}` : ''}
+      ${f.Resenha ? `<b class="fm-h">Minha opinião</b>${texto(f.Resenha)}` : ''}
+      ${f.Favoritos ? `<b class="fm-h">Cenas e frases favoritas</b>${texto(f.Favoritos)}` : ''}
+      ${!f.Sinopse && !f.Resenha && !f.Favoritos ? '<p class="nota">Toque no lápis para colocar sinopse, sua opinião e cenas favoritas.</p>' : ''}</div></div>`, 'medio ficha-filme');
 }
 function abrirFilme(id, valoresTemp) {
   const f = T('Filmes').find(x => x.ID === id);
@@ -6597,7 +6626,7 @@ function estiloSolto() {
     if (itens.length) c.classList.add('solto'); });
 }
 let revelador = null;
-const CASCATA = '.faixa > div, .nums4 > div, .kpi, .chips .chip, .abas button, .row, .cfg, .appi, .lugar, .med, .conq, .tr-grade i, .hum, .pill, .ext, .ext-dia, .cat-r, .lg > div, .partes span, .rot .it, .rg, .faces button, .ops-ag button, .tk, .anoGrid > *, .evg, .mfin, .io2 span, .wk .h, .tr-ex, .tr-serie, .conqs > *, .est-atalhos button, .est-sem, .est-disc, .est-av, .card.solto > *';
+const CASCATA = '.faixa > div, .nums4 > div, .kpi, .chips .chip, .abas button, .row, .cfg, .appi, .lugar, .med, .conq, .tr-grade i, .hum, .pill, .ext, .ext-dia, .cat-r, .lg > div, .partes span, .rot .it, .rg, .faces button, .ops-ag button, .tk, .anoGrid > *, .evg, .mfin, .io2 span, .wk .h, .tr-ex, .tr-serie, .conqs > *, .est-atalhos button, .est-sem, .est-disc, .est-av, .card.solto > *, .fm-it';
 function depoisDeDesenhar() {
   // bolinha que desliza até a aba ativa
   const bn = $('bnav'), on = bn && bn.querySelector('button.on');
