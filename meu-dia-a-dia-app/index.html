@@ -2302,6 +2302,29 @@
   .est-av .nt.sem { min-width: 64px; background: transparent; border: 1px dashed var(--inp); } .est-av .nt.sem span { font-size: 11.5px; font-weight: 800; color: var(--sub); }
   .est-fix { display: block; margin: 4px auto 0; font-size: 12px; font-weight: 700; color: var(--sub); padding: 8px 12px; border-radius: 999px; } .est-fix:hover { background: var(--soft); color: var(--tx); }
   body.t-estudos .rapido { max-width: 560px; }
+
+  /* v50 · Paleta única: base neutra + 1 cor principal + limão só nos cartões escuros + avisos */
+  .fab, body.com-ceu .fab { background: var(--pri, #c2410c) !important; color: #fff !important; box-shadow: 0 10px 22px -10px color-mix(in srgb, var(--pri, #c2410c) 80%, transparent) !important; }
+  .side .novo { background: var(--pri, #c2410c) !important; color: #fff !important; }
+  .logo i { background: var(--pri, #c2410c) !important; }
+  #cardCal .day.today .n, .ag-sem .today b { background: var(--pri, #c2410c) !important; box-shadow: 0 8px 18px -8px color-mix(in srgb, var(--pri, #c2410c) 80%, transparent) !important; }
+  .now { border-top-color: var(--pri, #c2410c) !important; } .now::before { background: var(--pri, #c2410c) !important; }
+  .agora2, .agora::before { background: var(--pri, #c2410c) !important; }
+  .ag-hero .cd .go { background: var(--lima) !important; color: #2b2522 !important; }
+  #veu .painel:has(.tec-box) .btn.pri { background: var(--pri, #c2410c) !important; color: #fff !important; }
+  .tec-rap button:active { background: var(--pri, #c2410c) !important; color: #fff !important; border-color: var(--pri, #c2410c) !important; }
+  .bnav button.on { color: var(--pri, #c2410c) !important; } .bnav.com-ind::after { background: var(--pri, #c2410c); }
+  /* categorias só em bolinhas/ícones: sem bordas grossas coloridas */
+  .card.solto > .row, .card.solto > .med, .card.solto > .meta-c, .card.solto > .entrada, .card.solto > .tr-dia, .card.solto > .tr-ex { border-left: 0 !important; }
+  .ev2, .est-disc, .pz { border-left: 0 !important; }
+  .faixa.faixa-blocos b.pos { color: var(--g) !important; }
+  .est-disc .h::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--c); flex: none; }
+  .est-disc .h .md { color: var(--tx) !important; }
+  .est-nums > div:first-child b, .est-calc { color: var(--tx) !important; } .est-calc { background: var(--soft) !important; }
+  .est-topo h1 { color: var(--tx) !important; } .est-topo.sobre h1 { color: #fff !important; }
+  .lk2, .sec .lk { color: var(--sub) !important; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .chip.on { color: #fff !important; } }
+  .bt-esc, .btnp { background: var(--pri, #c2410c) !important; color: #fff !important; }
 </style>
 </head>
 <body>
@@ -2387,7 +2410,7 @@ function fraseDoDia() {
 const escuro = () => { const t = cfg('Tema', 'Automático'); return t === 'Escuro' || (t !== 'Claro' && matchMedia('(prefers-color-scheme: dark)').matches); };
 
 const CORES_APP = {
-  'Caramelo': { acc: '#1f1a17', accE: '#c2410c', g1: '#1f1a17', g2: '#3a2f29', tint: '#ffe4cf', txt: '#c2410c', tintE: 'rgba(251,146,60,.16)', txtE: '#fdba74' },
+  'Caramelo': { acc: '#c2410c', accE: '#c2410c', g1: '#1f1a17', g2: '#3a2f29', tint: '#ffe4cf', txt: '#c2410c', tintE: 'rgba(251,146,60,.16)', txtE: '#fdba74' },
   'Azul petróleo': { acc: '#0b4f6c', accE: '#1f7ea6', g1: '#0b4f6c', g2: '#1b86a8', tint: '#e0f2fe', txt: '#0b4f6c', tintE: 'rgba(56,189,248,.14)', txtE: '#7dd3fc' },
   'Verde': { acc: '#15803d', accE: '#16a34a', g1: '#14532d', g2: '#22a35a', tint: '#dcfce7', txt: '#166534', tintE: 'rgba(34,197,94,.16)', txtE: '#86efac' },
   'Roxo': { acc: '#6d28d9', accE: '#7c3aed', g1: '#4c1d95', g2: '#8b5cf6', tint: '#ede9fe', txt: '#5b21b6', tintE: 'rgba(139,92,246,.18)', txtE: '#c4b5fd' },
@@ -2417,7 +2440,8 @@ function aplicarCor() {
   st.setProperty('--grad2', c.g2);
   st.setProperty('--acc2', e ? c.tintE : c.tint);
   st.setProperty('--acct', e ? c.txtE : c.txt);
-  const nome = cfg('Cor', 'Caramelo'); if (nome !== 'Caramelo') { st.setProperty('--sel', e ? c.txtE : c.acc); st.setProperty('--sel-tx', e ? '#111' : '#fff'); } else { st.removeProperty('--sel'); st.removeProperty('--sel-tx'); }
+  const nome = cfg('Cor', 'Caramelo'), pr = nome === 'Caramelo' ? (e ? '#e0703c' : '#c2410c') : (e ? c.txtE : c.acc);
+  st.setProperty('--sel', pr); st.setProperty('--pri', pr); st.setProperty('--sel-tx', e && nome !== 'Caramelo' ? '#111' : '#fff');
   try { aplicarFonte(); aplicarLogo(); } catch (er) {}
 }
 
@@ -2442,7 +2466,7 @@ const corLimite = p => p >= 100 ? 'var(--r)' : p >= 80 ? 'var(--o)' : 'var(--g)'
 const NO_GOOGLE = typeof google !== 'undefined' && google.script && google.script.run;
 const CONEXAO = 'mdd_conexao';
 // Versão do app e da ponte que ele espera (o botão "Procurar atualização" compara com a do site)
-const APP_VERSAO = '49', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
+const APP_VERSAO = '50', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
 async function procurarAtualizacao() {
   toast('Procurando atualização…');
   try {
@@ -6760,7 +6784,7 @@ function cartaoDestaque() {
 const COR_ABA = { datas: '#db2777', farmacia: '#dc2626', metas: '#7c3aed', diario: '#a16207', treinos: '#16a34a', lugares: '#0d9488', leitura: '#3f7d1c', filmes: '#be123c', conquistas: '#d97706' };
 function estiloSolto() {
   const cor = COR_ABA[E.tela]; if (!cor) return;
-  const m = $('main'); m.style.setProperty('--aba', cor);
+  const m = $('main'); m.style.setProperty('--aba', 'var(--pri, #c2410c)');
   m.querySelectorAll('.faixa:not(.dest-esc)').forEach(f => f.classList.add('faixa-blocos'));
   m.querySelectorAll('.card').forEach(c => { if (c.classList.contains('dest-esc') || c.closest('.dest-esc')) return;
     const itens = c.querySelectorAll(':scope > .row, :scope > .med, :scope > .meta-c, :scope > .entrada, :scope > .tr-dia, :scope > .tr-ex');
