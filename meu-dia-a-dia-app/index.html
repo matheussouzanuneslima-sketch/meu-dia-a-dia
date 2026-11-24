@@ -2350,7 +2350,7 @@ const corLimite = p => p >= 100 ? 'var(--r)' : p >= 80 ? 'var(--o)' : 'var(--g)'
 const NO_GOOGLE = typeof google !== 'undefined' && google.script && google.script.run;
 const CONEXAO = 'mdd_conexao';
 // Versão do app e da ponte que ele espera (o botão "Procurar atualização" compara com a do site)
-const APP_VERSAO = '44', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
+const APP_VERSAO = '45', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
 async function procurarAtualizacao() {
   toast('Procurando atualização…');
   try {
@@ -4911,15 +4911,28 @@ function jsonp(url) {
     s.src = url + (url.includes('?') ? '&' : '?') + 'callback=' + cb; document.head.appendChild(s); });
 }
 async function buscarFilmeNet(q) {
-  const base = 'https://itunes.apple.com/search?country=BR&lang=pt_br&limit=8&term=' + encodeURIComponent(q);
-  const [fm, sr] = await Promise.all([jsonp(base + '&media=movie&entity=movie').catch(() => ({ results: [] })), jsonp(base + '&media=tvShow&entity=tvSeason').catch(() => ({ results: [] }))]);
+  q = String(q || '').trim(); if (!q) return [];
+  const out = [], add = r => { if (r && r.Titulo) out.push(r); };
   const poster = u => String(u || '').replace(/\/\d+x\d+bb\./, '/600x900bb.');
-  const filmes = (fm.results || []).map(r => ({ Titulo: r.trackName, Tipo: 'Filme', Ano: String(r.releaseDate || '').slice(0, 4), Diretor: r.artistName || '', Genero: r.primaryGenreName || '', Duracao: r.trackTimeMillis ? Math.floor(r.trackTimeMillis / 3600000) + 'h' + String(Math.round(r.trackTimeMillis / 60000) % 60).padStart(2, '0') : '', Sinopse: String(r.longDescription || r.shortDescription || '').slice(0, 900), Capa: poster(r.artworkUrl100) }));
-  const vistas = new Set(), series = [];
-  (sr.results || []).forEach(r => { const n = String(r.artistName || r.collectionName || '').trim(); if (!n || vistas.has(n)) return; vistas.add(n);
-    series.push({ Titulo: n, Tipo: 'Série', Ano: String(r.releaseDate || '').slice(0, 4), Genero: r.primaryGenreName || '', Sinopse: String(r.longDescription || '').slice(0, 900), Capa: poster(r.artworkUrl100) }); });
-  const n = s => semAcento(String(s)).toLowerCase(), alvo = n(q);
-  return filmes.concat(series).sort((a, b) => (n(b.Titulo) === alvo) - (n(a.Titulo) === alvo) || (n(b.Titulo).includes(alvo)) - (n(a.Titulo).includes(alvo))).slice(0, 10);
+  const ano = t => (String(t || '').match(/\b(19[0-9]{2}|20[0-9]{2})\b/) || [])[1] || '';
+  const limpa = t => String(t || '').replace(/<[^>]+>/g, '').trim();
+  const wiki = (lang, extra) => pegaJson(`https://${lang}.wikipedia.org/w/api.php?origin=*&action=query&format=json&generator=search&gsrlimit=8&gsrsearch=${encodeURIComponent(q + ' ' + extra)}&prop=pageimages|extracts|description&piprop=original|thumbnail&pithumbsize=600&exintro=1&explaintext=1&exsentences=3`)
+    .then(j => Object.values((j.query || {}).pages || {}).sort((a, b) => (a.index || 0) - (b.index || 0)).forEach(p => {
+      const d = String(p.description || '') + ' ' + String(p.extract || '').slice(0, 220), serie = /s[ée]rie|series|television|televis/i.test(d);
+      if (!/filme|film|movie|s[ée]rie|series|anima|document/i.test(d)) return;
+      const t = String(p.title).replace(/\s*\((filme|film|série|serie|TV series|miniss[ée]rie|[0-9]{4}[^)]*)\)\s*$/i, '');
+      add({ Titulo: t, Tipo: serie ? 'Série' : 'Filme', Ano: ano(p.description) || ano(p.extract), Sinopse: String(p.extract || '').slice(0, 900), Capa: (p.original && p.original.source) || (p.thumbnail && p.thumbnail.source) || '', fonte: 'wiki' }); })).catch(() => {});
+  await Promise.all([
+    jsonp('https://itunes.apple.com/search?country=BR&lang=pt_br&limit=10&media=movie&entity=movie&term=' + encodeURIComponent(q)).then(j => (j.results || []).forEach(r => add({ Titulo: r.trackName, Tipo: 'Filme', Ano: ano(r.releaseDate), Diretor: r.artistName || '', Genero: r.primaryGenreName || '', Duracao: r.trackTimeMillis ? Math.floor(r.trackTimeMillis / 3600000) + 'h' + String(Math.round(r.trackTimeMillis / 60000) % 60).padStart(2, '0') : '', Sinopse: String(r.longDescription || r.shortDescription || '').slice(0, 900), Capa: poster(r.artworkUrl100) }))).catch(() => {}),
+    jsonp('https://itunes.apple.com/search?country=BR&lang=pt_br&limit=10&media=tvShow&entity=tvSeason&term=' + encodeURIComponent(q)).then(j => (j.results || []).forEach(r => add({ Titulo: String(r.artistName || r.collectionName || ''), Tipo: 'Série', Ano: ano(r.releaseDate), Genero: r.primaryGenreName || '', Sinopse: String(r.longDescription || '').slice(0, 900), Capa: poster(r.artworkUrl100) }))).catch(() => {}),
+    pegaJson('https://api.tvmaze.com/search/shows?q=' + encodeURIComponent(q)).then(j => (j || []).forEach(({ show: s }) => s && add({ Titulo: s.name, Tipo: 'Série', Ano: ano(s.premiered), Genero: (s.genres || [])[0] || '', Duracao: s.averageRuntime ? s.averageRuntime + ' min/ep' : '', Sinopse: limpa(s.summary).slice(0, 900), Capa: (s.image && (s.image.original || s.image.medium)) || '', Onde: (s.webChannel && ({ Netflix: 'Netflix', 'Prime Video': 'Prime Video', 'Disney+': 'Disney+', 'Apple TV+': 'Apple TV+', HBO: 'Max', Max: 'Max', Globoplay: 'Globoplay' })[s.webChannel.name]) || '' }))).catch(() => {}),
+    wiki('pt', 'filme OR série'), wiki('en', 'film OR series'),
+  ]);
+  // junta repetidos (mesmo nome e ano), completando o que faltar; ordena pelo mais parecido
+  const chave = r => palavras(r.Titulo).join(' ') + '|' + (r.Ano || ''), mapa = new Map();
+  out.forEach(r => { const k = chave(r), j = mapa.get(k) || [...mapa.entries()].find(([kk]) => kk.split('|')[0] === k.split('|')[0] && (!r.Ano || !kk.split('|')[1]))?.[1];
+    if (!j) { mapa.set(k, Object.assign({}, r)); return; } Object.entries(r).forEach(([c, v]) => { if (v && !j[c]) j[c] = v; }); if (r.Capa && j.fonte === 'wiki' && r.fonte !== 'wiki') j.Capa = r.Capa; });
+  return [...mapa.values()].map(r => Object.assign(r, { _n: semelhanca(r.Titulo, q) + (r.Capa ? .05 : 0) + (r.Sinopse ? .03 : 0) })).filter(r => r._n > .25).sort((a, b) => b._n - a._n).slice(0, 12).map(r => { delete r._n; delete r.fonte; return r; });
 }
 async function buscarFilmeUI(id) {
   const atual = lerForm(false) || {}, q = String(atual.Titulo || '').trim();
@@ -4932,6 +4945,7 @@ async function buscarFilmeUI(id) {
     abrirVeu(`<h2>Qual destes?</h2><div class="sub">Preenche só os campos vazios; dá para ajustar antes de salvar.</div>
       <div class="busca">${rs.map((r, i) => `<div class="row" data-a="filmeEscolher" data-i="${i}">${r.Capa ? `<img src="${esc(r.Capa)}" alt="" style="width:46px;height:68px;object-fit:cover;border-radius:6px;flex:none">` : `<div class="ic">${ic('film')}</div>`}
         <div class="t"><b>${esc(r.Titulo)}</b><small>${esc([r.Tipo, r.Ano, r.Genero].filter(Boolean).join(' · '))}</small></div></div>`).join('')}</div>
+      <p class="nota" style="margin-top:8px">Não é nenhum desses? Escolha o mais parecido e ajuste, ou <a class="lk" href="https://www.google.com/search?q=${encodeURIComponent(q + ' filme')}" target="_blank" rel="noopener">veja no Google</a>.</p>
       <div class="acoes"><button class="btn sec2" data-a="filmeVoltar">Voltar</button></div>`);
   } catch (e) { toast(semRede(e) ? 'Sem internet agora.' : 'A busca não respondeu agora.', true); abrirFilme(id, atual); }
 }
@@ -6302,14 +6316,28 @@ function telaConquistas() {
 const semAcento = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 function abrirBusca() {
   abrirVeu(`<h2>Buscar</h2><input class="busca-in" id="busca" placeholder="Anotações, gastos, livros, folgas…" autocomplete="off" style="margin-top:10px">
-    <div id="resBusca"><p class="nota" style="margin-top:12px">Procura em tudo: anotações do calendário, diário, gastos, metas, folgas, faculdade, cursos, livros, lugares, remédios, datas e treinos.</p></div>
+    <div id="resBusca"><p class="nota" style="margin-top:12px">Procura em tudo, mesmo com erro de digitação: anotações do calendário, diário, gastos, metas, folgas, faculdade, cursos, livros, filmes, lugares, remédios, datas e treinos.</p></div>
     <div class="acoes"><button class="btn sec2" data-a="fechar">Fechar</button></div>`);
   setTimeout(() => $('busca').focus(), 50);
 }
+
+/** Busca aproximada: tolera acento, maiúscula, ordem das palavras e 1–2 letras erradas. */
+function distancia(a, b) { if (a === b) return 0; const m = a.length, n = b.length; if (!m || !n) return m || n; let v = [...Array(n + 1).keys()];
+  for (let i = 1; i <= m; i++) { let p = v[0]; v[0] = i; for (let j = 1; j <= n; j++) { const t = v[j]; v[j] = Math.min(v[j] + 1, v[j - 1] + 1, p + (a[i - 1] === b[j - 1] ? 0 : 1)); p = t; } } return v[n]; }
+const palavras = x => semAcento(String(x || '')).toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').split(/\s+/).filter(Boolean);
+const palavraPerto = (q, w) => w.includes(q) || (q.length >= 4 && w.startsWith(q.slice(0, 3)) && distancia(q, w.slice(0, q.length + 1)) <= (q.length >= 7 ? 2 : 1)) || (q.length >= 4 && distancia(q, w) <= (q.length >= 7 ? 2 : 1));
+function semelhanca(texto, q) {
+  const ws = palavras(texto), qs = palavras(q); if (!qs.length || !ws.length) return 0;
+  const tj = ws.join(' '), qj = qs.join(' ');
+  if (tj === qj) return 1; if (tj.startsWith(qj)) return .95; if (tj.includes(qj)) return .85;
+  const achou = qs.filter(x => ws.some(w => palavraPerto(x, w))).length;
+  return achou / qs.length * .8 - Math.min(.15, Math.max(0, ws.length - qs.length) * .02);
+}
+const pertoDe = (q, ...xs) => xs.some(x => x && semelhanca(x, q) >= .99) || palavras(q).every(p => xs.some(x => palavras(x).some(w => palavraPerto(p, w))));
 function buscar(q) {
   const t = semAcento(q).trim();
   if (t.length < 2) return '';
-  const tem = (...xs) => xs.some(x => semAcento(x).includes(t));
+  const tem = (...xs) => xs.some(x => semAcento(x).includes(t)) || pertoDe(q, ...xs);
   const grupos = [];
   const g = (nome, itens) => { if (itens.length) grupos.push(`<div class="grupo-res">${nome} · ${itens.length}</div>` + itens.slice(0, 8).join('')); };
   const item = (ic, tit, sub, attrs) => `<div class="row" ${attrs}><div class="ic">${ic}</div><div class="t"><b>${esc(tit)}</b><small>${esc(sub)}</small></div></div>`;
@@ -6903,8 +6931,11 @@ const ACOES = {
   capaBuscar: async () => {
     if (E.capaTipo === 'lugar') return buscarFotosLugar();
     if (E.capaTipo === 'filme') { const t = (($('f_Titulo') || {}).value || '').trim(); if (!t) return toast('Escreva o nome primeiro.', true); const caixa = $('capaBusca'); caixa.innerHTML = '<p class="nota" style="margin-top:8px">Procurando pôsteres…</p>';
-      try { const rs = await buscarFilmeNet(t); caixa.innerHTML = `<div class="capas">${rs.filter(r => r.Capa).map(r => `<button type="button" data-a="capaEscolher" data-u="${esc(r.Capa)}" title="${esc(r.Titulo + ' ' + r.Ano)}"><img src="${esc(r.Capa)}" alt="" loading="lazy" onerror="this.parentNode.remove()"></button>`).join('') || '<p class="nota">Nenhum pôster achado.</p>'}</div>`; }
-      catch (err) { caixa.innerHTML = `<p class="nota" style="margin-top:8px">${semRede(err) ? 'Sem internet agora.' : 'A busca não respondeu agora.'}</p>`; } return; }
+      const gq = encodeURIComponent(t + ' pôster filme'), fora = `<p class="nota" style="margin-top:6px">Não achou? Procure no <a class="lk" href="https://www.google.com/search?tbm=isch&q=${gq}" target="_blank" rel="noopener">Google Imagens</a>, toque e segure na imagem, copie o endereço e use “Colar link”.</p>`;
+      try { const [rs, ex] = await Promise.all([buscarFilmeNet(t), chamar('buscarImagens', t + ' poster').catch(() => [])]);
+        const us = []; rs.forEach(r => { if (r.Capa && !us.includes(r.Capa)) us.push(r.Capa); }); (ex || []).forEach(u => { if (!us.includes(u)) us.push(u); });
+        caixa.innerHTML = `<div class="capas">${us.slice(0, 18).map(u => `<button type="button" data-a="capaEscolher" data-u="${esc(u)}"><img src="${esc(u)}" alt="" loading="lazy" onerror="this.parentNode.remove()"></button>`).join('') || '<p class="nota">Nenhum pôster achado.</p>'}</div>${fora}`; }
+      catch (err) { caixa.innerHTML = `<p class="nota" style="margin-top:8px">${semRede(err) ? 'Sem internet agora.' : 'A busca não respondeu agora.'}</p>${fora}`; } return; }
     const t = ($('f_Titulo') || {}).value || '', a = ($('f_Autor') || {}).value || '';
     if (!t.trim()) return toast('Escreva o nome do livro primeiro.', true);
     const caixa = $('capaBusca'); caixa.innerHTML = '<p class="nota" style="margin-top:8px">Procurando capas…</p>';
