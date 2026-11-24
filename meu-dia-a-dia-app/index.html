@@ -10,7 +10,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icone-192.png" type="image/png">
 <link rel="apple-touch-icon" href="icone-180.png">
-<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -2046,6 +2046,86 @@
   /* v40 · Bolinha com lápis para criar novo status no painel do dia */
   .codigos .cod-mais { width: 46px; height: 46px; border-radius: 50% !important; background: var(--sel) !important; color: var(--sel-tx) !important; display: grid; place-items: center; align-self: center; justify-self: center; padding: 0 !important; box-shadow: 0 8px 18px -8px rgba(0,0,0,.45); transition: transform .2s cubic-bezier(.2,1.5,.4,1); }
   .codigos .cod-mais svg.i { width: 19px; height: 19px; } .codigos .cod-mais:active { transform: scale(.9) rotate(-12deg); }
+
+  /* v41 · Cartão escuro de destaque (um por tela) */
+  .dest-esc { background: linear-gradient(150deg, #2b2522, #40362f) !important; color: #f3ede8 !important; border: 0 !important; position: relative; overflow: hidden; isolation: isolate; box-shadow: 0 18px 34px -18px rgba(0,0,0,.5) !important; }
+  .dest-esc::after { content: ''; position: absolute; right: -40px; top: -50px; width: 190px; height: 190px; border-radius: 50%; background: radial-gradient(circle, rgba(245,158,91,.42), transparent 70%); z-index: -1; pointer-events: none; }
+  .dest-esc, .dest-esc b, .dest-esc .t b, .dest-esc .val, .dest-esc h3 { color: #fff !important; }
+  .dest-esc .sec, .dest-esc > .sec { color: #f5c9a8 !important; }
+  .dest-esc small, .dest-esc p, .dest-esc .nota, .dest-esc .sub, .dest-esc .l1 p { color: rgba(255,255,255,.66) !important; }
+  .dest-esc .lk { color: var(--lima) !important; }
+  .dest-esc svg.i { color: inherit; }
+  .dest-esc .ic, .dest-esc .tile, .dest-esc .ilu, .dest-esc .ibtn, .dest-esc .dest-vidro { background: rgba(255,255,255,.1) !important; color: #fff !important; border-color: rgba(255,255,255,.12) !important; box-shadow: none !important; }
+  .dest-esc .tile svg.i, .dest-esc .ic svg.i, .dest-esc .ilu svg.i, .dest-esc .dest-vidro svg.i { color: #fff !important; }
+  .dest-esc .row, .dest-esc .lin, .dest-esc .ag, .dest-esc hr { border-color: rgba(255,255,255,.1) !important; }
+  .dest-esc .pill, .dest-esc .tg { background: rgba(255,255,255,.14) !important; color: #fff !important; }
+  .dest-esc .bar, .dest-esc .bar2 { background: rgba(255,255,255,.14) !important; } .dest-esc .bar > i { background: var(--lima) !important; }
+  .dest-esc .chip { background: rgba(255,255,255,.1) !important; color: #fff !important; border-color: transparent !important; }
+  .dest-esc .chip.on { background: var(--lima) !important; color: #2b2522 !important; }
+  .dest-esc .btnp, .dest-esc .ops-ag button:first-child { background: var(--lima) !important; color: #2b2522 !important; }
+  .dest-esc .btnp svg.i, .dest-esc .ops-ag button:first-child svg.i { color: #2b2522 !important; }
+  .dest-esc .ops-ag button { color: #fff !important; }
+  .dest-esc .faixa-pos, .dest-esc .pos { color: #9fe0b0 !important; }
+  .faixa.dest-esc { padding: 12px 6px !important; }
+  .faixa.dest-esc small { color: rgba(255,255,255,.62) !important; }
+  @media (prefers-reduced-motion: no-preference) { #main.chegou .dest-esc { animation: sobeEscala .6s cubic-bezier(.16,1,.3,1) both; } }
+
+  /* v41 · Ícones claros sobre fundos coloridos ou escuros */
+  .rg.ok .tile, .seudia svg.i, .ag-hero svg.i, .saldo2.escuro svg.i, .metas-topo svg.i, .fab svg.i, .bnav button.on .ico svg.i { color: inherit; }
+  .fab, .ag-hero, .seudia { color: #fff; }
+
+  /* v41 · Ficha do livro */
+  .ficha2 { padding: 22px 20px 24px !important; }
+  .fl2 { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 14px 16px; }
+  .fl2-capa .cover { width: 104px; height: 154px; border-radius: 4px 8px 8px 4px; box-shadow: 0 18px 30px -12px rgba(0,0,0,.45), inset 4px 0 0 rgba(0,0,0,.18); font-size: 12px; }
+  .fl2-acoes { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
+  .fl2-acoes .ibtn { width: 38px; height: 38px; }
+  .fl2 .fl-est button.on svg.i { color: #f2b84b; fill: #f2b84b; }
+  .fl2-tit { hyphens: auto; -webkit-hyphens: auto; font-family: Fraunces, Georgia, serif; font-weight: 500; font-size: 21px; line-height: 1.12; letter-spacing: -.4px; overflow-wrap: anywhere; padding-right: 34px; }
+  .fl2-aut { font-weight: 800; font-size: 13.5px; margin-top: 6px; }
+  .fl2 .fl-est { margin-top: 6px; } .fl2 .fl-est button { width: 26px; height: 26px; }
+  .fl2-ritmo { font-style: italic; color: var(--tx2); font-weight: 600; font-size: 13px; margin-top: 8px; }
+  .fl2-cont { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+  .fl2-info .fl2-cont { margin-left: 0; }
+  .fl2-bt { background: var(--sel); color: var(--sel-tx); border-radius: 999px; padding: 11px 18px; font-weight: 800; font-size: 13.5px; white-space: nowrap; }
+  .fl2-bar { flex: 1; height: 7px; border-radius: 7px; background: var(--soft); overflow: hidden; } .fl2-bar i { display: block; height: 100%; border-radius: 7px; background: var(--tx); }
+  .fl2-cont > b { font-size: 12px; }
+  .fl2-corpo { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 14px; display: grid; gap: 16px; }
+  .fl2-h { font-size: 13.5px; display: block; margin-bottom: 4px; }
+  .fl2 .fl-txt { font-size: 13px; color: var(--tx2); font-weight: 600; line-height: 1.55; }
+  .fl2 .fl-fav { font-family: Fraunces, Georgia, serif; font-style: italic; font-weight: 400; font-size: 14px; color: var(--tx2); }
+  .fl2-anot { display: flex; gap: 10px; margin-top: 14px; background: var(--card); border-radius: 16px; padding: 12px; }
+  .fl2-anot .av { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #fdba74, #fb923c); color: #3b1d06; font-weight: 800; display: grid; place-items: center; flex: none; }
+  .fl2-anot > div { min-width: 0; } .fl2-anot b { font-size: 12.5px; }
+  .fl2-ficha { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+  .fl2-ficha small { display: block; font-size: 11.5px; font-weight: 800; color: var(--sub); } .fl2-ficha b { font-size: 13.5px; }
+  .fl2-ficha .fl-fmt { grid-column: 1 / -1; }
+  @media (min-width: 900px) {
+    .painel.ficha2 { max-width: 920px !important; padding: 30px 34px !important; }
+    .fl2 { grid-template-columns: 200px minmax(0, 1fr); gap: 10px 34px; }
+    .fl2-capa { grid-row: span 2; } .fl2-capa .cover { width: 200px; height: 296px; font-size: 16px; }
+    .fl2-tit { font-size: 38px; line-height: 1.05; }
+    .fl2-corpo { grid-column: 2; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 26px; }
+    .fl2-ficha { grid-template-columns: 1fr; align-content: start; gap: 8px; }
+  }
+  @media (prefers-reduced-motion: no-preference) { .ficha2 .fl2-capa .cover { animation: capaEntra .7s cubic-bezier(.2,1.3,.4,1) both; } .ficha2 .fl2-info > *, .ficha2 .fl2-corpo { animation: sobe .5s cubic-bezier(.16,1,.3,1) both; } .ficha2 .fl2-info > :nth-child(2) { animation-delay: .05s; } .ficha2 .fl2-info > :nth-child(3) { animation-delay: .1s; } .ficha2 .fl2-info > :nth-child(4) { animation-delay: .15s; } .ficha2 .fl2-corpo { animation-delay: .2s; } .ficha2 .fl2-bar i { animation: encher 1s .3s cubic-bezier(.16,1,.3,1) both; } }
+  @keyframes capaEntra { from { opacity: 0; transform: translateY(24px) rotate(-5deg) scale(.88); } }
+
+  /* v41 · Gasto da viagem escondido e "mostrar fotos" */
+  .com-olho { position: relative; }
+  .com-olho input { padding-right: 48px !important; }
+  input.privado { -webkit-text-security: disc; text-security: disc; letter-spacing: 2px; }
+  .olho-gasto { position: absolute; right: 6px; bottom: 6px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; color: var(--sub); }
+  .olho-gasto svg.i { width: 18px; height: 18px; }
+  .mfotos { position: fixed; inset: 0; z-index: 9995; background: #0d0b0a; color: #fff; animation: gxFundo .3s ease both; }
+  .mf-img { position: absolute; inset: 0; background-size: contain; background-position: center; background-repeat: no-repeat; }
+  .mf-top { position: absolute; left: 16px; right: 16px; top: calc(16px + env(safe-area-inset-top)); display: flex; justify-content: space-between; align-items: center; z-index: 2; }
+  .mf-top span { background: rgba(0,0,0,.4); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-radius: 999px; padding: 8px 14px; font-weight: 800; font-size: 13px; }
+  .mf-x { width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,.18); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #fff; display: grid; place-items: center; }
+  .mf-rod { position: absolute; left: 0; right: 0; bottom: 0; padding: 60px 18px calc(22px + env(safe-area-inset-bottom)); background: linear-gradient(180deg, transparent, rgba(0,0,0,.65)); z-index: 2; pointer-events: none; }
+  .mf-rod b { display: block; font-size: 22px; } .mf-rod span { opacity: .85; font-weight: 700; }
+  .mf-dots { display: flex; gap: 5px; margin-top: 12px; } .mf-dots i { flex: 1; max-width: 40px; height: 4px; border-radius: 4px; background: rgba(255,255,255,.35); } .mf-dots i.on { background: #fff; }
+  .mf-ant, .mf-prox { position: absolute; top: 0; bottom: 0; width: 35%; z-index: 1; } .mf-ant { left: 0; } .mf-prox { right: 0; }
 </style>
 </head>
 <body>
@@ -2168,7 +2248,7 @@ const corLimite = p => p >= 100 ? 'var(--r)' : p >= 80 ? 'var(--o)' : 'var(--g)'
 const NO_GOOGLE = typeof google !== 'undefined' && google.script && google.script.run;
 const CONEXAO = 'mdd_conexao';
 // Versão do app e da ponte que ele espera (o botão "Procurar atualização" compara com a do site)
-const APP_VERSAO = '40', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
+const APP_VERSAO = '41', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
 async function procurarAtualizacao() {
   toast('Procurando atualização…');
   try {
@@ -4511,21 +4591,34 @@ function telaLeitura() {
 function abrirFichaLivro(id) {
   const l = T('Livros').find(x => x.ID === id);
   if (!l) return;
-  const caixa = (tit, corpo, cls = '') => `<div class="fl-box ${cls}"><div class="fl-h"><i></i><i></i><i></i><span>${tit}</span></div><div class="fl-c">${corpo}</div></div>`;
-  const det = [['Gênero', l.Genero], ['Páginas', num(l.Paginas) || ''], ['Ano', l.Ano], ['Página atual', l.Status === 'Lendo' ? num(l.PaginaAtual) : ''], ['Início', l.Inicio ? fmt(l.Inicio) : ''], ['Fim', l.Fim ? fmt(l.Fim) : '']].filter(([, v]) => v !== '' && v != null);
-  const texto = (t, vazio) => t ? `<p class="fl-txt ${String(t).length > 380 ? 'corta' : ''}">${esc(t).replace(/\n/g, '<br>')}</p>${String(t).length > 380 ? '<button class="lk fl-mais" data-a="flMais">Ler tudo</button>' : ''}` : `<p class="nota">${vazio}</p>`;
-  const temSin = !!String(l.Sintese || '').trim();
-  abrirVeu(`<div class="cp-top"><button class="ibtn" data-a="fechar" aria-label="Fechar">${ic('x')}</button><b>${esc(l.Status || 'Livro')}</b><button class="ibtn escuro" data-a="editarLivro" data-id="${esc(l.ID)}" aria-label="Editar">${ic('pen')}</button></div>
-    <div class="ficha">
-      ${caixa('Título', `<div class="fl-topo">${capa(l)}<div class="fl-info"><div class="fl-tit">${esc(l.Titulo)}</div>${l.Autor ? `<small class="nota">${esc(l.Autor)}</small>` : ''}
-        <div class="fl-est">${[1, 2, 3, 4, 5].map(n => `<button data-a="estrelaLivro" data-id="${esc(l.ID)}" data-v="${n}" class="${n <= num(l.Avaliacao) ? 'on' : ''}" aria-label="${n} de 5">${ic('star')}</button>`).join('')}</div>
-        <div class="fl-fmt">${['Físico', 'E-book', 'Audiobook'].map(f => `<button data-a="formatoLivro" data-id="${esc(l.ID)}" data-v="${f}" class="${l.Formato === f ? 'on' : ''}">${f}</button>`).join('')}</div></div></div>
-        ${det.length ? `<div class="fl-det2">${det.map(([k, v]) => `<span><small>${k}</small>${esc(v)}</span>`).join('')}</div>` : ''}`)}
-      ${caixa('Favoritos', l.Favoritos ? texto(l.Favoritos).replace('class="fl-txt', 'class="fl-txt fl-fav') : '<p class="nota">Trechos e frases que você amou. Toque no lápis para escrever.</p>')}
-      ${caixa(temSin ? 'Resenha e sinopse' : 'Resenha', `${temSin ? `<div class="fl-abas"><button class="on" data-a="flAba" data-v="flRes">Minha resenha</button><button data-a="flAba" data-v="flSin">Sinopse</button></div>` : ''}
-        <div id="flRes">${texto(l.Resenha, 'O que você achou do livro? Toque no lápis para escrever.')}</div>${temSin ? `<div id="flSin" hidden>${texto(l.Sintese)}</div>` : ''}`)}
+  const pg = num(l.PaginaAtual), tot = num(l.Paginas), pct = tot ? Math.min(100, Math.round(pg / tot * 100)) : 0;
+  let ritmo = '';
+  if (l.Status === 'Lendo' && tot && pg) {
+    const dias = l.Inicio ? Math.max(1, difDias(l.Inicio, hojeIso())) : 0, porDia = dias ? pg / dias : 0;
+    ritmo = `Página ${pg} de ${tot}` + (porDia >= 1 && tot > pg ? ` · no seu ritmo, termina em ${plural(Math.ceil((tot - pg) / porDia), 'dia', 'dias')}` : '');
+  } else if (l.Status === 'Lido') ritmo = 'Lido' + (l.Fim ? ' em ' + fmt(l.Fim) : '') + (tot ? ' · ' + tot + ' páginas' : '');
+  else ritmo = tot ? tot + ' páginas · na sua fila' : 'Na sua fila';
+  const texto = (t, cls = '') => `<p class="fl-txt ${cls} ${String(t).length > 380 ? 'corta' : ''}">${esc(t).replace(/\n/g, '<br>')}</p>${String(t).length > 380 ? '<button class="lk fl-mais" data-a="flMais">Ler tudo</button>' : ''}`;
+  const ficha = [['Gênero', l.Genero], ['Formato', l.Formato], ['Começou', l.Inicio ? fmt(l.Inicio) : ''], ['Terminou', l.Fim ? fmt(l.Fim) : ''], ['Ano', l.Ano], ['Páginas', tot || '']].filter(([, v]) => v !== '' && v != null);
+  const temSin = !!String(l.Sintese || '').trim(), temRes = !!String(l.Resenha || '').trim();
+  const nome = String(cfg('Nome', '')).trim(), ini = nome ? esc(nome[0].toUpperCase()) : 'V';
+  abrirVeu(`<div class="fl2">
+    <div class="fl2-capa">${capa(l)}<div class="fl2-acoes"><button class="ibtn" data-a="editarLivro" data-id="${esc(l.ID)}" aria-label="Editar">${ic('pen')}</button>${l.Status === 'Lendo' ? `<button class="ibtn" data-a="paginaLivro" data-id="${esc(l.ID)}" aria-label="Atualizar página">${ic('book')}</button>` : ''}</div></div>
+    <div class="fl2-info">
+      <div class="fl2-tit" lang="pt-BR">${esc(l.Titulo)}</div>${l.Autor ? `<div class="fl2-aut">${esc(l.Autor)}</div>` : ''}
+      <div class="fl-est">${[1, 2, 3, 4, 5].map(n => `<button data-a="estrelaLivro" data-id="${esc(l.ID)}" data-v="${n}" class="${n <= num(l.Avaliacao) ? 'on' : ''}" aria-label="${n} de 5">${ic('star')}</button>`).join('')}</div>
+      <p class="fl2-ritmo">${ritmo}</p>
+      ${l.Status === 'Lendo' ? `<div class="fl2-cont"><button class="fl2-bt" data-a="paginaLivro" data-id="${esc(l.ID)}">Continuar lendo ↗</button><div class="fl2-bar"><i style="width:${pct}%"></i></div><b>${pct}%</b></div>` : ''}
     </div>
-    ${l.Status === 'Lendo' ? `<button class="cp-salvar" data-a="paginaLivro" data-id="${esc(l.ID)}">Atualizar página (${num(l.PaginaAtual)}${num(l.Paginas) ? '/' + num(l.Paginas) : ''})</button>` : ''}`, 'medio');
+    <div class="fl2-corpo">
+      <div class="fl2-txt">
+        ${temSin || temRes ? `${temSin && temRes ? `<div class="fl-abas"><button class="on" data-a="flAba" data-v="flSin">Sobre</button><button data-a="flAba" data-v="flRes">Minha resenha</button></div>` : `<b class="fl2-h">${temSin ? 'Sobre' : 'Minha resenha'}</b>`}
+          ${temSin ? `<div id="flSin">${texto(l.Sintese)}</div>` : ''}${temRes ? `<div id="flRes" ${temSin ? 'hidden' : ''}>${texto(l.Resenha)}</div>` : ''}` : `<b class="fl2-h">Sobre</b><p class="nota">Sem sinopse nem resenha ainda. Toque no lápis para escrever.</p>`}
+        <div class="fl2-anot"><span class="av">${ini}</span><div><b>Sua anotação</b>${l.Favoritos ? texto(l.Favoritos, 'fl-fav') : '<p class="nota">Trechos e frases que você amou. Toque no lápis para guardar.</p>'}</div></div>
+      </div>
+      <div class="fl2-ficha">${ficha.map(([k, v]) => `<div><small>${k}</small><b>${esc(v)}</b></div>`).join('')}
+        <div class="fl-fmt">${['Físico', 'E-book', 'Audiobook'].map(f => `<button data-a="formatoLivro" data-id="${esc(l.ID)}" data-v="${f}" class="${l.Formato === f ? 'on' : ''}">${f}</button>`).join('')}</div></div>
+    </div></div>`, 'medio ficha2');
 }
 function abrirLivro(id, valoresTemp) {
   const l = T('Livros').find(x => x.ID === id);
@@ -4809,11 +4902,37 @@ function abrirLugar(id, valoresTemp) {
       { k: 'Categoria', l: 'Categoria', t: 'sel', op: Object.keys(CORES_LUGAR) },
       { k: 'Status', l: 'Status', t: 'sel', op: ['Quero ir', 'Planejado', 'Visitado'] },
       { k: 'Data', l: 'Data (planejada ou da visita)', t: 'date' },
-      { k: 'Avaliacao', l: 'Avaliação', t: 'estrelas' }, { k: 'Fotos', l: 'Fotos da viagem', t: 'galeria', col: 2 }, { k: 'Obs', l: 'Observações', t: 'area', col: 2 }],
+      { k: 'Avaliacao', l: 'Avaliação', t: 'estrelas' }, { k: 'Gasto', l: 'Quanto gastou (R$) · fica escondido', t: 'num', ajuda: 'Só aparece aqui, e só quando você toca no olho.' }, { k: 'Fotos', l: 'Fotos da viagem', t: 'galeria', col: 2 }, { k: 'Obs', l: 'Observações', t: 'area', col: 2 }],
+    extras: l ? [{ txt: 'Mostrar fotos para alguém', fn: () => mostrarFotos(l.ID) }] : [],
     valores: valoresTemp || l || { Status: 'Quero ir', Categoria: 'Passeio' },
     salvar: o => { salvarGaleria(); fecharVeu(); salvarItem('Lugares', o); },
     excluir: l && (() => { fecharVeu(); excluirItem('Lugares', l.ID); setTimeout(() => { if (!T('Lugares').some(x => x.ID === l.ID)) (l.Fotos || []).forEach(fid => gravarFotoNuvem(fid, null)); }, 8000); }), // fotos só somem depois do "Desfazer"
   });
+  esconderGasto();
+}
+/** Gasto da viagem: aparece como •••• até tocar no olho. */
+function esconderGasto() {
+  const inp = $('f_Gasto'); if (!inp) return;
+  inp.classList.add('privado'); inp.setAttribute('autocomplete', 'off');
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'olho-gasto'; b.setAttribute('aria-label', 'Mostrar ou esconder o gasto'); b.innerHTML = ic('eye');
+  b.onclick = () => { const v = inp.classList.toggle('privado'); b.innerHTML = ic(v ? 'eye' : 'eyeoff'); };
+  inp.parentNode.classList.add('com-olho'); inp.after(b);
+}
+/** Só as fotos, em tela cheia, sem valores nem anotações. */
+function mostrarFotos(id) {
+  const l = T('Lugares').find(x => x.ID === id); if (!l) return;
+  const ids = Array.isArray(l.Fotos) ? l.Fotos : []; carregarFotos(ids);
+  const lista = () => [l.Foto].concat(ids.map(f => E.fotos[f])).filter(Boolean);
+  if (!lista().length && !ids.length) return toast('Esse lugar ainda não tem fotos.');
+  let i = 0; const el = document.createElement('div'); el.className = 'mfotos';
+  const pintar = () => { const fs = lista(); if (i >= fs.length) i = 0;
+    el.innerHTML = `<div class="mf-img" style="background-image:url('${esc(fs[i] || '')}')"></div><div class="mf-top"><button class="mf-x" aria-label="Fechar">${ic('x')}</button><span>${fs.length ? i + 1 : 0} de ${fs.length}</span></div>
+      <div class="mf-rod"><b>${esc(l.Nome)}</b><span>${esc([l.Cidade, l.Data ? nomeMes(String(l.Data).slice(0, 7)).toLowerCase() + ' de ' + String(l.Data).slice(0, 4) : ''].filter(Boolean).join(' · '))}</span><div class="mf-dots">${fs.map((_, n) => `<i class="${n === i ? 'on' : ''}"></i>`).join('')}</div></div>
+      <button class="mf-ant" aria-label="Anterior"></button><button class="mf-prox" aria-label="Próxima"></button>`; };
+  el.addEventListener('click', e => { const fs = lista().length; if (e.target.closest('.mf-x')) { el.remove(); return; } if (e.target.closest('.mf-ant')) i = (i - 1 + fs) % fs; else if (e.target.closest('.mf-prox')) i = (i + 1) % fs; pintar(); });
+  let x0 = null; el.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+  el.addEventListener('touchend', e => { if (x0 == null) return; const dx = e.changedTouches[0].clientX - x0, fs = lista().length; if (Math.abs(dx) > 40 && fs) { i = (i + (dx < 0 ? 1 : -1) + fs) % fs; pintar(); } x0 = null; });
+  document.body.appendChild(el); pintar(); setTimeout(pintar, 900); setTimeout(pintar, 2500);
 }
 
 // =====================================================================
@@ -6135,6 +6254,15 @@ function equilibrarColunas() {
   }
 }
 let _resizeT; addEventListener('resize', () => { clearTimeout(_resizeT); _resizeT = setTimeout(() => { if (!document.body.classList.contains('modal')) render(); }, 250); });
+
+const DESTAQUE = { inicio: '.ci-agenda .suaagenda', financeiro: '#fin-guardado', habitos: '.faixa', presenca: '#cal-ferias', treinos: '.tr-hoje' };
+/** Um cartão escuro por tela (mesmo estilo do saldo de Finanças). */
+function cartaoDestaque() {
+  const e = DESTAQUE[E.tela] && document.querySelector('#main ' + DESTAQUE[E.tela]); if (!e) return;
+  e.classList.add('dest-esc');
+  e.querySelectorAll('*').forEach(x => { if (x.closest('.chip.on, .dest-ok')) return; const m = getComputedStyle(x).backgroundColor.match(/rgba?\((\d+), (\d+), (\d+)(?:, ([\d.]+))?/); if (!m) return;
+    const a = m[4] === undefined ? 1 : +m[4], lum = (+m[1] + +m[2] + +m[3]) / 765; if (a > .4 && lum > .72) x.classList.add('dest-vidro'); });
+}
 let revelador = null;
 const CASCATA = '.faixa > div, .nums4 > div, .kpi, .chips .chip, .abas button, .row, .cfg, .appi, .lugar, .med, .conq, .tr-grade i, .hum, .pill, .ext, .ext-dia, .cat-r, .lg > div, .partes span, .rot .it, .rg, .faces button, .ops-ag button, .tk, .anoGrid > *, .evg, .mfin, .io2 span, .wk .h, .tr-ex, .tr-serie, .conqs > *';
 function depoisDeDesenhar() {
@@ -6177,6 +6305,7 @@ function render() {
   $('bnav').innerHTML = [['inicio', 'home', 'Hoje'], ['presenca', 'calendar', 'Agenda'], ['financeiro', 'wallet', 'Finanças'], ['habitos', 'habits', 'Hábitos'], ['mais', 'grid', 'Mais']].map(item).join('');
   if (!$('fab').innerHTML) $('fab').innerHTML = ic('plus');
   aplicarCeu();
+  cartaoDestaque();
   equilibrarColunas();
   depoisDeDesenhar();
   setTimeout(grandesDoHoje, 50);
