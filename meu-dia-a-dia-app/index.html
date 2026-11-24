@@ -2249,6 +2249,8 @@
   .bol-l { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; padding: 10px 2px; border-bottom: 1px solid var(--line); }
   .bol-l > i { width: 8px; height: 32px; border-radius: 4px; flex: none; } .bol-l .t { flex: 1; min-width: 0; } .bol-l .t b { display: block; font-size: 14px; } .bol-l .t small { font-size: 11.5px; color: var(--sub); font-weight: 700; }
   .bol-l .md { text-align: right; font-weight: 800; font-size: 17px; } .bol-l .md span { display: block; font-size: 10.5px; font-weight: 800; color: var(--sub); } .bol-l .md .ok { color: var(--g); } .bol-l .md .rep { color: var(--r); }
+
+  .fm-capas button { display: flex; flex-direction: column; gap: 4px; aspect-ratio: auto !important; background: none !important; overflow: visible !important; } .fm-capas img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 8px; } .fm-capas small { font-size: 10.5px; font-weight: 700; color: var(--sub); line-height: 1.2; text-align: left; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 </style>
 </head>
 <body>
@@ -2371,7 +2373,7 @@ const corLimite = p => p >= 100 ? 'var(--r)' : p >= 80 ? 'var(--o)' : 'var(--g)'
 const NO_GOOGLE = typeof google !== 'undefined' && google.script && google.script.run;
 const CONEXAO = 'mdd_conexao';
 // Versão do app e da ponte que ele espera (o botão "Procurar atualização" compara com a do site)
-const APP_VERSAO = '46', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
+const APP_VERSAO = '47', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
 async function procurarAtualizacao() {
   toast('Procurando atualização…');
   try {
@@ -4970,7 +4972,9 @@ async function buscarFilmeNet(q) {
   const chave = r => palavras(r.Titulo).join(' ') + '|' + (r.Ano || ''), mapa = new Map();
   out.forEach(r => { const k = chave(r), j = mapa.get(k) || [...mapa.entries()].find(([kk]) => kk.split('|')[0] === k.split('|')[0] && (!r.Ano || !kk.split('|')[1]))?.[1];
     if (!j) { mapa.set(k, Object.assign({}, r)); return; } Object.entries(r).forEach(([c, v]) => { if (v && !j[c]) j[c] = v; }); if (r.Capa && j.fonte === 'wiki' && r.fonte !== 'wiki') j.Capa = r.Capa; });
-  return [...mapa.values()].map(r => Object.assign(r, { _n: semelhanca(r.Titulo, q) + (r.Capa ? .05 : 0) + (r.Sinopse ? .03 : 0) })).filter(r => r._n > .25).sort((a, b) => b._n - a._n).slice(0, 12).map(r => { delete r._n; delete r.fonte; return r; });
+  const y = +hojeIso().slice(0, 4);
+  return [...mapa.values()].map(r => Object.assign(r, { _s: semelhanca(r.Titulo, q) })).filter(r => r._s >= .5)
+    .map(r => Object.assign(r, { _n: r._s + (r.Capa ? .05 : 0) + (r.Sinopse ? .03 : 0) + (+r.Ano >= y - 1 ? .12 : +r.Ano >= y - 3 ? .05 : 0) })).sort((a, b) => b._n - a._n).slice(0, 12).map(r => { delete r._n; delete r._s; delete r.fonte; return r; });
 }
 async function buscarFilmeUI(id) {
   const atual = lerForm(false) || {}, q = String(atual.Titulo || '').trim();
@@ -6970,9 +6974,8 @@ const ACOES = {
     if (E.capaTipo === 'lugar') return buscarFotosLugar();
     if (E.capaTipo === 'filme') { const t = (($('f_Titulo') || {}).value || '').trim(); if (!t) return toast('Escreva o nome primeiro.', true); const caixa = $('capaBusca'); caixa.innerHTML = '<p class="nota" style="margin-top:8px">Procurando pôsteres…</p>';
       const gq = encodeURIComponent(t + ' pôster filme'), fora = `<p class="nota" style="margin-top:6px">Não achou? Procure no <a class="lk" href="https://www.google.com/search?tbm=isch&q=${gq}" target="_blank" rel="noopener">Google Imagens</a>, toque e segure na imagem, copie o endereço e use “Colar link”.</p>`;
-      try { const [rs, ex] = await Promise.all([buscarFilmeNet(t), chamar('buscarImagens', t + ' poster').catch(() => [])]);
-        const us = []; rs.forEach(r => { if (r.Capa && !us.includes(r.Capa)) us.push(r.Capa); }); (ex || []).forEach(u => { if (!us.includes(u)) us.push(u); });
-        caixa.innerHTML = `<div class="capas">${us.slice(0, 18).map(u => `<button type="button" data-a="capaEscolher" data-u="${esc(u)}"><img src="${esc(u)}" alt="" loading="lazy" onerror="this.parentNode.remove()"></button>`).join('') || '<p class="nota">Nenhum pôster achado.</p>'}</div>${fora}`; }
+      try { const rs = (await buscarFilmeNet(t)).filter(r => r.Capa);
+        caixa.innerHTML = `<div class="capas fm-capas">${rs.map(r => `<button type="button" data-a="capaEscolher" data-u="${esc(r.Capa)}" title="${esc(r.Titulo)}"><img src="${esc(r.Capa)}" alt="" loading="lazy" onerror="this.parentNode.remove()"><small>${esc(r.Titulo)}${r.Ano ? ' · ' + r.Ano : ''}</small></button>`).join('') || '<p class="nota">Nenhum pôster achado com esse nome.</p>'}</div>${fora}`; }
       catch (err) { caixa.innerHTML = `<p class="nota" style="margin-top:8px">${semRede(err) ? 'Sem internet agora.' : 'A busca não respondeu agora.'}</p>${fora}`; } return; }
     const t = ($('f_Titulo') || {}).value || '', a = ($('f_Autor') || {}).value || '';
     if (!t.trim()) return toast('Escreva o nome do livro primeiro.', true);
