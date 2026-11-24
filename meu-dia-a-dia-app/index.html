@@ -2289,6 +2289,19 @@
   @keyframes numeroCai { from { opacity: 0; transform: translateY(-12px) scale(.9); } }
   @keyframes pulsoBotao { 0%, 100% { box-shadow: 0 0 0 0 rgba(220,242,142,.5); } 50% { box-shadow: 0 0 0 8px rgba(220,242,142,0); } }
   @keyframes bannerZoom { from { transform: scale(1.08); opacity: .4; } }
+
+  /* v49 · Painéis: X sempre à mão e botões Salvar/Cancelar sempre visíveis */
+  .painel > .x-veu { position: sticky !important; top: 0; float: right; margin: -4px -4px 0 8px; z-index: 5; background: var(--card) !important; box-shadow: 0 4px 12px -4px rgba(0,0,0,.25) !important; }
+  .painel > .acoes { position: sticky; bottom: -20px; z-index: 4; background: linear-gradient(180deg, transparent, var(--card) 18px); padding: 18px 0 14px; margin-bottom: -6px; }
+  .capas.fotos.mini { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; } .capas.fotos.mini button { aspect-ratio: 1; }
+  .capas { max-height: 320px; overflow-y: auto; }
+
+  /* v49 · Matéria: respiro entre cartões, nota clara e "fixar" discreto */
+  body.t-estudos #main .card { margin-bottom: 14px; }
+  body.t-estudos .est-calc, body.t-estudos .est-nums { margin-bottom: 14px; }
+  .est-av .nt.sem { min-width: 64px; background: transparent; border: 1px dashed var(--inp); } .est-av .nt.sem span { font-size: 11.5px; font-weight: 800; color: var(--sub); }
+  .est-fix { display: block; margin: 4px auto 0; font-size: 12px; font-weight: 700; color: var(--sub); padding: 8px 12px; border-radius: 999px; } .est-fix:hover { background: var(--soft); color: var(--tx); }
+  body.t-estudos .rapido { max-width: 560px; }
 </style>
 </head>
 <body>
@@ -2429,7 +2442,7 @@ const corLimite = p => p >= 100 ? 'var(--r)' : p >= 80 ? 'var(--o)' : 'var(--g)'
 const NO_GOOGLE = typeof google !== 'undefined' && google.script && google.script.run;
 const CONEXAO = 'mdd_conexao';
 // Versão do app e da ponte que ele espera (o botão "Procurar atualização" compara com a do site)
-const APP_VERSAO = '48', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
+const APP_VERSAO = '49', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
 async function procurarAtualizacao() {
   toast('Procurando atualização…');
   try {
@@ -2917,7 +2930,7 @@ async function copiarTexto(texto, idCampo) {
 function abrirVeu(html, cls = '') {
   E.sujo = false; // vira true quando você digita algo no painel
   if (!veuNoHistorico) { history.pushState({ veu: 1, tela: E.tela }, ''); veuNoHistorico = true; }
-  const x = /data-a="fechar"/.test(html) ? '' : `<button class="ibtn x-veu" data-a="fechar" aria-label="Fechar">${ic('x')}</button>`; // todo painel tem como fechar (tocar fora não fecha)
+  const x = /class="cp-top"/.test(html) ? '' : `<button class="ibtn x-veu" data-a="fechar" aria-label="Fechar">${ic('x')}</button>`; // todo painel tem como fechar (tocar fora não fecha)
   const jaAberto = $('veu').classList.contains('aberto');
   $('veu').innerHTML = `<div class="painel ${cls} ${x ? 'com-x' : ''} ${jaAberto ? '' : 'sobe'}">${x}${html}</div>`;
   if (!jaAberto) $('veu').classList.add('entrando'), setTimeout(() => $('veu').classList.remove('entrando'), 450);
@@ -3733,8 +3746,8 @@ async function buscarFotosLugar() {
   const links = `<a class="lk" href="https://br.pinterest.com/search/pins/?q=${encodeURIComponent(q)}" target="_blank" rel="noopener">${ic('search')} Pinterest</a> · <a class="lk" href="https://www.google.com/search?tbm=isch&q=${encodeURIComponent(q)}" target="_blank" rel="noopener">${ic('search')} Google Imagens</a>`;
   try {
     const fs = await chamar('buscarImagens', q);
-    caixa.innerHTML = `<div class="capas fotos">${fs.map(u => `<button type="button" data-a="capaEscolher" data-u="${esc(u)}"><img src="${esc(u)}" alt="" loading="lazy" onerror="this.parentNode.remove()"></button>`).join('') || '<p class="nota">Nenhuma foto achada. Tente os atalhos abaixo.</p>'}</div>
-      <p class="nota" style="margin-top:6px">Toque numa foto para usar. Ou procure no ${links} · copie o link da imagem e use “Colar link”.</p>`;
+    caixa.innerHTML = `<div class="capas fotos ${E.capaIc === 'cap' ? 'mini' : ''}">${fs.slice(0, E.capaIc === 'cap' ? 8 : 12).map(u => `<button type="button" data-a="capaEscolher" data-u="${esc(u)}"><img src="${esc(u)}" alt="" loading="lazy" onerror="this.parentNode.remove()"></button>`).join('') || '<p class="nota">Nenhuma foto achada. Tente os atalhos abaixo.</p>'}</div>
+      <p class="nota" style="margin-top:6px">Toque numa foto para usar. Ou procure no ${links} · copie o link da imagem e use “Colar link”. <button type="button" class="lk" data-a="capaFecharBusca">Fechar busca</button></p>`;
   } catch (err) { caixa.innerHTML = `<p class="nota" style="margin-top:8px">${semRede(err) ? 'Sem internet agora.' : esc(err.message)}<br>${links}</p>`; }
 }
 /** Baixa a capa pela ponte (sem bloqueio do navegador), reduz e coloca no formulário. */
@@ -4806,7 +4819,7 @@ function telaDisciplina(nome, s) {
   const linha = a => { const s2 = estadoAtividade(a), ent = a.Status === 'Entregue', atr = !ent && a.Data && a.Data < hoje;
     return `<div class="est-av ${ent ? 'feito' : ''} ${atr ? 'atr' : ''}"><button class="ck" data-a="estEntregar" data-id="${esc(a.ID)}" aria-label="${ent ? 'Desmarcar' : 'Marcar entregue'}">${ent ? ic('check') : ''}</button>
       <div class="t" data-a="editarAtividade" data-id="${esc(a.ID)}"><b>${esc(a.Titulo)}</b><small>${esc([a.Tipo, a.Data ? (ent ? 'entregue' : atr ? 'atrasada' : s2.t.toLowerCase()) + ' · ' + fmtCurto(a.Data) : 'sem data', 'peso ' + pesoDe(a)].filter(Boolean).join(' · '))}</small></div>
-      <button class="nt" data-a="estNota" data-id="${esc(a.ID)}">${temNota(a) ? `<b>${fmtNota(num(a.Nota))}</b>` : `<span>${ic(tipoIc(a.Tipo))}</span>`}</button></div>`; };
+      <button class="nt ${temNota(a) ? '' : 'sem'}" data-a="estNota" data-id="${esc(a.ID)}" aria-label="Lançar nota">${temNota(a) ? `<b>${fmtNota(num(a.Nota))}</b>` : '<span>+ nota</span>'}</button></div>`; };
   let calc = '';
   if (r.precisa != null) calc = r.precisa <= 0 ? `Você já garantiu a média ${fmtNota(f.min)} nesta matéria.` : r.precisa > 10 ? `Nem com 10 no que falta dá para chegar a ${fmtNota(f.min)}. Vale conversar com o professor.` : `Para fechar com média ${fmtNota(f.min)}, você precisa de <b>${fmtNota(r.precisa)}</b> em média no que falta.`;
   else if (r.fechada && r.media != null) calc = r.media >= f.min ? `Matéria fechada com ${fmtNota(r.media)}. Aprovado!` : `Matéria fechada com ${fmtNota(r.media)}, abaixo de ${fmtNota(f.min)}.`;
@@ -4818,7 +4831,7 @@ function telaDisciplina(nome, s) {
     ${r.at.map(linha).join('') || '<p class="nota">Nenhuma avaliação ainda. Toque em "+ adicionar".</p>'}
     <div class="rapido" style="margin:12px 0 0"><input id="estRapido" placeholder="Rápido: prova 26/11 peso 5" autocomplete="off" enterkeyhint="go"><button class="btns" data-a="estRapido" data-d="${esc(nome)}" data-s="${s}">Lançar</button></div></div>
   <div class="card" data-a="estEditarDisc" data-d="${esc(nome)}" data-s="${s}"><div class="sec">Anotações da matéria <span class="lk">editar</span></div><p class="${info.anot ? 'est-anot' : 'nota'}">${info.anot ? esc(info.anot).replace(/\n/g, '<br>') : 'Conteúdo da prova, combinados com o professor, links… Toque para escrever.'}</p></div>
-  <button class="add" data-a="estFixar" data-d="${esc(nome)}">${info.fix ? '★ Fixada nos atalhos · tirar' : '☆ Fixar nos atalhos de Estudo'}</button>`;
+  <button class="est-fix" data-a="estFixar" data-d="${esc(nome)}">${info.fix ? '★ Fixada nos atalhos · tirar' : '☆ Fixar nos atalhos'}</button>`;
 }
 const capaDisc = nome => cfg('CapaDisc:' + nome, '');
 function salvarDisc(nome, dados, msg) { const o = discInfo(); o[nome] = Object.assign({}, o[nome] || {}, dados); salvarConfig({ Disciplinas: JSON.stringify(o) }, msg || ''); }
@@ -7047,6 +7060,7 @@ const ACOES = {
     } catch (err) { caixa.innerHTML = `<p class="nota" style="margin-top:8px">${semRede(err) ? 'Sem internet agora.' : 'A busca não respondeu agora.'}</p>${fora}`; }
   },
   capaEscolher: ({ u }) => usarCapaDaInternet(u),
+  capaFecharBusca: () => { const c = $('capaBusca'); if (c) c.innerHTML = ''; },
   capaLink: () => { $('capaBusca').innerHTML = `<div class="rapido" style="margin-top:8px"><input id="capaUrl" placeholder="Cole o link da imagem ou do pin" autocomplete="off" inputmode="url"><button type="button" class="btnp" data-a="capaUsarLink">Usar</button></div>`; setTimeout(() => $('capaUrl').focus(), 30); },
   capaUsarLink: () => { const u = $('capaUrl').value.trim(); if (!u) return toast('Cole o link primeiro.', true); usarCapaDaInternet(u); },
   capaTirar: () => { $(E.capaCampo || 'f_Capa').value = ''; $('capaPrev').innerHTML = `<span class="sem">${ic(E.capaIc || 'book')}</span>`; },
