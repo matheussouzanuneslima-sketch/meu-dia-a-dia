@@ -2291,7 +2291,8 @@
   @keyframes bannerZoom { from { transform: scale(1.08); opacity: .4; } }
 
   /* v49 · Painéis: X sempre à mão e botões Salvar/Cancelar sempre visíveis */
-  .painel > .x-veu { position: sticky !important; top: 0; float: right; margin: -4px -4px 0 8px; z-index: 5; background: var(--card) !important; box-shadow: 0 4px 12px -4px rgba(0,0,0,.25) !important; }
+  .painel > .x-veu { position: sticky !important; top: 0; right: auto; display: grid !important; margin: -4px -4px -34px auto; z-index: 6; background: var(--card) !important; color: var(--tx) !important; box-shadow: 0 4px 12px -4px rgba(0,0,0,.25) !important; }
+  .painel.ficha-filme > .x-veu { position: absolute !important; top: 14px; right: 14px; margin: 0; background: rgba(0,0,0,.5) !important; color: #fff !important; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: none !important; }
   .painel > .acoes { position: sticky; bottom: -20px; z-index: 4; background: linear-gradient(180deg, transparent, var(--card) 18px); padding: 18px 0 14px; margin-bottom: -6px; }
   .capas.fotos.mini { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; } .capas.fotos.mini button { aspect-ratio: 1; }
   .capas { max-height: 320px; overflow-y: auto; }
@@ -2466,7 +2467,7 @@ const corLimite = p => p >= 100 ? 'var(--r)' : p >= 80 ? 'var(--o)' : 'var(--g)'
 const NO_GOOGLE = typeof google !== 'undefined' && google.script && google.script.run;
 const CONEXAO = 'mdd_conexao';
 // Versão do app e da ponte que ele espera (o botão "Procurar atualização" compara com a do site)
-const APP_VERSAO = '50', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
+const APP_VERSAO = '51', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
 async function procurarAtualizacao() {
   toast('Procurando atualização…');
   try {
