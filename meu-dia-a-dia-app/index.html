@@ -2333,12 +2333,13 @@
   /* v54 · Melhorias */
   .prev-fim small { color: var(--sub); font-weight: 700; font-size: 12.5px; } .prev-fim .v { font-size: 28px; font-weight: 800; letter-spacing: -1px; } .prev-fim .v.neg { color: var(--r); }
   .pf-l { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); font-size: 13.5px; } .pf-l span small { display: block; font-size: 11.5px; } .pf-l .pos { color: var(--g); }
+  .hab-grid { align-items: start; } .hab-esq, .hab-dir { align-content: start; }
   .mapa-hab .sec span { text-transform: none; letter-spacing: 0; font-size: 11.5px; }
-  .mh-g { display: grid; grid-template-rows: repeat(7, 1fr); grid-auto-flow: column; gap: 3px; overflow-x: auto; }
-  .mh-g i { width: 100%; min-width: 9px; aspect-ratio: 1; border-radius: 3px; background: var(--soft); } .mh-g .l1 { background: #cfe9d6; } .mh-g .l2 { background: #9fd3a8; } .mh-g .l3 { background: #62b47a; } .mh-g .l4 { background: var(--g); } .mh-g .lf { background: transparent; border: 1px dashed var(--line); }
+  .mh-g { display: grid; grid-template-rows: repeat(7, 14px); grid-auto-columns: 14px; grid-auto-flow: column; gap: 3px; overflow-x: auto; justify-content: start; }
+  .mh-g i { width: 14px; height: 14px; border-radius: 4px; background: var(--soft); } .mh-g .l1 { background: #cfe9d6; } .mh-g .l2 { background: #9fd3a8; } .mh-g .l3 { background: #62b47a; } .mh-g .l4 { background: var(--g); } .mh-g .lf { background: transparent; border: 1px dashed var(--line); }
   .mh-leg { display: flex; align-items: center; gap: 4px; justify-content: flex-end; margin-top: 8px; font-size: 11px; font-weight: 700; color: var(--sub); } .mh-leg i { width: 10px; height: 10px; border-radius: 3px; background: var(--soft); } .mh-leg .l1 { background: #cfe9d6; } .mh-leg .l2 { background: #9fd3a8; } .mh-leg .l3 { background: #62b47a; } .mh-leg .l4 { background: var(--g); }
   .mh-sem { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; } .mh-sem div { background: var(--soft); border-radius: 14px; padding: 9px 11px; } .mh-sem small { display: block; font-size: 11px; color: var(--sub); font-weight: 700; } .mh-sem b { font-size: 13.5px; }
-  .mh-bar { display: flex; justify-content: space-between; align-items: flex-end; height: 84px; margin-top: 10px; } .mh-bar div { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; line-height: 1.3; font-size: 10.5px; font-weight: 800; color: var(--sub); } .mh-bar b { width: 22px; border-radius: 8px; background: var(--inp); } .mh-bar .on b { background: var(--g); }
+  .mh-bar { display: flex; justify-content: space-around; align-items: flex-end; min-height: 100px; margin-top: 14px; } .mh-bar div { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; line-height: 1.3; font-size: 10.5px; font-weight: 800; color: var(--sub); } .mh-bar b { width: 22px; border-radius: 8px; background: var(--inp); } .mh-bar .on b { background: var(--g); }
   .hum-graf { width: 100%; height: 90px; } .hum-graf line { stroke: var(--line); } .hum-graf polyline { fill: none; stroke: var(--pri, #c2410c); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
   .hum-x { display: flex; justify-content: space-between; font-size: 10.5px; font-weight: 700; color: var(--sub); }
   .gx-retro h2 { color: #fff; } .rt-g { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; width: 100%; max-width: 360px; }
@@ -2485,7 +2486,7 @@ const corLimite = p => p >= 100 ? 'var(--r)' : p >= 80 ? 'var(--o)' : 'var(--g)'
 const NO_GOOGLE = typeof google !== 'undefined' && google.script && google.script.run;
 const CONEXAO = 'mdd_conexao';
 // Versão do app e da ponte que ele espera (o botão "Procurar atualização" compara com a do site)
-const APP_VERSAO = '55', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
+const APP_VERSAO = '56', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
 async function procurarAtualizacao() {
   toast('Procurando atualização…');
   try {
@@ -3753,18 +3754,20 @@ function interpretarCompromisso(texto) {
 /** Mapa do ano: um quadradinho por dia (mais escuro = mais hábitos feitos) e o melhor dia da semana. */
 function mapaHabitos() {
   const hab = habitosAtivos(); if (!hab.length) return '';
-  const hoje = hojeIso(), ini = somaDias(inicioSemana(hoje), -7 * 25), dias = [], porSem = [0, 0, 0, 0, 0, 0, 0], totSem = [0, 0, 0, 0, 0, 0, 0];
+  const hoje = hojeIso(), ids = new Set(hab.map(h => h.ID)), datas = T('HabitosLog').filter(l => ids.has(l.HabitoID) && l.Data).map(l => String(l.Data)).sort();
+  const comeco = datas[0] || hoje, semanas = Math.min(26, Math.max(4, Math.ceil(difDias(inicioSemana(comeco), hoje) / 7) + 1));
+  const ini = somaDias(inicioSemana(hoje), -7 * (semanas - 1)), dias = [], porSem = [0, 0, 0, 0, 0, 0, 0], totSem = [0, 0, 0, 0, 0, 0, 0];
   for (let k = ini; k <= somaDias(inicioSemana(hoje), 6); k = somaDias(k, 1)) {
     const fut = k > hoje, n = fut ? 0 : hab.filter(h => feito(k, h.ID)).length, p = hab.length ? n / hab.length : 0, w = paraDate(k).getDay();
-    if (!fut) { porSem[w] += p; totSem[w]++; } dias.push({ k, fut, lv: fut ? -1 : p === 0 ? 0 : p < .34 ? 1 : p < .67 ? 2 : p < 1 ? 3 : 4 });
+    if (!fut && k >= comeco) { porSem[w] += p; totSem[w]++; } dias.push({ k, fut, lv: fut ? -1 : p === 0 ? 0 : p < .34 ? 1 : p < .67 ? 2 : p < 1 ? 3 : 4 });
   }
   const pct = porSem.map((v, i) => totSem[i] ? v / totSem[i] : 0), nomes = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
   const melhor = pct.indexOf(Math.max(...pct)), pior = pct.indexOf(Math.min(...pct)), comHab = dias.filter(d => d.lv > 0).length;
-  return `<div class="card mapa-hab"><div class="sec">Seus últimos 6 meses <span>${comHab} dias com hábito</span></div>
+  return `<div class="card mapa-hab"><div class="sec">${semanas >= 26 ? 'Seus últimos 6 meses' : 'Desde que você começou'} <span>${comHab} dias com hábito</span></div>
     <div class="mh-g">${dias.map(d => `<i class="l${d.lv < 0 ? 'f' : d.lv}" title="${fmt(d.k)}"></i>`).join('')}</div>
     <div class="mh-leg"><span>Menos</span><i class="l0"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i><span>Mais</span></div>
     ${Math.max(...pct) > 0 ? `<div class="mh-sem"><div><small>Melhor dia</small><b>${maiuscula(nomes[melhor])} · ${Math.round(pct[melhor] * 100)}%</b></div><div><small>Mais difícil</small><b>${maiuscula(nomes[pior])} · ${Math.round(pct[pior] * 100)}%</b></div></div>
-    <div class="mh-bar">${[1, 2, 3, 4, 5, 6, 0].map(i => `<div class="${i === melhor ? 'on' : ''}"><b style="height:${Math.round(12 + (pct[i] - Math.min(...pct)) / ((Math.max(...pct) - Math.min(...pct)) || 1) * 52)}px"></b>${Math.round(pct[i] * 100)}%<br>${nomes[i][0].toUpperCase()}</div>`).join('')}</div>` : ''}</div>`;
+    <div class="mh-bar">${[1, 2, 3, 4, 5, 6, 0].map(i => `<div class="${i === melhor ? 'on' : ''}"><b style="height:${Math.round(8 + (Math.max(...pct) ? pct[i] / Math.max(...pct) : 0) * 56)}px"></b>${Math.round(pct[i] * 100)}%<br>${nomes[i][0].toUpperCase()}</div>`).join('')}</div>` : ''}</div>`;
 }
 function telaHabitos() {
   const hoje = hojeIso(), hab = habitosAtivos(), feitos = hab.filter(h => feito(hoje, h.ID)).length, p = pctSemana(inicioSemana(hoje));
@@ -3772,7 +3775,7 @@ function telaHabitos() {
   return `${cabeca('Hábitos', 'Rotina, semana e to-dos', ``)}
   <div class="faixa"><div><b>${feitos}/${hab.length}</b><small>Feitos hoje</small></div><div><b>${p == null ? '—' : Math.round(p * 100) + '%'}</b><small>Da semana</small></div>
     <div><b class="pos">${melhor && melhor.n ? melhor.n + (melhor.sem ? ' sem' : ' d') : '—'}</b><small>${melhor && melhor.n ? 'Seq. ' + esc(melhor.h.Nome) : 'Melhor sequência'}</small></div></div>
-  <div class="hab-grid"><div class="hab-esq">${rotinaGrade()}${secaoHabitos('hab')}</div><div class="hab-dir">${secaoHabitos('todo')}${mapaHabitos()}</div></div>`;
+  <div class="hab-grid"><div class="hab-esq">${rotinaGrade()}${secaoHabitos('hab')}${mapaHabitos()}</div><div class="hab-dir">${secaoHabitos('todo')}</div></div>`;
 }
 
 
