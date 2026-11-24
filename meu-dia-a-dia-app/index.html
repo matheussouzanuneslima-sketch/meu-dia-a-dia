@@ -983,7 +983,7 @@
   .fl-sin:not([open]) .fl-h { border-bottom: 0; }
   .livro-e b { overflow-wrap: anywhere; }
   @media (min-width: 900px) { .shelf.grande { grid-template-columns: repeat(auto-fill, 140px); justify-content: start; } }
-  body.sem-dicas .dica, body.sem-dicas .dica-t { display: none !important; }
+  body.sem-dicas .dica, body.sem-dicas .dica-t, body.sem-dicas .s-dica { display: none !important; }
 
   /* ---------- v15: formulários e livros ---------- */
   .par { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 10px; }
@@ -2329,6 +2329,21 @@
   .cabeca .avatar svg.i, .fl2-anot .av svg.i { width: 20px; height: 20px; color: #fff; }
   .cabeca .avatar { overflow: hidden; }
   .perfil-ed #capaPrev > * { width: 72px !important; height: 72px !important; border-radius: 50% !important; object-fit: cover; }
+
+  /* v54 · Melhorias */
+  .prev-fim small { color: var(--sub); font-weight: 700; font-size: 12.5px; } .prev-fim .v { font-size: 28px; font-weight: 800; letter-spacing: -1px; } .prev-fim .v.neg { color: var(--r); }
+  .pf-l { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); font-size: 13.5px; } .pf-l span small { display: block; font-size: 11.5px; } .pf-l .pos { color: var(--g); }
+  .mapa-hab .sec span { text-transform: none; letter-spacing: 0; font-size: 11.5px; }
+  .mh-g { display: grid; grid-template-rows: repeat(7, 1fr); grid-auto-flow: column; gap: 3px; overflow-x: auto; }
+  .mh-g i { width: 100%; min-width: 9px; aspect-ratio: 1; border-radius: 3px; background: var(--soft); } .mh-g .l1 { background: #cfe9d6; } .mh-g .l2 { background: #9fd3a8; } .mh-g .l3 { background: #62b47a; } .mh-g .l4 { background: var(--g); } .mh-g .lf { background: transparent; border: 1px dashed var(--line); }
+  .mh-leg { display: flex; align-items: center; gap: 4px; justify-content: flex-end; margin-top: 8px; font-size: 11px; font-weight: 700; color: var(--sub); } .mh-leg i { width: 10px; height: 10px; border-radius: 3px; background: var(--soft); } .mh-leg .l1 { background: #cfe9d6; } .mh-leg .l2 { background: #9fd3a8; } .mh-leg .l3 { background: #62b47a; } .mh-leg .l4 { background: var(--g); }
+  .mh-sem { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; } .mh-sem div { background: var(--soft); border-radius: 14px; padding: 9px 11px; } .mh-sem small { display: block; font-size: 11px; color: var(--sub); font-weight: 700; } .mh-sem b { font-size: 13.5px; }
+  .mh-bar { display: flex; justify-content: space-between; align-items: flex-end; height: 84px; margin-top: 10px; } .mh-bar div { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; line-height: 1.3; font-size: 10.5px; font-weight: 800; color: var(--sub); } .mh-bar b { width: 22px; border-radius: 8px; background: var(--inp); } .mh-bar .on b { background: var(--g); }
+  .hum-graf { width: 100%; height: 90px; } .hum-graf line { stroke: var(--line); } .hum-graf polyline { fill: none; stroke: var(--pri, #c2410c); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+  .hum-x { display: flex; justify-content: space-between; font-size: 10.5px; font-weight: 700; color: var(--sub); }
+  .gx-retro h2 { color: #fff; } .rt-g { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; width: 100%; max-width: 360px; }
+  .rt-g div { background: rgba(255,255,255,.1); border-radius: 18px; padding: 12px; text-align: left; animation: gxSobe .5s var(--d) cubic-bezier(.16,1,.3,1) both; } .rt-g small { color: rgba(255,255,255,.65); font-weight: 700; font-size: 11.5px; display: block; } .rt-g b { font-size: 24px; letter-spacing: -.8px; color: #fff; } .rt-g em { display: block; font-style: normal; font-size: 11px; font-weight: 800; color: var(--lima); }
+  @media (prefers-reduced-motion: no-preference) { #main.chegou .mh-g i { animation: popIn .3s cubic-bezier(.2,1.4,.4,1) both; } #main.chegou .mh-bar b, #main.chegou .prev-fim .v { animation: numeroCai .7s .2s cubic-bezier(.2,1.4,.4,1) both; } #main.chegou .hum-graf polyline { stroke-dasharray: 1; stroke-dashoffset: 1; animation: desenha 1.2s .2s ease forwards; } }
 </style>
 </head>
 <body>
@@ -2396,7 +2411,7 @@ const num = v => Number(v) || 0;
 const uid = () => Math.random().toString(16).slice(2, 10);
 const T = n => E.t[n] || (E.t[n] = []);
 const cfg = (k, padrao) => { const c = T('Config').find(x => x.Chave === k); return c && c.Valor !== '' ? c.Valor : padrao; };
-const liga = k => !/^(não|nao|false|0|off)$/i.test(String(cfg(k, 'sim')).trim());
+const liga = k => !/^(não|nao|false|0|off)$/i.test(String(cfg(k, k === 'Dicas' ? 'não' : 'sim')).trim());
 const MESES = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
 const SEMANA = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
 const nomeMes = ym => { const [a, m] = ym.split('-').map(Number); return MESES[m - 1][0].toUpperCase() + MESES[m - 1].slice(1) + ' ' + a; };
@@ -2470,7 +2485,7 @@ const corLimite = p => p >= 100 ? 'var(--r)' : p >= 80 ? 'var(--o)' : 'var(--g)'
 const NO_GOOGLE = typeof google !== 'undefined' && google.script && google.script.run;
 const CONEXAO = 'mdd_conexao';
 // Versão do app e da ponte que ele espera (o botão "Procurar atualização" compara com a do site)
-const APP_VERSAO = '53', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
+const APP_VERSAO = '54', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
 async function procurarAtualizacao() {
   toast('Procurando atualização…');
   try {
@@ -3734,13 +3749,30 @@ function interpretarCompromisso(texto) {
 // =====================================================================
 // Hábitos (aba própria)
 // =====================================================================
+
+/** Mapa do ano: um quadradinho por dia (mais escuro = mais hábitos feitos) e o melhor dia da semana. */
+function mapaHabitos() {
+  const hab = habitosAtivos(); if (!hab.length) return '';
+  const hoje = hojeIso(), ini = somaDias(inicioSemana(hoje), -7 * 25), dias = [], porSem = [0, 0, 0, 0, 0, 0, 0], totSem = [0, 0, 0, 0, 0, 0, 0];
+  for (let k = ini; k <= somaDias(inicioSemana(hoje), 6); k = somaDias(k, 1)) {
+    const fut = k > hoje, n = fut ? 0 : hab.filter(h => feito(k, h.ID)).length, p = hab.length ? n / hab.length : 0, w = paraDate(k).getDay();
+    if (!fut) { porSem[w] += p; totSem[w]++; } dias.push({ k, fut, lv: fut ? -1 : p === 0 ? 0 : p < .34 ? 1 : p < .67 ? 2 : p < 1 ? 3 : 4 });
+  }
+  const pct = porSem.map((v, i) => totSem[i] ? v / totSem[i] : 0), nomes = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
+  const melhor = pct.indexOf(Math.max(...pct)), pior = pct.indexOf(Math.min(...pct)), comHab = dias.filter(d => d.lv > 0).length;
+  return `<div class="card mapa-hab"><div class="sec">Seus últimos 6 meses <span>${comHab} dias com hábito</span></div>
+    <div class="mh-g">${dias.map(d => `<i class="l${d.lv < 0 ? 'f' : d.lv}" title="${fmt(d.k)}"></i>`).join('')}</div>
+    <div class="mh-leg"><span>Menos</span><i class="l0"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i><span>Mais</span></div>
+    ${Math.max(...pct) > 0 ? `<div class="mh-sem"><div><small>Melhor dia</small><b>${maiuscula(nomes[melhor])} · ${Math.round(pct[melhor] * 100)}%</b></div><div><small>Mais difícil</small><b>${maiuscula(nomes[pior])} · ${Math.round(pct[pior] * 100)}%</b></div></div>
+    <div class="mh-bar">${[1, 2, 3, 4, 5, 6, 0].map(i => `<div class="${i === melhor ? 'on' : ''}"><b style="height:${Math.round(12 + (pct[i] - Math.min(...pct)) / ((Math.max(...pct) - Math.min(...pct)) || 1) * 52)}px"></b>${Math.round(pct[i] * 100)}%<br>${nomes[i][0].toUpperCase()}</div>`).join('')}</div>` : ''}</div>`;
+}
 function telaHabitos() {
   const hoje = hojeIso(), hab = habitosAtivos(), feitos = hab.filter(h => feito(hoje, h.ID)).length, p = pctSemana(inicioSemana(hoje));
   const melhor = hab.map(h => ({ h, n: parseInt(sequencia(h), 10) || 0, sem: !!metaSemana(h) })).sort((a, b) => b.n - a.n)[0];
   return `${cabeca('Hábitos', 'Rotina, semana e to-dos', ``)}
   <div class="faixa"><div><b>${feitos}/${hab.length}</b><small>Feitos hoje</small></div><div><b>${p == null ? '—' : Math.round(p * 100) + '%'}</b><small>Da semana</small></div>
     <div><b class="pos">${melhor && melhor.n ? melhor.n + (melhor.sem ? ' sem' : ' d') : '—'}</b><small>${melhor && melhor.n ? 'Seq. ' + esc(melhor.h.Nome) : 'Melhor sequência'}</small></div></div>
-  <div class="hab-grid"><div class="hab-esq">${rotinaGrade()}${secaoHabitos('hab')}</div><div class="hab-dir">${secaoHabitos('todo')}</div></div>`;
+  <div class="hab-grid"><div class="hab-esq">${rotinaGrade()}${secaoHabitos('hab')}</div><div class="hab-dir">${secaoHabitos('todo')}${mapaHabitos()}</div></div>`;
 }
 
 
@@ -4189,6 +4221,17 @@ function minilinha(vals, cor) {
 
 const ALIAS_FIN = { mes: 'fin-resumo', metas: 'fin-metas', plano: 'fin-fixos' };
 
+
+/** Quanto deve sobrar no fim do mês, contando os fixos que ainda não caíram. */
+function cartaoPrevisao(ym, ent, totSai) {
+  const feitos = new Set(T('Lancamentos').map(l => String(l.Origem)));
+  const falta = T('Recorrentes').filter(r => fixoValeEm(r, ym) && !feitos.has('fixo:' + r.ID + ':' + ym)).map(r => ({ r, d: dataDoFixo(r, ym), v: num(r.Valor) * (r.Tipo === 'Entrada' ? 1 : -1) })).sort((a, b) => a.d.localeCompare(b.d));
+  if (!falta.length) return '';
+  const fim = (ent - totSai) + falta.reduce((a, x) => a + x.v, 0), [a, m] = ym.split('-').map(Number);
+  return `<div class="card prev-fim"><div class="sec">Previsão para ${diasNoMes(a, m)}/${String(m).padStart(2, '0')}</div>
+    <small>Deve sobrar</small><div class="v ${fim < 0 ? 'neg' : ''}">${fim < 0 ? '−' : ''}${brl(Math.abs(fim))}</div>
+    <div class="sec" style="margin-top:10px">Ainda vão cair</div>${falta.slice(0, 5).map(x => `<div class="pf-l"><span><b>${esc(x.r.Descricao || x.r.Categoria)}</b><small>dia ${+x.d.slice(8)} · fixo</small></span><b class="${x.v > 0 ? 'pos' : ''}">${x.v > 0 ? '+' : '−'} ${brl(Math.abs(x.v))}</b></div>`).join('')}${falta.length > 5 ? `<small>e mais ${falta.length - 5}</small>` : ''}</div>`;
+}
 // "Até o próximo salário" (só na aba Finanças)
 function cartaoLivre() {
   const x = livreAteSalario();
@@ -4219,7 +4262,7 @@ function telaFinanceiro() {
         <button data-a="novaSaida" class="prin"><span>${ic('up')}</span>Saída</button><button data-a="novaEntrada"><span>${ic('down')}</span>Entrada</button>
         <button data-a="irFin" data-v="metas"><span>${ic('piggy')}</span>Guardar</button><button data-a="maisFin"><span>${ic('grid')}</span>Mais</button></div></div>
       ${secLancamentos(ls)}
-      ${ym === hojeIso().slice(0, 7) ? cartaoLivre() : ''}
+      ${ym === hojeIso().slice(0, 7) ? cartaoPrevisao(ym, ent, totSai) + cartaoLivre() : ''}
       ${secMetas()}
       ${secFixos()}
     </div>
@@ -6202,6 +6245,9 @@ function telaDiario() {
         <div class="kpi"><div class="v">${doMes.length}</div><div class="l">Dias escritos</div></div><div class="kpi"><div class="v">${seq}</div><div class="l">Dias seguidos</div></div></div>
     </div>
     <div class="grid">
+      ${comHumor.length >= 2 ? (() => { const pts = comHumor.slice().reverse(), W = 300, H = 80, x = d => (+String(d.Data).slice(8) - 1) / (diasNoMes(a, m) - 1 || 1) * W, y = d => H - 6 - (num(d.Humor) - 1) / 4 * (H - 12);
+        return `<div class="card"><div class="sec">Humor de ${MESES[m - 1]} <span>média ${media.toFixed(1).replace('.', ',')}</span></div><svg class="hum-graf" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${[1, 3, 5].map(n => `<line x1="0" x2="${W}" y1="${H - 6 - (n - 1) / 4 * (H - 12)}" y2="${H - 6 - (n - 1) / 4 * (H - 12)}"/>`).join('')}<polyline pathLength="1" points="${pts.map(d => x(d).toFixed(1) + ',' + y(d).toFixed(1)).join(' ')}"/>${pts.map(d => `<circle cx="${x(d).toFixed(1)}" cy="${y(d).toFixed(1)}" r="3.5" fill="${HUMOR[num(d.Humor)].c}"/>`).join('')}</svg>
+        <div class="hum-x"><span>1</span><span>${Math.round(diasNoMes(a, m) / 2)}</span><span>${diasNoMes(a, m)}</span></div></div>`; })() : ''}
       ${lembra.length ? `<div class="card"><div class="sec">Lembranças</div>${lembra.map(({ l, d }) => `<div class="entrada" data-a="escreverDiario" data-d="${d.Data}" style="--hum:${num(d.Humor) ? HUMOR[num(d.Humor)].c : 'var(--line)'}"><b>${l} · ${fmtCurto(d.Data)}${num(d.Humor) ? ' · ' + HUMOR[num(d.Humor)].n : ''}</b>${d.Texto ? `<p>${esc(d.Texto)}</p>` : ''}</div>`).join('')}</div>` : ''}
       <div class="card"><div class="sec">Anotações de ${MESES[m - 1]}</div>
       ${doMes.map(d => `<div class="entrada" data-a="escreverDiario" data-d="${d.Data}" style="--hum:${num(d.Humor) ? HUMOR[num(d.Humor)].c : 'var(--line)'}"><b>${maiuscula(SEMANA[paraDate(d.Data).getDay()])}, ${fmtCurto(d.Data)}${num(d.Humor) ? ' · ' + HUMOR[num(d.Humor)].n : ''}</b>${d.Texto ? `<p>${esc(d.Texto)}</p>` : ''}</div>`).join('') || '<div class="vazio">Nada escrito neste mês ainda.</div>'}</div>
@@ -6738,6 +6784,10 @@ const GRANDES = {
   diario: d => ({ html: `<div class="gx-c"><div class="gx-pagina"><i></i><i></i><i></i><i></i><i></i></div>${gTexto('Dia registrado', 'Seu diário guardou mais um dia', [plural(d.mes, 'dia escrito', 'dias escritos') + ' no mês'])}</div>`, brilho: 1800 }),
   todos: d => ({ html: `<div class="gx-c"><div class="gx-lista">${[0, 1, 2, 3].map(i => `<div style="--d:${.3 + i * .25}s"><span>${ICK}</span><i></i></div>`).join('')}</div>${gTexto('Tudo feito!', 'Nenhum to-do pendente ' + d.per, [plural(d.n, 'tarefa concluída', 'tarefas concluídas')])}</div>`, brilho: 1700 }),
   habitoNovo: h => ({ html: `<div class="gx-c"><div class="gx-broto"><svg viewBox="0 0 120 140"><path class="caule" d="M60 130 C60 100 58 80 60 50"/><path class="f1" d="M60 78 C40 74 28 60 30 46 C46 46 58 58 60 78Z"/><path class="f2" d="M60 60 C78 54 92 38 90 24 C72 26 60 40 60 60Z"/></svg><i class="chao"></i></div>${gTexto('Novo hábito!', esc(h.Nome), ['Comece hoje', 'Um dia de cada vez'])}</div>`, brilho: 1900 }),
+
+  semana: d => ({ cls: 'gx-escuro', dura: 12000, brilho: 1600, html: `${'<i class="gx-luz"></i>'.repeat(10)}<div class="gx-c gx-retro"><div class="gx-rot">SUA SEMANA</div><h2 style="animation-delay:.2s">${esc(d.titulo)}</h2><p style="animation-delay:.3s">${esc(d.frase)}</p>
+    <div class="rt-g">${d.itens.map((it, i) => `<div style="--d:${.5 + i * .12}s"><small>${it[0]}</small><b>${it[1]}</b>${it[2] ? `<em>${it[2]}</em>` : ''}</div>`).join('')}</div>
+    <div class="gx-bts" style="animation-delay:1.3s"><button class="gx-bt lima" data-g="ok">Boa semana!</button></div></div>` }),
   novoMes: ym => ({ html: `<div class="gx-c"><div class="gx-cal"><div class="velho"><small>${MESES[+somaMes(ym, -1).slice(5) - 1]}</small><b>${diasNoMes(+somaMes(ym, -1).slice(0, 4), +somaMes(ym, -1).slice(5))}</b></div><div class="novo"><small>${MESES[+ym.slice(5) - 1]}</small><b>1</b></div></div>${gTexto('Bem-vindo a ' + MESES[+ym.slice(5) - 1].toLowerCase() + '!', 'Um mês novinho para começar', [])}</div>`, brilho: 1600 }),
   ferias: f => ({ cls: 'gx-praia', html: `<div class="gx-c"><div class="gx-praia-sol"></div><svg class="gx-mar" viewBox="0 0 300 60"><path d="M0 30 Q 37 10 75 30 T 150 30 T 225 30 T 300 30"/><path d="M0 46 Q 37 26 75 46 T 150 46 T 225 46 T 300 46"/></svg>${gTexto('Boas férias!', 'Aproveite para descansar', f.dias ? [plural(f.dias, 'dia', 'dias') + ' de folga'] : [])}</div>`, brilho: 1700 }),
 };
@@ -6768,6 +6818,27 @@ salvarLista = function (tab, objs) {
   } catch (e) { console.warn(e); }
   return r;
 };
+
+/** Números da semana para a retrospectiva (null se a semana foi vazia). */
+function resumoSemana(ini) {
+  const fim = somaDias(ini, 6), dentro = k => k >= ini && k <= fim, ant = k => k >= somaDias(ini, -7) && k < ini;
+  const hab = habitosAtivos(), dias = [...Array(7)].map((_, i) => somaDias(ini, i)).filter(k => k <= hojeIso());
+  const pHab = hab.length && dias.length ? dias.reduce((a, k) => a + hab.filter(h => feito(k, h.ID)).length, 0) / (hab.length * dias.length) : null;
+  const gasto = T('Lancamentos').filter(l => l.Tipo !== 'Entrada' && dentro(String(l.Data))).reduce((a, l) => a + num(l.Valor), 0);
+  const gastoAnt = T('Lancamentos').filter(l => l.Tipo !== 'Entrada' && ant(String(l.Data))).reduce((a, l) => a + num(l.Valor), 0);
+  const treinos = new Set(T('Treinos').filter(t => dentro(String(t.Data))).map(t => t.Data)).size;
+  const filmes = T('Filmes').filter(f => f.Status === 'Visto' && dentro(String(f.Data))).length;
+  const hum = T('Diario').filter(d => dentro(String(d.Data)) && num(d.Humor)), mh = hum.length ? hum.reduce((a, d) => a + num(d.Humor), 0) / hum.length : null;
+  const itens = [];
+  if (pHab != null) itens.push(['Hábitos', Math.round(pHab * 100) + '%', '']);
+  if (gasto) itens.push(['Gastou', brlCurto(gasto), gastoAnt ? (gasto <= gastoAnt ? '− ' + brlCurto(gastoAnt - gasto) + ' que a anterior' : '+ ' + brlCurto(gasto - gastoAnt) + ' que a anterior') : '']);
+  if (treinos) itens.push(['Treinos', String(treinos), '']);
+  if (filmes) itens.push(['Filmes e séries', String(filmes), '']);
+  if (mh != null) itens.push(['Humor médio', mh.toFixed(1).replace('.', ','), HUMOR[Math.round(mh)].n]);
+  if (itens.length < 2) return null;
+  const nome = String(cfg('Nome', '')).trim().split(/\s+/)[0];
+  return { titulo: `${+ini.slice(8)} a ${+fim.slice(8)} de ${MESES[+fim.slice(5, 7) - 1]}`, frase: pHab != null && pHab >= .7 ? `Semana forte${nome ? ', ' + nome : ''}!` : `Mais uma semana registrada${nome ? ', ' + nome : ''}.`, itens: itens.slice(0, 6) };
+}
 /** Ao abrir o Hoje: abertura (no máx. a cada 3 h), aniversários, mês novo e início das férias (1x por dia). */
 function grandesDoHoje() {
   if (E.tela !== 'inicio' || !grandesLigadas() || document.querySelector('#main .esq') || E.grandesHoje) return;
@@ -6777,6 +6848,8 @@ function grandesDoHoje() {
   if (Date.now() - ult > 3 * 3600e3) { try { localStorage.setItem('mdd_g_abertura', Date.now()); } catch (e) {} const n = String(cfg('Nome', '')).trim().split(/\s+/)[0]; grande('abertura', FASES_CEU[faseDoCeu()].ola + (n ? ', ' + n : '')); }
   if (hoje.slice(8) <= '03' && T('Lancamentos').length) uma('mes_' + hoje.slice(0, 7), () => grande('novoMes', hoje.slice(0, 7)));
   T('Datas').filter(x => proximaOcorrencia(x.Data) === hoje).slice(0, 2).forEach(x => uma('aniv_' + hoje + x.ID, () => grande('aniversario', Object.assign({ idade: idadeEm(x, hoje) }, x))));
+  const dw = paraDate(hoje).getDay();
+  if (dw === 0 || dw === 1) { const ini = somaDias(inicioSemana(hoje), dw === 1 ? -7 : 0); uma('sem_' + ini, () => { const r = resumoSemana(ini); if (r) grande('semana', r); }); }
   const fer = feriasPlanejadas()[hoje];
   if (fer && fer.Inicio === hoje) uma('fer_' + hoje, () => grande('ferias', { dias: num(fer.Dias) }));
 }
