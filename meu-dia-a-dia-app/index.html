@@ -2228,6 +2228,27 @@
   .fm-h { display: block; color: #fff; font-size: 14.5px; margin: 14px 0 4px; } .ficha-filme .fl-txt { color: #cfcfcf; font-size: 13.5px; line-height: 1.55; font-weight: 600; } .ficha-filme .nota { color: #9a9a9a; } .ficha-filme .lk { color: #fff; }
   @media (min-width: 900px) { .painel.ficha-filme { max-width: 760px !important; } .fm-hero { padding: 90px 30px 20px; } .fm-hero .fm-po.g { width: 170px; } .fm-hero h2 { font-size: 34px; } .fm-body { padding: 4px 30px 28px; } .fm-acoes { max-width: 460px; } }
   @media (prefers-reduced-motion: no-preference) { .ficha-filme .fm-po.g { animation: capaEntra .6s cubic-bezier(.2,1.3,.4,1) both; } #main.chegou .fm-it { animation: popIn .4s cubic-bezier(.2,1.3,.4,1) both; animation-delay: calc(var(--i, 0) * 40ms); } }
+
+  /* v46 · Estudo: espaçamento, boletim e capas */
+  body.t-estudos .tsec { margin: 20px 2px 10px !important; }
+  body.t-estudos .est-geral, body.t-estudos .est-hero { margin-bottom: 14px; }
+  body.t-estudos .est-sem, body.t-estudos .est-curso { margin-bottom: 10px; }
+  body.t-estudos .est-ano { margin: 14px 2px 8px; }
+  body.t-estudos .est-atalhos { margin-bottom: 16px; gap: 14px; }
+  .est-atalhos button { width: 84px; } .est-atalhos span { max-width: 84px; white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.2; text-align: center; overflow-wrap: anywhere; }
+  .est-atalhos i { width: 64px; height: 64px; border-radius: 20px; background-size: cover; background-position: center; }
+  .est-atalhos i.cp { box-shadow: 0 10px 18px -10px rgba(0,0,0,.5), inset 0 0 0 2px var(--c); }
+  .est-bol { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px; border-radius: 999px; background: var(--card); box-shadow: var(--sh); font-weight: 800; font-size: 13px; color: var(--tx); }
+  .est-bol svg.i { width: 16px; height: 16px; }
+  .est-disc .th { width: 38px; height: 38px; border-radius: 12px; background-size: cover; background-position: center; flex: none; }
+  .est-banner { height: 150px; margin: -10px -14px -60px; background-size: cover; background-position: center; position: relative; border-radius: 0 0 26px 26px; }
+  .est-banner::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.6)); }
+  .est-topo.sobre { position: relative; z-index: 1; margin-bottom: 24px; } .est-topo.sobre small { color: rgba(255,255,255,.85); } .est-topo.sobre .ibtn { background: rgba(255,255,255,.85); }
+  @media (min-width: 900px) { .est-banner { margin: -10px 0 -60px; border-radius: 26px; height: 170px; } }
+  .bol-sem { margin-top: 16px; } .bol-h { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 6px; border-bottom: 2px solid var(--line); } .bol-h b { font-size: 15px; } .bol-h span { font-size: 12px; font-weight: 700; color: var(--sub); }
+  .bol-l { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; padding: 10px 2px; border-bottom: 1px solid var(--line); }
+  .bol-l > i { width: 8px; height: 32px; border-radius: 4px; flex: none; } .bol-l .t { flex: 1; min-width: 0; } .bol-l .t b { display: block; font-size: 14px; } .bol-l .t small { font-size: 11.5px; color: var(--sub); font-weight: 700; }
+  .bol-l .md { text-align: right; font-weight: 800; font-size: 17px; } .bol-l .md span { display: block; font-size: 10.5px; font-weight: 800; color: var(--sub); } .bol-l .md .ok { color: var(--g); } .bol-l .md .rep { color: var(--r); }
 </style>
 </head>
 <body>
@@ -2350,7 +2371,7 @@ const corLimite = p => p >= 100 ? 'var(--r)' : p >= 80 ? 'var(--o)' : 'var(--g)'
 const NO_GOOGLE = typeof google !== 'undefined' && google.script && google.script.run;
 const CONEXAO = 'mdd_conexao';
 // Versão do app e da ponte que ele espera (o botão "Procurar atualização" compara com a do site)
-const APP_VERSAO = '45', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
+const APP_VERSAO = '46', PONTE_ESPERADA = '19', PAGINA_CODIGO = 'instalar.html#atualizar';
 async function procurarAtualizacao() {
   toast('Procurando atualização…');
   try {
@@ -3667,7 +3688,7 @@ async function usarCapaDaInternet(url) {
     if (baixada === url && !/^data:/.test(url) && !modoFirebase()) baixada = await chamar('baixarImagem', url).catch(() => url); // senão, pela ponte da planilha
     let d; try { d = await reduzirSrc(baixada); } catch (e) { if (/^https?:/.test(baixada)) d = baixada; else throw e; } // site que não deixa baixar: fica o link da imagem
     $(E.capaCampo || 'f_Capa').value = d; $('capaPrev').innerHTML = `<img src="${d}" alt="">`; E.sujo = true;
-    if (caixa) caixa.innerHTML = `<p class="nota" style="margin-top:8px;color:var(--g);font-weight:700">${E.capaTipo === 'lugar' ? 'Foto escolhida ✓ (salve o lugar para guardar)' : 'Capa escolhida ✓ (salve o livro para guardar)'}</p>`;
+    if (caixa) caixa.innerHTML = `<p class="nota" style="margin-top:8px;color:var(--g);font-weight:700">${E.capaIc === 'cap' ? 'Capa escolhida ✓ (salve a disciplina para guardar)' : E.capaTipo === 'lugar' ? 'Foto escolhida ✓ (salve o lugar para guardar)' : 'Capa escolhida ✓ (salve o livro para guardar)'}</p>`;
   } catch (err) { if (caixa) caixa.innerHTML = ''; toast(semRede(err) ? 'Sem internet agora.' : err.message, true); }
 }
 document.addEventListener('change', async e => {
@@ -4674,7 +4695,8 @@ function atalhosEst() {
   const f = facCfg(), info = discInfo(), ds = discsDoSem(f.atual).sort((a, b) => (info[b] && info[b].fix ? 1 : 0) - (info[a] && info[a].fix ? 1 : 0));
   if (!ds.length) return '';
   return `<div class="est-atalhos">${ds.map(n => { const r = resumoDisc(n, f.atual), c = corDisc(n);
-    return `<button data-a="estDisc" data-d="${esc(n)}" data-s="${f.atual}" style="--c:${c}"><i>${esc(n.trim()[0].toUpperCase())}${info[n] && info[n].fix ? '<em>★</em>' : ''}</i><span>${esc(n.length > 12 ? n.slice(0, 11) + '…' : n)}</span><small>${fmtNota(r.media)}</small></button>`; }).join('')}</div>`;
+    const cp = capaDisc(n);
+    return `<button data-a="estDisc" data-d="${esc(n)}" data-s="${f.atual}" style="--c:${c}"><i class="${cp ? 'cp' : ''}" ${cp ? `style="background-image:url('${esc(cp)}')"` : ''}>${cp ? '' : esc(n.trim()[0].toUpperCase())}${info[n] && info[n].fix ? '<em>★</em>' : ''}</i><span>${esc(n)}</span><small>${fmtNota(r.media)}</small></button>`; }).join('')}</div>`;
 }
 function cursosEst() {
   const cs = T('Cursos').slice().sort((a, b) => (a.Status === 'Cursando' ? 0 : a.Status === 'A fazer' ? 1 : 2) - (b.Status === 'Cursando' ? 0 : b.Status === 'A fazer' ? 1 : 2));
@@ -4697,7 +4719,7 @@ function telaEstudos() {
   const progresso = Math.min(100, Math.round(((f.atual - 1) + (rs[f.atual].ds.length ? rs[f.atual].ds.reduce((x, d) => x + (d.at.length ? d.feitas / d.at.length : 0), 0) / rs[f.atual].ds.length : 0)) / f.total * 100));
   const u = ultimoEst(), cont = u && u.v === 'disc' && u.disc && Date.now() - u.t < 7 * 86400e3 ? u : null;
   const porAno = {}; sems.forEach(s => (porAno[anoDoSem(s)] = porAno[anoDoSem(s)] || []).push(s));
-  return `${cabeca('Estudos', esc(cfg('Curso', 'Faculdade e cursos')), `<button class="ibtn" data-a="editarCfg" data-g="faculdade" aria-label="Ajustes da faculdade">${ic('gear')}</button><button class="ibtn escuro" data-a="estMais" aria-label="Adicionar">${ic('plus')}</button>`)}
+  return `${cabeca('Estudo', esc(cfg('Curso', 'Faculdade e cursos')), `<button class="est-bol" data-a="estBoletim">${ic('list')}<span>Boletim</span></button><button class="ibtn" data-a="editarCfg" data-g="faculdade" aria-label="Ajustes da faculdade">${ic('gear')}</button><button class="ibtn escuro" data-a="estMais" aria-label="Adicionar">${ic('plus')}</button>`)}
   ${cont ? `<button class="est-cont" data-a="estDisc" data-d="${esc(cont.disc)}" data-s="${cont.sem}">${ic('repeat')}<span>Continuar em <b>${esc(cont.disc)}</b></span>${ic('chev')}</button>` : ''}
   ${atalhosEst()}
   <div class="est-geral"><small>${esc(String(cfg('Curso', 'Sua faculdade')).toUpperCase())}</small><div class="l1"><div class="big">${fmtNota(geral)}</div><div><b>média geral</b><span>${f.atual}º de ${f.total} semestres</span></div></div>
@@ -4715,7 +4737,8 @@ function telaSemestre(s) {
   ${cartaoEntrega(proxEntrega(a => semDe(a) === s))}
   <div class="tsec"><b>Disciplinas</b><button data-a="estNovaDisc" data-s="${s}">+ disciplina</button></div>
   ${r.ds.map(d => { const c = corDisc(d.nome), info = discInfo()[d.nome] || {};
-    return `<button class="est-disc" style="--c:${c}" data-a="estDisc" data-d="${esc(d.nome)}" data-s="${s}"><div class="h"><b>${esc(d.nome)}</b><span class="md">${fmtNota(d.media)}</span>${ic('chev')}</div>
+    const cp = capaDisc(d.nome);
+    return `<button class="est-disc" style="--c:${c}" data-a="estDisc" data-d="${esc(d.nome)}" data-s="${s}"><div class="h">${cp ? `<span class="th" style="background-image:url('${esc(cp)}')"></span>` : ''}<b>${esc(d.nome)}</b><span class="md">${fmtNota(d.media)}</span>${ic('chev')}</div>
       <div class="ln"><span>${d.feitas} de ${d.at.length} entregas</span>${d.atras ? `<span class="al">${plural(d.atras, 'atrasada', 'atrasadas')}</span>` : ''}${d.fechada ? '<span>fechada</span>' : ''}${d.media != null && d.media < f.min ? '<span class="al">abaixo da média</span>' : ''}${info.prof ? `<span>${esc(info.prof)}</span>` : ''}</div>
       <div class="bar"><i style="width:${d.at.length ? d.feitas / d.at.length * 100 : 0}%"></i></div></button>`; }).join('') || `<div class="card vazio">Nenhuma disciplina neste semestre. Toque em "+ disciplina".</div>`}`;
 }
@@ -4729,29 +4752,32 @@ function telaDisciplina(nome, s) {
   let calc = '';
   if (r.precisa != null) calc = r.precisa <= 0 ? `Você já garantiu a média ${fmtNota(f.min)} nesta matéria.` : r.precisa > 10 ? `Nem com 10 no que falta dá para chegar a ${fmtNota(f.min)}. Vale conversar com o professor.` : `Para fechar com média ${fmtNota(f.min)}, você precisa de <b>${fmtNota(r.precisa)}</b> em média no que falta.`;
   else if (r.fechada && r.media != null) calc = r.media >= f.min ? `Matéria fechada com ${fmtNota(r.media)}. Aprovado!` : `Matéria fechada com ${fmtNota(r.media)}, abaixo de ${fmtNota(f.min)}.`;
-  return `<div class="est-topo"><button class="ibtn" data-a="estVoltar" aria-label="Voltar">${ic('chevl')}</button><div><h1 style="color:${c}">${esc(nome)}</h1><small>${esc([s + 'º semestre', info.prof, info.hor].filter(Boolean).join(' · '))}</small></div><button class="ibtn" data-a="estEditarDisc" data-d="${esc(nome)}" data-s="${s}" aria-label="Editar disciplina">${ic('pen')}</button></div>
+  const cp = capaDisc(nome);
+  return `${cp ? `<div class="est-banner" style="background-image:url('${esc(cp)}')"></div>` : ''}<div class="est-topo ${cp ? 'sobre' : ''}"><button class="ibtn" data-a="estVoltar" aria-label="Voltar">${ic('chevl')}</button><div><h1 style="color:${cp ? '#fff' : c}">${esc(nome)}</h1><small>${esc([s + 'º semestre', info.prof, info.hor].filter(Boolean).join(' · '))}</small></div><button class="ibtn" data-a="estEditarDisc" data-d="${esc(nome)}" data-s="${s}" aria-label="Editar disciplina">${ic('pen')}</button></div>
   <div class="est-nums" style="--c:${c}"><div><small>MÉDIA</small><b>${fmtNota(r.media)}</b></div><div><small>ENTREGAS</small><b>${r.feitas}/${r.at.length}</b></div><div class="faltas"><small>FALTAS</small><span><button data-a="estFalta" data-d="${esc(nome)}" data-n="-1" aria-label="Menos uma falta">−</button><b>${num(info.faltas) || 0}</b><button data-a="estFalta" data-d="${esc(nome)}" data-n="1" aria-label="Mais uma falta">+</button></span></div></div>
   ${calc ? `<div class="est-calc" style="--c:${c}">${calc}</div>` : ''}
   <div class="card"><div class="sec">Avaliações <button class="lk" data-a="estNovaAv" data-d="${esc(nome)}" data-s="${s}">+ adicionar</button></div>
     ${r.at.map(linha).join('') || '<p class="nota">Nenhuma avaliação ainda. Toque em "+ adicionar".</p>'}
     <div class="rapido" style="margin:12px 0 0"><input id="estRapido" placeholder="Rápido: prova 26/11 peso 5" autocomplete="off" enterkeyhint="go"><button class="btns" data-a="estRapido" data-d="${esc(nome)}" data-s="${s}">Lançar</button></div></div>
   <div class="card" data-a="estEditarDisc" data-d="${esc(nome)}" data-s="${s}"><div class="sec">Anotações da matéria <span class="lk">editar</span></div><p class="${info.anot ? 'est-anot' : 'nota'}">${info.anot ? esc(info.anot).replace(/\n/g, '<br>') : 'Conteúdo da prova, combinados com o professor, links… Toque para escrever.'}</p></div>
-  <button class="add" data-a="estFixar" data-d="${esc(nome)}">${info.fix ? '★ Fixada nos atalhos · tirar' : '☆ Fixar nos atalhos de Estudos'}</button>`;
+  <button class="add" data-a="estFixar" data-d="${esc(nome)}">${info.fix ? '★ Fixada nos atalhos · tirar' : '☆ Fixar nos atalhos de Estudo'}</button>`;
 }
+const capaDisc = nome => cfg('CapaDisc:' + nome, '');
 function salvarDisc(nome, dados, msg) { const o = discInfo(); o[nome] = Object.assign({}, o[nome] || {}, dados); salvarConfig({ Disciplinas: JSON.stringify(o) }, msg || ''); }
 function abrirDisc(nome, s) {
   const d = nome ? discInfo()[nome] || {} : {};
   abrirForm({
     titulo: nome ? 'Editar disciplina' : 'Nova disciplina',
     campos: [{ k: 'Nome', l: 'Disciplina', obr: 1, ph: 'Ex.: Banco de Dados' }, { k: 'Semestre', l: 'Semestre', t: 'num', meia: 1 }, { k: 'Prof', l: 'Professor', meia: 1 },
-      { k: 'Hor', l: 'Dias e horário', ph: 'Ex.: seg e qua, 19h' }, { k: 'Cor', l: 'Cor', t: 'cor' }, { k: 'Anot', l: 'Anotações', t: 'area', ph: 'Conteúdo da prova, links, combinados…' }],
-    valores: { Nome: nome || '', Semestre: d.semestre || s || facCfg().atual, Prof: d.prof || '', Hor: d.hor || '', Cor: d.cor || '', Anot: d.anot || '' },
+      { k: 'Hor', l: 'Dias e horário', ph: 'Ex.: seg e qua, 19h' }, { k: 'Capa', l: 'Capa da matéria', t: 'capa', busca: 'lugar', ic: 'cap', ajuda: 'Uma foto, imagem da internet ou link. Aparece nos atalhos e no topo da matéria.' }, { k: 'Cor', l: 'Cor', t: 'cor' }, { k: 'Anot', l: 'Anotações', t: 'area', ph: 'Conteúdo da prova, links, combinados…' }],
+    valores: { Nome: nome || '', Semestre: d.semestre || s || facCfg().atual, Prof: d.prof || '', Hor: d.hor || '', Capa: nome ? capaDisc(nome) : '', Cor: d.cor || '', Anot: d.anot || '' },
     salvar: o => {
       const novo = String(o.Nome).trim(), sem = num(o.Semestre) || facCfg().atual, info = discInfo(), antes = info[nome] || {};
       if (nome && novo !== nome) { delete info[nome]; const muda = T('Atividades').filter(a => a.Disciplina === nome).map(a => Object.assign({}, a, { Disciplina: novo })); if (muda.length) salvarLista('Atividades', muda, ''); }
       info[novo] = Object.assign({}, antes, { semestre: sem, prof: o.Prof, hor: o.Hor, cor: o.Cor, anot: o.Anot });
       if (nome && num(antes.semestre || s) !== sem) { const muda = T('Atividades').filter(a => a.Disciplina === novo && semDe(a) === num(antes.semestre || s)).map(a => Object.assign({}, a, { Semestre: sem })); if (muda.length) salvarLista('Atividades', muda, ''); }
-      fecharVeu(); E.est = { v: 'disc', disc: novo, sem }; lembrarEst(); salvarConfig({ Disciplinas: JSON.stringify(info) }, 'Disciplina salva ✓');
+      const capas = {}; if ((o.Capa || '') !== (nome ? capaDisc(nome) : '')) capas['CapaDisc:' + novo] = o.Capa || ''; if (nome && novo !== nome && capaDisc(nome)) { capas['CapaDisc:' + novo] = o.Capa || capaDisc(nome); capas['CapaDisc:' + nome] = ''; }
+      fecharVeu(); E.est = { v: 'disc', disc: novo, sem }; lembrarEst(); salvarConfig(Object.assign({ Disciplinas: JSON.stringify(info) }, capas), 'Disciplina salva ✓');
     },
     excluir: nome && (() => { const info = discInfo(); delete info[nome]; fecharVeu(); E.est = { v: 'sem', sem: s }; salvarConfig({ Disciplinas: JSON.stringify(info) }, 'Disciplina removida (as avaliações continuam salvas)'); }),
   });
@@ -4767,6 +4793,18 @@ function estRapido(nome, s) {
   o.Titulo = maiuscula(t.replace(/\s+/g, ' ').trim()) || 'Atividade';
   o.Tipo = /prova|avalia/i.test(o.Titulo) ? 'Prova' : /lista|exerc/i.test(o.Titulo) ? 'Lista' : /trabalho|projeto|sprint/i.test(o.Titulo) ? 'Trabalho' : 'Atividade';
   salvarItem('Atividades', o, 'Avaliação lançada ✓');
+}
+
+/** Boletim: todos os semestres com as notas de cada matéria. */
+function abrirBoletim() {
+  const f = facCfg(), sems = [...new Set(T('Atividades').map(semDe).concat([f.atual]))].sort((a, b) => a - b);
+  const linhas = sems.map(s => { const r = resumoSem(s);
+    return `<div class="bol-sem"><div class="bol-h"><b>${s}º semestre</b><span>${anoDoSem(s)} · média ${fmtNota(r.media)}</span></div>
+      ${r.ds.map(d => { const st = d.media == null ? ['—', ''] : d.fechada ? (d.media >= f.min ? ['Aprovado', 'ok'] : ['Reprovado', 'rep']) : d.media >= f.min ? ['Na média', 'ok'] : ['Abaixo', 'rep'];
+        const ns = d.at.filter(temNota).map(a => fmtNota(num(a.Nota)));
+        return `<button class="bol-l" data-a="estDisc" data-d="${esc(d.nome)}" data-s="${s}"><i style="background:${corDisc(d.nome)}"></i><div class="t"><b>${esc(d.nome)}</b><small>${ns.length ? 'Notas: ' + ns.join(' · ') : 'Sem notas ainda'} · ${d.feitas}/${d.at.length} entregas${num((discInfo()[d.nome] || {}).faltas) ? ' · ' + plural(num(discInfo()[d.nome].faltas), 'falta', 'faltas') : ''}</small></div><div class="md">${fmtNota(d.media)}<span class="${st[1]}">${st[0]}</span></div></button>`; }).join('') || '<p class="nota">Nenhuma disciplina.</p>'}</div>`; }).join('');
+  const ms = sems.map(s => resumoSem(s).media).filter(m => m != null), geral = ms.length ? ms.reduce((a, b) => a + b, 0) / ms.length : null;
+  abrirVeu(`<h2>Boletim</h2><div class="sub">${esc(cfg('Curso', 'Faculdade'))} · média geral <b>${fmtNota(geral)}</b> · média para passar ${fmtNota(f.min)}</div>${linhas}`, 'medio');
 }
 function menuEstudos() {
   const f = facCfg(), d = E.est && E.est.v === 'disc' ? E.est.disc : '', s = (E.est && E.est.sem) || f.atual;
@@ -5648,7 +5686,7 @@ function telaInicio() {
 const AREAS = [
   ['presenca', 'calendar', 'Agenda', '#c2410c'], ['habitos', 'habits', 'Hábitos', '#ea580c'], ['financeiro', 'wallet', 'Finanças', '#0284c7'],
   ['metas', 'target', 'Metas', '#7c3aed'], ['diario', 'pen', 'Diário', '#a16207'], ['treinos', 'dumb', 'Treinos', '#16a34a'],
-  ['estudos', 'cap', 'Estudos', '#0d9488'], ['leitura', 'book', 'Leitura', '#3f7d1c'], ['filmes', 'film', 'Filmes', '#be123c'],
+  ['estudos', 'cap', 'Estudo', '#0d9488'], ['leitura', 'book', 'Leitura', '#3f7d1c'], ['filmes', 'film', 'Filmes', '#be123c'],
   ['lugares', 'pin', 'Lugares', '#0d9488'], ['farmacia', 'pill', 'Farmácia', '#dc2626'], ['datas', 'gift', 'Datas', '#db2777'],
   ['conquistas', 'trophy', 'Conquistas', '#d97706'], ['busca', 'search', 'Buscar', '#64748b'], ['ajustes', 'gear', 'Ajustes', '#64748b'],
 ];
@@ -6419,7 +6457,7 @@ const TELAS = {
 };
 // ---------- Menu do computador: grupos que abrem e fecham, contadores e modo recolhido ----------
 const NAV_TOPO = [['inicio', 'home', 'Hoje'], ['presenca', 'calendar', 'Agenda'], ['financeiro', 'wallet', 'Finanças'], ['habitos', 'habits', 'Hábitos']];
-const NAV_GRUPOS = [['estudos', 'cap', 'Estudos', [['estudos', 'cap', 'Faculdade e cursos'], ['leitura', 'book', 'Leitura'], ['filmes', 'film', 'Filmes e séries']]],
+const NAV_GRUPOS = [['estudos', 'cap', 'Estudos', [['estudos', 'cap', 'Estudo'], ['leitura', 'book', 'Leitura'], ['filmes', 'film', 'Filmes e séries']]],
   ['vida', 'pin', 'Vida', [['diario', 'pen', 'Diário'], ['treinos', 'dumb', 'Treinos'], ['lugares', 'pin', 'Lugares'], ['farmacia', 'pill', 'Farmácia'], ['datas', 'gift', 'Datas'], ['metas', 'target', 'Metas']]]];
 const NAV_FIM = [['conquistas', 'trophy', 'Conquistas'], ['busca', 'search', 'Buscar'], ['manual', 'book', 'Manual'], ['ajustes', 'gear', 'Ajustes']];
 const NAV_ABERTOS = 'mdd_nav', NAV_MINI = 'mdd_nav_mini';
@@ -6447,7 +6485,7 @@ function menuLateral() {
   };
   return `<div class="logo"><i>✓</i><span class="tx">Meu Dia</span><button class="side-tog" data-a="navMini" aria-label="${mini ? 'Abrir menu' : 'Recolher menu'}">${ic(mini ? 'chev' : 'chevl')}</button></div>
     <button class="novo" data-a="rapidas" title="Adicionar">${ic('plus')}<span class="tx">Adicionar</span></button>
-    ${NAV_TOPO.map(x => item(x)).join('')}<div class="nav-esp"></div>${NAV_GRUPOS.map(grupo).join('')}<div class="nav-esp"></div>${NAV_FIM.map(x => item(x)).join('')}`;
+    ${NAV_TOPO.map(x => item(x)).join('')}<div class="nav-esp"></div>${NAV_GRUPOS.map(g => g[3].map(x => item(x)).join('')).join('<div class="nav-esp"></div>')}<div class="nav-esp"></div>${NAV_FIM.map(x => item(x)).join('')}`;
 }
 
 // ---------- Animações: entrada das telas, números que contam, painéis com mola ----------
@@ -6981,6 +7019,7 @@ const ACOES = {
     salvarItem('Cursos', Object.assign({}, c, { Progresso: p, Status: p >= 100 ? 'Concluído' : 'Cursando' }), p >= 100 ? 'Curso concluído! ✓' : 'Mais uma aula ✓'); },
   estCursosTodos: () => { E.estCursosTodos = !E.estCursosTodos; render(); },
   estMais: () => menuEstudos(),
+  estBoletim: () => abrirBoletim(),
   abaResolver: ({ v }) => { E.abaResolver = v; render(); },
   agendaDia: ({ d }) => { E.diaAgenda = d; E.mesPres = d.slice(0, 7); ACOES.ir({ v: 'presenca' }); requestAnimationFrame(() => { const el = $('diaSel'); if (el) el.scrollIntoView({ block: 'start' }); }); },
   filtroAg: ({ v }) => { E.filtroAg = v; render(); },
